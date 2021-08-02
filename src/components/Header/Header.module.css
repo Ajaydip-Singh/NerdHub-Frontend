@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  background-color: #000;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 80px;
+}
+
+.nav_list {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+.nav_list_item {
+  margin: 0 1rem;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  transition: all 500ms linear, ease 500ms;
+}
+
+.nav_link:hover,
+.nav_link:focus {
+  color: #50d450;
+  border: 1px solid #50d450;
+}
