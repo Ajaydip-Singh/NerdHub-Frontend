@@ -25,10 +25,17 @@
 
 .nav_link {
   text-decoration: none;
+  text-transform: capitalize;
   color: #fff;
   padding: 0.5rem;
   border: 1px solid #000;
   transition: all 500ms linear, ease 500ms;
+}
+
+.active {
+  color: #50d450;
+  border: 1px solid #50d450;
+  pointer-events: none;
 }
 
 .nav_link:hover,
