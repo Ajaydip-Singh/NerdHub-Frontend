@@ -38,7 +38,12 @@ code {
 
 .row.space-around,
 .column.space-around {
-  justify-content: flex-start;
+  justify-content: space-around;
+}
+
+.row.space-evenly,
+.column.space-evenly {
+  justify-content: space-evenly;
 }
 
 .row.justify-center,
