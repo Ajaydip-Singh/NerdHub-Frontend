@@ -1,27 +1,57 @@
-import styles from "./Header.module.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import styles from "./Header.module.css";
+import { useState } from "react";
 
 export default function Header(props) {
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+
   const addLinkStyling = (props) => {
     return props ? `${styles.nav_link} ${styles.active}` : styles.nav_link;
   };
 
+  const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
+
   return (
     <Router>
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <ul className={styles.nav_list}>
+      <header
+        className={`${styles.header} ${isSmallerScreen && `space-between`} row`}
+      >
+        <Link to="/home">
+          <img src="/logo192.png" alt="Nerdhub Logo" className={styles.logo} />
+        </Link>
+        {isSmallerScreen && (
+          <button
+            className={`button ${styles.hamburger_button}`}
+            onClick={() => setSideBarOpen(true)}
+          >
+            <i class="fas fa-bars fa-2x"></i>
+          </button>
+        )}
+        <nav
+          className={`${
+            isSmallerScreen && sideBarOpen
+              ? `column ${styles.hamburger} ${styles.open}`
+              : isSmallerScreen
+              ? `column ${styles.hamburger}`
+              : `row ${styles.nav}`
+          } space-between`}
+        >
+          {isSmallerScreen && (
+            <button
+              className={`button ${styles.hamburger_button}`}
+              onClick={() => setSideBarOpen(false)}
+            >
+              <i class="fas fa-times fa-2x"></i>
+            </button>
+          )}
+          <ul
+            className={`${styles.nav_list} ${
+              isSmallerScreen ? `column` : `row`
+            }  align-center`}
+          >
             <li className={styles.nav_list_item}>
-              <Link to="/">
-                <img
-                  src="/logo192.png"
-                  alt="Nerdhub Logo"
-                  className={styles.logo}
-                />
-              </Link>
-            </li>
-            <li className={styles.nav_list_item}>
-              <Link className={addLinkStyling(props.home)} to="/">
+              <Link className={addLinkStyling(props.home)} to="/home">
                 home
               </Link>
             </li>
@@ -42,7 +72,11 @@ export default function Header(props) {
             </li>
           </ul>
           {props.navItems && (
-            <ul className={styles.nav_list}>
+            <ul
+              className={`${styles.nav_list} ${
+                isSmallerScreen ? `column` : `row`
+              } align-center`}
+            >
               {props.navItems.map((item) => (
                 <li className={styles.nav_list_item} key={item}>
                   <Link className={addLinkStyling(props[item])} to={`/${item}`}>

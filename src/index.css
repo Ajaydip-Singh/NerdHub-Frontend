@@ -19,3 +19,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* FlexBox */
+
+.row {
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row.space-between,
+.column.space-between {
+  justify-content: space-between;
+}
+
+.row.space-around,
+.column.space-around {
+  justify-content: flex-start;
+}
+
+.row.justify-center,
+.column.justify-center {
+  justify-content: center;
+}
+
+.row.align-center,
+.column.align-center {
+  align-items: center;
+}
+
+/* Button */
+.button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
