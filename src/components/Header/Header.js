@@ -2,7 +2,12 @@ import styles from "./Header.module.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Header(props) {
-  const nav_items = props.navItems ? props.navItems : null;
+  const nav_items = props.navItems
+    ? props.navItems
+    : [
+        { name: "Login", to: "/login" },
+        { name: "Register", to: "/register" },
+      ];
 
   return (
     <Router>
@@ -39,17 +44,15 @@ export default function Header(props) {
               </Link>
             </li>
           </ul>
-          {nav_items && (
-            <ul className={styles.nav_list}>
-              {nav_items.map((item) => (
-                <li className={styles.nav_list_item} key={item}>
-                  <Link className={styles.nav_link} to={item.to}>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className={styles.nav_list}>
+            {nav_items.map((item) => (
+              <li className={styles.nav_list_item} key={item}>
+                <Link className={styles.nav_link} to={item.to}>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
       </header>
     </Router>
