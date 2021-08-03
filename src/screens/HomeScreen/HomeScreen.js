@@ -1,6 +1,7 @@
 import MediaQuery, { useMediaQuery } from "react-responsive";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import Header from "../../components/Header/Header";
+import Socials from "../../components/Socials/Socials";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./HomeScreen.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -66,6 +67,9 @@ export default function HomeScreen() {
       </section>
       <MediaQuery minWidth={800}>
         <p className={styles.rotated_text}>Scroll Down</p>
+        <div className={styles.social_icons}>
+          <Socials vertical />
+        </div>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
         <BottomNav home></BottomNav>

@@ -36,14 +36,21 @@
 }
 
 .rotated_text {
-  color: #50d450;
   position: absolute;
   bottom: 30px;
   z-index: 8;
   left: 50%;
   transform: translateX(-50%) rotate(-90deg);
+  color: #50d450;
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: 700;
   /* border: 1px solid magenta; */
+}
+
+.social_icons {
+  position: fixed;
+  right: 8px;
+  bottom: 5rem;
+  z-index: 3;
 }

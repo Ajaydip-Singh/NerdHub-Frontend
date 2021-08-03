@@ -1,0 +1,20 @@
+.social_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: max-content;
+}
+
+.social_list_item {
+  margin: 0.5rem;
+}
+
+.social_link {
+  color: #fff;
+  transition: all 500ms linear, ease 500ms;
+}
+
+.social_link:hover,
+.social_link:focus {
+  color: #50d450;
+}
