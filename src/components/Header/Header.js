@@ -1,37 +1,36 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styles from "./Header.module.css";
+import { useState } from "react";
+import SideBar from "../SideBar/SideBar";
 
 export default function Header(props) {
   const addLinkStyling = (props) => {
     return props ? `${styles.nav_link} ${styles.active}` : styles.nav_link;
   };
 
+  const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+  const [user, setUser] = useState(true);
+
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
 
   return (
     <Router>
       <header
-        className={`row ${styles.header} ${isSmallerScreen && `space-between`}`}
+        className={`row ${styles.header} ${
+          isSmallerScreen ? `space-between` : ``
+        }`}
       >
         <Link to="/home">
           <img src="/logo192.png" alt="Nerdhub Logo" className={styles.logo} />
         </Link>
-        {/* {isSmallerScreen && (
-          <button
-            className={`button ${styles.hamburger_button}`}
-            // onClick={() => setSideBarOpen(true)}
-          >
-            <i class="fas fa-bars fa-2x"></i>
-          </button>
-        )} */}
         <nav
-          className={`row align-center ${styles.nav} ${
+          className={`row ${styles.nav} ${
             isSmallerScreen ? `flex-end` : `space-between`
           }`}
         >
           {!isSmallerScreen && (
-            <ul className={`${styles.nav_list} row`}>
+            <ul className={`row align-center ${styles.nav_list}`}>
               <li className={styles.nav_list_item}>
                 <Link className={addLinkStyling(props.home)} to="/home">
                   home
@@ -55,19 +54,35 @@ export default function Header(props) {
             </ul>
           )}
 
-          {props.navItems && (
+          {user ? (
+            <button
+              className={`button ${styles.hamburger_button}`}
+              onClick={() => setSideBarIsOpen(true)}
+            >
+              <div className={styles.hamburger_menu_wrapper}>
+                <div className={styles.hamburger_menu}></div>
+              </div>
+            </button>
+          ) : (
             <ul className={`${styles.nav_list} row align-center`}>
-              {props.navItems.map((item) => (
-                <li className={styles.nav_list_item} key={item}>
-                  <Link className={addLinkStyling(props[item])} to={`/${item}`}>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li className={styles.nav_list_item}>
+                <Link className={addLinkStyling(props.login)} to="/login">
+                  login
+                </Link>
+              </li>
+              <li className={styles.nav_list_item}>
+                <Link className={addLinkStyling(props.register)} to="/register">
+                  register
+                </Link>
+              </li>
             </ul>
           )}
         </nav>
       </header>
+      <SideBar
+        sideBarIsOpen={sideBarIsOpen}
+        setSideBarIsOpen={setSideBarIsOpen}
+      ></SideBar>
     </Router>
   );
 }
