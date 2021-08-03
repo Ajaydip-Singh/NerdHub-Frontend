@@ -7,11 +7,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
+  const nextIcon = (
+    <span
+      aria-hidden="true"
+      className={`carousel-control-next-icon ${styles.next_icon}`}
+    />
+  );
+
+  const prevIcon = (
+    <span
+      aria-hidden="true"
+      className={`carousel-control-prev-icon ${styles.prev_icon}`}
+    />
+  );
+
   return (
     <div>
       <Header home></Header>
       <section className={styles.hero_section}>
-        <Carousel>
+        <Carousel
+          fade
+          indicators={false}
+          nextIcon={nextIcon}
+          prevIcon={prevIcon}
+        >
           <Carousel.Item>
             <img
               className={`d-block w-100 ${styles.carousel_image} ${
