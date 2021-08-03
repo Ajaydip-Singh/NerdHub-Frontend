@@ -41,7 +41,7 @@ export default function HomeScreen() {
               src="/images/gaming_room.jpeg"
               alt="First slide"
             />
-            <Carousel.Caption>
+            <Carousel.Caption className={styles.carousel_caption}>
               <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
@@ -57,13 +57,16 @@ export default function HomeScreen() {
               alt="Second slide"
             />
 
-            <Carousel.Caption>
+            <Carousel.Caption className={styles.carousel_caption}>
               <h3>Second slide label</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </section>
+      <MediaQuery minWidth={800}>
+        <p className={styles.rotated_text}>Scroll Down</p>
+      </MediaQuery>
       <MediaQuery maxWidth={800}>
         <BottomNav home></BottomNav>
       </MediaQuery>

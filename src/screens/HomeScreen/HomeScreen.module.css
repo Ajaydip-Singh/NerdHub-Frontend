@@ -1,10 +1,17 @@
 .hero_section {
   padding-top: 4.375rem;
+  /* border: 1px solid magenta; */
 }
 
 .carousel_image {
   width: 100%;
   object-fit: cover;
+}
+
+.carousel_caption {
+  position: absolute;
+  /* bottom: 40vh; */
+  top: 0;
 }
 
 .image_large_screen {
@@ -26,4 +33,17 @@
 
 .prev_icon:hover {
   transform: translateX(-3px);
+}
+
+.rotated_text {
+  color: #50d450;
+  position: absolute;
+  bottom: 30px;
+  z-index: 8;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  /* border: 1px solid magenta; */
 }
