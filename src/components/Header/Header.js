@@ -59,7 +59,9 @@ export default function Header(props) {
               className={`button ${styles.hamburger_button}`}
               onClick={() => setSideBarIsOpen(true)}
             >
-              <i class="fas fa-bars fa-2x"></i>
+              <div className={styles.hamburger_menu_wrapper}>
+                <div className={styles.hamburger_menu}></div>
+              </div>
             </button>
           ) : (
             <ul className={`${styles.nav_list} row align-center`}>
