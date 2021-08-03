@@ -4,7 +4,7 @@ import styles from "./SideBar.module.css";
 export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
   return (
     <div
-      className={`side_bar row ${styles.side_bar} ${
+      className={`side_bar row_f ${styles.side_bar} ${
         sideBarIsOpen ? `${styles.open}` : ``
       }`}
     >
@@ -18,7 +18,7 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
           onClick={() => setSideBarIsOpen(false)}
         ></button>
       </div>
-      <ul className={`column align-center ${styles.side_bar_list}`}>
+      <ul className={`column_f align-center ${styles.side_bar_list}`}>
         <li>
           <Link to="/home">
             <img

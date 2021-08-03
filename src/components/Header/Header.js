@@ -17,7 +17,7 @@ export default function Header(props) {
   return (
     <Router>
       <header
-        className={`row ${styles.header} ${
+        className={`row_f ${styles.header} ${
           isSmallerScreen ? `space-between` : ``
         }`}
       >
@@ -25,12 +25,12 @@ export default function Header(props) {
           <img src="/logo192.png" alt="Nerdhub Logo" className={styles.logo} />
         </Link>
         <nav
-          className={`row ${styles.nav} ${
+          className={`row_f ${styles.nav} ${
             isSmallerScreen ? `flex-end` : `space-between`
           }`}
         >
           {!isSmallerScreen && (
-            <ul className={`row align-center ${styles.nav_list}`}>
+            <ul className={`row_f align-center ${styles.nav_list}`}>
               <li className={styles.nav_list_item}>
                 <Link className={addLinkStyling(props.home)} to="/home">
                   home
@@ -64,7 +64,7 @@ export default function Header(props) {
               </div>
             </button>
           ) : (
-            <ul className={`${styles.nav_list} row align-center`}>
+            <ul className={`${styles.nav_list} row_f align-center`}>
               <li className={styles.nav_list_item}>
                 <Link className={addLinkStyling(props.login)} to="/login">
                   login

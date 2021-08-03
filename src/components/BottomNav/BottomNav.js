@@ -8,8 +8,8 @@ export default function BottomNav(props) {
 
   return (
     <Router>
-      <nav className={`row align-center ${styles.nav}`}>
-        <ul className={`row space-evenly align-center ${styles.nav_list}`}>
+      <nav className={`row_f align-center ${styles.nav}`}>
+        <ul className={`row_f space-evenly align-center ${styles.nav_list}`}>
           <li className={styles.nav_list_item}>
             <Link className={addLinkStyling(props.about)} to="/about">
               <i class="fas fa-user-friends fa-lg"></i>
