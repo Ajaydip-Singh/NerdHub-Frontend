@@ -23,42 +23,42 @@ code {
 
 /* FlexBox */
 
-.row {
+.row_f {
   display: flex;
 }
 
-.column {
+.column_f {
   display: flex;
   flex-direction: column;
 }
 
-.row.space-between,
-.column.space-between {
+.row_f.space-between,
+.column_f.space-between {
   justify-content: space-between;
 }
 
-.row.space-around,
-.column.space-around {
+.row_f.space-around,
+.column_f.space-around {
   justify-content: space-around;
 }
 
-.row.space-evenly,
-.column.space-evenly {
+.row_f.space-evenly,
+.column_f.space-evenly {
   justify-content: space-evenly;
 }
 
-.row.flex-end,
-.column.flex-end {
+.row_f.flex-end,
+.column_f.flex-end {
   justify-content: flex-end;
 }
 
-.row.justify-center,
-.column.justify-center {
+.row_f.justify-center,
+.column_f.justify-center {
   justify-content: center;
 }
 
-.row.align-center,
-.column.align-center {
+.row_f.align-center,
+.column_f.align-center {
   align-items: center;
 }
 
@@ -68,5 +68,3 @@ code {
   border: none;
   cursor: pointer;
 }
-
-/* Header */
