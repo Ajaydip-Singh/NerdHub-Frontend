@@ -13,6 +13,10 @@ export default function AboutScreen() {
       >
         <h1 className={styles.heading}>About us</h1>
       </section>
+      <section
+        className={styles.video_section}
+        // style={{ backgroundImage: "url(/images/ps4_controller.jpeg)" }}
+      ></section>
 
       <MediaQuery maxWidth={800}>
         <BottomNav about></BottomNav>
