@@ -4,7 +4,6 @@ import Header from "../../components/Header/Header";
 import Socials from "../../components/Socials/Socials";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./HomeScreen.module.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
