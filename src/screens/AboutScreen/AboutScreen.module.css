@@ -1,0 +1,12 @@
+.hero_section {
+  display: grid;
+  place-content: center;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.heading {
+  font-size: 4rem;
+  color: #fff;
+}
