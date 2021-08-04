@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styles from "./Header.module.css";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function Header(props) {
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
 
   return (
-    <Router>
+    <>
       <header
         className={`row_f ${styles.header} ${
           isSmallerScreen ? `space-between` : ``
@@ -83,6 +83,6 @@ export default function Header(props) {
         sideBarIsOpen={sideBarIsOpen}
         setSideBarIsOpen={setSideBarIsOpen}
       ></SideBar>
-    </Router>
+    </>
   );
 }
