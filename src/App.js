@@ -6,9 +6,9 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 function App() {
   return (
     <Router>
-      <Route path="/home" component={HomeScreen}></Route>;
-      <Route path="/about" component={AboutScreen}></Route>;
-      <Route path="/contact" component={ContactScreen}></Route>;
+      <Route path="/home" component={HomeScreen}></Route>
+      <Route path="/about" component={AboutScreen}></Route>
+      <Route path="/contact" component={ContactScreen}></Route>
     </Router>
   );
 }
