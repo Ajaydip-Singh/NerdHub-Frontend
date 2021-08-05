@@ -2,6 +2,7 @@
   display: grid;
   place-content: center;
   height: 40vh;
+  margin-top: 70px;
   background-size: cover;
   background-position: center;
 }
