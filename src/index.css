@@ -32,33 +32,27 @@ code {
   flex-direction: column;
 }
 
-.row_f.space-between,
-.column_f.space-between {
+.space-between {
   justify-content: space-between;
 }
 
-.row_f.space-around,
-.column_f.space-around {
+.space-around {
   justify-content: space-around;
 }
 
-.row_f.space-evenly,
-.column_f.space-evenly {
+.space-evenly {
   justify-content: space-evenly;
 }
 
-.row_f.flex-end,
-.column_f.flex-end {
+.flex-end {
   justify-content: flex-end;
 }
 
-.row_f.justify-center,
-.column_f.justify-center {
+.justify-center {
   justify-content: center;
 }
 
-.row_f.align-center,
-.column_f.align-center {
+.align-center {
   align-items: center;
 }
 
