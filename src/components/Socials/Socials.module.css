@@ -10,6 +10,8 @@
 }
 
 .social_link {
+  display: inline-block;
+  text-decoration: none;
   color: #fff;
   transition: all 500ms linear, ease 500ms;
 }
@@ -17,4 +19,15 @@
 .social_link:hover,
 .social_link:focus {
   color: #50d450;
+}
+
+.social_link_dark {
+  text-decoration: none;
+  color: #000;
+  transition: all 500ms linear, ease 500ms;
+}
+
+.social_link_dark:hover,
+.social_link_dark:focus {
+  color: #fff;
 }
