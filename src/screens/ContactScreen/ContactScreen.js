@@ -1,4 +1,5 @@
 import MediaQuery from "react-responsive";
+import { Link } from "react-router-dom";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import Header from "../../components/Header/Header";
 import styles from "./ContactScreen.module.css";
@@ -25,6 +26,9 @@ export default function ContactScreen() {
               and
               <span className="green"> membership </span>inquiries.
             </p>
+            <Link className="link border_bottom" to="/contact">
+              Learn more about us
+            </Link>
           </div>
           <div className="col-md">
             <form action="" className={styles.form}>
@@ -51,7 +55,7 @@ export default function ContactScreen() {
               </div>
               <div>
                 <button className={styles.submit_button} type="submit">
-                  Submit Message
+                  Submit message
                 </button>
               </div>
             </form>

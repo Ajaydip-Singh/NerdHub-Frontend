@@ -69,6 +69,48 @@ code {
   cursor: pointer;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus {
+  color: #50d450;
+}
+
+.border_bottom {
+  position: relative;
+  color: #50d450;
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid #50d450;
+  transition: all 500ms linear, ease 500ms;
+}
+
+/* .button_dark:hover,
+.button_dark:focus {
+  color: #fff;
+  border: 1px solid #fff;
+} */
+
+.border_bottom::after {
+  content: "";
+  background: #50d450;
+  position: absolute;
+  width: 0;
+  z-index: 1;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: width 1s linear, ease 1s;
+}
+
+.border_bottom:hover::after,
+.border_bottom:focus::after,
+.border_bottom:active::after {
+  width: 100%;
+}
+
 .green {
   color: #50d450;
 }
