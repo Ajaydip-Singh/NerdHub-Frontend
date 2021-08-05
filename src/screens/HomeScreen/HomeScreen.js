@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Socials from "../../components/Socials/Socials";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./HomeScreen.module.css";
+import Footer from "../../components/Footer/Footer";
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
@@ -69,6 +70,9 @@ export default function HomeScreen() {
         <div className={styles.social_icons}>
           <Socials vertical />
         </div>
+      </MediaQuery>
+      <MediaQuery minWidth={800}>
+        <Footer></Footer>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
         <BottomNav home></BottomNav>
