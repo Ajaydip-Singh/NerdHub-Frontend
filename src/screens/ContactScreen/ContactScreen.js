@@ -2,6 +2,7 @@ import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import Header from "../../components/Header/Header";
+import Socials from "../../components/Socials/Socials";
 import styles from "./ContactScreen.module.css";
 
 export default function ContactScreen() {
@@ -10,7 +11,7 @@ export default function ContactScreen() {
       <Header contact></Header>
       <section
         className={styles.hero_section}
-        style={{ backgroundImage: "url(/images/masked_player_gaming.jpeg)" }}
+        style={{ backgroundImage: "url(/images/masked_player_gaming_green.jpeg)" }}
       >
         <h1 className={styles.heading}>Contact us</h1>
       </section>
@@ -26,9 +27,12 @@ export default function ContactScreen() {
               and
               <span className="green"> membership </span>inquiries.
             </p>
-            <Link className="link border_bottom" to="/contact">
+            <Link className="link border_bottom" to="/about">
               Learn more about us
             </Link>
+            <div className={styles.socials}>
+              <Socials></Socials>
+            </div>
           </div>
           <div className="col-md">
             <form action="" className={styles.form}>
