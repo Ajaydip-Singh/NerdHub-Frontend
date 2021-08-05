@@ -68,3 +68,7 @@ code {
   border: none;
   cursor: pointer;
 }
+
+.green {
+  color: #50d450;
+}
