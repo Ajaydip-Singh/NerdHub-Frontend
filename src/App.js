@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import AboutScreen from "./screens/AboutScreen/AboutScreen";
 import ContactScreen from "./screens/ContactScreen/ContactScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import "../node_modules/video-react/dist/video-react.css"; // import css
 
 function App() {
   return (
