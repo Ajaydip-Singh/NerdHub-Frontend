@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import "../node_modules/video-react/dist/video-react.css"; // import css
 import GalleryScreen from "./screens/GalleryScreen/GalleryScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
       <Route path="/login" component={LoginScreen}></Route>
+      <Route path="/register" component={RegisterScreen}></Route>
     </Router>
   );
 }
