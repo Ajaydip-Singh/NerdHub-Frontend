@@ -1,4 +1,5 @@
 .hero_section {
+  position: relative;
   padding-top: 4.375rem;
   /* border: 1px solid magenta; */
 }
@@ -19,7 +20,7 @@
 }
 
 .image_small_screen {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 134.59px);
 }
 
 .next_icon,
@@ -38,7 +39,7 @@
 .rotated_text {
   position: absolute;
   bottom: 30px;
-  z-index: 8;
+  z-index: 1;
   left: 50%;
   transform: translateX(-50%) rotate(-90deg);
   color: #50d450;
@@ -49,10 +50,10 @@
 }
 
 .social_icons {
-  position: fixed;
+  position: absolute;
   right: 8px;
   bottom: 5rem;
-  z-index: 3;
+  z-index: 1;
 }
 
 /* Video section */
