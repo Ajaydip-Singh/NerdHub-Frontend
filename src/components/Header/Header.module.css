@@ -42,6 +42,16 @@
   transition: all 500ms linear, ease 500ms;
 }
 
+@media (max-width: 500px) {
+  .nav_list_item {
+    margin: 1rem 0.5rem;
+  }
+
+  .nav_link {
+    padding: 0.3rem;
+  }
+}
+
 .active {
   color: #50d450;
   border: 1px solid #50d450;

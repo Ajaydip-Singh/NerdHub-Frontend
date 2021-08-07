@@ -10,7 +10,7 @@ export default function Header(props) {
   };
 
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
 
