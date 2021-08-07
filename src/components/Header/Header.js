@@ -79,10 +79,12 @@ export default function Header(props) {
           )}
         </nav>
       </header>
-      <SideBar
-        sideBarIsOpen={sideBarIsOpen}
-        setSideBarIsOpen={setSideBarIsOpen}
-      ></SideBar>
+      {user && (
+        <SideBar
+          sideBarIsOpen={sideBarIsOpen}
+          setSideBarIsOpen={setSideBarIsOpen}
+        ></SideBar>
+      )}
     </>
   );
 }

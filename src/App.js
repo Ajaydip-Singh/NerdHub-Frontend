@@ -4,6 +4,7 @@ import ContactScreen from "./screens/ContactScreen/ContactScreen";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import "../node_modules/video-react/dist/video-react.css"; // import css
 import GalleryScreen from "./screens/GalleryScreen/GalleryScreen";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/gallery" component={GalleryScreen}></Route>
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
+      <Route path="/login" component={LoginScreen}></Route>
     </Router>
   );
 }
