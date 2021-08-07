@@ -5,6 +5,7 @@ import Socials from "../../components/Socials/Socials";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./HomeScreen.module.css";
 import Footer from "../../components/Footer/Footer";
+import { Player } from "video-react";
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
@@ -71,6 +72,27 @@ export default function HomeScreen() {
           <Socials vertical />
         </div>
       </MediaQuery>
+      <section
+        style={{
+          backgroundImage: "url(/images/many_fighters_green.png)",
+        }}
+        className={styles.video_section}
+      >
+        <div className={styles.video_container}>
+          <div>
+            <h2 className={styles.section_heading}>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum,
+              cupiditate.
+            </h2>
+          </div>
+          <div className={styles.video}>
+            <Player
+              poster="/images/knife_dark.jpeg"
+              src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+            ></Player>
+          </div>
+        </div>
+      </section>
       <MediaQuery minWidth={800}>
         <Footer></Footer>
       </MediaQuery>
