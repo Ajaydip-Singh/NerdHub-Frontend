@@ -1,18 +1,21 @@
-import { Link } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
-import styles from "./Header.module.css";
-import { useState } from "react";
-import SideBar from "../SideBar/SideBar";
+import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import styles from './Header.module.css';
+import { useState } from 'react';
+import SideBar from '../SideBar/SideBar';
+import { useSelector } from 'react-redux';
 
 export default function Header(props) {
+  const login = useSelector((state) => state.login);
+  const { user } = login;
+
   const addLinkStyling = (props) => {
     return props ? `${styles.nav_link} ${styles.active}` : styles.nav_link;
   };
 
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
-  const [user, setUser] = useState(false);
 
-  const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
+  const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
 
   return (
     <>
