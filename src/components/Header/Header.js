@@ -6,7 +6,7 @@ import SideBar from '../SideBar/SideBar';
 import { useSelector } from 'react-redux';
 
 export default function Header(props) {
-  const login = useSelector((state) => state.login);
+  const login = useSelector((state) => state.userAuthentication);
   const { user } = login;
 
   const addLinkStyling = (props) => {

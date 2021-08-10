@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from '../screens/LoginScreen/loginScreenSlice';
+import userAuthentication from '../slices/userSlices/userAuthenticationSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -10,6 +10,6 @@ export const store = configureStore({
     }
   },
   reducer: {
-    login: loginReducer
+    userAuthentication: userAuthentication
   }
 });

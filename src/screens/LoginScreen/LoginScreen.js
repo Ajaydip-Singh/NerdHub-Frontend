@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
 import styles from './LoginScreen.module.css';
-import { loginUser } from './loginScreenSlice';
+import { loginUser } from '../../slices/userSlices/userAuthenticationSlice';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -15,7 +15,7 @@ export default function LoginScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = useSelector((state) => state.login);
+  const login = useSelector((state) => state.userAuthentication);
   const { user, status, error } = login;
 
   const dispatch = useDispatch();

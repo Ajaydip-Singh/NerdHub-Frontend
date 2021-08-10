@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const loginUser = createAsyncThunk(
-  'login/loginUser',
+  'userAuthentication/loginUser',
   async (userData, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
@@ -27,8 +27,8 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const loginScreenSlice = createSlice({
-  name: 'login',
+export const userAuthenticationSlice = createSlice({
+  name: 'userAuthentication',
   initialState,
   extraReducers: (builder) => {
     builder
@@ -54,4 +54,4 @@ export const loginScreenSlice = createSlice({
   }
 });
 
-export default loginScreenSlice.reducer;
+export default userAuthenticationSlice.reducer;
