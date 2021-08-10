@@ -168,7 +168,7 @@
 }
 
 .submit_button::after {
-  content: "";
+  content: '';
   background-color: rgba(18, 24, 20, 0.15);
   position: absolute;
   width: 0;

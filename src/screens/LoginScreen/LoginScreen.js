@@ -1,11 +1,34 @@
-import MediaQuery, { useMediaQuery } from "react-responsive";
-import { Link } from "react-router-dom";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import Header from "../../components/Header/Header";
-import styles from "./LoginScreen.module.css";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import MediaQuery, { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
+import BottomNav from '../../components/BottomNav/BottomNav';
+import Header from '../../components/Header/Header';
+import styles from './LoginScreen.module.css';
+import { loginUser } from './loginScreenSlice';
 
-export default function LoginScreen() {
-  const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
+export default function LoginScreen(props) {
+  const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
+
+  const redirect = '/home';
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = useSelector((state) => state.login);
+  const { user, status, error } = login;
+
+  const dispatch = useDispatch();
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ email, password }));
+  };
+
+  useEffect(() => {
+    if (user) {
+      props.history.push(redirect);
+    }
+  }, [user, props]);
 
   return (
     <div>
@@ -14,7 +37,7 @@ export default function LoginScreen() {
         <div
           className={`col-md-6 ${styles.info_box}`}
           style={{
-            backgroundImage: "url(/images/destruction_long.jpeg)",
+            backgroundImage: 'url(/images/destruction_long.jpeg)'
           }}
         ></div>
         <div
@@ -22,21 +45,21 @@ export default function LoginScreen() {
           style={
             isSmallerScreen
               ? {
-                  backgroundImage: "url(/images/destruction_long.jpeg)",
+                  backgroundImage: 'url(/images/destruction_long.jpeg)'
                 }
               : {}
           }
         >
           <h1 className={styles.title}>Login</h1>
-          <form action="" className={styles.form}>
+          {error && error}
+          <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
               <input
                 className={styles.input}
                 placeholder="Enter email"
                 type="text"
-                name=""
-                id=""
-                rows="5"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
               ></input>
             </div>
             <div>
@@ -44,9 +67,8 @@ export default function LoginScreen() {
                 className={styles.input}
                 placeholder="Enter password"
                 type="password"
-                name=""
-                id=""
-                rows="5"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             <div>
@@ -55,7 +77,7 @@ export default function LoginScreen() {
               </button>
             </div>
             <p className="mt-1">
-              Don't have an account?{" "}
+              Don't have an account?{' '}
               <Link className={`border_bottom ${styles.link}`} to="/register">
                 Create one
               </Link>
