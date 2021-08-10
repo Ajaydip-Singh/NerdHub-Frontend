@@ -3,7 +3,7 @@ import userAuthentication from '../slices/userSlices/userAuthenticationSlice';
 
 export const store = configureStore({
   preloadedState: {
-    login: {
+    userAuthentication: {
       user: localStorage.getItem('user')
         ? JSON.parse(localStorage.getItem('user'))
         : null

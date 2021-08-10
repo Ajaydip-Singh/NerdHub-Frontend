@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
-import styles from "./SideBar.module.css";
+import { Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logoutUser } from '../../slices/userSlices/userAuthenticationSlice';
+import styles from './SideBar.module.css';
 
 export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
+  const dispatch = useDispatch();
+  const logoutClickHandler = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <div
       className={`side_bar row_f ${styles.side_bar} ${
@@ -39,9 +47,13 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
           </Link>
         </li>
         <li className={styles.side_bar_list_item}>
-          <Link to="/logout" className={styles.side_bar_link}>
+          <Button
+            to="/logout"
+            className={styles.side_bar_link}
+            onClick={logoutClickHandler}
+          >
             Logout
-          </Link>
+          </Button>
         </li>
       </ul>
     </div>
