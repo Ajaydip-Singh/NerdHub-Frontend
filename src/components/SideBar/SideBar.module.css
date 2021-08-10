@@ -63,6 +63,12 @@
   border: 1px solid #50d450;
 }
 
+.side_bar_item_button:hover,
+.side_bar_item_button:focus {
+  border: 1px solid #50d450;
+  color: #50d450;
+}
+
 .active {
   color: #50d450;
   border: 1px solid #50d450;

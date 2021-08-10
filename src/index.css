@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap');
 
 *,
 *::after,
@@ -12,7 +12,7 @@ body {
   margin: 0;
   background-color: #000;
   color: #fff;
-  font-family: "Exo", sans-serif;
+  font-family: 'Exo', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,7 +24,7 @@ body {
 } */
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -84,6 +84,11 @@ input:-webkit-autofill {
   cursor: pointer;
 }
 
+.button:hover,
+.button:focus {
+  background-color: #000;
+}
+
 .link {
   display: inline-block;
   text-decoration: none;
@@ -111,7 +116,7 @@ input:-webkit-autofill {
 } */
 
 .border_bottom::after {
-  content: "";
+  content: '';
   background: #50d450;
   position: absolute;
   width: 0;

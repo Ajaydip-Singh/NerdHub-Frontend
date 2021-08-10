@@ -49,7 +49,7 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
         <li className={styles.side_bar_list_item}>
           <Button
             to="/logout"
-            className={styles.side_bar_link}
+            className={`button border_bottom ${styles.side_bar_item_button}`}
             onClick={logoutClickHandler}
           >
             Logout
