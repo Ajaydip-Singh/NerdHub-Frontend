@@ -148,3 +148,27 @@ ul {
     font-size: 14px;
   }
 }
+
+/* Alerts */
+.success {
+  color: #20a020;
+}
+
+.error {
+  color: #a02020;
+}
+
+.alerts-info {
+  color: #202080;
+  background-color: #e0e0ff;
+}
+
+.alerts-danger {
+  color: #000;
+  background-color: #a02020;
+}
+
+.alerts-success {
+  color: #20a020;
+  background-color: #eeffe0;
+}

@@ -11,6 +11,7 @@ import {
   googleLoginUser,
   loginUser
 } from '../../slices/userSlices/userAuthenticationSlice';
+import MessageBox from '../../components/MessageBox/MessageBox';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -82,7 +83,7 @@ export default function LoginScreen(props) {
           }
         >
           <h1 className={styles.title}>Login</h1>
-          {error && error}
+          {error && <MessageBox variant="danger">{error}</MessageBox>}
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
               <input
