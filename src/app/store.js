@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userAuthentication from '../slices/userSlices/userAuthenticationSlice';
-import userGoogleAuthentication from '../slices/userSlices/userGoogleAuthenticationSlice';
 import userRegister from '../slices/userSlices/userRegisterSlice';
 
 export const store = configureStore({
@@ -13,7 +12,6 @@ export const store = configureStore({
   },
   reducer: {
     userAuthentication: userAuthentication,
-    userGoogleAuthentication: userGoogleAuthentication,
     userRegister: userRegister
   }
 });

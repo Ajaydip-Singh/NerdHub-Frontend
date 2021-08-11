@@ -7,8 +7,10 @@ import axios from 'axios';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
 import styles from './LoginScreen.module.css';
-import { loginUser } from '../../slices/userSlices/userAuthenticationSlice';
-import { googleLoginUser } from '../../slices/userSlices/userGoogleAuthenticationSlice';
+import {
+  googleLoginUser,
+  loginUser
+} from '../../slices/userSlices/userAuthenticationSlice';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -20,15 +22,6 @@ export default function LoginScreen(props) {
 
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user, status, error } = userAuthentication;
-
-  const userGoogleAuthentication = useSelector(
-    (state) => state.userGoogleAuthentication
-  );
-  const {
-    user: userGoogle,
-    status: statusGoogle,
-    error: errorGoogle
-  } = userGoogleAuthentication;
 
   const dispatch = useDispatch();
   const onSubmitHandler = (e) => {
@@ -47,14 +40,13 @@ export default function LoginScreen(props) {
       const script = document.createElement('script');
       script.src = 'https://accounts.google.com/gsi/client';
       script.async = true;
-      script.defer = true;
 
       script.onload = () => {
         google.accounts.id.initialize({
           client_id: data,
           callback: handleGoogleCredentialResponse
         });
-        google.accounts.id.prompt((notification) => console.log(notification));
+        google.accounts.id.prompt();
       };
 
       document.body.appendChild(script);
@@ -64,10 +56,10 @@ export default function LoginScreen(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user || userGoogle) {
+    if (user) {
       props.history.push(redirect);
     }
-  }, [user, userGoogle, props]);
+  }, [user, props]);
 
   return (
     <div>
