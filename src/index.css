@@ -172,3 +172,9 @@ ul {
   color: #20a020;
   background-color: #eeffe0;
 }
+
+/* Spinner */
+.spinner {
+  color: #000;
+  text-align: center;
+}

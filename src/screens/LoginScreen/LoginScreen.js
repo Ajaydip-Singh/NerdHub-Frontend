@@ -12,6 +12,7 @@ import {
   loginUser
 } from '../../slices/userSlices/userAuthenticationSlice';
 import MessageBox from '../../components/MessageBox/MessageBox';
+import LoadingBox from '../../components/LoadingBox/LoadingBox';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -105,7 +106,7 @@ export default function LoginScreen(props) {
             </div>
             <div>
               <button className={styles.submit_button} type="submit">
-                Login
+                {status === 'loading' ? <LoadingBox></LoadingBox> : `Login`}
               </button>
             </div>
             <p className="mt-1">
