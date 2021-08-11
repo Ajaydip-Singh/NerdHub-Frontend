@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import validator from 'validator';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
+import styles from './RegisterScreen.module.css';
 import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../components/MessageBox/MessageBox';
 import {
   registerUser,
   resetRegisterUser
 } from '../../slices/userSlices/userRegisterSlice';
-import styles from './RegisterScreen.module.css';
 
 export default function RegisterScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -21,6 +22,62 @@ export default function RegisterScreen(props) {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  const validateFirstName = (name) => {
+    if (validator.isLength(name, { min: 3 }) && validator.isAlpha(name)) {
+      setFirstName(name);
+      setFirstNameError('');
+    } else {
+      setFirstName('');
+      setFirstNameError('Enter Valid First Name');
+    }
+  };
+
+  const validateLastName = (name) => {
+    if (validator.isLength(name, { min: 3 }) && validator.isAlpha(name)) {
+      setLastName(name);
+      setLastNameError('');
+    } else {
+      setLastName('');
+      setLastNameError('Enter Valid Last Name');
+    }
+  };
+
+  const validateEmail = (email) => {
+    if (validator.isEmail(email)) {
+      setEmail(email);
+      setEmailError('');
+    } else {
+      setEmail('');
+      setEmailError('Enter Valid Email');
+    }
+  };
+
+  const validatePassword = (password) => {
+    if (validator.isStrongPassword(password, { min: 10 })) {
+      setPassword(password);
+      setPasswordError('');
+    } else {
+      setPassword('');
+      setPasswordError('Enter Strong Password');
+    }
+  };
+
+  const validateConfirmPassword = (confirmPassword) => {
+    if (password === confirmPassword) {
+      setPassword(password);
+      setConfirmPasswordError('');
+    } else {
+      setPassword('');
+      setConfirmPasswordError('Passwords must match');
+    }
+  };
 
   const userRegister = useSelector((state) => state.userRegister);
   const { status, createdUser, error } = userRegister;
@@ -62,47 +119,71 @@ export default function RegisterScreen(props) {
           {error && <MessageBox variant="danger">{error}</MessageBox>}
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
+              {firstNameError && (
+                <MessageBox validation>{firstNameError}</MessageBox>
+              )}
               <input
-                className={`${styles.input} ${styles.input_half}`}
+                className={`${styles.input} ${
+                  firstNameError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter first name"
                 type="text"
                 name="first_name"
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => validateFirstName(e.target.value)}
               ></input>
             </div>
             <div>
+              {lastNameError && (
+                <MessageBox validation>{lastNameError}</MessageBox>
+              )}
               <input
-                className={`${styles.input} ${styles.input_half}`}
+                className={`${styles.input} ${
+                  lastNameError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter last name"
                 type="text"
                 name="last_name"
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => validateLastName(e.target.value)}
               ></input>
             </div>
             <div>
+              {emailError && <MessageBox validation>{emailError}</MessageBox>}
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  emailError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter email"
                 type="text"
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => validateEmail(e.target.value)}
               ></input>
             </div>
             <div>
+              {passwordError && (
+                <MessageBox validation>{passwordError}</MessageBox>
+              )}
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  passwordError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter password"
                 type="password"
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => validatePassword(e.target.value)}
               ></input>
             </div>
             <div>
+              {confirmPasswordError && (
+                <MessageBox validation>{confirmPasswordError}</MessageBox>
+              )}
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  confirmPasswordError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Confirm password"
                 type="password"
                 name="confirm_password"
+                onChange={(e) => validateConfirmPassword(e.target.value)}
               ></input>
             </div>
             <div>

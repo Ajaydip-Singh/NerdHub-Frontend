@@ -94,3 +94,15 @@
   outline: none;
   color: #0de80e;
 }
+
+/* Validation errors */
+.val_danger {
+  border: 2px solid #a02020;
+  outline: 1px solid #a02020;
+}
+
+.val_danger:hover,
+.val_danger:focus {
+  border: 2px solid #a02020;
+  outline: 1px solid #a02020;
+}
