@@ -4,6 +4,8 @@ import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
+import LoadingBox from '../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../components/MessageBox/MessageBox';
 import {
   registerUser,
   resetRegisterUser
@@ -57,6 +59,7 @@ export default function RegisterScreen(props) {
           }
         >
           <h1 className={styles.title}>Register</h1>
+          {error && <MessageBox variant="danger">{error}</MessageBox>}
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
               <input
@@ -104,7 +107,7 @@ export default function RegisterScreen(props) {
             </div>
             <div>
               <button className={styles.submit_button} type="submit">
-                Register
+                {status === 'loading' ? <LoadingBox></LoadingBox> : `Register`}
               </button>
             </div>
             <p className="mt-1">
