@@ -1,7 +1,9 @@
+/*global google*/
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
 import styles from './LoginScreen.module.css';
@@ -11,6 +13,8 @@ export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
 
   const redirect = '/home';
+
+  const [googleClientId, setGoogleClientId] = useState('');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +27,34 @@ export default function LoginScreen(props) {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
+
+  const handleGoogleCredentialResponse = (response) => {
+    console.log(response);
+  };
+
+  useEffect(() => {
+    const setupGoogleOneTapSignIn = async () => {
+      const { data } = await axios.get('/api/config/google');
+      setGoogleClientId(data);
+
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+
+      script.onload = () => {
+        google.accounts.id.initialize({
+          client_id: googleClientId,
+          callback: handleGoogleCredentialResponse
+        });
+        google.accounts.id.prompt();
+      };
+
+      document.body.appendChild(script);
+    };
+
+    setupGoogleOneTapSignIn();
+  }, [googleClientId]);
 
   useEffect(() => {
     if (user) {
