@@ -163,6 +163,13 @@ ul {
   background-color: #e0e0ff;
 }
 
+.alerts-validation {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #a02020;
+  background-color: transparent;
+}
+
 .alerts-danger {
   color: #000;
   background-color: #a02020;

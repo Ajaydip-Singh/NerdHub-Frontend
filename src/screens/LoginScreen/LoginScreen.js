@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import validator from 'validator';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
 import styles from './LoginScreen.module.css';
@@ -21,6 +22,29 @@ export default function LoginScreen(props) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validateEmail = (email) => {
+    if (validator.isEmail(email)) {
+      setEmail(email);
+      setEmailError('');
+    } else {
+      setEmail('');
+      setEmailError('Enter Valid Email');
+    }
+  };
+
+  const validatePassword = (password) => {
+    if (validator.isStrongPassword(password, { min: 10 })) {
+      setPassword(password);
+      setPasswordError('');
+    } else {
+      setPassword('');
+      setPasswordError('Enter Strong Password');
+    }
+  };
 
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user, status, error } = userAuthentication;
@@ -87,21 +111,29 @@ export default function LoginScreen(props) {
           {error && <MessageBox variant="danger">{error}</MessageBox>}
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
+              {emailError && <MessageBox validation>{emailError}</MessageBox>}
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  emailError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter email"
                 type="text"
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => validateEmail(e.target.value)}
               ></input>
             </div>
             <div>
+              {passwordError && (
+                <MessageBox validation>{passwordError}</MessageBox>
+              )}
               <input
-                className={styles.input}
+                className={`${styles.input} ${
+                  passwordError ? `${styles.val_danger}` : ``
+                }`}
                 placeholder="Enter password"
                 type="password"
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => validatePassword(e.target.value)}
               ></input>
             </div>
             <div>
