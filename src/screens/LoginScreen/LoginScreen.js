@@ -8,19 +8,27 @@ import BottomNav from '../../components/BottomNav/BottomNav';
 import Header from '../../components/Header/Header';
 import styles from './LoginScreen.module.css';
 import { loginUser } from '../../slices/userSlices/userAuthenticationSlice';
+import { googleLoginUser } from '../../slices/userSlices/userGoogleAuthenticationSlice';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
 
   const redirect = '/home';
 
-  const [googleClientId, setGoogleClientId] = useState('');
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = useSelector((state) => state.userAuthentication);
-  const { user, status, error } = login;
+  const userAuthentication = useSelector((state) => state.userAuthentication);
+  const { user, status, error } = userAuthentication;
+
+  const userGoogleAuthentication = useSelector(
+    (state) => state.userGoogleAuthentication
+  );
+  const {
+    user: userGoogle,
+    status: statusGoogle,
+    error: errorGoogle
+  } = userGoogleAuthentication;
 
   const dispatch = useDispatch();
   const onSubmitHandler = (e) => {
@@ -28,14 +36,13 @@ export default function LoginScreen(props) {
     dispatch(loginUser({ email, password }));
   };
 
-  const handleGoogleCredentialResponse = (response) => {
-    console.log(response);
-  };
-
   useEffect(() => {
+    const handleGoogleCredentialResponse = (response) => {
+      dispatch(googleLoginUser(response));
+    };
+
     const setupGoogleOneTapSignIn = async () => {
       const { data } = await axios.get('/api/config/google');
-      setGoogleClientId(data);
 
       const script = document.createElement('script');
       script.src = 'https://accounts.google.com/gsi/client';
@@ -44,23 +51,23 @@ export default function LoginScreen(props) {
 
       script.onload = () => {
         google.accounts.id.initialize({
-          client_id: googleClientId,
+          client_id: data,
           callback: handleGoogleCredentialResponse
         });
-        google.accounts.id.prompt();
+        google.accounts.id.prompt((notification) => console.log(notification));
       };
 
       document.body.appendChild(script);
     };
 
     setupGoogleOneTapSignIn();
-  }, [googleClientId]);
+  }, [dispatch]);
 
   useEffect(() => {
-    if (user) {
+    if (user || userGoogle) {
       props.history.push(redirect);
     }
-  }, [user, props]);
+  }, [user, userGoogle, props]);
 
   return (
     <div>
