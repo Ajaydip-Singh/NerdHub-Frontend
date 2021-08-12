@@ -16,8 +16,6 @@ import {
 export default function RegisterScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
 
-  const redirect = '/login';
-
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -28,6 +26,8 @@ export default function RegisterScreen(props) {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  const [registerSuccess, setRegisterSuccess] = useState(false);
 
   const validateFirstName = (name) => {
     if (validator.isLength(name, { min: 3 }) && validator.isAlpha(name)) {
@@ -88,13 +88,6 @@ export default function RegisterScreen(props) {
     dispatch(registerUser({ firstName, lastName, email, password }));
   };
 
-  useEffect(() => {
-    if (createdUser) {
-      dispatch(resetRegisterUser());
-      props.history.push(redirect);
-    }
-  }, [dispatch, createdUser, props.history]);
-
   return (
     <div>
       <Header register></Header>
@@ -117,6 +110,11 @@ export default function RegisterScreen(props) {
         >
           <h1 className={styles.title}>Register</h1>
           {error && <MessageBox variant="danger">{error}</MessageBox>}
+          {createdUser && (
+            <MessageBox variant="success">
+              Success. Verify Email In Inbox.
+            </MessageBox>
+          )}
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
               {firstNameError && (

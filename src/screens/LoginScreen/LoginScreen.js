@@ -14,6 +14,7 @@ import {
 } from '../../slices/userSlices/userAuthenticationSlice';
 import MessageBox from '../../components/MessageBox/MessageBox';
 import LoadingBox from '../../components/LoadingBox/LoadingBox';
+import { confirmUser } from '../../slices/userSlices/userConfirmationSlice';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -49,11 +50,31 @@ export default function LoginScreen(props) {
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user, status, error } = userAuthentication;
 
+  const userConfirmation = useSelector((state) => state.userConfirmation);
+  const {
+    confirmedUser: successConfirmation,
+    status: statusConfirmation,
+    error: errorConfirmation
+  } = userConfirmation;
+
   const dispatch = useDispatch();
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
+
+  useEffect(() => {
+    const userId = props.match.params.userId;
+    const confirmationCode = props.match.params.confirmationCode;
+
+    if (userId && confirmationCode) {
+      dispatch(confirmUser({ userId, confirmationCode }));
+    }
+  }, [
+    dispatch,
+    props.match.params.userId,
+    props.match.params.confirmationCode
+  ]);
 
   useEffect(() => {
     const handleGoogleCredentialResponse = (response) => {
@@ -109,6 +130,16 @@ export default function LoginScreen(props) {
         >
           <h1 className={styles.title}>Login</h1>
           {error && <MessageBox variant="danger">{error}</MessageBox>}
+          {successConfirmation && (
+            <MessageBox variant="success">
+              {successConfirmation.message}
+            </MessageBox>
+          )}
+          {statusConfirmation === 'loading' && <LoadingBox></LoadingBox>}
+          {errorConfirmation && (
+            <MessageBox variant="danger">{errorConfirmation}</MessageBox>
+          )}
+
           <form onSubmit={onSubmitHandler} className={styles.form}>
             <div>
               {emailError && <MessageBox validation>{emailError}</MessageBox>}

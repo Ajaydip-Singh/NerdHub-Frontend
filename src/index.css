@@ -158,6 +158,10 @@ ul {
   color: #a02020;
 }
 
+.alert {
+  max-width: 300px !important;
+}
+
 .alerts-info {
   color: #202080;
   background-color: #e0e0ff;
@@ -176,8 +180,8 @@ ul {
 }
 
 .alerts-success {
-  color: #20a020;
-  background-color: #eeffe0;
+  color: #000;
+  background-color: #20a020;
 }
 
 /* Spinner */
