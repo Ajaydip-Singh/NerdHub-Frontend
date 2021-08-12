@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
@@ -8,10 +7,8 @@ import Header from '../../components/Header/Header';
 import styles from './RegisterScreen.module.css';
 import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../components/MessageBox/MessageBox';
-import {
-  registerUser,
-  resetRegisterUser
-} from '../../slices/userSlices/userRegisterSlice';
+import { registerUser } from '../../slices/userSlices/userRegisterSlice';
+import { useState } from 'react';
 
 export default function RegisterScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -26,8 +23,6 @@ export default function RegisterScreen(props) {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
-
-  const [registerSuccess, setRegisterSuccess] = useState(false);
 
   const validateFirstName = (name) => {
     if (validator.isLength(name, { min: 3 }) && validator.isAlpha(name)) {

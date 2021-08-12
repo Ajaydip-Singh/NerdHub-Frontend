@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userAuthentication from '../slices/userSlices/userAuthenticationSlice';
 import userRegister from '../slices/userSlices/userRegisterSlice';
 import userConfirmation from '../slices/userSlices/userConfirmationSlice';
+import userDetails from '../slices/userSlices/userDetailsSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -14,6 +15,7 @@ export const store = configureStore({
   reducer: {
     userAuthentication: userAuthentication,
     userRegister: userRegister,
-    userConfirmation: userConfirmation
+    userConfirmation: userConfirmation,
+    userDetails: userDetails
   }
 });

@@ -7,6 +7,7 @@ import GalleryScreen from './screens/GalleryScreen/GalleryScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import PrivateRoute from './components/PrivateRoute';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       ></Route>
       <Route path="/login" component={LoginScreen} exact></Route>
       <Route path="/register" component={RegisterScreen}></Route>
-      <PrivateRoute path="/profile"></PrivateRoute>
+      <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
     </Router>
   );
 }
