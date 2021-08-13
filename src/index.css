@@ -169,6 +169,7 @@ ul {
 
 .alerts-validation {
   margin: 0;
+  max-width: 300px;
   font-size: 0.8rem;
   color: #a02020;
   background-color: transparent;

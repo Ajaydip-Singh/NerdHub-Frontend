@@ -3,6 +3,7 @@ import userAuthentication from '../slices/userSlices/userAuthenticationSlice';
 import userRegister from '../slices/userSlices/userRegisterSlice';
 import userConfirmation from '../slices/userSlices/userConfirmationSlice';
 import userDetails from '../slices/userSlices/userDetailsSlice';
+import userUpdateSlice from '../slices/userSlices/userUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     userAuthentication: userAuthentication,
     userRegister: userRegister,
     userConfirmation: userConfirmation,
-    userDetails: userDetails
+    userDetails: userDetails,
+    userUpdateSlice: userUpdateSlice
   }
 });

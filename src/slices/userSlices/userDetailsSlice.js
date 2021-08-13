@@ -57,6 +57,7 @@ export const userDetailsSlice = createSlice({
   }
 });
 
-export const { resetDetailsUser } = userDetailsSlice.actions;
+export const { resetDetailsUser, resetDetailsSuccess } =
+  userDetailsSlice.actions;
 
 export default userDetailsSlice.reducer;

@@ -78,6 +78,12 @@ label {
   transition: width 1s linear, ease 1s;
 }
 
+.submit_button:disabled,
+.submit_button[disabled] {
+  pointer-events: none;
+  background-color: #224b22;
+}
+
 .submit_button:hover::after,
 .submit_button:focus::after,
 .submit_button:active::after {
