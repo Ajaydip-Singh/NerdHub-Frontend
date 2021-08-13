@@ -45,8 +45,7 @@ export const userDetailsSlice = createSlice({
         if (action.payload) {
           state.error = action.payload;
         } else {
-          state.error =
-            'Unable to get user Information. Please Try again later.';
+          state.error = 'Unable to get user Profile. Please Try again later.';
         }
       })
       .addCase(detailsUser.fulfilled, (state, action) => {

@@ -19,7 +19,7 @@ export default function ProfileScreen() {
   const { user } = userAuthentication;
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { status, user: userInfo, error, success } = userDetails;
+  const { status, user: userInfo, error } = userDetails;
 
   const userUpdateSlice = useSelector((state) => state.userUpdateSlice);
   const {
@@ -165,108 +165,120 @@ export default function ProfileScreen() {
         </section>
         <section className={styles.wrapper}>
           <h3>Profile</h3>
-          {error && <MessageBox variant="danger">{error}</MessageBox>}
-          {userUpdate && (
-            <MessageBox variant="success">Updated Profile</MessageBox>
+          {status === 'loading' ? (
+            <LoadingBox></LoadingBox>
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            <>
+              {errorUpdate && (
+                <MessageBox variant="danger">{errorUpdate}</MessageBox>
+              )}
+              {userUpdate && (
+                <MessageBox variant="success">Updated Profile</MessageBox>
+              )}
+              <form onSubmit={onSubmitHandler} className={styles.form}>
+                <div>
+                  <label htmlFor="first_name">First Name</label>
+                  {firstNameError && (
+                    <MessageBox validation>{firstNameError}</MessageBox>
+                  )}
+                  <input
+                    className={`${styles.input} ${
+                      firstNameError ? `${styles.val_danger}` : ``
+                    }`}
+                    placeholder="Enter first name"
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    value={firstName}
+                    onChange={(e) => validateFirstName(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="last_name">Last Name</label>
+                  {lastNameError && (
+                    <MessageBox validation>{lastNameError}</MessageBox>
+                  )}
+                  <input
+                    className={`${styles.input} ${
+                      lastNameError ? `${styles.val_danger}` : ``
+                    }`}
+                    placeholder="Enter last name"
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    value={lastName}
+                    onChange={(e) => validateLastName(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="phone">Phone</label>
+                  {phoneError && (
+                    <MessageBox validation>{phoneError}</MessageBox>
+                  )}
+                  <input
+                    className={`${styles.input} ${
+                      phoneError ? `${styles.val_danger}` : ``
+                    }`}
+                    placeholder="Enter Phone"
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    autoComplete="off"
+                    value={phone}
+                    onChange={(e) => validatePhone(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <label htmlFor="password">New Password</label>
+                  {passwordError && (
+                    <MessageBox validation>{passwordError}</MessageBox>
+                  )}
+                  <input
+                    className={`${styles.input} ${
+                      passwordError ? `${styles.val_danger}` : ``
+                    }`}
+                    placeholder="Enter new password"
+                    id="password"
+                    type="password"
+                    name="password"
+                    autoComplete="new-password"
+                    value={password}
+                    onChange={(e) => validatePassword(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  {confirmPasswordError && (
+                    <MessageBox validation>{confirmPasswordError}</MessageBox>
+                  )}
+                  <input
+                    className={`${styles.input} ${
+                      confirmPasswordError ? `${styles.val_danger}` : ``
+                    }`}
+                    placeholder="Confirm new password"
+                    type="password"
+                    name="confirm_password"
+                    autoComplete="new-password"
+                    onChange={(e) => validateConfirmPassword(e.target.value)}
+                  ></input>
+                </div>
+                <div>
+                  <button
+                    className={styles.submit_button}
+                    type="submit"
+                    disabled={!validForm}
+                  >
+                    {statusUpdate === 'loading' ? (
+                      <LoadingBox></LoadingBox>
+                    ) : (
+                      `Update Profile`
+                    )}
+                  </button>
+                </div>
+              </form>
+            </>
           )}
-          <form onSubmit={onSubmitHandler} className={styles.form}>
-            <div>
-              <label htmlFor="first_name">First Name</label>
-              {firstNameError && (
-                <MessageBox validation>{firstNameError}</MessageBox>
-              )}
-              <input
-                className={`${styles.input} ${
-                  firstNameError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter first name"
-                type="text"
-                id="first_name"
-                name="first_name"
-                value={firstName}
-                onChange={(e) => validateFirstName(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="last_name">Last Name</label>
-              {lastNameError && (
-                <MessageBox validation>{lastNameError}</MessageBox>
-              )}
-              <input
-                className={`${styles.input} ${
-                  lastNameError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter last name"
-                type="text"
-                id="last_name"
-                name="last_name"
-                value={lastName}
-                onChange={(e) => validateLastName(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="phone">Phone</label>
-              {phoneError && <MessageBox validation>{phoneError}</MessageBox>}
-              <input
-                className={`${styles.input} ${
-                  phoneError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter Phone"
-                type="text"
-                id="phone"
-                name="phone"
-                autoComplete="off"
-                value={phone}
-                onChange={(e) => validatePhone(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="password">New Password</label>
-              {passwordError && (
-                <MessageBox validation>{passwordError}</MessageBox>
-              )}
-              <input
-                className={`${styles.input} ${
-                  passwordError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter new password"
-                id="password"
-                type="password"
-                name="password"
-                autoComplete="new-password"
-                value={password}
-                onChange={(e) => validatePassword(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              {confirmPasswordError && (
-                <MessageBox validation>{confirmPasswordError}</MessageBox>
-              )}
-              <input
-                className={`${styles.input} ${
-                  confirmPasswordError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Confirm new password"
-                type="password"
-                name="confirm_password"
-                autoComplete="new-password"
-                onChange={(e) => validateConfirmPassword(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <button
-                className={styles.submit_button}
-                type="submit"
-                disabled={!validForm}
-              >
-                {statusUpdate === 'loading' ? (
-                  <LoadingBox></LoadingBox>
-                ) : (
-                  `Update Profile`
-                )}
-              </button>
-            </div>
-          </form>
         </section>
       </div>
       <MediaQuery minWidth={800}>
