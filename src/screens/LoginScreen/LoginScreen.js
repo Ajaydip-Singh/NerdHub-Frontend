@@ -17,7 +17,7 @@ import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import { confirmUser } from '../../slices/userSlices/userConfirmationSlice';
 
 export default function LoginScreen(props) {
-  const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
+  const isSmallerScreen = useMediaQuery({ query: '(max-width: 767px)' });
 
   const redirect = '/home';
 

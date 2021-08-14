@@ -11,7 +11,7 @@ import { registerUser } from '../../slices/userSlices/userRegisterSlice';
 import { useState } from 'react';
 
 export default function RegisterScreen(props) {
-  const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
+  const isSmallerScreen = useMediaQuery({ query: '(max-width: 767px)' });
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
