@@ -8,11 +8,13 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import PrivateRoute from './components/PrivateRoute';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
+import EventsScreen from './screens/EventsScreen/EventsScreen';
 
 function App() {
   return (
     <Router>
       <Route path="/home" component={HomeScreen}></Route>
+      <Route path="/events" component={EventsScreen}></Route>
       <Route path="/gallery" component={GalleryScreen}></Route>
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
