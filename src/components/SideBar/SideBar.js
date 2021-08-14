@@ -5,33 +5,39 @@ import { Link } from 'react-router-dom';
 import { logoutUser } from '../../slices/userSlices/userAuthenticationSlice';
 import styles from './SideBar.module.css';
 
-export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
+export default function Sidebar(props) {
+  const addLinkStyling = (props) => {
+    return props
+      ? `${styles.side_bar_link} ${styles.active}`
+      : styles.side_bar_link;
+  };
+
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user } = userAuthentication;
 
   const dispatch = useDispatch();
   const logoutClickHandler = () => {
     dispatch(logoutUser());
+    props.setSideBarIsOpen(false);
   };
 
   return (
     <div
       className={`side_bar row_f ${styles.side_bar} ${
-        sideBarIsOpen ? `${styles.open}` : ``
+        props.sideBarIsOpen ? `${styles.open}` : ``
       }`}
     >
       <div
         className={`${styles.side_bar_overlay} ${
-          sideBarIsOpen ? `${styles.open_side_bar_overlay}` : ``
+          props.sideBarIsOpen ? `${styles.open_side_bar_overlay}` : ``
         }`}
       >
         <button
           className={`button ${styles.side_bar_button}`}
-          onClick={() => setSideBarIsOpen(false)}
+          onClick={() => props.setSideBarIsOpen(false)}
         ></button>
       </div>
-
-      <div className="column_f space-between">
+      <div className={`column_f space-between ${styles.side_bar_content}`}>
         <ul className={`column_f align-center ${styles.side_bar_list}`}>
           <li>
             <Link to="/home">
@@ -44,17 +50,17 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
           </li>
           <MediaQuery maxWidth="800px">
             <li className={styles.side_bar_list_item}>
-              <Link to="/about" className={styles.side_bar_link}>
+              <Link to="/about" className={addLinkStyling(props.about)}>
                 About
               </Link>
             </li>
             <li className={styles.side_bar_list_item}>
-              <Link to="/contact" className={styles.side_bar_link}>
+              <Link to="/contact" className={addLinkStyling(props.contact)}>
                 Contact
               </Link>
             </li>
             <li className={styles.side_bar_list_item}>
-              <Link to="/events" className={styles.side_bar_link}>
+              <Link to="/events" className={addLinkStyling(props.events)}>
                 My Events
               </Link>
             </li>
@@ -63,7 +69,7 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
         {user ? (
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
-              <Link to="/profile" className={styles.side_bar_link}>
+              <Link to="/profile" className={addLinkStyling(props.profile)}>
                 Profile
               </Link>
             </li>

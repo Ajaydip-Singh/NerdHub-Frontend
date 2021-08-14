@@ -151,7 +151,7 @@ export default function ProfileScreen() {
 
   return (
     <div>
-      <Header></Header>
+      <Header profile></Header>
       <div
         className={styles.main_wrapper}
         style={{

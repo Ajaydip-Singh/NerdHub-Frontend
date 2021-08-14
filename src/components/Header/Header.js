@@ -76,6 +76,7 @@ export default function Header(props) {
         </nav>
       </header>
       <SideBar
+        {...props}
         sideBarIsOpen={sideBarIsOpen}
         setSideBarIsOpen={setSideBarIsOpen}
       ></SideBar>
