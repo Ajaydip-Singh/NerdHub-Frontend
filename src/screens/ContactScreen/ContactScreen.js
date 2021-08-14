@@ -1,10 +1,10 @@
-import MediaQuery from "react-responsive";
-import { Link } from "react-router-dom";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import Socials from "../../components/Socials/Socials";
-import styles from "./ContactScreen.module.css";
+import MediaQuery from 'react-responsive';
+import { Link } from 'react-router-dom';
+import BottomNav from '../../components/BottomNav/BottomNav';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import Socials from '../../components/Socials/Socials';
+import styles from './ContactScreen.module.css';
 
 export default function ContactScreen() {
   return (
@@ -13,14 +13,14 @@ export default function ContactScreen() {
       <section
         className={styles.hero_section}
         style={{
-          backgroundImage: "url(/images/masked_player_gaming_green.jpeg)",
+          backgroundImage: 'url(/images/masked_player_gaming_green.jpeg)'
         }}
       >
         <h1 className={styles.heading}>Contact us</h1>
       </section>
       <section
         className={styles.main_section}
-        style={{ backgroundImage: "url(/images/mouse_dark_green.jpeg)" }}
+        style={{ backgroundImage: 'url(/images/mouse_dark_green.jpeg)' }}
       >
         <div className={`row container ${styles.wrapper}`}>
           <div className="col-md">
@@ -91,7 +91,7 @@ export default function ContactScreen() {
         <Footer></Footer>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
-        <BottomNav contact></BottomNav>
+        <BottomNav></BottomNav>
       </MediaQuery>
     </div>
   );

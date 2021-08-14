@@ -3,12 +3,8 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './Header.module.css';
 import { useState } from 'react';
 import SideBar from '../SideBar/SideBar';
-import { useSelector } from 'react-redux';
 
 export default function Header(props) {
-  const login = useSelector((state) => state.userAuthentication);
-  const { user } = login;
-
   const addLinkStyling = (props) => {
     return props ? `${styles.nav_link} ${styles.active}` : styles.nav_link;
   };
@@ -40,8 +36,21 @@ export default function Header(props) {
                 </Link>
               </li>
               <li className={styles.nav_list_item}>
+                <Link className={addLinkStyling(props.events)} to="/events">
+                  Events
+                </Link>
+              </li>
+              <li className={styles.nav_list_item}>
                 <Link className={addLinkStyling(props.gallery)} to="/gallery">
                   gallery
+                </Link>
+              </li>
+              <li className={styles.nav_list_item}>
+                <Link
+                  className={addLinkStyling(props.membership)}
+                  to="/membership"
+                >
+                  Membership
                 </Link>
               </li>
               <li className={styles.nav_list_item}>
@@ -56,38 +65,20 @@ export default function Header(props) {
               </li>
             </ul>
           )}
-
-          {user ? (
-            <button
-              className={`button ${styles.hamburger_button}`}
-              onClick={() => setSideBarIsOpen(true)}
-            >
-              <div className={styles.hamburger_menu_wrapper}>
-                <div className={styles.hamburger_menu}></div>
-              </div>
-            </button>
-          ) : (
-            <ul className={`${styles.nav_list} row_f align-center`}>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.login)} to="/login">
-                  login
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.register)} to="/register">
-                  register
-                </Link>
-              </li>
-            </ul>
-          )}
+          <button
+            className={`button ${styles.hamburger_button}`}
+            onClick={() => setSideBarIsOpen(true)}
+          >
+            <div className={styles.hamburger_menu_wrapper}>
+              <div className={styles.hamburger_menu}></div>
+            </div>
+          </button>
         </nav>
       </header>
-      {user && (
-        <SideBar
-          sideBarIsOpen={sideBarIsOpen}
-          setSideBarIsOpen={setSideBarIsOpen}
-        ></SideBar>
-      )}
+      <SideBar
+        sideBarIsOpen={sideBarIsOpen}
+        setSideBarIsOpen={setSideBarIsOpen}
+      ></SideBar>
     </>
   );
 }

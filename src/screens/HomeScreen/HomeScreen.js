@@ -1,15 +1,15 @@
-import MediaQuery, { useMediaQuery } from "react-responsive";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import Header from "../../components/Header/Header";
-import Socials from "../../components/Socials/Socials";
-import Carousel from "react-bootstrap/Carousel";
-import styles from "./HomeScreen.module.css";
-import Footer from "../../components/Footer/Footer";
-import { Player } from "video-react";
-import { Link } from "react-router-dom";
+import MediaQuery, { useMediaQuery } from 'react-responsive';
+import BottomNav from '../../components/BottomNav/BottomNav';
+import Header from '../../components/Header/Header';
+import Socials from '../../components/Socials/Socials';
+import Carousel from 'react-bootstrap/Carousel';
+import styles from './HomeScreen.module.css';
+import Footer from '../../components/Footer/Footer';
+import { Player } from 'video-react';
+import { Link } from 'react-router-dom';
 
 export default function HomeScreen() {
-  const isSmallerScreen = useMediaQuery({ query: "(max-width: 800px)" });
+  const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
   const nextIcon = (
     <span
       aria-hidden="true"
@@ -75,7 +75,7 @@ export default function HomeScreen() {
       </MediaQuery>
       <section
         style={{
-          backgroundImage: "url(/images/many_fighters_green.png)",
+          backgroundImage: 'url(/images/many_fighters_green.png)'
         }}
         className={styles.video_section}
       >

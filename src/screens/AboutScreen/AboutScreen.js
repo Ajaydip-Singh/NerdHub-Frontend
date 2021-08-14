@@ -1,9 +1,9 @@
-import MediaQuery from "react-responsive";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
-import styles from "./AboutScreen.module.css";
-import { Player } from "video-react";
+import MediaQuery from 'react-responsive';
+import BottomNav from '../../components/BottomNav/BottomNav';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import styles from './AboutScreen.module.css';
+import { Player } from 'video-react';
 
 export default function AboutScreen() {
   return (
@@ -12,7 +12,7 @@ export default function AboutScreen() {
       <div
         className={styles.main_wrapper}
         style={{
-          backgroundImage: "url(images/fighters.jpeg)",
+          backgroundImage: 'url(images/fighters.jpeg)'
         }}
       >
         <section className={styles.hero_section}>
@@ -56,7 +56,7 @@ export default function AboutScreen() {
         <Footer></Footer>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
-        <BottomNav about></BottomNav>
+        <BottomNav></BottomNav>
       </MediaQuery>
     </div>
   );

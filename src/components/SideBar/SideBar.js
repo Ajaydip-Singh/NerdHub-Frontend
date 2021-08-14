@@ -1,10 +1,14 @@
 import { Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../slices/userSlices/userAuthenticationSlice';
 import styles from './SideBar.module.css';
 
 export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
+  const userAuthentication = useSelector((state) => state.userAuthentication);
+  const { user } = userAuthentication;
+
   const dispatch = useDispatch();
   const logoutClickHandler = () => {
     dispatch(logoutUser());
@@ -26,36 +30,68 @@ export default function Sidebar({ sideBarIsOpen, setSideBarIsOpen }) {
           onClick={() => setSideBarIsOpen(false)}
         ></button>
       </div>
-      <ul className={`column_f align-center ${styles.side_bar_list}`}>
-        <li>
-          <Link to="/home">
-            <img
-              src="/logo192.png"
-              alt="Nerdhub Logo"
-              className={`${styles.side_bar_link} ${styles.logo}`}
-            />
-          </Link>
-        </li>
-        <li className={styles.side_bar_list_item}>
-          <Link to="/events" className={styles.side_bar_link}>
-            Events
-          </Link>
-        </li>
-        <li className={styles.side_bar_list_item}>
-          <Link to="/profile" className={styles.side_bar_link}>
-            Profile
-          </Link>
-        </li>
-        <li className={styles.side_bar_list_item}>
-          <Button
-            to="/logout"
-            className={`button border_bottom ${styles.side_bar_item_button}`}
-            onClick={logoutClickHandler}
-          >
-            Logout
-          </Button>
-        </li>
-      </ul>
+
+      <div className="column_f space-between">
+        <ul className={`column_f align-center ${styles.side_bar_list}`}>
+          <li>
+            <Link to="/home">
+              <img
+                src="/logo192.png"
+                alt="Nerdhub Logo"
+                className={`${styles.side_bar_link} ${styles.logo}`}
+              />
+            </Link>
+          </li>
+          <MediaQuery maxWidth="800px">
+            <li className={styles.side_bar_list_item}>
+              <Link to="/about" className={styles.side_bar_link}>
+                About
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/contact" className={styles.side_bar_link}>
+                Contact
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/events" className={styles.side_bar_link}>
+                My Events
+              </Link>
+            </li>
+          </MediaQuery>
+        </ul>
+        {user ? (
+          <ul className={`column_f align-center ${styles.side_bar_list}`}>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/profile" className={styles.side_bar_link}>
+                Profile
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Button
+                to="/logout"
+                className={`button border_bottom ${styles.side_bar_item_button}`}
+                onClick={logoutClickHandler}
+              >
+                Logout
+              </Button>
+            </li>
+          </ul>
+        ) : (
+          <ul className={`column_f align-center ${styles.side_bar_list}`}>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/login" className={styles.side_bar_link}>
+                Login
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/register" className={styles.side_bar_link}>
+                Register
+              </Link>
+            </li>
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
