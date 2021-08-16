@@ -1,0 +1,101 @@
+.event {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  margin: 1rem;
+  background: #000;
+  color: #000;
+  padding: 1rem;
+  box-shadow: 0 8px 8px -4px;
+}
+
+.order_first {
+  order: 1;
+}
+
+.event_info {
+  width: 50%;
+  background-color: #50d450;
+  padding: 2rem;
+  box-shadow: 0 10px 30px #000;
+}
+
+.event_logistics {
+  margin-bottom: 1rem;
+}
+
+.event_list_item:not(:last-of-type) {
+  margin-right: 1rem;
+}
+
+.event_heading {
+  color: #000;
+}
+
+.event_date {
+  font-size: 1.5rem;
+}
+
+.event_description {
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 3rem;
+}
+
+.event_image {
+  width: 50%;
+  height: 90%;
+  object-fit: cover;
+  border-bottom: 1px solid #50d450;
+  border-top: 1px solid #50d450;
+  border: 1px solid #50d450;
+}
+
+.event_button {
+  position: relative;
+  color: #000;
+  padding: 0.5rem;
+  background: transparent;
+  text-decoration: none;
+  border: 2px solid #000;
+  transition: all 500ms linear, ease 500ms;
+}
+
+.event_button::after {
+  content: '';
+  background: #000;
+  position: absolute;
+  text-decoration: none;
+  width: 0;
+  z-index: 1;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: width 1s linear, ease 1s;
+}
+
+.event_button:hover,
+.event_button:focus {
+  color: #000;
+}
+
+.event_button:hover::after,
+.event_button:focus::after,
+.event_button:active::after {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .event {
+    flex-direction: column;
+    max-width: auto;
+  }
+
+  .event_info,
+  .event_image {
+    width: 100%;
+  }
+
+  .event_info {
+    order: 1;
+  }
+}
