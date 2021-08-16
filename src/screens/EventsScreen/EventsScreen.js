@@ -1,5 +1,6 @@
 import MediaQuery from 'react-responsive';
 import BottomNav from '../../components/BottomNav/BottomNav';
+import Event from '../../components/Event/Event';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import styles from './EventsScreen.module.css';
@@ -11,11 +12,15 @@ export default function EventsScreen() {
       <div
         className={styles.main_wrapper}
         style={{
-          backgroundImage: 'url(/images/destruction_long.jpeg)',
-          width: '100%',
-          height: '200vh'
+          backgroundImage:
+            'url(https://cdn.wallpapersafari.com/0/20/wi7LZx.jpg)'
         }}
-      ></div>
+      >
+        <Event order={0}></Event>
+        <Event order={1}></Event>
+        <Event order={2}></Event>
+        <Event order={3}></Event>
+      </div>
 
       <MediaQuery minWidth={800}>
         <Footer></Footer>

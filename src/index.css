@@ -109,12 +109,6 @@ input:-webkit-autofill {
   transition: all 500ms linear, ease 500ms;
 }
 
-/* .button_dark:hover,
-.button_dark:focus {
-  color: #fff;
-  border: 1px solid #fff;
-} */
-
 .border_bottom::after {
   content: '';
   background: #50d450;
