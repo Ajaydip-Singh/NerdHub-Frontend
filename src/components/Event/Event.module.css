@@ -22,6 +22,10 @@
   margin-bottom: 1rem;
 }
 
+.event_list {
+  flex-wrap: wrap;
+}
+
 .event_list_item:not(:last-of-type) {
   margin-right: 1rem;
 }

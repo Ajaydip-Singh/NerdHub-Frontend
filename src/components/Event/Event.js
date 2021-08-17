@@ -20,7 +20,7 @@ export default function Event(props) {
           {formatDate(event.date)}
         </h3>
         <div className={styles.event_logistics}>
-          <ul className="row_f">
+          <ul className={`row_f ${styles.event_list}`}>
             {event.capacity ? (
               <li className={styles.event_list_item}>
                 <i class="fas fa-users fa-fw"></i>
