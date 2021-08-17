@@ -93,8 +93,42 @@
   max-width: 900px;
   margin: 0 auto;
   color: #fff;
-  padding: 0.5rem;
+  padding: 1rem;
   text-shadow: 2px 2px #000;
+}
+
+.link {
+  position: relative;
+  color: #0de80e;
+  background: transparent;
+  padding: 0.2rem;
+  text-decoration: none;
+  border: 2px solid #0de80e;
+  transition: all 500ms linear, ease 500ms;
+}
+
+.link::after {
+  content: '';
+  background: #0de80e;
+  position: absolute;
+  text-decoration: none;
+  width: 0;
+  z-index: 1;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: width 1s linear, ease 1s;
+}
+
+.link:hover,
+.link:focus {
+  color: #0de80e;
+}
+
+.link:hover::after,
+.link:focus::after,
+.link:active::after {
+  width: 100%;
 }
 
 .events_slider_background {

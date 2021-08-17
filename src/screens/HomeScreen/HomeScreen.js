@@ -116,7 +116,12 @@ export default function HomeScreen() {
             backgroundSize: 'cover'
           }}
         >
-          <h2 className={styles.events_section_heading}>Upcoming Events</h2>
+          <h2 className={styles.events_section_heading}>
+            Upcoming{' '}
+            <Link className={styles.link} to="/events">
+              Events
+            </Link>
+          </h2>
           <AliceCarousel
             mouseTracking={true}
             keyboardNavigation={true}
