@@ -32,7 +32,7 @@ export default function Event(props) {
             )}
             <li className={styles.event_list_item}>
               <i class="fas fa-clock fa-fw"></i> {` `}
-              {event.duration}
+              {event.time}
             </li>
             <li className={styles.event_list_item}>
               <i class="fas fa-map-marker-alt fa-fw"></i>
