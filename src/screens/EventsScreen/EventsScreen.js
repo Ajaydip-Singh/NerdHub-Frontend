@@ -26,7 +26,7 @@ export default function EventsScreen() {
         className={styles.main_wrapper}
         style={{
           backgroundImage:
-            'url(https://cdn.wallpapersafari.com/0/20/wi7LZx.jpg)'
+            'url(/images/cubes.jpeg)'
         }}
       >
         {status === 'loading' ? (
