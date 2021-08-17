@@ -7,6 +7,12 @@ import styles from './HomeScreen.module.css';
 import Footer from '../../components/Footer/Footer';
 import { Player } from 'video-react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import Event from '../../components/Event/Event';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -23,6 +29,14 @@ export default function HomeScreen() {
       className={`carousel-control-prev-icon ${styles.prev_icon}`}
     />
   );
+
+  const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
+  const { status, events, error } = eventsGetSlice;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEvents({}));
+  }, [dispatch]);
 
   return (
     <div>
@@ -92,6 +106,28 @@ export default function HomeScreen() {
               src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
             ></Player>
           </div>
+        </div>
+      </section>
+      <section>
+        <div
+          className={styles.events_slider_background}
+          style={{
+            backgroundImage: 'url(/images/fighters_dark.jpeg)',
+            backgroundSize: 'cover'
+          }}
+        >
+          <h2 className={styles.events_section_heading}>Upcoming Events</h2>
+          <AliceCarousel
+            mouseTracking={true}
+            keyboardNavigation={true}
+            animationDuration={800}
+            renderNextButton={() => nextIcon}
+            renderPrevButton={() => prevIcon}
+            infinite="true"
+            items={events.map((event, index) => (
+              <Event order={index} event={event}></Event>
+            ))}
+          />
         </div>
       </section>
       <div className={`row container ${styles.contact_wrapper}`}>
