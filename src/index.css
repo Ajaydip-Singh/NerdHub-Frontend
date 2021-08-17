@@ -17,6 +17,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  display: block;
+}
+
 /* @media (max-width: 800px) {
   body {
     padding-bottom: 75px;

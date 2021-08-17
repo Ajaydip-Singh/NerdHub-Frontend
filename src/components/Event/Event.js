@@ -1,21 +1,23 @@
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
+import { formatDate } from '../../utils';
 
 export default function Event(props) {
   const { event, order } = props;
+  console.log(order);
 
   return (
     <div key={event._id} className={`${styles.event}`}>
       <div
         className={`${styles.event_info} ${
-          order % 2 !== 0 ? styles.order_first : ``
+          order % 2 !== 0 ? styles.order_second : ``
         } `}
       >
         <h1 className={styles.event_heading}>{event.name}</h1>
         <h3 className={styles.event_date}>
           <i class="fas fa-calendar-day"></i>
           {` `}
-          {event.date}
+          {formatDate(event.date)}
         </h3>
         <div className={styles.event_logistics}>
           <ul className="row_f">
@@ -44,7 +46,17 @@ export default function Event(props) {
           Learn more
         </Link>
       </div>
-      <img className={styles.event_image} src={event.image} alt={event.name} />
+      <div
+        className={`${styles.event_image_container} ${
+          order % 2 !== 0 ? styles.order_first : ``
+        } `}
+      >
+        <img
+          className={styles.event_image}
+          src={event.image}
+          alt={event.name}
+        />
+      </div>
     </div>
   );
 }
