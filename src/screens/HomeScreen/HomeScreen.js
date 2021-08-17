@@ -13,6 +13,7 @@ import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import Event from '../../components/Event/Event';
+import LoadingBox from '../../components/LoadingBox/LoadingBox';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -108,33 +109,40 @@ export default function HomeScreen() {
           </div>
         </div>
       </section>
-      <section>
-        <div
-          className={styles.events_slider_background}
-          style={{
-            backgroundImage: 'url(/images/fighters_dark.jpeg)',
-            backgroundSize: 'cover'
-          }}
-        >
-          <h2 className={styles.events_section_heading}>
-            Upcoming{' '}
-            <Link className={styles.link} to="/events">
-              Events
-            </Link>
-          </h2>
-          <AliceCarousel
-            mouseTracking={true}
-            keyboardNavigation={true}
-            animationDuration={800}
-            renderNextButton={() => nextIcon}
-            renderPrevButton={() => prevIcon}
-            infinite="true"
-            items={events.map((event, index) => (
-              <Event order={index} event={event}></Event>
-            ))}
-          />
-        </div>
-      </section>
+      {status === 'loading' ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        ''
+      ) : (
+        <section>
+          <div
+            className={styles.events_slider_background}
+            style={{
+              backgroundImage: 'url(/images/fighters_dark.jpeg)',
+              backgroundSize: 'cover'
+            }}
+          >
+            <h2 className={styles.events_section_heading}>
+              Upcoming{' '}
+              <Link className={styles.link} to="/events">
+                Events
+              </Link>
+            </h2>
+            <AliceCarousel
+              mouseTracking={true}
+              keyboardNavigation={true}
+              animationDuration={800}
+              renderNextButton={() => nextIcon}
+              renderPrevButton={() => prevIcon}
+              infinite="true"
+              items={events.map((event, index) => (
+                <Event order={index} event={event}></Event>
+              ))}
+            />
+          </div>
+        </section>
+      )}
+
       <div className={`row container ${styles.contact_wrapper}`}>
         <div className="col-md">
           <p className={styles.contact_info}>
