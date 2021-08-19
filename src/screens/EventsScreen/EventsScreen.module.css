@@ -12,6 +12,12 @@
   justify-content: center;
 }
 
+.events_wrapper {
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+}
+
 .filterbox {
   margin-top: 2rem;
   padding-top: 2rem;

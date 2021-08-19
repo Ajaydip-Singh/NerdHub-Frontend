@@ -98,15 +98,17 @@ export default function EventsScreen(props) {
             </div>
           </div>
         </div>
-        {status === 'loading' ? (
-          <LoadingBox></LoadingBox>
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          events.map((event, index) => (
-            <Event order={index} event={event}></Event>
-          ))
-        )}
+        <div className={styles.events_wrapper}>
+          {status === 'loading' ? (
+            <LoadingBox></LoadingBox>
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            events.map((event, index) => (
+              <Event order={index} event={event}></Event>
+            ))
+          )}
+        </div>
       </div>
 
       <MediaQuery minWidth={800}>
