@@ -83,29 +83,31 @@ export default function EventsScreen(props) {
                   <i className="fa fa-search"></i>
                 </button>
               </div>
+              <div className={styles.filter_button_wrapper}>
+                <select
+                  className={`${styles.search_button} ${styles.filter_button}`}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="all">All Categories</option>
+                  {categories &&
+                    categories.map((category) => (
+                      <option value={category}>{category}</option>
+                    ))}
+                </select>
+                <select
+                  className={`${styles.search_button} ${styles.filter_button}`}
+                  value={venue}
+                  onChange={(e) => setVenue(e.target.value)}
+                >
+                  <option value="all">All Venues</option>
+                  {venues &&
+                    venues.map((venue) => (
+                      <option value={venue}>{venue}</option>
+                    ))}
+                </select>
+              </div>
             </form>
-            <div className={styles.filter_button_wrapper}>
-              <select
-                className={`${styles.search_button} ${styles.filter_button}`}
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="all">All Categories</option>
-                {categories &&
-                  categories.map((category) => (
-                    <option value={category}>{category}</option>
-                  ))}
-              </select>
-              <select
-                className={`${styles.search_button} ${styles.filter_button}`}
-                value={venue}
-                onChange={(e) => setVenue(e.target.value)}
-              >
-                <option value="all">All Venues</option>
-                {venues &&
-                  venues.map((venue) => <option value={venue}>{venue}</option>)}
-              </select>
-            </div>
           </div>
         </div>
         <div className={styles.events_wrapper}>

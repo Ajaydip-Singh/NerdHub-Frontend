@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import Socials from "../Socials/Socials";
-import styles from "./Footer.module.css";
+import { Link } from 'react-router-dom';
+import Socials from '../Socials/Socials';
+import styles from './Footer.module.css';
 
 export default function Footer() {
   return (
@@ -23,8 +23,18 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link className={styles.footer_link} to="/events">
+                Events
+              </Link>
+            </li>
+            <li>
               <Link className={styles.footer_link} to="/gallery">
                 Gallery
+              </Link>
+            </li>
+            <li>
+              <Link className={styles.footer_link} to="/membership">
+                Membership
               </Link>
             </li>
             <li>
