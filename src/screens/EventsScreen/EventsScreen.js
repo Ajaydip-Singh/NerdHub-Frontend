@@ -13,6 +13,8 @@ import { getEventsVenues } from '../../slices/eventSlices/eventsVenuesGetSlice';
 import styles from './EventsScreen.module.css';
 
 export default function EventsScreen(props) {
+  const [inputEventName, setInputEventName] = useState('');
+  const [searchEventName, setSearchEventName] = useState('');
   const [category, setCategory] = useState('all');
   const [venue, setVenue] = useState('all');
 
@@ -30,6 +32,7 @@ export default function EventsScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setSearchEventName(inputEventName);
   };
 
   const dispatch = useDispatch();
@@ -37,11 +40,12 @@ export default function EventsScreen(props) {
   useEffect(() => {
     dispatch(
       getEvents({
+        name: searchEventName,
         category: category === 'all' ? '' : category,
         venue: venue === 'all' ? '' : venue
       })
     );
-  }, [dispatch, category, venue]);
+  }, [dispatch, category, venue, searchEventName]);
 
   useEffect(() => {
     dispatch(getEvents({}));
@@ -66,10 +70,16 @@ export default function EventsScreen(props) {
                   className={styles.input}
                   type="text"
                   name="q"
+                  value={inputEventName}
+                  onChange={(e) => setInputEventName(e.target.value)}
                   placeholder="Search event by name"
                   id="q"
                 />
-                <button type="submit" className={styles.search_button}>
+                <button
+                  type="submit"
+                  className={styles.search_button}
+                  onClick={() => setSearchEventName(inputEventName)}
+                >
                   <i className="fa fa-search"></i>
                 </button>
               </div>
