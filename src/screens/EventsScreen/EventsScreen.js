@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import BottomNav from '../../components/BottomNav/BottomNav';
 import Event from '../../components/Event/Event';
+import FilterBox from '../../components/FilterBox/FilterBox';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import LoadingBox from '../../components/LoadingBox/LoadingBox';
@@ -25,10 +26,12 @@ export default function EventsScreen() {
       <div
         className={styles.main_wrapper}
         style={{
-          backgroundImage:
-            'url(/images/cubes.jpeg)'
+          backgroundImage: 'url(/images/cubes.jpeg)'
         }}
       >
+        <div className={styles.filterbox}>
+          <FilterBox events={events}></FilterBox>
+        </div>
         {status === 'loading' ? (
           <LoadingBox></LoadingBox>
         ) : error ? (

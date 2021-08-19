@@ -3,7 +3,6 @@
   object-fit: cover;
   background-position: center;
   background-repeat: repeat-y;
-  display: flex;
   margin-top: 70px;
   flex-basis: 800px;
   flex-wrap: wrap;
@@ -11,6 +10,13 @@
   min-height: calc(100vh - 70px);
   align-items: center;
   justify-content: center;
+}
+
+.filterbox {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  margin: 0 auto;
+  max-width: max-content;
 }
 
 .events_list_item {
