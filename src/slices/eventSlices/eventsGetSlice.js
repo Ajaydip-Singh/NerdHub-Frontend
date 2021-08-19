@@ -9,9 +9,11 @@ const initialState = {
 
 export const getEvents = createAsyncThunk(
   'eventsGet/getEvents',
-  async ({ category = '' }, { rejectWithValue }) => {
+  async ({ category = '', venue = '' }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/events?category=${category}`);
+      const { data } = await axios.get(
+        `/api/events?category=${category}&venue=${venue}`
+      );
       return data;
     } catch (err) {
       if (!err.response) {
