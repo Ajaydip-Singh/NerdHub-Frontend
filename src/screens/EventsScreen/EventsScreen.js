@@ -9,20 +9,24 @@ import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../components/MessageBox/MessageBox';
 import { getEventsCategories } from '../../slices/eventSlices/eventsCategoriesGetSlice';
 import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
+import { getEventsVenues } from '../../slices/eventSlices/eventsVenuesGetSlice';
 import styles from './EventsScreen.module.css';
 
 export default function EventsScreen(props) {
-  const [defaultCategory, setDefaultCategory] = useState('all');
+  const [category, setCategory] = useState('all');
+  const [venue, setVenue] = useState('all');
 
   const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
-  const { status, events, error } = eventsGetSlice;
-
   const eventsCategoriesGetSlice = useSelector(
     (state) => state.eventsCategoriesGetSlice
   );
-  const { categories } = eventsCategoriesGetSlice;
+  const eventsVenuesGetSlice = useSelector(
+    (state) => state.eventsVenuesGetSlice
+  );
 
-  const venues = [...new Set(events.map((event) => event.venue))];
+  const { status, events, error } = eventsGetSlice;
+  const { categories } = eventsCategoriesGetSlice;
+  const { venues } = eventsVenuesGetSlice;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,15 +34,19 @@ export default function EventsScreen(props) {
 
   const dispatch = useDispatch();
 
-  const handleCategoryChange = (e) => {
-    const category = e.target.value;
-    dispatch(getEvents({ category: category === 'all' ? '' : category }));
-    setDefaultCategory(category);
-  };
+  useEffect(() => {
+    dispatch(
+      getEvents({
+        category: category === 'all' ? '' : category,
+        venue: venue === 'all' ? '' : venue
+      })
+    );
+  }, [dispatch, category, venue]);
 
   useEffect(() => {
     dispatch(getEvents({}));
     dispatch(getEventsCategories());
+    dispatch(getEventsVenues());
   }, [dispatch]);
 
   return (
@@ -69,8 +77,8 @@ export default function EventsScreen(props) {
             <div className={styles.filter_button_wrapper}>
               <select
                 className={`${styles.search_button} ${styles.filter_button}`}
-                value={defaultCategory}
-                onChange={handleCategoryChange}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="all">All Categories</option>
                 {categories &&
@@ -80,14 +88,12 @@ export default function EventsScreen(props) {
               </select>
               <select
                 className={`${styles.search_button} ${styles.filter_button}`}
+                value={venue}
+                onChange={(e) => setVenue(e.target.value)}
               >
-                <option value="">All Venues</option>
+                <option value="all">All Venues</option>
                 {venues &&
-                  venues.map((venue) => (
-                    <>
-                      <option value={venue}>{venue}</option>
-                    </>
-                  ))}
+                  venues.map((venue) => <option value={venue}>{venue}</option>)}
               </select>
             </div>
           </div>
