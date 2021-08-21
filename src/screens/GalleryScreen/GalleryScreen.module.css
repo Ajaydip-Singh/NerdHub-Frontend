@@ -2,4 +2,52 @@
   background-size: cover;
   object-fit: cover;
   background-position: center;
+  background-color: #000;
+  margin-top: 70px;
+}
+
+@media (max-width: 800px) {
+  .main_wrapper {
+    padding-bottom: 4rem;
+  }
+}
+
+.nav_button {
+  background: transparent;
+  outline: none;
+}
+
+.gallery {
+  position: relative;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  height: 100%;
+  border: 3px solid #50d450;
+  z-index: 1;
+}
+
+.next_icon,
+.prev_icon {
+  position: absolute;
+  cursor: pointer;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 300ms ease-in-out;
+}
+
+.next_icon {
+  right: 20px;
+}
+
+.prev_icon {
+  left: 20px;
+}
+
+.next_icon:hover {
+  transform: translate(3px, -50%);
+}
+
+.prev_icon:hover {
+  transform: translate(-3px, -50%);
 }
