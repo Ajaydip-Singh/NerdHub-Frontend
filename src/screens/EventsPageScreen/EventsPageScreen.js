@@ -24,8 +24,10 @@ export default function EventsPageScreen(props) {
 
   const createHandler = () => {};
   const dispatch = useDispatch();
-  const deleteHandler = (eventId) => {
-    dispatch(deleteEvent(eventId));
+  const deleteHandler = (event) => {
+    if (window.confirm(`Are you sure you want to delete ${event.name}`)) {
+      dispatch(deleteEvent(event._id));
+    }
   };
 
   // Cleanup events page on unmount
@@ -90,10 +92,7 @@ export default function EventsPageScreen(props) {
                     >
                       Edit
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => deleteHandler(event._id)}
-                    >
+                    <button type="button" onClick={() => deleteHandler(event)}>
                       Delete
                     </button>
                   </td>
