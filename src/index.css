@@ -250,3 +250,44 @@ ul {
 .image-gallery-icon:focus {
   color: #50d450;
 }
+
+/* Table */
+.table_wrapper {
+  overflow-x: auto;
+  margin: 0 0.5rem;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid #50d450;
+}
+
+.table thead {
+  color: #50d450;
+  font-size: 1.5rem;
+}
+
+.table tbody {
+  color: #fff;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #50d450;
+  color: #000;
+}
+
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #50d450;
+  padding: 0.5rem;
+}
+
+.table button {
+  margin: 0 0.2rem;
+  padding: 0.2rem 0.5rem;
+  background-color: #000;
+  color: #50d450;
+  outline: none;
+  border: 1px solid #20a020;
+}

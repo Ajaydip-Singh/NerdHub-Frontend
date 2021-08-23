@@ -11,6 +11,7 @@ import EventsScreen from './screens/EventsScreen/EventsScreen';
 import AdminPanelScreen from './screens/AdminPanelScreen/AdminPanelScreen';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
+import EventsPageScreen from './screens/EventsPageScreen/EventsPageScreen';
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
       <Route path="/register" component={RegisterScreen}></Route>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
+      <AdminRoute
+        path="/events-admin"
+        component={EventsPageScreen}
+      ></AdminRoute>
     </Router>
   );
 }
