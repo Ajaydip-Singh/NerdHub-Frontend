@@ -78,7 +78,7 @@ export default function EventsPageScreen(props) {
                   <td>{event.name}</td>
                   <td>{formatDate(event.date)}</td>
                   <td>{event.category}</td>
-                  <td>{event.isActive}</td>
+                  <td>{event.isActive ? 'True' : 'False'}</td>
                   <td>{event.price}</td>
                   <td>
                     <button
