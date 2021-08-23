@@ -48,31 +48,95 @@ export default function Sidebar(props) {
               />
             </Link>
           </li>
-          <MediaQuery maxWidth="800px">
+          {props.admin ? (
+            <h2>Admin</h2>
+          ) : (
+            <MediaQuery maxWidth="800px">
+              <li className={styles.side_bar_list_item}>
+                <Link to="/about" className={addLinkStyling(props.about)}>
+                  About
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/contact" className={addLinkStyling(props.contact)}>
+                  Contact
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/events" className={addLinkStyling(props.events)}>
+                  My Events
+                </Link>
+              </li>
+            </MediaQuery>
+          )}
+        </ul>
+        {props.admin ? (
+          <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
-              <Link to="/about" className={addLinkStyling(props.about)}>
-                About
+              <Link
+                to="/home-admin"
+                className={addLinkStyling(props.home_page)}
+              >
+                Home Page
               </Link>
             </li>
             <li className={styles.side_bar_list_item}>
-              <Link to="/contact" className={addLinkStyling(props.contact)}>
+              <Link
+                to="/events-admin"
+                className={addLinkStyling(props.events_page)}
+              >
+                Events Page
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link
+                to="/gallery-admin"
+                className={addLinkStyling(props.gallery_page)}
+              >
+                Gallery Page
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link
+                to="/membership-admin"
+                className={addLinkStyling(props.membership_page)}
+              >
+                Membership Page
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link
+                to="/about-admin"
+                className={addLinkStyling(props.about_page)}
+              >
+                About Page
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link
+                to="/contact-admin"
+                className={addLinkStyling(props.contact_page)}
+              >
                 Contact
               </Link>
             </li>
-            <li className={styles.side_bar_list_item}>
-              <Link to="/events" className={addLinkStyling(props.events)}>
-                My Events
-              </Link>
-            </li>
-          </MediaQuery>
-        </ul>
-        {user ? (
+          </ul>
+        ) : user ? (
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
               <Link to="/profile" className={addLinkStyling(props.profile)}>
                 Profile
               </Link>
             </li>
+            {user.isAdmin ? (
+              <li className={styles.side_bar_list_item}>
+                <Link to="/adminpanel" className={addLinkStyling(props.admin)}>
+                  Admin Panel
+                </Link>
+              </li>
+            ) : (
+              ''
+            )}
             <li className={styles.side_bar_list_item}>
               <Button
                 to="/logout"
