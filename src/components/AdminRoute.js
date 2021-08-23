@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import { Redirect, Route } from 'react-router-dom';
 
-export default function PrivateRoute({ component: Component, ...rest }) {
+export default function AdminRoute({ component: Component, ...rest }) {
   const login = useSelector((state) => state.userAuthentication);
   const { user } = login;
 
