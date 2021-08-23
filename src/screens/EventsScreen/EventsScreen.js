@@ -116,9 +116,10 @@ export default function EventsScreen(props) {
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
-            events.map((event, index) => (
-              <Event order={index} event={event}></Event>
-            ))
+            events.map(
+              (event, index) =>
+                event.isActive && <Event order={index} event={event}></Event>
+            )
           )}
         </div>
       </div>
