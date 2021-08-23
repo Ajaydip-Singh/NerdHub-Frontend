@@ -23,6 +23,7 @@ export default function Header(props) {
         <Link to="/home">
           <img src="/logo192.png" alt="Nerdhub Logo" className={styles.logo} />
         </Link>
+
         <nav
           className={`row_f ${styles.nav} ${
             isSmallerScreen ? `flex-end` : `space-between`
@@ -30,39 +31,59 @@ export default function Header(props) {
         >
           {!isSmallerScreen && (
             <ul className={`row_f align-center ${styles.nav_list}`}>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.home)} to="/home">
-                  home
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.events)} to="/events">
-                  Events
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.gallery)} to="/gallery">
-                  gallery
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link
-                  className={addLinkStyling(props.membership)}
-                  to="/membership"
-                >
-                  Membership
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.about)} to="/about">
-                  about
-                </Link>
-              </li>
-              <li className={styles.nav_list_item}>
-                <Link className={addLinkStyling(props.contact)} to="/contact">
-                  contact
-                </Link>
-              </li>
+              {props.admin && (
+                <li className={styles.nav_list_item}>
+                  <Link
+                    className={addLinkStyling(props.admin)}
+                    to="/adminpanel"
+                  >
+                    Admin Panel
+                  </Link>
+                </li>
+              )}
+              {!props.admin && (
+                <>
+                  <li className={styles.nav_list_item}>
+                    <Link className={addLinkStyling(props.home)} to="/home">
+                      home
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link className={addLinkStyling(props.events)} to="/events">
+                      Events
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link
+                      className={addLinkStyling(props.gallery)}
+                      to="/gallery"
+                    >
+                      gallery
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link
+                      className={addLinkStyling(props.membership)}
+                      to="/membership"
+                    >
+                      Membership
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link className={addLinkStyling(props.about)} to="/about">
+                      about
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link
+                      className={addLinkStyling(props.contact)}
+                      to="/contact"
+                    >
+                      contact
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           )}
           <button
