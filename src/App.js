@@ -6,9 +6,11 @@ import '../node_modules/video-react/dist/video-react.css'; // import css
 import GalleryScreen from './screens/GalleryScreen/GalleryScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
-import PrivateRoute from './components/PrivateRoute';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import EventsScreen from './screens/EventsScreen/EventsScreen';
+import AdminPanelScreen from './screens/AdminPanelScreen/AdminPanelScreen';
+import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
       <Route path="/login" component={LoginScreen} exact></Route>
       <Route path="/register" component={RegisterScreen}></Route>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
+      <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
     </Router>
   );
 }
