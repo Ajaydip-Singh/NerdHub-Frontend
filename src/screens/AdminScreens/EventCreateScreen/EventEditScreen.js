@@ -17,29 +17,6 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 
 export default function EventEditScreen(props) {
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ color: ['white', 'black', 'red', 'blue', '#50d450'] }],
-      ['clean']
-    ]
-  };
-
-  const formats = [
-    'header',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'blockquote',
-    'list',
-    'bullet',
-    'link',
-    'color'
-  ];
-
   const eventId = props.match.params.id;
 
   const [name, setName] = useState('');
@@ -152,8 +129,6 @@ export default function EventEditScreen(props) {
                   placeholder="Enter event description"
                   value={description}
                   onChange={setDescription}
-                  modules={modules}
-                  formats={formats}
                 ></ReactQuill>
               </div>
               <div className="editor_wrapper">
