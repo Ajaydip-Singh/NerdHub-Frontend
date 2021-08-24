@@ -41,7 +41,8 @@ export default function Event(props) {
             </li>
           </ul>
         </div>
-        <p className={styles.event_description}>{event.description}</p>
+        {/* <p className={styles.event_description}>{event.description}</p> */}
+        {parse(event.description)}
         <Link href="#" className={styles.event_button}>
           Learn more
         </Link>

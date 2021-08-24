@@ -6,7 +6,10 @@ import DateTimePicker from '../../../components/DateTimePicker/DateTimePicker';
 import styles from './EventEditScreen.module.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent } from '../../../slices/eventSlices/eventGetSlice';
+import {
+  getEvent,
+  resetGetEvent
+} from '../../../slices/eventSlices/eventGetSlice';
 import {
   resetUpdateEvent,
   updateEvent
@@ -68,11 +71,15 @@ export default function EventEditScreen(props) {
 
   useEffect(() => {
     return () => {
-      if (eventUpdate) {
-        dispatch(resetUpdateEvent());
-      }
+      dispatch(resetUpdateEvent());
     };
-  }, [dispatch, eventUpdate]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetGetEvent());
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (!event || event._id !== eventId) {
@@ -142,7 +149,7 @@ export default function EventEditScreen(props) {
                 <h3>Price</h3>
                 <input
                   value={price}
-                  onChange={(e) => setTime(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                   placeholder="Enter price in Ksh"
                 ></input>
               </div>
