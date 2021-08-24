@@ -291,3 +291,16 @@ ul {
   outline: none;
   border: 1px solid #20a020;
 }
+
+/* Editor */
+.editor_wrapper {
+  color: #000;
+  margin: 2rem 0;
+}
+
+.editor_wrapper input {
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+}

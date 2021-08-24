@@ -12,6 +12,7 @@ import AdminPanelScreen from './screens/AdminPanelScreen/AdminPanelScreen';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import EventsPageScreen from './screens/EventsPageScreen/EventsPageScreen';
+import EventEditScreen from './screens/AdminScreens/EventCreateScreen/EventEditScreen';
 
 function App() {
   return (
@@ -33,6 +34,12 @@ function App() {
       <AdminRoute
         path="/events-admin"
         component={EventsPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/events-admin/:id/edit"
+        component={EventEditScreen}
+        exact
       ></AdminRoute>
     </Router>
   );

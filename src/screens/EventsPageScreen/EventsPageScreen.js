@@ -87,7 +87,7 @@ export default function EventsPageScreen(props) {
                       className="small"
                       type="button"
                       onClick={() =>
-                        props.history.push(`/events/${event._id}/edit`)
+                        props.history.push(`/events-admin/${event._id}/edit`)
                       }
                     >
                       Edit
