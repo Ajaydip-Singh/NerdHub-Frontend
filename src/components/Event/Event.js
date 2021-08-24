@@ -1,10 +1,10 @@
+import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
 import { formatDate } from '../../utils';
 
 export default function Event(props) {
   const { event, order } = props;
-  console.log(order);
 
   return (
     <div key={event._id} className={`${styles.event}`}>
@@ -13,7 +13,7 @@ export default function Event(props) {
           order % 2 !== 0 ? styles.order_second : ``
         } `}
       >
-        <h1 className={styles.event_heading}>{event.name}</h1>
+        {parse(event.name)}
         <h3 className={styles.event_date}>
           <i class="fas fa-calendar-day"></i>
           {` `}

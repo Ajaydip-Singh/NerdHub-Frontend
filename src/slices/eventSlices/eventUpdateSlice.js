@@ -15,7 +15,7 @@ export const updateEvent = createAsyncThunk(
     } = getState();
 
     try {
-      const { data } = await axios.get(`/api/events/${event._id}`, event, {
+      const { data } = await axios.put(`/api/events/${event._id}`, event, {
         headers: {
           Authorization: `Bearer ${user.token}`
         }

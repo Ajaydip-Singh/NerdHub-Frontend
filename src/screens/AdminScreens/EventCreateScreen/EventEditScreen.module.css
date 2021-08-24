@@ -1,6 +1,7 @@
 .main_wrapper {
   margin-top: 70px;
   background-color: #fff;
+  min-height: calc(100vh - 70px);
   color: #000;
 }
 
@@ -16,8 +17,29 @@
   color: #50d450;
 }
 
+.wrapper {
+  max-width: max-content;
+  margin: 1rem auto;
+}
+
 .editor_wrapper {
   max-width: 40rem;
   padding: 1rem;
   margin: 0 auto;
+}
+
+.button {
+  outline: none;
+  min-width: 90px;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  border: 2px solid #50d450;
+  color: #50d450;
 }

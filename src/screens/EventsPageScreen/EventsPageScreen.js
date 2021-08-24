@@ -33,9 +33,11 @@ export default function EventsPageScreen(props) {
   // Cleanup events page on unmount
   useEffect(() => {
     return () => {
-      dispatch(resetDeleteEvent());
+      if (eventDelete) {
+        dispatch(resetDeleteEvent());
+      }
     };
-  }, [dispatch]);
+  }, [dispatch, eventDelete]);
 
   useEffect(() => {
     dispatch(getEvents({}));

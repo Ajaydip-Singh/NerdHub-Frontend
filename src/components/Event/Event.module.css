@@ -49,7 +49,7 @@
 
 .event_image_container {
   grid-area: image;
-  height: 90%;
+  /* height: 90%; */
 }
 
 .event_image {
