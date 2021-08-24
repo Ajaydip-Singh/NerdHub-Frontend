@@ -92,7 +92,7 @@ export default function EventEditScreen(props) {
       setCapacity(event.capacity);
       setActualNumberOfGuests(event.actualNumberOfGuests);
     }
-  }, [dispatch, event, eventId, props.history, eventUpdate]);
+  }, [dispatch, event, eventId, props.history]);
 
   return (
     <div className={styles.main_wrapper}>
@@ -109,14 +109,6 @@ export default function EventEditScreen(props) {
           <form onSubmit={submitHandler}>
             <div className={styles.editor_wrapper}>
               <div className="editor_wrapper">
-                {errorUpdate && (
-                  <MessageBox variant="danger">
-                    Failed. Event not updated.
-                  </MessageBox>
-                )}
-                {eventUpdate && (
-                  <MessageBox variant="success">Event Updated</MessageBox>
-                )}
                 <h3>Name</h3>
                 <ReactQuill
                   placeholder="Enter event name"
@@ -223,6 +215,14 @@ export default function EventEditScreen(props) {
                 ></input>
               </div>
               <div className="editor_wrapper">
+                {errorUpdate && (
+                  <MessageBox variant="danger">
+                    Failed. Event not updated.
+                  </MessageBox>
+                )}
+                {eventUpdate && (
+                  <MessageBox variant="success">Event Updated</MessageBox>
+                )}
                 <button className={styles.button} type="submit">
                   {statusUpdate === 'loading' ? (
                     <LoadingBox></LoadingBox>
