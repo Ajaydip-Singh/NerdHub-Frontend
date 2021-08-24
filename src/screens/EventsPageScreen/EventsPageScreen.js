@@ -8,7 +8,7 @@ import {
   resetDeleteEvent
 } from '../../slices/eventSlices/eventDeleteSlice';
 import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
-import { formatDate } from '../../utils';
+import { formatDate, stripHtml } from '../../utils';
 import styles from './EventsPageScreen.module.css';
 
 export default function EventsPageScreen(props) {
@@ -79,7 +79,7 @@ export default function EventsPageScreen(props) {
               {events.map((event) => (
                 <tr key={event._id}>
                   <td>{event._id}</td>
-                  <td>{event.name}</td>
+                  <td>{stripHtml(event.name)}</td>
                   <td>{formatDate(event.date)}</td>
                   <td>{event.category}</td>
                   <td>{event.isActive ? 'True' : 'False'}</td>

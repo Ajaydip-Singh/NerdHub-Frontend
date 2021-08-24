@@ -1,5 +1,4 @@
 import ReactQuill from 'react-quill'; // ES6
-import 'react-quill/dist/quill.snow.css'; // ES6
 
 import Header from '../../../components/Header/Header';
 import DateTimePicker from '../../../components/DateTimePicker/DateTimePicker';
@@ -18,6 +17,29 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 
 export default function EventEditScreen(props) {
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ color: ['white', 'black', 'red', 'blue', '#50d450'] }],
+      ['clean']
+    ]
+  };
+
+  const formats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'color'
+  ];
+
   const eventId = props.match.params.id;
 
   const [name, setName] = useState('');
@@ -130,6 +152,8 @@ export default function EventEditScreen(props) {
                   placeholder="Enter event description"
                   value={description}
                   onChange={setDescription}
+                  modules={modules}
+                  formats={formats}
                 ></ReactQuill>
               </div>
               <div className="editor_wrapper">
@@ -221,6 +245,7 @@ export default function EventEditScreen(props) {
                   placeholder="Enter capacity"
                 ></input>
               </div>
+
               <div className="editor_wrapper">
                 {errorUpdate && (
                   <MessageBox variant="danger">
