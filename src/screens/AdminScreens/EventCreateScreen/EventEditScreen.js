@@ -1,5 +1,3 @@
-import ReactQuill from 'react-quill'; // ES6
-
 import Header from '../../../components/Header/Header';
 import DateTimePicker from '../../../components/DateTimePicker/DateTimePicker';
 import styles from './EventEditScreen.module.css';
@@ -15,6 +13,7 @@ import {
 } from '../../../slices/eventSlices/eventUpdateSlice';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import TextEditor from '../../../components/TextEditor/TextEditor';
 
 export default function EventEditScreen(props) {
   const eventId = props.match.params.id;
@@ -116,20 +115,20 @@ export default function EventEditScreen(props) {
             <div className={styles.editor_wrapper}>
               <div className="editor_wrapper">
                 <h3>Name</h3>
-                <ReactQuill
+                <TextEditor
                   placeholder="Enter event name"
                   value={name}
                   onChange={setName}
-                ></ReactQuill>
+                ></TextEditor>
               </div>
 
               <div className="editor_wrapper">
                 <h3>Description</h3>
-                <ReactQuill
+                <TextEditor
                   placeholder="Enter event description"
                   value={description}
                   onChange={setDescription}
-                ></ReactQuill>
+                ></TextEditor>
               </div>
               <div className="editor_wrapper">
                 <h3>Date</h3>
