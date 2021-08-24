@@ -9,6 +9,7 @@ import eventsCategoriesGetSlice from '../slices/eventSlices/eventsCategoriesGetS
 import eventsVenuesGetSlice from '../slices/eventSlices/eventsVenuesGetSlice';
 import eventDeleteSlice from '../slices/eventSlices/eventDeleteSlice';
 import eventGetSlice from '../slices/eventSlices/eventGetSlice';
+import eventUpdateSlice from '../slices/eventSlices/eventUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -28,6 +29,7 @@ export const store = configureStore({
     eventsCategoriesGetSlice: eventsCategoriesGetSlice,
     eventsVenuesGetSlice: eventsVenuesGetSlice,
     eventDeleteSlice: eventDeleteSlice,
-    eventGetSlice: eventGetSlice
+    eventGetSlice: eventGetSlice,
+    eventUpdateSlice: eventUpdateSlice
   }
 });

@@ -10,6 +10,7 @@ import {
   getEvent,
   resetGetEvent
 } from '../../../slices/eventSlices/eventGetSlice';
+import { updateEvent } from '../../../slices/eventSlices/eventUpdateSlice';
 
 export default function EventEditScreen(props) {
   const eventId = props.match.params.id;
@@ -31,12 +32,13 @@ export default function EventEditScreen(props) {
   const eventGetSlice = useSelector((state) => state.eventGetSlice);
   const { status, event, error } = eventGetSlice;
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
-
   const dispatch = useDispatch();
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(updateEvent({}))
+
+  };
   useEffect(() => {
     return dispatch(resetGetEvent());
   }, [dispatch]);
