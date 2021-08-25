@@ -61,9 +61,6 @@
   height: 100%;
   min-height: 18rem;
   object-fit: cover;
-  border-bottom: 1px solid #50d450;
-  border-top: 1px solid #50d450;
-  border: 1px solid #50d450;
 }
 
 .event_button {

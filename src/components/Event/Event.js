@@ -56,6 +56,11 @@ export default function Event(props) {
         className={`${styles.event_image_container} ${
           order % 2 !== 0 ? styles.order_first : ``
         } `}
+        style={{
+          border: event.borderColor
+            ? `2px solid ${event.borderColor}`
+            : '2px solid #50d450'
+        }}
       >
         <img
           className={styles.event_image}

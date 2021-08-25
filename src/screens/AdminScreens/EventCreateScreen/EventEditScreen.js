@@ -14,7 +14,7 @@ import {
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import TextEditor from '../../../components/TextEditor/TextEditor';
-import { SketchPicker } from 'react-color';
+import { BlockPicker } from 'react-color';
 
 export default function EventEditScreen(props) {
   const eventId = props.match.params.id;
@@ -33,6 +33,7 @@ export default function EventEditScreen(props) {
   const [capacity, setCapacity] = useState('');
   const [actualNumberOfGuests, setActualNumberOfGuests] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('');
+  const [borderColor, setBorderColor] = useState('');
 
   const eventGetSlice = useSelector((state) => state.eventGetSlice);
   const { status, event, error } = eventGetSlice;
@@ -65,7 +66,8 @@ export default function EventEditScreen(props) {
         isActive,
         capacity,
         actualNumberOfGuests,
-        backgroundColor: backgroundColor.hex
+        backgroundColor: backgroundColor.hex,
+        borderColor: borderColor.hex
       })
     );
   };
@@ -225,9 +227,16 @@ export default function EventEditScreen(props) {
               </div>
               <div className="editor_wrapper">
                 <h3>Background Color</h3>
-                <SketchPicker
+                <BlockPicker
                   color={backgroundColor}
                   onChangeComplete={setBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Border Color</h3>
+                <BlockPicker
+                  color={borderColor}
+                  onChangeComplete={setBorderColor}
                 />
               </div>
               <div className="editor_wrapper">
