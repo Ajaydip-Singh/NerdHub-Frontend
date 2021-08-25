@@ -5,16 +5,16 @@ import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import validator from 'validator';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Header from '../../components/Header/Header';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Header from '../../../components/Header/Header';
 import styles from './LoginScreen.module.css';
 import {
   googleLoginUser,
   loginUser
-} from '../../slices/userSlices/userAuthenticationSlice';
-import MessageBox from '../../components/MessageBox/MessageBox';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
-import { confirmUser } from '../../slices/userSlices/userConfirmationSlice';
+} from '../../../slices/userSlices/userAuthenticationSlice';
+import MessageBox from '../../../components/MessageBox/MessageBox';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import { confirmUser } from '../../../slices/userSlices/userConfirmationSlice';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 767px)' });

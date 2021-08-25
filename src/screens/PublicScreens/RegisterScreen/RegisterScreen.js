@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Header from '../../components/Header/Header';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Header from '../../../components/Header/Header';
 import styles from './RegisterScreen.module.css';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
-import MessageBox from '../../components/MessageBox/MessageBox';
-import { registerUser } from '../../slices/userSlices/userRegisterSlice';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
+import { registerUser } from '../../../slices/userSlices/userRegisterSlice';
 import { useState } from 'react';
 
 export default function RegisterScreen(props) {

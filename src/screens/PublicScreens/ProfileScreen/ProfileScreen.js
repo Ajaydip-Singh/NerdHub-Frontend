@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive/';
 import validator from 'validator';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
-import MessageBox from '../../components/MessageBox/MessageBox';
-import { detailsUser } from '../../slices/userSlices/userDetailsSlice';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Footer from '../../../components/Footer/Footer';
+import Header from '../../../components/Header/Header';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
+import { detailsUser } from '../../../slices/userSlices/userDetailsSlice';
 import {
   resetUpdateUser,
   updateUser
-} from '../../slices/userSlices/userUpdateSlice';
+} from '../../../slices/userSlices/userUpdateSlice';
 import styles from './ProfileScreen.module.css';
 
 export default function ProfileScreen() {

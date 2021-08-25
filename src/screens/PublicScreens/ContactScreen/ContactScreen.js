@@ -1,9 +1,9 @@
 import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import Socials from '../../components/Socials/Socials';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Footer from '../../../components/Footer/Footer';
+import Header from '../../../components/Header/Header';
+import Socials from '../../../components/Socials/Socials';
 import styles from './ContactScreen.module.css';
 
 export default function ContactScreen() {

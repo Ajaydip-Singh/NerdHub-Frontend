@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Event from '../../components/Event/Event';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
-import MessageBox from '../../components/MessageBox/MessageBox';
-import { getEventsCategories } from '../../slices/eventSlices/eventsCategoriesGetSlice';
-import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
-import { getEventsVenues } from '../../slices/eventSlices/eventsVenuesGetSlice';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Event from '../../../components/Event/Event';
+import Footer from '../../../components/Footer/Footer';
+import Header from '../../../components/Header/Header';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
+import { getEventsCategories } from '../../../slices/eventSlices/eventsCategoriesGetSlice';
+import { getEvents } from '../../../slices/eventSlices/eventsGetSlice';
+import { getEventsVenues } from '../../../slices/eventSlices/eventsVenuesGetSlice';
 import styles from './EventsScreen.module.css';
 
 export default function EventsScreen(props) {

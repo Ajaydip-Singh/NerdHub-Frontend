@@ -1,18 +1,19 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import AboutScreen from './screens/AboutScreen/AboutScreen';
-import ContactScreen from './screens/ContactScreen/ContactScreen';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
 import '../node_modules/video-react/dist/video-react.css'; // import css
-import GalleryScreen from './screens/GalleryScreen/GalleryScreen';
-import LoginScreen from './screens/LoginScreen/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
-import EventsScreen from './screens/EventsScreen/EventsScreen';
+
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminPanelScreen from './screens/AdminScreens/AdminPanelScreen/AdminPanelScreen';
 import EventEditScreen from './screens/AdminScreens/EventCreateScreen/EventEditScreen';
 import EventsPageScreen from './screens/AdminScreens/EventsPageScreen/EventsPageScreen';
+import AboutScreen from './screens/PublicScreens/AboutScreen/AboutScreen';
+import ContactScreen from './screens/PublicScreens/ContactScreen/ContactScreen';
+import HomeScreen from './screens/PublicScreens/HomeScreen/HomeScreen';
+import GalleryScreen from './screens/PublicScreens/GalleryScreen/GalleryScreen';
+import LoginScreen from './screens/PublicScreens/LoginScreen/LoginScreen';
+import RegisterScreen from './screens/PublicScreens/RegisterScreen/RegisterScreen';
+import ProfileScreen from './screens/PublicScreens/ProfileScreen/ProfileScreen';
+import EventsScreen from './screens/PublicScreens/EventsScreen/EventsScreen';
 
 function App() {
   return (

@@ -1,19 +1,19 @@
 import MediaQuery, { useMediaQuery } from 'react-responsive';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Header from '../../components/Header/Header';
-import Socials from '../../components/Socials/Socials';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Header from '../../../components/Header/Header';
+import Socials from '../../../components/Socials/Socials';
 import Carousel from 'react-bootstrap/Carousel';
 import styles from './HomeScreen.module.css';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../../components/Footer/Footer';
 import { Player } from 'video-react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
+import { getEvents } from '../../../slices/eventSlices/eventsGetSlice';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import Event from '../../components/Event/Event';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
+import Event from '../../../components/Event/Event';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });

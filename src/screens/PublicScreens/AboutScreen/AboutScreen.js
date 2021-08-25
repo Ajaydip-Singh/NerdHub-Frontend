@@ -1,7 +1,7 @@
 import MediaQuery from 'react-responsive';
-import BottomNav from '../../components/BottomNav/BottomNav';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
+import BottomNav from '../../../components/BottomNav/BottomNav';
+import Footer from '../../../components/Footer/Footer';
+import Header from '../../../components/Header/Header';
 import styles from './AboutScreen.module.css';
 import { Player } from 'video-react';
 
