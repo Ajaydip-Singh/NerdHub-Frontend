@@ -4,7 +4,7 @@ import '../node_modules/video-react/dist/video-react.css'; // import css
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminPanelScreen from './screens/AdminScreens/AdminPanelScreen/AdminPanelScreen';
-import EventEditScreen from './screens/AdminScreens/EventCreateScreen/EventEditScreen';
+import EventEditScreen from './screens/AdminScreens/EventEditScreen/EventEditScreen';
 import EventsPageScreen from './screens/AdminScreens/EventsPageScreen/EventsPageScreen';
 import AboutScreen from './screens/PublicScreens/AboutScreen/AboutScreen';
 import ContactScreen from './screens/PublicScreens/ContactScreen/ContactScreen';
