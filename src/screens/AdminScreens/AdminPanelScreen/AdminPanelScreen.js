@@ -7,7 +7,7 @@ export default function AdminPanelScreen() {
     <div>
       <Header admin></Header>
       <div className={styles.main_wrapper}>
-        <Link to="/home-admin" className={styles.card_link}>
+        <Link to="/home-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Home Page</div>
         </Link>
         <Link to="/events-admin" className={styles.card_link}>
