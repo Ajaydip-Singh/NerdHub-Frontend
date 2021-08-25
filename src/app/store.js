@@ -10,6 +10,7 @@ import eventsVenuesGetSlice from '../slices/eventSlices/eventsVenuesGetSlice';
 import eventDeleteSlice from '../slices/eventSlices/eventDeleteSlice';
 import eventGetSlice from '../slices/eventSlices/eventGetSlice';
 import eventUpdateSlice from '../slices/eventSlices/eventUpdateSlice';
+import eventCreateSlice from '../slices/eventSlices/eventCreateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -30,6 +31,7 @@ export const store = configureStore({
     eventsVenuesGetSlice: eventsVenuesGetSlice,
     eventDeleteSlice: eventDeleteSlice,
     eventGetSlice: eventGetSlice,
-    eventUpdateSlice: eventUpdateSlice
+    eventUpdateSlice: eventUpdateSlice,
+    eventCreateSlice: eventCreateSlice
   }
 });

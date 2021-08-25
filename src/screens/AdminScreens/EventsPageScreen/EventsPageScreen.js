@@ -4,6 +4,10 @@ import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import {
+  createEvent,
+  resetCreateEvent
+} from '../../../slices/eventSlices/eventCreateSlice';
+import {
   deleteEvent,
   resetDeleteEvent
 } from '../../../slices/eventSlices/eventDeleteSlice';
@@ -22,7 +26,16 @@ export default function EventsPageScreen(props) {
     error: errorDelete
   } = eventDeleteSlice;
 
-  const createHandler = () => {};
+  const eventCreateSlice = useSelector((state) => state.eventCreateSlice);
+  const {
+    status: statusCreate,
+    event: eventCreate,
+    error: errorCreate
+  } = eventCreateSlice;
+
+  const createHandler = () => {
+    dispatch(createEvent({}));
+  };
   const dispatch = useDispatch();
   const deleteHandler = (event) => {
     if (window.confirm(`Are you sure you want to delete ${event.name}`)) {
@@ -40,8 +53,16 @@ export default function EventsPageScreen(props) {
   }, [dispatch, eventDelete]);
 
   useEffect(() => {
+    return () => {
+      if (eventCreate) {
+        dispatch(resetCreateEvent());
+      }
+    };
+  }, [dispatch, eventCreate]);
+
+  useEffect(() => {
     dispatch(getEvents({}));
-  }, [dispatch, eventDelete]);
+  }, [dispatch, eventDelete, eventCreate]);
 
   return (
     <div>
@@ -50,13 +71,22 @@ export default function EventsPageScreen(props) {
         <h1 className={styles.heading}>Events Page</h1>
       </div>
       <div className="table_wrapper">
+        {eventCreate && (
+          <MessageBox variant="success">Event Created Succesfully</MessageBox>
+        )}
+        {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
+
         {statusDelete === 'loading' && <LoadingBox></LoadingBox>}
         {eventDelete && (
           <MessageBox variant="success">Event Deleted Succesfully</MessageBox>
         )}
         {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
         <button type="button" onClick={createHandler} className={styles.button}>
-          Create Event
+          {statusCreate === 'loading' ? (
+            <LoadingBox></LoadingBox>
+          ) : (
+            'Create Event'
+          )}
         </button>
         {status === 'loading' ? (
           <LoadingBox></LoadingBox>
