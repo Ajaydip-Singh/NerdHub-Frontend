@@ -8,11 +8,11 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import EventsScreen from './screens/EventsScreen/EventsScreen';
-import AdminPanelScreen from './screens/AdminPanelScreen/AdminPanelScreen';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
-import EventsPageScreen from './screens/EventsPageScreen/EventsPageScreen';
+import AdminPanelScreen from './screens/AdminScreens/AdminPanelScreen/AdminPanelScreen';
 import EventEditScreen from './screens/AdminScreens/EventCreateScreen/EventEditScreen';
+import EventsPageScreen from './screens/AdminScreens/EventsPageScreen/EventsPageScreen';
 
 function App() {
   return (

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header/Header';
-import LoadingBox from '../../components/LoadingBox/LoadingBox';
-import MessageBox from '../../components/MessageBox/MessageBox';
+import Header from '../../../components/Header/Header';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
 import {
   deleteEvent,
   resetDeleteEvent
-} from '../../slices/eventSlices/eventDeleteSlice';
-import { getEvents } from '../../slices/eventSlices/eventsGetSlice';
-import { formatDate, stripHtml } from '../../utils';
+} from '../../../slices/eventSlices/eventDeleteSlice';
+import { getEvents } from '../../../slices/eventSlices/eventsGetSlice';
+import { formatDate, stripHtml } from '../../../utils';
 import styles from './EventsPageScreen.module.css';
 
 export default function EventsPageScreen(props) {
