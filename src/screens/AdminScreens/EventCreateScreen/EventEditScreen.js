@@ -14,6 +14,7 @@ import {
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import TextEditor from '../../../components/TextEditor/TextEditor';
+import { SketchPicker } from 'react-color';
 
 export default function EventEditScreen(props) {
   const eventId = props.match.params.id;
@@ -31,6 +32,7 @@ export default function EventEditScreen(props) {
   const [isActive, setIsActive] = useState('');
   const [capacity, setCapacity] = useState('');
   const [actualNumberOfGuests, setActualNumberOfGuests] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('');
 
   const eventGetSlice = useSelector((state) => state.eventGetSlice);
   const { status, event, error } = eventGetSlice;
@@ -62,7 +64,8 @@ export default function EventEditScreen(props) {
         category,
         isActive,
         capacity,
-        actualNumberOfGuests
+        actualNumberOfGuests,
+        backgroundColor: backgroundColor.hex
       })
     );
   };
@@ -96,6 +99,7 @@ export default function EventEditScreen(props) {
       setIsActive(event.isActive);
       setCapacity(event.capacity);
       setActualNumberOfGuests(event.actualNumberOfGuests);
+      setBackgroundColor(event.backgroundColor);
     }
   }, [dispatch, event, eventId, props.history]);
 
@@ -219,7 +223,13 @@ export default function EventEditScreen(props) {
                   placeholder="Enter capacity"
                 ></input>
               </div>
-
+              <div className="editor_wrapper">
+                <h3>Background Color</h3>
+                <SketchPicker
+                  color={backgroundColor}
+                  onChangeComplete={setBackgroundColor}
+                />
+              </div>
               <div className="editor_wrapper">
                 {errorUpdate && (
                   <MessageBox variant="danger">

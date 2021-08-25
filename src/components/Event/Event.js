@@ -12,6 +12,11 @@ export default function Event(props) {
         className={`${styles.event_info} ${
           order % 2 !== 0 ? styles.order_second : ``
         } `}
+        style={{
+          backgroundColor: event.backgroundColor
+            ? event.backgroundColor
+            : '#50d450'
+        }}
       >
         {parse(event.name)}
         <h3 className={styles.event_date}>
