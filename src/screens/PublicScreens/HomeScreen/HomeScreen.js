@@ -91,7 +91,6 @@ export default function HomeScreen() {
         </Carousel>
       </section>
       <MediaQuery minWidth={800}>
-        <p className={styles.rotated_text}>Scroll Down</p>
         <div className={styles.social_icons}>
           <Socials vertical />
         </div>

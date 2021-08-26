@@ -84,6 +84,7 @@
 
 /* Events slider */
 .events_section_heading {
+  font-size: 3rem;
   max-width: 900px;
   margin: 0 auto;
   color: #fff;
