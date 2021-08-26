@@ -6,7 +6,14 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import TextEditor from '../../../components/TextEditor/TextEditor';
 import { BlockPicker } from 'react-color';
-import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
+import {
+  getHomePageContent,
+  resetGetHomePageContent
+} from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
+import {
+  resetUpdateHomePageContent,
+  updateHomePageContent
+} from '../../../slices/pageSlices/homePageContentSlices/homePageContentUpdateSlice';
 
 export default function HomePageScreen() {
   const [videoHeading, setVideoHeading] = useState('');
@@ -21,29 +28,60 @@ export default function HomePageScreen() {
   );
   const { status, content, error } = homePageContentGetSlice;
 
-
-  let statusUpdate;
-  let homePageContentUpdate;
-  let errorUpdate;
+  const homePageContentUpdateSlice = useSelector(
+    (state) => state.homePageContentUpdateSlice
+  );
+  const {
+    status: statusUpdate,
+    content: contentUpdate,
+    error: errorUpdate
+  } = homePageContentUpdateSlice;
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetUpdateHomePageContent());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetGetHomePageContent());
+    };
+  }, [dispatch]);
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateHomePageContent({
+        videoHeading,
+        videoUrl,
+        videoBorderColor,
+        videoBoxShadowColor,
+        contactBackgroundColor,
+        contactText
+      })
+    );
   };
 
   useEffect(() => {
+    if (contentUpdate) {
+      dispatch(resetUpdateHomePageContent());
+      dispatch(getHomePageContent({}));
+    }
+
     if (!content) {
       dispatch(getHomePageContent({}));
     } else {
       setVideoHeading(content.videoHeading);
       setVideoUrl(content.videoUrl);
       setVideoBorderColor(content.videoBorderColor);
-      setVideoBoxShadowColor(content.setVideoUrl);
+      setVideoBoxShadowColor(content.videoBoxShadowColor);
       setContactBackgroundColor(content.contactBackgroundColor);
       setContactText(content.contactText);
     }
-  }, [dispatch, content]);
+  }, [dispatch, content, contentUpdate]);
 
   return (
     <div className={styles.main_wrapper}>
@@ -80,21 +118,21 @@ export default function HomePageScreen() {
                 <h3>Video Border Color</h3>
                 <BlockPicker
                   color={videoBorderColor}
-                  onChangeComplete={setVideoBorderColor}
+                  onChangeComplete={(e) => setVideoBorderColor(e.hex)}
                 />
               </div>
               <div className="editor_wrapper">
                 <h3>Video Box Shadow Color</h3>
                 <BlockPicker
                   color={videoBoxShadowColor}
-                  onChangeComplete={setVideoBoxShadowColor}
+                  onChangeComplete={(e) => setVideoBoxShadowColor(e.hex)}
                 />
               </div>
               <div className="editor_wrapper">
                 <h3>Contact Background Color</h3>
                 <BlockPicker
                   color={contactBackgroundColor}
-                  onChangeComplete={setContactBackgroundColor}
+                  onChangeComplete={(e) => setContactBackgroundColor(e.hex)}
                 />
               </div>
               <div className="editor_wrapper">
@@ -112,7 +150,7 @@ export default function HomePageScreen() {
                     Failed. Event not updated.
                   </MessageBox>
                 )}
-                {homePageContentUpdate && (
+                {contentUpdate && (
                   <MessageBox variant="success">Event Updated</MessageBox>
                 )}
                 <button className={styles.button} type="submit">

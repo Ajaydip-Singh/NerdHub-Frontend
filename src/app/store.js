@@ -12,6 +12,7 @@ import eventGetSlice from '../slices/eventSlices/eventGetSlice';
 import eventUpdateSlice from '../slices/eventSlices/eventUpdateSlice';
 import eventCreateSlice from '../slices/eventSlices/eventCreateSlice';
 import homePageContentGetSlice from '../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
+import homePageContentUpdateSlice from '../slices/pageSlices/homePageContentSlices/homePageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -34,6 +35,7 @@ export const store = configureStore({
     eventGetSlice: eventGetSlice,
     eventUpdateSlice: eventUpdateSlice,
     eventCreateSlice: eventCreateSlice,
-    homePageContentGetSlice: homePageContentGetSlice
+    homePageContentGetSlice: homePageContentGetSlice,
+    homePageContentUpdateSlice: homePageContentUpdateSlice
   }
 });
