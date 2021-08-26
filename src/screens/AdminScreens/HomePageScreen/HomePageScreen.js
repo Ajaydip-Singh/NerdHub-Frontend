@@ -53,6 +53,7 @@ export default function HomePageScreen() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(videoUrl);
     dispatch(
       updateHomePageContent({
         videoHeading,
@@ -109,7 +110,6 @@ export default function HomePageScreen() {
                 <h3>Video Url</h3>
                 <input
                   value={videoUrl}
-                  required
                   onChange={(e) => setVideoUrl(e.target.value)}
                   placeholder="Enter video url"
                 ></input>

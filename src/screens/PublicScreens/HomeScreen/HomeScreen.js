@@ -14,6 +14,8 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import Event from '../../../components/Event/Event';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
+import parse from 'html-react-parser';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -31,11 +33,17 @@ export default function HomeScreen() {
     />
   );
 
+  const homePageContentGetSlice = useSelector(
+    (state) => state.homePageContentGetSlice
+  );
+  const { content } = homePageContentGetSlice;
+
   const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
   const { status, events, error } = eventsGetSlice;
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getHomePageContent({}));
     dispatch(getEvents({}));
   }, [dispatch]);
 
@@ -96,15 +104,34 @@ export default function HomeScreen() {
       >
         <div className={styles.video_container}>
           <div>
-            <h2 className={styles.section_heading}>
+            <div className={styles.section_heading}>
+              {content
+                ? parse(content.videoHeading)
+                : `
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum,
-              cupiditate.
-            </h2>
+              cupiditate.`}
+            </div>
           </div>
-          <div className={styles.video}>
+          <div
+            className={styles.video}
+            style={{
+              border: content
+                ? `2px solid ${content.videoBorderColor}`
+                : `2px solid #000`,
+              boxShadow: content
+                ? `6px 6px 6px ${content.videoBoxShadowColor}`
+                : `6px 6px 6px #000;`
+            }}
+          >
             <Player
-              poster="/images/knife_dark.jpeg"
-              src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+              poster={
+                content ? content.videoThumbnail : `/images/knife_dark.jpeg`
+              }
+              src={
+                content
+                  ? content.videoUrl
+                  : `https://media.w3.org/2010/05/sintel/trailer_hd.mp4`
+              }
             ></Player>
           </div>
         </div>
@@ -143,50 +170,65 @@ export default function HomeScreen() {
         </section>
       )}
 
-      <div className={`row container ${styles.contact_wrapper}`}>
-        <div className="col-md">
-          <p className={styles.contact_info}>
-            Contact us about <span className="green">press matters, </span>
-            potential <span className="green">sponsorships, </span>
-            and
-            <span className="green"> membership </span>inquiries.
-          </p>
-          <Link className="link border_bottom" to="/about">
-            Learn more about us
-          </Link>
-          <div className={styles.socials}>
-            <Socials></Socials>
+      <div
+        className={styles.contact_background}
+        style={{
+          backgroundColor: content ? content.contactBackgroundColor : '#000'
+        }}
+      >
+        <div className={`row container ${styles.contact_wrapper}`}>
+          <div className="col-md">
+            <div>
+              {content ? (
+                parse(content.contactText)
+              ) : (
+                <p className={styles.contact_info}>
+                  Contact us about{' '}
+                  <span className="green">press matters, </span>
+                  potential <span className="green">sponsorships, </span>
+                  and
+                  <span className="green"> membership </span>inquiries.
+                </p>
+              )}
+            </div>
+
+            <Link className="link border_bottom" to="/about">
+              Learn more about us
+            </Link>
+            <div className={styles.socials}>
+              <Socials></Socials>
+            </div>
           </div>
-        </div>
-        <div className="col-md">
-          <form action="" className={styles.form}>
-            <div>
-              <textarea
-                className={styles.textarea}
-                placeholder="Write Message"
-                name=""
-                id=""
-                rows="5"
-              ></textarea>
-            </div>
-            <div className={`row_f space-between ${styles.inputs_wrapper}`}>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Your Name"
-              />
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Your Email"
-              />
-            </div>
-            <div>
-              <button className={styles.submit_button} type="submit">
-                Submit message
-              </button>
-            </div>
-          </form>
+          <div className="col-md">
+            <form action="" className={styles.form}>
+              <div>
+                <textarea
+                  className={styles.textarea}
+                  placeholder="Write Message"
+                  name=""
+                  id=""
+                  rows="5"
+                ></textarea>
+              </div>
+              <div className={`row_f space-between ${styles.inputs_wrapper}`}>
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Your Name"
+                />
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div>
+                <button className={styles.submit_button} type="submit">
+                  Submit message
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <MediaQuery minWidth={800}>

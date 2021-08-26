@@ -58,10 +58,7 @@
 
 /* Video section */
 .section_heading {
-  font-size: 2rem;
-  max-width: 40rem;
   margin-left: 1rem;
-  color: #000;
 }
 
 .video_section {
@@ -83,13 +80,10 @@
   margin: 1rem;
   padding: 0.1rem;
   max-height: 80vh;
-  border: 1px solid #000;
-  box-shadow: 6px 6px 6px #000;
 }
 
 /* Events slider */
 .events_section_heading {
-  font-size: 3.5rem;
   max-width: 900px;
   margin: 0 auto;
   color: #fff;
@@ -136,6 +130,10 @@
 }
 
 /* Contact section */
+.contact_background {
+  overflow: auto;
+}
+
 .contact_wrapper {
   padding: 2rem 0;
   max-width: 70rem;
@@ -212,7 +210,7 @@
   background-color: #0de80e;
   color: #000;
   outline: none;
-  border: 1px solid #000;
+  border: none;
 }
 
 .submit_button::after {
