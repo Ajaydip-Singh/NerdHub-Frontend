@@ -7,7 +7,7 @@ import { Player } from 'video-react';
 
 export default function AboutScreen() {
   return (
-    <div>
+    <div className={styles.screen}>
       <Header about></Header>
       <div
         className={styles.main_wrapper}
@@ -32,22 +32,41 @@ export default function AboutScreen() {
           <div
             className={`row container align-center space-evenly ${styles.wrapper}`}
           >
-            <div className="col-md">
-              <h1>What we do</h1>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni
-                consectetur, dolor illum aperiam repellat numquam iure,
-                laudantium sunt tenetur aut quasi eum vel maxime deleniti
-                corporis quod nemo totam optio.
-              </p>
+            <div className={styles.info_wrapper}>
+              <div>
+                <h1>What we do</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Magni consectetur, dolor illum aperiam repellat numquam iure,
+                  laudantium sunt tenetur aut quasi eum vel maxime deleniti
+                  corporis quod nemo totam optio.
+                </p>
+              </div>
+              <div className={styles.image_container}>
+                <img
+                  src="/logo512.png"
+                  className={styles.logo}
+                  alt="Nerdhub Logo"
+                />
+              </div>
             </div>
-
-            <div className="col-md">
-              <img
-                src="/nerdhub.png"
-                className={styles.logo}
-                alt="Nerdhub Logo"
-              />
+            <div className={styles.info_wrapper}>
+              <div className={styles.image_container}>
+                <img
+                  src="/images/gaming_room.jpeg"
+                  className={styles.image}
+                  alt="Nerdhub Logo"
+                />
+              </div>
+              <div>
+                <h1>Our Mission</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Magni consectetur, dolor illum aperiam repellat numquam iure,
+                  laudantium sunt tenetur aut quasi eum vel maxime deleniti
+                  corporis quod nemo totam optio.
+                </p>
+              </div>
             </div>
           </div>
         </section>

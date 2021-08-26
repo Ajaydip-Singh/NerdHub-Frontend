@@ -1,7 +1,11 @@
+.screen {
+  padding-bottom: 2rem;
+}
+
 .hero_section {
   display: grid;
   place-content: center;
-  height: 40vh;
+  height: 30vh;
   margin-top: 4.375rem;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -15,6 +19,31 @@
   padding: 2rem 0;
   max-width: 70rem;
   margin: 0 auto;
+}
+
+.info_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+  max-width: 60rem;
+  margin: 1rem 1rem;
+}
+
+@media (max-width: 800px) {
+  .info_wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'image';
+  }
+  .image_container {
+    grid-area: image;
+  }
+}
+
+.image {
+  max-width: 100%;
 }
 
 .heading {
