@@ -49,7 +49,7 @@ export default function Event(props) {
         {/* <p className={styles.event_description}>{event.description}</p> */}
         {parse(event.description)}
         <Link href="#" className={styles.event_button}>
-          Learn more
+          Register for {event.price !== 0?`KSh ${event.price}`: 'Free'}
         </Link>
       </div>
       <div
