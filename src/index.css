@@ -307,5 +307,6 @@ ul {
 }
 
 .ql-editor {
-  padding: 2px;
+  padding: 2px 5px;
+  overflow-y: unset;
 }
