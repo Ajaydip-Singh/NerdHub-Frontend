@@ -15,6 +15,8 @@ import homePageContentGetSlice from '../slices/pageSlices/homePageContentSlices/
 import homePageContentUpdateSlice from '../slices/pageSlices/homePageContentSlices/homePageContentUpdateSlice';
 import aboutPageContentGetSlice from '../slices/pageSlices/aboutPageContentSlices/aboutPageContentGetSlice';
 import aboutPageContentUpdateSlice from '../slices/pageSlices/aboutPageContentSlices/aboutPageContentUpdateSlice';
+import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
+import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -40,6 +42,8 @@ export const store = configureStore({
     homePageContentGetSlice: homePageContentGetSlice,
     homePageContentUpdateSlice: homePageContentUpdateSlice,
     aboutPageContentGetSlice: aboutPageContentGetSlice,
-    aboutPageContentUpdateSlice: aboutPageContentUpdateSlice
+    aboutPageContentUpdateSlice: aboutPageContentUpdateSlice,
+    contactPageContentGetSlice: contactPageContentGetSlice,
+    contactPageContentUpdateSlice: contactPageContentUpdateSlice
   }
 });
