@@ -1,12 +1,26 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import Footer from '../../../components/Footer/Footer';
 import Header from '../../../components/Header/Header';
 import Socials from '../../../components/Socials/Socials';
+import { getContactPageContent } from '../../../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 import styles from './ContactScreen.module.css';
+import parse from 'html-react-parser';
 
 export default function ContactScreen() {
+  const contactPageContentGetSlice = useSelector(
+    (state) => state.contactPageContentGetSlice
+  );
+  const { content } = contactPageContentGetSlice;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getContactPageContent({}));
+  }, [dispatch]);
+
   return (
     <div>
       <Header contact></Header>
@@ -16,7 +30,11 @@ export default function ContactScreen() {
           backgroundImage: 'url(/images/masked_player_gaming_green.jpeg)'
         }}
       >
-        <h1 className={styles.heading}>Contact us</h1>
+        {content ? (
+          <div className="ql-editor">{parse(content.contactMainHeading)}</div>
+        ) : (
+          <h1 className={styles.heading}>Contact us</h1>
+        )}
       </section>
       <section
         className={styles.main_section}
@@ -24,12 +42,16 @@ export default function ContactScreen() {
       >
         <div className={`row container ${styles.wrapper}`}>
           <div className="col-md">
-            <p className={styles.contact_info}>
-              Contact us about <span className="green">press matters, </span>
-              potential <span className="green">sponsorships, </span>
-              and
-              <span className="green"> membership </span>inquiries.
-            </p>
+            {content ? (
+              <div className="ql-editor">{parse(content.formText)}</div>
+            ) : (
+              <p className={styles.contact_info}>
+                Contact us about <span className="green">press matters, </span>
+                potential <span className="green">sponsorships, </span>
+                and
+                <span className="green"> membership </span>inquiries.
+              </p>
+            )}
             <Link className="link border_bottom" to="/about">
               Learn more about us
             </Link>
@@ -73,16 +95,32 @@ export default function ContactScreen() {
             <iframe
               title="location"
               className={styles.map}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.856189861609!2d36.8161384503457!3d-1.2583074990777114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f171b74f9ba57%3A0x11a8c077b37bd655!2sDiamond%20Plaza%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1628170305691!5m2!1sen!2ske"
+              style={{
+                border: content
+                  ? `2px solid ${content.locationFrameBorderColor}`
+                  : '2px solid #0de80e'
+              }}
+              src={
+                content
+                  ? content.locationFrame
+                  : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.856189861609!2d36.8161384503457!3d-1.2583074990777114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f171b74f9ba57%3A0x11a8c077b37bd655!2sDiamond%20Plaza%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1628170305691!5m2!1sen!2ske'
+              }
               allowfullscreen=""
               loading="lazy"
             ></iframe>
           </div>
+
           <div className="col-md">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis
-            ratione illo officiis omnis excepturi facere perspiciatis numquam
-            vero maiores harum accusantium, doloremque quidem adipisci vel
-            magnam inventore eos sunt? Eligendi.
+            {content ? (
+              <div className="ql-editor">{parse(content.locationText)}</div>
+            ) : (
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Veritatis ratione illo officiis omnis excepturi facere
+                perspiciatis numquam vero maiores harum accusantium, doloremque
+                quidem adipisci vel magnam inventore eos sunt? Eligendi.
+              </p>
+            )}
           </div>
         </div>
       </section>

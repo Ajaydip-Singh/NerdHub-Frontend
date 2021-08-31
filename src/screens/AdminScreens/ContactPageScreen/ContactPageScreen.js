@@ -99,11 +99,11 @@ export default function ContactPageScreen() {
               </div>
               <div className="editor_wrapper">
                 <h3>Contact Form Text</h3>
-                <input
-                  value={formText}
-                  onChange={(e) => setFormText(e.target.value)}
+                <TextEditor
                   placeholder="Enter form text"
-                ></input>
+                  value={formText}
+                  onChange={setFormText}
+                ></TextEditor>
               </div>
               <div className="editor_wrapper">
                 <h3>Google maps iframe link</h3>
