@@ -1,7 +1,8 @@
-.screen {
-  padding-bottom: 2rem;
+@media (max-width: 800px) {
+  .screen {
+    padding-bottom: 2rem;
+  }
 }
-
 .hero_section {
   display: grid;
   place-content: center;

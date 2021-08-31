@@ -1,5 +1,7 @@
-.screen {
-  padding-bottom: 4rem;
+@media (max-width: 800px) {
+  .screen {
+    padding-bottom: 4rem;
+  }
 }
 
 .main_wrapper {
