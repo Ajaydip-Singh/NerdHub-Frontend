@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getHomePageContent } from './homePageContentGetSlice';
 
 const initialState = {
   status: 'idle',
@@ -9,7 +10,7 @@ const initialState = {
 
 export const updateHomePageContent = createAsyncThunk(
   'homePageContentUpdate/updateHomePageContent',
-  async (homePageContent, { rejectWithValue, getState }) => {
+  async (homePageContent, { rejectWithValue, getState, dispatch }) => {
     const {
       userAuthentication: { user }
     } = getState();
@@ -24,6 +25,7 @@ export const updateHomePageContent = createAsyncThunk(
           }
         }
       );
+      dispatch(getHomePageContent.fulfilled(data));
       return data;
     } catch (err) {
       if (!err.response) {

@@ -53,7 +53,6 @@ export default function HomePageScreen() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(videoUrl);
     dispatch(
       updateHomePageContent({
         videoHeading,
@@ -67,11 +66,6 @@ export default function HomePageScreen() {
   };
 
   useEffect(() => {
-    if (contentUpdate) {
-      dispatch(resetUpdateHomePageContent());
-      dispatch(getHomePageContent({}));
-    }
-
     if (!content) {
       dispatch(getHomePageContent({}));
     } else {
