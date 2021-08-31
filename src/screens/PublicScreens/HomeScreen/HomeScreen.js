@@ -44,7 +44,11 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getHomePageContent({}));
-    dispatch(getEvents({}));
+    dispatch(
+      getEvents({
+        isFeaturedEvent: true
+      })
+    );
   }, [dispatch]);
 
   return (
