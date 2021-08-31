@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap');
 @import '~react-image-gallery/styles/css/image-gallery.css';
 
-
 *,
 *::after,
 *::before,
@@ -305,4 +304,8 @@ ul {
   font-size: 0.8rem;
   padding: 0.5rem 1rem;
   font-weight: 400;
+}
+
+.ql-editor {
+  padding: 2px;
 }
