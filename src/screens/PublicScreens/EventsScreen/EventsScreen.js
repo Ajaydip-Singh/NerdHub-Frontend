@@ -54,7 +54,7 @@ export default function EventsScreen(props) {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.screen}>
       <Header events></Header>
       <div
         className={styles.main_wrapper}

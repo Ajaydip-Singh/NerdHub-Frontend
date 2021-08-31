@@ -1,3 +1,7 @@
+.screen {
+  padding-bottom: 4rem;
+}
+
 .main_wrapper {
   background-size: cover;
   object-fit: cover;
