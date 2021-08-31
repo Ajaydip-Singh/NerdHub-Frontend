@@ -2,6 +2,7 @@ import parse from 'html-react-parser';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
 import { formatDate } from '../../utils';
+import CustomCarousel from '../CustomCarousel/CustomCarousel';
 
 export default function Event(props) {
   const { event, order } = props;
@@ -18,7 +19,7 @@ export default function Event(props) {
             : '#50d450'
         }}
       >
-        {parse(event.name)}
+        <div className="ql-editor">{parse(event.name)}</div>
         <h3 className={styles.event_date}>
           <i class="fas fa-calendar-day"></i>
           {` `}
@@ -47,9 +48,9 @@ export default function Event(props) {
           </ul>
         </div>
         {/* <p className={styles.event_description}>{event.description}</p> */}
-        {parse(event.description)}
+        <div className="ql-editor">{parse(event.description)}</div>
         <Link href="#" className={styles.event_button}>
-          Register for {event.price !== 0?`KSh ${event.price}`: 'Free'}
+          Register for {event.price !== 0 ? `KSh ${event.price}` : 'Free'}
         </Link>
       </div>
       <div
@@ -62,11 +63,12 @@ export default function Event(props) {
             : '2px solid #50d450'
         }}
       >
-        <img
-          className={styles.event_image}
-          src={event.image}
-          alt={event.name}
-        />
+        <CustomCarousel></CustomCarousel>
+        {/* // <img
+        //   className={styles.event_image}
+        //   src={event.image}
+        //   alt={event.name}
+        // /> */}
       </div>
     </div>
   );

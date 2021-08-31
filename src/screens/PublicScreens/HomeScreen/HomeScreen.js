@@ -10,10 +10,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getEvents } from '../../../slices/eventSlices/eventsGetSlice';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import Event from '../../../components/Event/Event';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import CustomCarousel from '../../../components/CustomCarousel/CustomCarousel';
 import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
 import parse from 'html-react-parser';
 
@@ -158,19 +157,14 @@ export default function HomeScreen() {
                 Events
               </Link>
             </h2>
-            <AliceCarousel
-              mouseTracking={true}
-              keyboardNavigation={true}
-              animationDuration={800}
-              renderNextButton={() => nextIcon}
-              renderPrevButton={() => prevIcon}
-              disableButtonsControls={events && events.length < 2}
-              disableDotsControls={events && events.length < 2}
+            <CustomCarousel
+              disableButtons={events && events.length < 2}
+              disableDots={events && events.length < 2}
               infinite={events && events.length > 1}
               items={events.map((event, index) => (
                 <Event order={index} event={event}></Event>
               ))}
-            />
+            ></CustomCarousel>
           </div>
         </section>
       )}
