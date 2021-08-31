@@ -22,7 +22,7 @@ export default function AdminPanelScreen() {
         <Link to="/about-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>About Page</div>
         </Link>
-        <Link to="/contact-admin" className={styles.card_link}>
+        <Link to="/contact-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Contact Page</div>
         </Link>
       </div>
