@@ -74,7 +74,7 @@ export default function Sidebar(props) {
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
               <Link
-                to="/home-admin"
+                to="/home-page-content-admin"
                 className={addLinkStyling(props.home_page)}
               >
                 Home Page
@@ -106,7 +106,7 @@ export default function Sidebar(props) {
             </li>
             <li className={styles.side_bar_list_item}>
               <Link
-                to="/about-admin"
+                to="/about-page-content-admin"
                 className={addLinkStyling(props.about_page)}
               >
                 About Page
