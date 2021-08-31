@@ -16,6 +16,7 @@ import ProfileScreen from './screens/PublicScreens/ProfileScreen/ProfileScreen';
 import EventsScreen from './screens/PublicScreens/EventsScreen/EventsScreen';
 import HomePageScreen from './screens/AdminScreens/HomePageScreen/HomePageScreen';
 import AboutPageScreen from './screens/AdminScreens/AboutPageScreen/AboutPageScreen';
+import ContactPageScreen from './screens/AdminScreens/ContactPageScreen/ContactPageScreen';
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
       <AdminRoute
         path="/about-page-content-admin"
         component={AboutPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/contact-page-content-admin"
+        component={ContactPageScreen}
         exact
       ></AdminRoute>
     </Router>

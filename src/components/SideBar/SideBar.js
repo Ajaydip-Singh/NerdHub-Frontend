@@ -114,7 +114,7 @@ export default function Sidebar(props) {
             </li>
             <li className={styles.side_bar_list_item}>
               <Link
-                to="/contact-admin"
+                to="/contact-page-content-admin"
                 className={addLinkStyling(props.contact_page)}
               >
                 Contact
