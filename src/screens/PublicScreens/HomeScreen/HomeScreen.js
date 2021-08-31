@@ -164,7 +164,9 @@ export default function HomeScreen() {
               animationDuration={800}
               renderNextButton={() => nextIcon}
               renderPrevButton={() => prevIcon}
-              infinite="true"
+              disableButtonsControls={events && events.length < 2}
+              disableDotsControls={events && events.length < 2}
+              infinite={events && events.length > 1}
               items={events.map((event, index) => (
                 <Event order={index} event={event}></Event>
               ))}
