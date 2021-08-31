@@ -36,7 +36,7 @@ export const updateAboutPageContent = createAsyncThunk(
   }
 );
 
-export const homePageContentUpdateSlice = createSlice({
+export const aboutPageContentUpdateSlice = createSlice({
   name: 'aboutPageContentUpdate',
   initialState,
   reducers: {
@@ -69,6 +69,6 @@ export const homePageContentUpdateSlice = createSlice({
 });
 
 export const { resetUpdateAboutPageContent } =
-  homePageContentUpdateSlice.actions;
+  aboutPageContentUpdateSlice.actions;
 
-export default homePageContentUpdateSlice.reducer;
+export default aboutPageContentUpdateSlice.reducer;
