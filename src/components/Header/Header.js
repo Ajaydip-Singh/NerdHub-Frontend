@@ -82,6 +82,12 @@ export default function Header(props) {
                       contact
                     </Link>
                   </li>
+
+                  <li className={styles.nav_list_item}>
+                    <Link className={addLinkStyling(props.shop)} to="/shop">
+                      Shop
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>

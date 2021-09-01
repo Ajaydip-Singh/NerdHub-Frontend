@@ -67,6 +67,11 @@ export default function Sidebar(props) {
                   My Events
                 </Link>
               </li>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/shop" className={addLinkStyling(props.shop)}>
+                  Shop
+                </Link>
+              </li>
             </MediaQuery>
           )}
         </ul>
@@ -126,6 +131,11 @@ export default function Sidebar(props) {
             <li className={styles.side_bar_list_item}>
               <Link to="/profile" className={addLinkStyling(props.profile)}>
                 Profile
+              </Link>
+            </li>
+            <li className={styles.nav_list_item}>
+              <Link className={addLinkStyling(props.comics)} to="/comics">
+                Comics
               </Link>
             </li>
             {user.isAdmin ? (
