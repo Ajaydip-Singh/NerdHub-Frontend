@@ -1,9 +1,11 @@
 import MediaQuery from 'react-responsive';
+import { motion } from 'framer-motion';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import Footer from '../../../components/Footer/Footer';
 import Header from '../../../components/Header/Header';
 import styles from './GalleryScreen.module.css';
 import ImageGallery from 'react-image-gallery';
+import { pageVariant } from '../../../animate';
 
 export default function GalleryScreen() {
   const images = [
@@ -142,31 +144,32 @@ export default function GalleryScreen() {
   return (
     <div>
       <Header gallery></Header>
-
-      <div
-        className={styles.main_wrapper}
-        style={{
-          // backgroundImage: 'url(/images/destruction_long.jpeg)',
-          width: '100%'
-        }}
-      >
-        <div className={styles.gallery}>
-          <ImageGallery
-            renderLeftNav={renderLeftNav}
-            renderRightNav={renderRightNav}
-            showFullscreenButton={false}
-            lazyLoad={true}
-            items={images}
-          />
+      <motion.div variants={pageVariant} initial="initial" animate="final">
+        <div
+          className={styles.main_wrapper}
+          style={{
+            // backgroundImage: 'url(/images/destruction_long.jpeg)',
+            width: '100%'
+          }}
+        >
+          <div className={styles.gallery}>
+            <ImageGallery
+              renderLeftNav={renderLeftNav}
+              renderRightNav={renderRightNav}
+              showFullscreenButton={false}
+              lazyLoad={true}
+              items={images}
+            />
+          </div>
         </div>
-      </div>
 
-      <MediaQuery minWidth={800}>
-        <Footer></Footer>
-      </MediaQuery>
-      <MediaQuery maxWidth={800}>
-        <BottomNav gallery></BottomNav>
-      </MediaQuery>
+        <MediaQuery minWidth={800}>
+          <Footer></Footer>
+        </MediaQuery>
+        <MediaQuery maxWidth={800}>
+          <BottomNav gallery></BottomNav>
+        </MediaQuery>
+      </motion.div>
     </div>
   );
 }

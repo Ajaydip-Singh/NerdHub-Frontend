@@ -10,7 +10,9 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import { getEventsCategories } from '../../../slices/eventSlices/eventsCategoriesGetSlice';
 import { getEvents } from '../../../slices/eventSlices/eventsGetSlice';
 import { getEventsVenues } from '../../../slices/eventSlices/eventsVenuesGetSlice';
+import { motion } from 'framer-motion';
 import styles from './EventsScreen.module.css';
+import { pageVariant } from '../../../animate';
 
 export default function EventsScreen(props) {
   const [inputEventName, setInputEventName] = useState('');
@@ -56,13 +58,22 @@ export default function EventsScreen(props) {
   return (
     <div className={styles.screen}>
       <Header events></Header>
-      <div
+      <motion.div
+        variants={pageVariant}
+        initial="initial"
+        animate="final"
         className={styles.main_wrapper}
         style={{
           backgroundImage: 'url(/images/cubes.jpeg)'
         }}
       >
-        <div className={styles.filterbox}>
+        <motion.div
+          initial={{ x: '-100vw' }}
+          animate={{ x: 0 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 1 }}
+          className={styles.filterbox}
+        >
           <div className={styles.wrapper}>
             <form className={styles.search} onSubmit={submitHandler}>
               <div className="row_f">
@@ -109,7 +120,7 @@ export default function EventsScreen(props) {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
         <div className={styles.events_wrapper}>
           {status === 'loading' ? (
             <LoadingBox></LoadingBox>
@@ -122,7 +133,7 @@ export default function EventsScreen(props) {
             )
           )}
         </div>
-      </div>
+      </motion.div>
 
       <MediaQuery minWidth={800}>
         <Footer></Footer>

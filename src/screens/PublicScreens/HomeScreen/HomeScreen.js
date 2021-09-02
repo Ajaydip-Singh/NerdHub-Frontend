@@ -252,13 +252,13 @@ export default function HomeScreen() {
             </div>
           </div>
         </motion.div>
-        <MediaQuery minWidth={800}>
-          <Footer></Footer>
-        </MediaQuery>
-        <MediaQuery maxWidth={800}>
-          <BottomNav home></BottomNav>
-        </MediaQuery>
       </motion.div>
+      <MediaQuery minWidth={800}>
+        <Footer></Footer>
+      </MediaQuery>
+      <MediaQuery maxWidth={800}>
+        <BottomNav home></BottomNav>
+      </MediaQuery>
     </div>
   );
 }

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAboutPageContent } from '../../../slices/pageSlices/aboutPageContentSlices/aboutPageContentGetSlice';
 import parse from 'html-react-parser';
+import { motion } from 'framer-motion';
+import { pageVariant } from '../../../animate';
 
 export default function AboutScreen() {
   const aboutPageContentGetSlice = useSelector(
@@ -23,19 +25,30 @@ export default function AboutScreen() {
   return (
     <div className={styles.screen}>
       <Header about></Header>
-      <div
+
+      <motion.div
+        variants={pageVariant}
+        initial="initial"
+        animate="final"
         className={styles.main_wrapper}
         style={{
           backgroundImage: 'url(images/fighters.jpeg)'
         }}
       >
-        <section className={styles.hero_section}>
-          {content ? (
-            <div className="ql-editor">{parse(content.aboutMainHeading)}</div>
-          ) : (
-            <h1 className={styles.heading}>About</h1>
-          )}
-        </section>
+        <motion.section
+          className={styles.hero_section}
+          initial={{ opacity: 0, x: '-100vw' }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2 }}
+        >
+          <div>
+            {content ? (
+              <div className="ql-editor">{parse(content.aboutMainHeading)}</div>
+            ) : (
+              <h1 className={styles.heading}>About</h1>
+            )}
+          </div>
+        </motion.section>
         <section className={styles.video_section}>
           <div className={styles.video_container}>
             <div
@@ -128,7 +141,7 @@ export default function AboutScreen() {
             </div>
           </div>
         </section>
-      </div>
+      </motion.div>
       <MediaQuery minWidth={800}>
         <Footer></Footer>
       </MediaQuery>
