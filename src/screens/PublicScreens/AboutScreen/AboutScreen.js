@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { getAboutPageContent } from '../../../slices/pageSlices/aboutPageContentSlices/aboutPageContentGetSlice';
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
-import { pageVariant } from '../../../animate';
+import { pageVariant, videoVariant } from '../../../animate';
 
 export default function AboutScreen() {
   const aboutPageContentGetSlice = useSelector(
@@ -51,8 +51,11 @@ export default function AboutScreen() {
         </motion.section>
         <section className={styles.video_section}>
           <div className={styles.video_container}>
-            <div
+            <motion.div
               className={styles.video}
+              variants={videoVariant}
+              whileHover="hover"
+              transition="transition"
               style={{
                 border: content
                   ? `2px solid ${content.videoBorderColor}`
@@ -72,7 +75,7 @@ export default function AboutScreen() {
                     : `https://media.w3.org/2010/05/sintel/trailer_hd.mp4`
                 }
               ></Player>
-            </div>
+            </motion.div>
           </div>
         </section>
         <section>

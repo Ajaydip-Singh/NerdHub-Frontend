@@ -16,7 +16,7 @@ import Event from '../../../components/Event/Event';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import CustomCarousel from '../../../components/CustomCarousel/CustomCarousel';
 import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
-import { pageVariant, sectionVariant } from '../../../animate';
+import { pageVariant, sectionVariant, videoVariant } from '../../../animate';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -125,11 +125,9 @@ export default function HomeScreen() {
             </div>
 
             <motion.div
-              whileHover={{
-                scale: 1.02,
-                borderColor: '#fff'
-              }}
-              transition={{ type: 'tween', duration: 0.8 }}
+              variants={videoVariant}
+              whileHover="hover"
+              transition="transition"
               className={styles.video}
               style={{
                 border: content

@@ -37,3 +37,12 @@ export const eventVariant = {
     duration: 0.5
   }
 };
+
+export const videoVariant = {
+  hover: {
+    scale: 1.02,
+    borderColor: '#fff',
+    transition: { type: 'tween', duration: 0.8 }
+  },
+  transition: { type: 'tween', duration: 0.8 }
+};
