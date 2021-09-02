@@ -2,6 +2,12 @@
   width: 100%;
   height: 100vh;
   margin: 0;
+  overflow: hidden;
+}
+
+.info_box,
+.login_box {
+  margin-top: 70px;
 }
 
 .info_box {

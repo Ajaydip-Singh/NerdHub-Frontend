@@ -5,6 +5,8 @@ import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import validator from 'validator';
+import { motion } from 'framer-motion';
+import { pageVariant, sectionVariant } from '../../../animate';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import Header from '../../../components/Header/Header';
 import styles from './LoginScreen.module.css';
@@ -111,14 +113,22 @@ export default function LoginScreen(props) {
   return (
     <div>
       <Header login></Header>
-      <section className={`row ${styles.main_wrapper}`}>
+      <motion.section
+        className={`row ${styles.main_wrapper}`}
+        variants={pageVariant}
+        initial="initial"
+        animate="final"
+      >
         <div
           className={`col-md-6 ${styles.info_box}`}
           style={{
             backgroundImage: 'url(/images/destruction_long.jpeg)'
           }}
         ></div>
-        <div
+        <motion.div
+          variants={sectionVariant}
+          whileHover="hover"
+          transition="transition"
           className={`col-md-6 ${styles.login_box}`}
           style={
             isSmallerScreen
@@ -179,8 +189,8 @@ export default function LoginScreen(props) {
               </Link>
             </p>
           </form>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
       <MediaQuery maxWidth={800}>
         <BottomNav></BottomNav>
       </MediaQuery>
