@@ -1,14 +1,22 @@
 import parse from 'html-react-parser';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
 import { formatDate } from '../../utils';
 import CustomCarousel from '../CustomCarousel/CustomCarousel';
+import { eventVariant } from '../../animate';
 
 export default function Event(props) {
   const { event, order } = props;
 
   return (
-    <div key={event._id} className={`${styles.event}`}>
+    <motion.div
+      variants={eventVariant}
+      whileHover="hover"
+      transition="transition"
+      key={event._id}
+      className={`${styles.event}`}
+    >
       <div
         className={`${styles.event_info} ${
           order % 2 !== 0 ? styles.order_second : ``
@@ -70,6 +78,6 @@ export default function Event(props) {
         //   alt={event.name}
         // /> */}
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -23,3 +23,17 @@ export const sectionVariant = {
     duration: 1
   }
 };
+
+export const eventVariant = {
+  hover: {
+    scale: 1.05,
+    borderRadius: '10px',
+    border: '2px solid #50d450',
+    transition: {
+      duration: 0.5
+    }
+  },
+  transition: {
+    duration: 0.5
+  }
+};
