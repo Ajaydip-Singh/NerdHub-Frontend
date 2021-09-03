@@ -8,23 +8,19 @@ import { eventVariant } from '../../animate';
 import { useState } from 'react';
 
 export default function Event(props) {
-  const { event, order } = props;
+  const { event, order, screen } = props;
 
   const [fullscreen, setFullScreen] = useState(false);
 
   return (
     <>
       <motion.div
-        className={fullscreen ? styles.fullscreen : ''}
+        className={
+          fullscreen && screen === 'eventScreen' ? styles.fullscreen : ''
+        }
         key={event._id}
-        // whileTap
-        // initial={fullscreen ? { opacity: 0, scale: 1.2 } : {}}
-        // animate={fullscreen ? { opacity: 1, scale: 1.0 } : {}}
-        // transition={
-        //   fullscreen ? { delay: 0.5, duration: 2, type: 'spring' } : {}
-        // }
         onClick={() => {
-          fullscreen && setFullScreen(false);
+          fullscreen && screen === 'eventScreen' && setFullScreen(false);
         }}
       ></motion.div>
       <div className={fullscreen && styles.event_wrapper}>
@@ -37,7 +33,7 @@ export default function Event(props) {
           } `}
           style={fullscreen ? { maxWidth: '100%' } : {}}
           onClick={() => {
-            !fullscreen && setFullScreen(true);
+            !fullscreen && screen === 'eventScreen' && setFullScreen(true);
           }}
         >
           <div
@@ -88,7 +84,7 @@ export default function Event(props) {
             </div>
             {!fullscreen ? (
               <button
-                onClick={() => setFullScreen(true)}
+                onClick={() => screen === 'eventScreen' && setFullScreen(true)}
                 className={styles.event_button}
               >
                 More Info
@@ -96,7 +92,9 @@ export default function Event(props) {
             ) : (
               <div className="row_f">
                 <button
-                  onClick={() => setFullScreen(false)}
+                  onClick={() =>
+                    screen === 'eventScreen' && setFullScreen(false)
+                  }
                   className={styles.event_button}
                 >
                   Show Less

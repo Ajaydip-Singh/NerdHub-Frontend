@@ -129,7 +129,13 @@ export default function EventsScreen(props) {
           ) : (
             events.map(
               (event, index) =>
-                event.isActive && <Event order={index} event={event}></Event>
+                event.isActive && (
+                  <Event
+                    screen={'eventScreen'}
+                    order={index}
+                    event={event}
+                  ></Event>
+                )
             )
           )}
         </div>
