@@ -17,6 +17,7 @@ import EventsScreen from './screens/PublicScreens/EventsScreen/EventsScreen';
 import HomePageScreen from './screens/AdminScreens/HomePageScreen/HomePageScreen';
 import AboutPageScreen from './screens/AdminScreens/AboutPageScreen/AboutPageScreen';
 import ContactPageScreen from './screens/AdminScreens/ContactPageScreen/ContactPageScreen';
+import MembershipScreen from './screens/PublicScreens/MembershipScreen/MembershipScreen';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/gallery" component={GalleryScreen}></Route>
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
+      <Route path="/membership" component={MembershipScreen}></Route>
       <Route
         path="/login/:userId/:confirmationCode"
         component={LoginScreen}
