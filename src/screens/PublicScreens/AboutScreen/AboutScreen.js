@@ -90,27 +90,29 @@ export default function AboutScreen() {
             className={`row container align-center space-evenly ${styles.wrapper}`}
           >
             <div className={styles.info_wrapper}>
-              <div>
-                {content ? (
-                  <div className="ql-editor">
-                    {parse(content.sectionOneHeading)}
-                  </div>
-                ) : (
-                  <h1>What we do</h1>
-                )}
-                {content ? (
-                  <div className="ql-editor">
-                    {parse(content.sectionOneText)}
-                  </div>
-                ) : (
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Magni consectetur, dolor illum aperiam repellat numquam
-                    iure, laudantium sunt tenetur aut quasi eum vel maxime
-                    deleniti corporis quod nemo totam optio.
-                  </p>
-                )}
-              </div>
+              <motion.div whileHover={{ scale: 0.9 }}>
+                <div>
+                  {content ? (
+                    <div className="ql-editor">
+                      {parse(content.sectionOneHeading)}
+                    </div>
+                  ) : (
+                    <h1>What we do</h1>
+                  )}
+                  {content ? (
+                    <div className="ql-editor">
+                      {parse(content.sectionOneText)}
+                    </div>
+                  ) : (
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Magni consectetur, dolor illum aperiam repellat numquam
+                      iure, laudantium sunt tenetur aut quasi eum vel maxime
+                      deleniti corporis quod nemo totam optio.
+                    </p>
+                  )}
+                </div>
+              </motion.div>
               <div className={styles.image_container}>
                 <motion.img
                   whileHover={{ scale: 0.8 }}
