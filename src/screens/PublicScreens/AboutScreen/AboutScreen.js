@@ -41,13 +41,20 @@ export default function AboutScreen() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2 }}
         >
-          <div>
+          <motion.div
+            drag
+            dragConstraints={{ top: 10, left: 10, right: 10, bottom: 10 }}
+            dragTransition={{ bounceStiffness: 200, bounceDamping: 10 }}
+            whileHover={{ x: 1.5, scale: 1.2 }}
+            transition={{ yoyo: 5 }}
+            whileDrag={{ scale: 1.2 }}
+          >
             {content ? (
               <div className="ql-editor">{parse(content.aboutMainHeading)}</div>
             ) : (
               <h1 className={styles.heading}>About</h1>
             )}
-          </div>
+          </motion.div>
         </motion.section>
         <section className={styles.video_section}>
           <div className={styles.video_container}>
@@ -105,7 +112,11 @@ export default function AboutScreen() {
                 )}
               </div>
               <div className={styles.image_container}>
-                <img
+                <motion.img
+                  whileHover={{ scale: 0.8 }}
+                  drag
+                  dragConstraints={{ top: 10, left: 10, right: 10, bottom: 10 }}
+                  dragElastic={1}
                   src="/logo512.png"
                   className={styles.logo}
                   alt="Nerdhub Logo"

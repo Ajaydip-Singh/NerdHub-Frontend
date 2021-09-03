@@ -61,6 +61,9 @@ export default function HomeScreen() {
           variants={sectionVariant}
           whileHover="hover"
           transition="transition"
+          drag
+          dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+          dragTransition={{ bounceStiffness: 500, bounceDamping: 10 }}
         >
           <Carousel
             fade
@@ -112,6 +115,9 @@ export default function HomeScreen() {
           variants={sectionVariant}
           whileHover="hover"
           transition="transition"
+          // drag
+          // dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+          // dragTransition={{ bounceStiffness: 500, bounceDamping: 10 }}
           style={{
             backgroundImage: 'url(/images/many_fighters_green.png)'
           }}
@@ -128,6 +134,9 @@ export default function HomeScreen() {
               variants={videoVariant}
               whileHover="hover"
               transition="transition"
+              drag
+              dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+              dragTransition={{ bounceStiffness: 20, bounceDamping: 10 }}
               className={styles.video}
               style={{
                 border: content

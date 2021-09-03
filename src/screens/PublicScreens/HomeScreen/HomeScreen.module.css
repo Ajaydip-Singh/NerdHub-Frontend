@@ -127,6 +127,7 @@
 }
 
 .events_slider_background {
+  position: relative;
   padding: 4rem 2rem 2rem;
 }
 
