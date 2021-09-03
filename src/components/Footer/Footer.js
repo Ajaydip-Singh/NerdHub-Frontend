@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Socials from '../Socials/Socials';
 import styles from './Footer.module.css';
+import { footerLinkVariant } from '../../animate';
 
 export default function Footer() {
   return (
@@ -17,36 +19,41 @@ export default function Footer() {
         <div>
           <h4 className={styles.footer_heading}>Explore</h4>
           <ul>
-            <li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/home">
                 Home
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/events">
                 Events
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/gallery">
                 Gallery
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/membership">
                 Membership
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/about">
                 About
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
               <Link className={styles.footer_link} to="/contact">
                 Contact
               </Link>
-            </li>
+            </motion.li>
+            <motion.li variants={footerLinkVariant} whileHover="hover">
+              <Link className={styles.footer_link} to="/shop">
+                Shop
+              </Link>
+            </motion.li>
           </ul>
         </div>
         <div>

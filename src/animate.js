@@ -46,3 +46,10 @@ export const videoVariant = {
   },
   transition: { type: 'tween', duration: 0.8 }
 };
+
+export const footerLinkVariant = {
+  hover: {
+    scale: 1.3,
+    transition: { type: 'spring' }
+  }
+};
