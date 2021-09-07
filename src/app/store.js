@@ -17,6 +17,7 @@ import aboutPageContentGetSlice from '../slices/pageSlices/aboutPageContentSlice
 import aboutPageContentUpdateSlice from '../slices/pageSlices/aboutPageContentSlices/aboutPageContentUpdateSlice';
 import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
+import imageUploadSlice from '../slices/uploadSlices/imageUploadSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -44,6 +45,7 @@ export const store = configureStore({
     aboutPageContentGetSlice: aboutPageContentGetSlice,
     aboutPageContentUpdateSlice: aboutPageContentUpdateSlice,
     contactPageContentGetSlice: contactPageContentGetSlice,
-    contactPageContentUpdateSlice: contactPageContentUpdateSlice
+    contactPageContentUpdateSlice: contactPageContentUpdateSlice,
+    imageUploadSlice: imageUploadSlice
   }
 });
