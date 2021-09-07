@@ -15,12 +15,14 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import TextEditor from '../../../components/TextEditor/TextEditor';
 import { BlockPicker } from 'react-color';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function EventEditScreen(props) {
   const eventId = props.match.params.id;
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [thumbnailImage, setThumbnailImage] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [price, setPrice] = useState('');
@@ -48,6 +50,7 @@ export default function EventEditScreen(props) {
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
+    console.log(thumbnailImage);
     e.preventDefault();
     dispatch(resetUpdateEvent());
     dispatch(
@@ -127,7 +130,6 @@ export default function EventEditScreen(props) {
                   onChange={setName}
                 ></TextEditor>
               </div>
-
               <div className="editor_wrapper">
                 <h3>Description</h3>
                 <TextEditor
@@ -135,6 +137,13 @@ export default function EventEditScreen(props) {
                   value={description}
                   onChange={setDescription}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Thumbnail Image</h3>
+                <ImageUploader
+                  image={thumbnailImage}
+                  setImage={setThumbnailImage}
+                ></ImageUploader>
               </div>
               <div className="editor_wrapper">
                 <h3>Date</h3>
