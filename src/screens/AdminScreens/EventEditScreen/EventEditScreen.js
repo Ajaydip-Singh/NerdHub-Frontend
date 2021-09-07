@@ -50,13 +50,13 @@ export default function EventEditScreen(props) {
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    console.log(thumbnailImage);
     e.preventDefault();
     dispatch(resetUpdateEvent());
     dispatch(
       updateEvent({
         _id: eventId,
         name,
+        thumbnailImage,
         description,
         date,
         time,
@@ -93,6 +93,7 @@ export default function EventEditScreen(props) {
     } else {
       setName(event.name);
       setDescription(event.description);
+      setThumbnailImage(event.thumbnailImage);
       setDate(new Date(event.date));
       setTime(event.time);
       setPrice(event.price);
@@ -140,6 +141,12 @@ export default function EventEditScreen(props) {
               </div>
               <div className="editor_wrapper">
                 <h3>Thumbnail Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={thumbnailImage}>
+                    {thumbnailImage}
+                  </a>
+                </p>
                 <ImageUploader
                   image={thumbnailImage}
                   setImage={setThumbnailImage}
