@@ -21,7 +21,6 @@ export default function ImageUploader(props) {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
-    console.log(formData.entries);
 
     dispatch(uploadImage(formData));
   };
@@ -33,10 +32,10 @@ export default function ImageUploader(props) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (image) {
-      setImage(file);
+    if (file) {
+      setImage(file.image.url);
     }
-  }, [file, image, setImage]);
+  }, [file, setImage]);
 
   return (
     <div>
@@ -45,7 +44,7 @@ export default function ImageUploader(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <input type="file" required onChange={uploadHandler}></input>
+        <input type="file" onChange={uploadHandler}></input>
       )}
     </div>
   );
