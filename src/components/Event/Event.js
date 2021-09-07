@@ -116,7 +116,9 @@ export default function Event(props) {
                 : '2px solid #50d450'
             }}
           >
-            <CustomCarousel></CustomCarousel>
+            <CustomCarousel
+              items={[<img src={event.thumbnailImage} alt="event" />]}
+            ></CustomCarousel>
             {/* // <img
         //   className={styles.event_image}
         //   src={event.image}

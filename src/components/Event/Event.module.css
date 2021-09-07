@@ -93,13 +93,14 @@
 
 .event_image_container {
   grid-area: image;
+  max-height: 80vh;
   overflow: hidden;
 }
 
 .event_image {
-  height: 90%;
-  min-height: 18rem;
   object-fit: cover;
+  object-position: center;
+  background-position: center;
 }
 
 .event_button {
