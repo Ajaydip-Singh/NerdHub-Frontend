@@ -57,6 +57,12 @@
   transition: border 500ms linear, ease 500ms;
 }
 
+@media (max-width: 800px) {
+  .input {
+    width: 200px;
+  }
+}
+
 .input:hover,
 .input:focus {
   border: 2px solid #0de80e;

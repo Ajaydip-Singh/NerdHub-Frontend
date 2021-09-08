@@ -80,8 +80,6 @@ export default function EventsScreen(props) {
             }}
           >
             <motion.div
-              initial={{ x: '-100vw' }}
-              animate={{ x: 0 }}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 1 }}
               className={styles.filterbox}
