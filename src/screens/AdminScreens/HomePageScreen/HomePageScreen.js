@@ -14,12 +14,16 @@ import {
   resetUpdateHomePageContent,
   updateHomePageContent
 } from '../../../slices/pageSlices/homePageContentSlices/homePageContentUpdateSlice';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function HomePageScreen() {
   const [videoHeading, setVideoHeading] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const [videoThumbnail, setVideoThumbnail] = useState('');
+  const [videoBackgroundImage, setVideoBackgroundImage] = useState('');
   const [videoBorderColor, setVideoBorderColor] = useState('');
   const [videoBoxShadowColor, setVideoBoxShadowColor] = useState('');
+  const [eventBackgroundImage, setEventBackgroundImage] = useState('');
   const [contactBackgroundColor, setContactBackgroundColor] = useState('');
   const [contactText, setContactText] = useState('');
 
@@ -57,8 +61,11 @@ export default function HomePageScreen() {
       updateHomePageContent({
         videoHeading,
         videoUrl,
+        videoThumbnail,
+        videoBackgroundImage,
         videoBorderColor,
         videoBoxShadowColor,
+        eventBackgroundImage,
         contactBackgroundColor,
         contactText
       })
@@ -71,8 +78,11 @@ export default function HomePageScreen() {
     } else {
       setVideoHeading(content.videoHeading);
       setVideoUrl(content.videoUrl);
+      setVideoThumbnail(content.videoThumbnail);
+      setVideoBackgroundImage(content.videoBackgroundImage);
       setVideoBorderColor(content.videoBorderColor);
       setVideoBoxShadowColor(content.videoBoxShadowColor);
+      setEventBackgroundImage(content.eventBackgroundImage);
       setContactBackgroundColor(content.contactBackgroundColor);
       setContactText(content.contactText);
     }
@@ -109,6 +119,36 @@ export default function HomePageScreen() {
                 ></input>
               </div>
               <div className="editor_wrapper">
+                <h3>Video Thumbnail Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={videoThumbnail}>
+                    {videoThumbnail}
+                  </a>
+                </p>
+                <ImageUploader
+                  image={videoThumbnail}
+                  setImage={setVideoThumbnail}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Video Section Background Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={videoBackgroundImage}
+                  >
+                    {videoBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  image={videoBackgroundImage}
+                  setImage={videoBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Video Border Color</h3>
                 <BlockPicker
                   color={videoBorderColor}
@@ -121,6 +161,23 @@ export default function HomePageScreen() {
                   color={videoBoxShadowColor}
                   onChangeComplete={(e) => setVideoBoxShadowColor(e.hex)}
                 />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Event Section Background Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={eventBackgroundImage}
+                  >
+                    {eventBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  image={eventBackgroundImage}
+                  setImage={setEventBackgroundImage}
+                ></ImageUploader>
               </div>
               <div className="editor_wrapper">
                 <h3>Contact Background Color</h3>
