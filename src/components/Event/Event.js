@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
 import { formatDate } from '../../utils';
-import CustomCarousel from '../CustomCarousel/CustomCarousel';
 import { eventVariant } from '../../animate';
 import { useState } from 'react';
 
@@ -38,7 +37,7 @@ export default function Event(props) {
         >
           <div
             className={`${styles.event_info} ${
-              order % 2 !== 0 ? styles.order_second : ``
+              order % 2 !== 0 && !fullscreen ? styles.order_second : ``
             } `}
             style={{
               backgroundColor: event.backgroundColor
@@ -108,7 +107,7 @@ export default function Event(props) {
           </div>
           <div
             className={`${styles.event_image_container} ${
-              order % 2 !== 0 ? styles.order_first : ``
+              order % 2 !== 0 && !fullscreen ? styles.order_first : ``
             } `}
             style={{
               border: event.borderColor
@@ -116,14 +115,12 @@ export default function Event(props) {
                 : '2px solid #50d450'
             }}
           >
-            <CustomCarousel
-              items={[<img src={event.thumbnailImage} alt="event" />]}
-            ></CustomCarousel>
-            {/* // <img
-        //   className={styles.event_image}
-        //   src={event.image}
-        //   alt={event.name}
-        // /> */}
+            <img
+              className={styles.event_image}
+              style={{ height: fullscreen ? `60vh` : '' }}
+              alt="Event"
+              src={event.thumbnailImage}
+            />
           </div>
         </motion.div>
       </div>
