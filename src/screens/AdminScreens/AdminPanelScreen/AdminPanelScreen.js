@@ -10,9 +10,6 @@ export default function AdminPanelScreen() {
         <Link to="/home-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Home Page</div>
         </Link>
-        <Link to="/events-admin" className={styles.card_link}>
-          <div className={styles.card}>Events</div>
-        </Link>
         <Link to="/gallery-admin" className={styles.card_link}>
           <div className={styles.card}>Gallery Page</div>
         </Link>
@@ -24,6 +21,12 @@ export default function AdminPanelScreen() {
         </Link>
         <Link to="/contact-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Contact Page</div>
+        </Link>
+        <Link to="/events-admin" className={styles.card_link}>
+          <div className={styles.card}>Events</div>
+        </Link>
+        <Link to="/products-admin" className={styles.card_link}>
+          <div className={styles.card}>Products</div>
         </Link>
       </div>
     </div>
