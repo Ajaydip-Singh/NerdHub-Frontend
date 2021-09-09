@@ -127,7 +127,7 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
-                  image={videoThumbnail}
+                  name={'imageUploadSliceA'}
                   setImage={setVideoThumbnail}
                 ></ImageUploader>
               </div>
@@ -144,8 +144,8 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
-                  image={videoBackgroundImage}
-                  setImage={videoBackgroundImage}
+                  name={'imageUploadSliceB'}
+                  setImage={setVideoBackgroundImage}
                 ></ImageUploader>
               </div>
               <div className="editor_wrapper">
@@ -175,7 +175,7 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
-                  image={eventBackgroundImage}
+                  name={'imageUploadSliceC'}
                   setImage={setEventBackgroundImage}
                 ></ImageUploader>
               </div>

@@ -2,17 +2,14 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import {
-  resetUploadImage,
-  uploadImage
-} from '../../slices/uploadSlices/imageUploadSlice';
+import { uploadImageCreator } from '../../slices/uploadSlices/imageUploadSlice';
 import LoadingBox from '../LoadingBox/LoadingBox';
 import MessageBox from '../MessageBox/MessageBox';
 
 export default function ImageUploader(props) {
-  const { image, setImage } = props;
+  const { name, setImage } = props;
 
-  const imageUploadSlice = useSelector((state) => state.imageUploadSlice);
+  const imageUploadSlice = useSelector((state) => state[name]);
   const { status, file, error } = imageUploadSlice;
 
   const dispatch = useDispatch();
@@ -22,12 +19,14 @@ export default function ImageUploader(props) {
     const formData = new FormData();
     formData.append('image', file);
 
+    const uploadImage = uploadImageCreator(`${name}/uploadImage`);
+
     dispatch(uploadImage(formData));
   };
 
   useEffect(() => {
     return () => {
-      dispatch(resetUploadImage());
+      // dispatch(resetUploadImage());
     };
   }, [dispatch]);
 
