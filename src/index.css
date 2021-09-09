@@ -312,6 +312,8 @@ ul {
   height: auto;
 }
 
+/* General */
+
 .min_page_height {
   display: grid;
   place-content: center;
