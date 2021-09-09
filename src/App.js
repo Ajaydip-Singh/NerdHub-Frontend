@@ -6,6 +6,7 @@ import AdminRoute from './components/AdminRoute';
 import AdminPanelScreen from './screens/AdminScreens/AdminPanelScreen/AdminPanelScreen';
 import EventEditScreen from './screens/AdminScreens/EventEditScreen/EventEditScreen';
 import EventsPageScreen from './screens/AdminScreens/EventsPageScreen/EventsPageScreen';
+import ProductsListScreen from './screens/AdminScreens/ProductsListScreen/ProductsListScreen';
 import AboutScreen from './screens/PublicScreens/AboutScreen/AboutScreen';
 import ContactScreen from './screens/PublicScreens/ContactScreen/ContactScreen';
 import HomeScreen from './screens/PublicScreens/HomeScreen/HomeScreen';
@@ -39,6 +40,11 @@ function App() {
       <Route path="/register" component={RegisterScreen}></Route>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
+      <AdminRoute
+        path="/products-admin"
+        component={ProductsListScreen}
+        exact
+      ></AdminRoute>
       <AdminRoute
         path="/events-admin"
         component={EventsPageScreen}
