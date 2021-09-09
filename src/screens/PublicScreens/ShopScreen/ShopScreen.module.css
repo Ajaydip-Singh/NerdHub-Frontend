@@ -3,3 +3,10 @@
     padding-bottom: 2rem;
   }
 }
+
+.products_wrapper {
+  margin-top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
