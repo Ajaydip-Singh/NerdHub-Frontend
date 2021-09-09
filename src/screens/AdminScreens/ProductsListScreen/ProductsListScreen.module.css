@@ -11,6 +11,12 @@
   color: #fff;
 }
 
+@media (max-width: 800px) {
+  .heading {
+    padding-left: 1rem;
+  }
+}
+
 .button {
   display: block;
   padding: 0.2rem 0.5rem;
