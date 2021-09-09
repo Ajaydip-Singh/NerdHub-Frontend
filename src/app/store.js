@@ -19,6 +19,10 @@ import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentS
 import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
 import imageUploadeSliceCreater from '../slices/uploadSlices/imageUploadSlice';
 import productsGetSlice from '../slices/productSlices/productsGetSlice';
+import productGetSlice from '../slices/productSlices/productGetSlice';
+import productCreateSlice from '../slices/productSlices/productCreateSlice';
+import productDeleteSlice from '../slices/productSlices/productDeleteSlice';
+import productUpdateSlice from '../slices/productSlices/productUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -51,6 +55,10 @@ export const store = configureStore({
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
     imageUploadSliceD: imageUploadeSliceCreater('imageUploadSliceD'),
-    productsGetSlice: productsGetSlice
+    productsGetSlice: productsGetSlice,
+    productGetSlice: productGetSlice,
+    productCreateSlice: productCreateSlice,
+    productDeleteSlice: productDeleteSlice,
+    productUpdateSlice: productUpdateSlice
   }
 });
