@@ -9,17 +9,9 @@ const initialState = {
 
 export const getContactPageContent = createAsyncThunk(
   'contactPageContentGet/getContactPageContent',
-  async (options, { rejectWithValue, getState }) => {
-    const {
-      userAuthentication: { user }
-    } = getState();
-
+  async (options, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/pages/contact-page-content`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      });
+      const { data } = await axios.get(`/api/pages/contact-page-content`);
       return data;
     } catch (err) {
       if (!err.response) {
@@ -62,6 +54,7 @@ export const contactPageContentGetSlice = createSlice({
   }
 });
 
-export const { resetGetContactPageContent } = contactPageContentGetSlice.actions;
+export const { resetGetContactPageContent } =
+  contactPageContentGetSlice.actions;
 
 export default contactPageContentGetSlice.reducer;
