@@ -18,6 +18,7 @@ import HomePageScreen from './screens/AdminScreens/HomePageScreen/HomePageScreen
 import AboutPageScreen from './screens/AdminScreens/AboutPageScreen/AboutPageScreen';
 import ContactPageScreen from './screens/AdminScreens/ContactPageScreen/ContactPageScreen';
 import MembershipScreen from './screens/PublicScreens/MembershipScreen/MembershipScreen';
+import ShopScreen from './screens/PublicScreens/ShopScreen/ShopScreen';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
       <Route path="/membership" component={MembershipScreen}></Route>
+      <Route path="/shop" component={ShopScreen}></Route>
       <Route
         path="/login/:userId/:confirmationCode"
         component={LoginScreen}
