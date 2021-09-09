@@ -14,9 +14,14 @@ import {
   resetUpdateContactPageContent,
   updateContactPageContent
 } from '../../../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function ContactPageScreen() {
   const [contactMainHeading, setContactMainHeading] = useState('');
+  const [contactHeroBackgroundImage, setContactHeroBackgroundImage] =
+    useState('');
+  const [contactMainBackgroundImage, setContactMainBackgroundImage] =
+    useState('');
   const [formText, setFormText] = useState('');
   const [locationFrame, setLocationFrame] = useState('');
   const [locationFrameBorderColor, setLocationFrameBorderColor] = useState('');
@@ -55,6 +60,8 @@ export default function ContactPageScreen() {
     dispatch(
       updateContactPageContent({
         contactMainHeading,
+        contactHeroBackgroundImage,
+        contactMainBackgroundImage,
         formText,
         locationFrame,
         locationFrameBorderColor,
@@ -68,6 +75,8 @@ export default function ContactPageScreen() {
       dispatch(getContactPageContent({}));
     } else {
       setContactMainHeading(content.contactMainHeading);
+      setContactHeroBackgroundImage(content.contactHeroBackgroundImage);
+      setContactMainBackgroundImage(content.contactMainBackgroundImage);
       setFormText(content.formText);
       setLocationFrame(content.locationFrame);
       setLocationFrameBorderColor(content.locationFrameBorderColor);
@@ -96,6 +105,40 @@ export default function ContactPageScreen() {
                   value={contactMainHeading}
                   onChange={setContactMainHeading}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Page Hero Background Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={contactHeroBackgroundImage}
+                  >
+                    {contactHeroBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceA'}
+                  setImage={setContactHeroBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Page Background Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={contactMainBackgroundImage}
+                  >
+                    {contactMainBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceB'}
+                  setImage={setContactMainBackgroundImage}
+                ></ImageUploader>
               </div>
               <div className="editor_wrapper">
                 <h3>Contact Form Text</h3>
