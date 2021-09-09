@@ -9,17 +9,9 @@ const initialState = {
 
 export const getHomePageContent = createAsyncThunk(
   'homePageContentGet/getHomePageContent',
-  async (options, { rejectWithValue, getState }) => {
-    const {
-      userAuthentication: { user }
-    } = getState();
-
+  async (options, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/pages/home-page-content`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      });
+      const { data } = await axios.get(`/api/pages/home-page-content`);
       return data;
     } catch (err) {
       if (!err.response) {
