@@ -1,13 +1,30 @@
 .card {
-  border: 0.1rem #c0c0c0 solid;
-  background-color: #f8f8f8;
+  border: 2px #fff solid;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   margin: 1rem;
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  border: 2px #50d450 solid;
 }
 
 .medium {
-  max-width: 29rem;
-  width: 100%;
+  max-width: 21rem;
+  object-fit: cover;
+  width: 400px;
+  height: 250px;
+}
+
+@media (max-width: 680px) {
+  .medium {
+    max-width: 100%;
+  }
 }
 
 .card-body {
@@ -16,6 +33,13 @@
 
 .card-body > * {
   margin-bottom: 0.5rem;
+}
+
+.product_name {
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  color: #50d450;
 }
 
 .price {
