@@ -6,6 +6,7 @@ export default function TextEditor(props) {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ indent: '-1' }, { indent: '+1' }],
       [{ size: ['small', false, 'large', 'huge'] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [
@@ -36,6 +37,7 @@ export default function TextEditor(props) {
     'header',
     'size',
     'bold',
+    'indent',
     'italic',
     'underline',
     'strike',
