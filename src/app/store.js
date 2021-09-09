@@ -50,6 +50,7 @@ export const store = configureStore({
     imageUploadSliceA: imageUploadeSliceCreater('imageUploadSliceA'),
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
+    imageUploadSliceD: imageUploadeSliceCreater('imageUploadSliceD'),
     productsGetSlice: productsGetSlice
   }
 });

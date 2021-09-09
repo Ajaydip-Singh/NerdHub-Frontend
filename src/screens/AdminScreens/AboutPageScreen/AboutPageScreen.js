@@ -14,16 +14,21 @@ import {
   resetUpdateAboutPageContent,
   updateAboutPageContent
 } from '../../../slices/pageSlices/aboutPageContentSlices/aboutPageContentUpdateSlice';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function AboutPageScreen() {
   const [aboutMainHeading, setAboutMainHeading] = useState('');
+  const [aboutBackgroundImage, setAboutBackgroundImage] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const [videoThumbnail, setVideoThumbnail] = useState('');
   const [videoBorderColor, setVideoBorderColor] = useState('');
   const [videoBoxShadowColor, setVideoBoxShadowColor] = useState('');
   const [sectionOneHeading, setSectionOneHeading] = useState('');
   const [sectionOneText, setSectionOneText] = useState('');
+  const [sectionOneImage, setSectionOneImage] = useState('');
   const [sectionTwoHeading, setSectionTwoHeading] = useState('');
   const [sectionTwoText, setSectionTwoText] = useState('');
+  const [sectionTwoImage, setSectionTwoImage] = useState('');
 
   const aboutPageContentGetSlice = useSelector(
     (state) => state.aboutPageContentGetSlice
@@ -58,13 +63,17 @@ export default function AboutPageScreen() {
     dispatch(
       updateAboutPageContent({
         aboutMainHeading,
+        aboutBackgroundImage,
         videoUrl,
+        videoThumbnail,
         videoBorderColor,
         videoBoxShadowColor,
         sectionOneHeading,
         sectionOneText,
+        sectionOneImage,
         sectionTwoHeading,
-        sectionTwoText
+        sectionTwoText,
+        sectionTwoImage
       })
     );
   };
@@ -74,13 +83,17 @@ export default function AboutPageScreen() {
       dispatch(getAboutPageContent({}));
     } else {
       setAboutMainHeading(content.aboutMainHeading);
+      setAboutBackgroundImage(content.aboutBackgroundImage);
       setVideoUrl(content.videoUrl);
+      setVideoThumbnail(content.videoThumbnail);
       setVideoBorderColor(content.videoBorderColor);
       setVideoBoxShadowColor(content.videoBoxShadowColor);
       setSectionOneHeading(content.sectionOneHeading);
       setSectionOneText(content.sectionOneText);
+      setSectionOneImage(content.sectionOneImage);
       setSectionTwoHeading(content.sectionTwoHeading);
       setSectionTwoText(content.sectionTwoText);
+      setSectionTwoImage(content.sectionTwoImage);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -107,12 +120,42 @@ export default function AboutPageScreen() {
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">
+                <h3>Page Background Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={aboutBackgroundImage}
+                  >
+                    {aboutBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceA'}
+                  setImage={setAboutBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Video Url</h3>
                 <input
                   value={videoUrl}
                   onChange={(e) => setVideoUrl(e.target.value)}
                   placeholder="Enter video url"
                 ></input>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Video Thumbnail</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={videoThumbnail}>
+                    {videoThumbnail}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceB'}
+                  setImage={setVideoThumbnail}
+                ></ImageUploader>
               </div>
               <div className="editor_wrapper">
                 <h3>Video Border Color</h3>
@@ -145,6 +188,19 @@ export default function AboutPageScreen() {
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">
+                <h3>Section One Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={sectionOneImage}>
+                    {sectionOneImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceC'}
+                  setImage={setSectionOneImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Section Two Heading</h3>
                 <TextEditor
                   placeholder="Enter section two heading"
@@ -159,6 +215,19 @@ export default function AboutPageScreen() {
                   value={sectionTwoText}
                   onChange={setSectionTwoText}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Section Two Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={sectionTwoImage}>
+                    {sectionTwoImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  name={'imageUploadSliceD'}
+                  setImage={setSectionTwoImage}
+                ></ImageUploader>
               </div>
 
               <div className="editor_wrapper">
