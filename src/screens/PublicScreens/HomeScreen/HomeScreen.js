@@ -137,7 +137,9 @@ export default function HomeScreen() {
             <div className={styles.video_container}>
               <div>
                 <div className={styles.section_heading}>
-                  {content && parse(content.videoHeading)}
+                  <div className="ql-editor">
+                    {content && parse(content.videoHeading)}
+                  </div>
                 </div>
               </div>
 
@@ -213,18 +215,8 @@ export default function HomeScreen() {
           >
             <div className={`row container ${styles.contact_wrapper}`}>
               <div className="col-md">
-                <div>
-                  {content ? (
-                    parse(content.contactText)
-                  ) : (
-                    <p className={styles.contact_info}>
-                      Contact us about{' '}
-                      <span className="green">press matters, </span>
-                      potential <span className="green">sponsorships, </span>
-                      and
-                      <span className="green"> membership </span>inquiries.
-                    </p>
-                  )}
+                <div className="ql-editor">
+                  <div>{content && parse(content.contactText)}</div>
                 </div>
 
                 <Link className="link border_bottom" to="/about">
