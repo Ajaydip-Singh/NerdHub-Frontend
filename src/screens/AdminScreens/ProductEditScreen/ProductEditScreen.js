@@ -25,6 +25,7 @@ export default function ProductEditScreen(props) {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [displayPrice, setDisplayPrice] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [rating, setRating] = useState('');
   const [numReviews, setNumReviews] = useState('');
@@ -58,6 +59,7 @@ export default function ProductEditScreen(props) {
         category,
         description,
         price,
+        displayPrice,
         countInStock,
         rating,
         numReviews,
@@ -92,6 +94,7 @@ export default function ProductEditScreen(props) {
       setCategory(product.category);
       setDescription(product.description);
       setPrice(product.price);
+      setDisplayPrice(product.displayPrice);
       setCountInStock(product.countInStock);
       setRating(product.rating);
       setNumReviews(product.numReviews);
@@ -171,6 +174,14 @@ export default function ProductEditScreen(props) {
                 ></input>
               </div>
               <div className="editor_wrapper">
+                <h3>Display Price</h3>
+                <TextEditor
+                  placeholder="Enter product display price"
+                  value={displayPrice}
+                  onChange={setDisplayPrice}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Count In Stock</h3>
                 <input
                   value={countInStock}
@@ -243,7 +254,7 @@ export default function ProductEditScreen(props) {
                   </MessageBox>
                 )}
                 {productUpdate && (
-                  <MessageBox variant="success">product Updated</MessageBox>
+                  <MessageBox variant="success">Product Updated</MessageBox>
                 )}
                 <button className={styles.button} type="submit">
                   {statusUpdate === 'loading' ? (
