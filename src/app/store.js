@@ -23,6 +23,7 @@ import productGetSlice from '../slices/productSlices/productGetSlice';
 import productCreateSlice from '../slices/productSlices/productCreateSlice';
 import productDeleteSlice from '../slices/productSlices/productDeleteSlice';
 import productUpdateSlice from '../slices/productSlices/productUpdateSlice';
+import productsCategoriesGetSlice from '../slices/productSlices/productsCategoriesGetSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -59,6 +60,7 @@ export const store = configureStore({
     productGetSlice: productGetSlice,
     productCreateSlice: productCreateSlice,
     productDeleteSlice: productDeleteSlice,
-    productUpdateSlice: productUpdateSlice
+    productUpdateSlice: productUpdateSlice,
+    productsCategoriesGetSlice: productsCategoriesGetSlice
   }
 });
