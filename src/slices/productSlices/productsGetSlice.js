@@ -10,12 +10,20 @@ const initialState = {
 export const getProducts = createAsyncThunk(
   'productsGet/getProducts',
   async (
-    { name = '', category = '', min = 0, max = 0, rating = 0, order = '' },
+    {
+      name = '',
+      category = '',
+      brand = '',
+      min = 0,
+      max = 0,
+      rating = 0,
+      order = ''
+    },
     { rejectWithValue }
   ) => {
     try {
       const { data } = await axios.get(
-        `/api/products?name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+        `/api/products?name=${name}&category=${category}&brand=${brand}&min=${min}&max=${max}&rating=${rating}&order=${order}`
       );
       return data;
     } catch (err) {
