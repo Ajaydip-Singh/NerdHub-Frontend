@@ -68,7 +68,7 @@ export default function ProductsListScreen(props) {
     <div>
       <Header admin events_page></Header>
       <div className={styles.hero_section}>
-        <h1 className={styles.heading}>Products Page</h1>
+        <h1 className={styles.heading}>Products List</h1>
       </div>
       <div className="table_wrapper">
         {productCreate && (
@@ -108,7 +108,7 @@ export default function ProductsListScreen(props) {
               {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
-                  <td>{product.name}</td>
+                  <td>{stripHtml(product.name)}</td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>

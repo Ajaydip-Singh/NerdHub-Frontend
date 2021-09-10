@@ -13,7 +13,7 @@
 
 @media (max-width: 800px) {
   .heading {
-    padding-left: 1rem;
+    padding: 0.5rem;
   }
 }
 
