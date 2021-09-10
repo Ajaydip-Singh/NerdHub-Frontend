@@ -1,17 +1,9 @@
 .card {
-  border: 2px #fff solid;
-  background-color: #000;
-  color: #fff;
   padding: 0.5rem;
   border-radius: 0.5rem;
   margin: 1rem;
   transition: 300ms ease-in-out;
   cursor: pointer;
-}
-
-.card:hover,
-.card:focus {
-  border: 2px #50d450 solid;
 }
 
 .medium {
@@ -36,12 +28,5 @@
 }
 
 .product_name {
-  font-size: 1.5rem;
-  text-decoration: none;
   padding: 0.2rem 0;
-  color: #50d450;
-}
-
-.price {
-  font-size: 2rem;
 }
