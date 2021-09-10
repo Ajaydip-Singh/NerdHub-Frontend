@@ -20,6 +20,7 @@ import AboutPageScreen from './screens/AdminScreens/AboutPageScreen/AboutPageScr
 import ContactPageScreen from './screens/AdminScreens/ContactPageScreen/ContactPageScreen';
 import MembershipScreen from './screens/PublicScreens/MembershipScreen/MembershipScreen';
 import ShopScreen from './screens/PublicScreens/ShopScreen/ShopScreen';
+import ProductEditScreen from './screens/AdminScreens/ProductEditScreen/ProductEditScreen';
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
       <AdminRoute
         path="/products-admin"
         component={ProductsListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/products-admin/:id/edit"
+        component={ProductEditScreen}
         exact
       ></AdminRoute>
       <AdminRoute
