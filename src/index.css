@@ -320,6 +320,10 @@ ul {
   min-height: 100vh;
 }
 
+.min_page_height.search_box {
+  min-height: 60vh;
+}
+
 @media (max-width: 800px) {
   .min_page_height {
     min-height: calc(100vh - 135px);
