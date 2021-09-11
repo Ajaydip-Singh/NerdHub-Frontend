@@ -25,15 +25,15 @@ export default function Product(props) {
         <img
           className={styles.medium}
           src={product.image}
-          alt={stripHtml(product.name)}
+          alt={stripHtml(product.cardName)}
         />
       </Link>
       <div className={styles.card_body}>
         <div className="ql-editor">
-          <p className={styles.product_name}>{parse(product.name)}</p>
+          <p className={styles.product_name}>{parse(product.cardName)}</p>
         </div>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <div className="ql-editor">{parse(product.displayPrice)}</div>
+        <div className="ql-editor">{parse(product.cardDisplayPrice)}</div>
       </div>
     </motion.div>
   );
