@@ -7,8 +7,37 @@
   grid-template-areas: 'image info checkout';
 }
 
+@media (max-width: 1200px) {
+  .main_wrapper {
+    grid-template-columns: 500px 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'image info'
+      'checkout info';
+  }
+}
+
+@media (max-width: 1000px) {
+  .main_wrapper {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .main_wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'image'
+      'info'
+      'checkout';
+  }
+}
+
 .product_image {
   grid-area: image;
+  padding: 0.5rem;
+  border: 2px solid #50d450;
   width: 100%;
 }
 

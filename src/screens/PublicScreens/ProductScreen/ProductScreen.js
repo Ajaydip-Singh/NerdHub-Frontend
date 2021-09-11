@@ -45,13 +45,11 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className={styles.main_wrapper}>
-          <div>
-            <img
-              className={styles.product_image}
-              src={product && product.image}
-              alt={product && stripHtml(product.pageName)}
-            />
-          </div>
+          <img
+            className={styles.product_image}
+            src={product && product.image}
+            alt={product && stripHtml(product.pageName)}
+          />
           <div className={styles.info}>
             <div className="ql-editor">
               {product && parse(product.pageName)}
