@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import MediaQuery from 'react-responsive';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,6 +16,8 @@ import { stripHtml } from '../../../utils';
 import { motion } from 'framer-motion';
 import styles from './ProductScreen.module.css';
 import { pageVariant } from '../../../animate';
+import Footer from '../../../components/Footer/Footer';
+import BottomNav from '../../../components/BottomNav/BottomNav';
 
 export default function ProductScreen(props) {
   const productId = props.match.params.id;
@@ -41,7 +44,7 @@ export default function ProductScreen(props) {
   }, [dispatch, productId]);
 
   return (
-    <div>
+    <div className={styles.screen}>
       <Header shop></Header>
       {status === 'loading' ? (
         <LoadingBox></LoadingBox>
@@ -54,6 +57,9 @@ export default function ProductScreen(props) {
             initial="initial"
             animate="final"
             className={styles.main_wrapper}
+            style={{
+              backgroundImage: 'url(/images/cubes.jpeg)'
+            }}
           >
             <div>
               <Link
@@ -127,6 +133,12 @@ export default function ProductScreen(props) {
               </button>
             </div>
           </motion.div>
+          <MediaQuery minWidth={800}>
+            <Footer></Footer>
+          </MediaQuery>
+          <MediaQuery maxWidth={800}>
+            <BottomNav></BottomNav>
+          </MediaQuery>
         </>
       )}
     </div>

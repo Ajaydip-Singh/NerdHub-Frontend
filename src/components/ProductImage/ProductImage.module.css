@@ -27,7 +27,7 @@
 
 @media (max-width: 800px) {
   .image_normal {
-    height: 300px;
+    height: 40vh;
   }
 }
 
@@ -41,6 +41,7 @@
 .small_images_container {
   margin-top: 0.5rem;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .image_button {
