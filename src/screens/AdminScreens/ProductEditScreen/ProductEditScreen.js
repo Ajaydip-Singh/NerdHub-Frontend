@@ -19,13 +19,15 @@ import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
 
-  const [name, setName] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [pageName, setPageName] = useState('');
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [displayPrice, setDisplayPrice] = useState('');
+  const [cardDisplayPrice, setCardDisplayPrice] = useState('');
+  const [pageDisplayPrice, setPageDisplayPrice] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [rating, setRating] = useState('');
   const [numReviews, setNumReviews] = useState('');
@@ -53,13 +55,15 @@ export default function ProductEditScreen(props) {
     dispatch(
       updateProduct({
         _id: productId,
-        name,
+        cardName,
+        pageName,
         image,
         brand,
         category,
         description,
         price,
-        displayPrice,
+        cardDisplayPrice,
+        pageDisplayPrice,
         countInStock,
         rating,
         numReviews,
@@ -88,13 +92,15 @@ export default function ProductEditScreen(props) {
     if (!product || product._id !== productId) {
       dispatch(getProduct(productId));
     } else {
-      setName(product.name);
+      setCardName(product.cardName);
+      setPageName(product.pageName);
       setImage(product.image);
       setBrand(product.brand);
       setCategory(product.category);
       setDescription(product.description);
       setPrice(product.price);
-      setDisplayPrice(product.displayPrice);
+      setCardDisplayPrice(product.cardDisplayPrice);
+      setPageDisplayPrice(product.pageDisplayPrice);
       setCountInStock(product.countInStock);
       setRating(product.rating);
       setNumReviews(product.numReviews);
@@ -121,11 +127,19 @@ export default function ProductEditScreen(props) {
           <form onSubmit={submitHandler}>
             <div className={styles.editor_wrapper}>
               <div className="editor_wrapper">
-                <h3>Name</h3>
+                <h3>Card Name</h3>
                 <TextEditor
-                  placeholder="Enter product name"
-                  value={name}
-                  onChange={setName}
+                  placeholder="Enter product card name"
+                  value={cardName}
+                  onChange={setCardName}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Page Name</h3>
+                <TextEditor
+                  placeholder="Enter product page names"
+                  value={pageName}
+                  onChange={setPageName}
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">
@@ -174,11 +188,19 @@ export default function ProductEditScreen(props) {
                 ></input>
               </div>
               <div className="editor_wrapper">
-                <h3>Display Price</h3>
+                <h3>Card Display Price</h3>
                 <TextEditor
-                  placeholder="Enter product display price"
-                  value={displayPrice}
-                  onChange={setDisplayPrice}
+                  placeholder="Enter product card display price"
+                  value={cardDisplayPrice}
+                  onChange={setCardDisplayPrice}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Page Display Price</h3>
+                <TextEditor
+                  placeholder="Enter product page display price"
+                  value={pageDisplayPrice}
+                  onChange={setPageDisplayPrice}
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">

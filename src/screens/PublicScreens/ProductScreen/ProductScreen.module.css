@@ -1,0 +1,18 @@
+.main_wrapper {
+  margin-top: 70px;
+  padding: 1rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 500px 1fr 300px;
+  grid-template-areas: 'image info checkout';
+}
+
+.product_image {
+  grid-area: image;
+  width: 100%;
+}
+
+.info {
+  grid-area: info;
+  width: 100%;
+}

@@ -12,7 +12,7 @@ import {
   resetDeleteProduct
 } from '../../../slices/productSlices/productDeleteSlice';
 import { getProducts } from '../../../slices/productSlices/productsGetSlice';
-import { formatDate, stripHtml } from '../../../utils';
+import { stripHtml } from '../../../utils';
 import styles from './ProductsListScreen.module.css';
 
 export default function ProductsListScreen(props) {
@@ -108,7 +108,7 @@ export default function ProductsListScreen(props) {
               {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
-                  <td>{stripHtml(product.name)}</td>
+                  <td>{stripHtml(product.cardName)}</td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>

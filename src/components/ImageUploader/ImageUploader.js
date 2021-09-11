@@ -25,12 +25,6 @@ export default function ImageUploader(props) {
   };
 
   useEffect(() => {
-    return () => {
-      // dispatch(resetUploadImage());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
     if (file) {
       setImage(file.image.url);
     }

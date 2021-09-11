@@ -21,6 +21,7 @@ import ContactPageScreen from './screens/AdminScreens/ContactPageScreen/ContactP
 import MembershipScreen from './screens/PublicScreens/MembershipScreen/MembershipScreen';
 import ShopScreen from './screens/PublicScreens/ShopScreen/ShopScreen';
 import ProductEditScreen from './screens/AdminScreens/ProductEditScreen/ProductEditScreen';
+import ProductScreen from './screens/PublicScreens/ProductScreen/ProductScreen';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
       <Route path="/membership" component={MembershipScreen}></Route>
-      <Route path="/shop" component={ShopScreen}></Route>
+      <Route path="/shop/products/:id" exact component={ProductScreen}></Route>
+      <Route path="/shop" component={ShopScreen} exact></Route>
       <Route
         path="/login/:userId/:confirmationCode"
         component={LoginScreen}
