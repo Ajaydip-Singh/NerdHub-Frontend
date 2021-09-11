@@ -1,7 +1,6 @@
 import parse from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
@@ -68,39 +67,52 @@ export default function ProductScreen(props) {
               {product && parse(product.description)}
             </div>
           </div>
+          <div className={styles.checkout}>
+            <table className="table">
+              <tbody>
+                <tr>
+                  <td>Price:</td>
+                  <td>KES {product && product.price}</td>
+                </tr>
+                <tr>
+                  <td>Status:</td>
+                  <td>
+                    {product && product.countInStock > 0 ? (
+                      <span className="success">Available</span>
+                    ) : (
+                      <span>Not In Stock</span>
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Quantity:</td>
+                  <td>
+                    <select
+                      value={qty}
+                      onChange={(e) => setQty(e.target.value)}
+                    >
+                      {[...Array(product && product.countInStock).keys()].map(
+                        (x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        )
+                      )}
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button
+              onClick={addToCartHandler}
+              className={`button border_bottom ${styles.cart_button}`}
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
       )}
     </div>
-    // <div>
-    //   {status === 'loading' ? (
-    //     <LoadingBox></LoadingBox>
-    //   ) : error ? (
-    //     <MessageBox variant="danger">{error}</MessageBox>
-    //   ) : (
-    //     <div>
-    //       <Link to="/">Back to results</Link>
-    //       <div className="row top">
-    //         <div className="col-2">
-    //           <img className="large" src={product.image} alt={product.name} />
-    //         </div>
-    //         <div className="col-1">
-    //           <ul>
-    //             <li>
-    //               <h1>{product.name}</h1>
-    //             </li>
-    //             <li>
-    //               <Rating
-    //                 rating={product.rating}
-    //                 numReviews={product.numReviews}
-    //               />
-    //             </li>
-    //             <li>Price: ${product.price}</li>
-    //             <li>
-    //               Description:
-    //               <p>{product.description}</p>
-    //             </li>
-    //           </ul>
-    //         </div>
     //         <div className="col-1">
     //           <div className="card card-body">
     //             <ul>

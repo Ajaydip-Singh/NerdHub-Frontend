@@ -16,3 +16,13 @@
   grid-area: info;
   width: 100%;
 }
+
+.cart_button {
+  width: 100%;
+}
+
+.checkout {
+  padding: 0.5rem;
+  border: 2px solid #50d450;
+  height: max-content;
+}
