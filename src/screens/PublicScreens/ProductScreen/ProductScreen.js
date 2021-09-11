@@ -17,6 +17,7 @@ export default function ProductScreen(props) {
   const productId = props.match.params.id;
 
   const [qty, setQty] = useState(1);
+  const [fullscreen, setFullscreen] = useState(false);
 
   const productGetSlice = useSelector((state) => state.productGetSlice);
   const { status, product, error } = productGetSlice;
@@ -54,11 +55,20 @@ export default function ProductScreen(props) {
               >
                 Back to Shop
               </Link>
-              <img
-                className={styles.product_image}
-                src={product && product.image}
-                alt={product && stripHtml(product.pageName)}
-              />
+              <div
+                className={fullscreen ? styles.fullscreen : ''}
+                onClick={() => {
+                  fullscreen ? setFullscreen(false) : setFullscreen(true);
+                }}
+              >
+                <img
+                  className={`${styles.product_image} ${
+                    fullscreen ? styles.image_fullscreen : ''
+                  }`}
+                  src={product && product.image}
+                  alt={product && stripHtml(product.pageName)}
+                />
+              </div>
             </div>
             <div className={styles.info}>
               <div className="ql-editor">

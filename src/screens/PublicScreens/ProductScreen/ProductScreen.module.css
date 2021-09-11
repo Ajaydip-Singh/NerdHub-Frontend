@@ -36,8 +36,11 @@
 
 .product_image {
   grid-area: image;
+  cursor: pointer;
   padding: 0.5rem;
   border: 2px solid #50d450;
+  object-fit: cover;
+  object-position: center;
   width: 100%;
 }
 
@@ -66,4 +69,22 @@
   padding: 0.5rem;
   border: 2px solid #50d450;
   height: max-content;
+}
+
+.fullscreen {
+  position: fixed;
+  display: grid;
+  place-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.image_fullscreen {
+  width: 90%;
+  margin: 0 auto;
 }
