@@ -21,7 +21,7 @@ export default function Product(props) {
         borderColor: product.borderHoverColor
       }}
     >
-      <Link to={`/shop/product/${product._id}`}>
+      <Link to={`/shop/products/${product._id}`}>
         <img
           className={styles.medium}
           src={product.image}
