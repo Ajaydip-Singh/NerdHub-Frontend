@@ -46,6 +46,18 @@
   width: 100%;
 }
 
+.back_button {
+  display: block;
+  margin-bottom: 0.5rem;
+  max-width: max-content;
+  text-decoration: none;
+}
+
+.back_button:hover,
+.back_button:focus {
+  text-decoration: none;
+}
+
 .cart_button {
   width: 100%;
 }
