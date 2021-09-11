@@ -5,19 +5,21 @@ import { Link } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import ProductImage from '../../../components/ProductImage/ProductImage';
 import Rating from '../../../components/Rating/Rating';
 import {
   getProduct,
   resetGetProduct
 } from '../../../slices/productSlices/productGetSlice';
 import { stripHtml } from '../../../utils';
+import { motion } from 'framer-motion';
 import styles from './ProductScreen.module.css';
+import { pageVariant } from '../../../animate';
 
 export default function ProductScreen(props) {
   const productId = props.match.params.id;
 
   const [qty, setQty] = useState(1);
-  const [fullscreen, setFullscreen] = useState(false);
 
   const productGetSlice = useSelector((state) => state.productGetSlice);
   const { status, product, error } = productGetSlice;
@@ -47,7 +49,12 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          <div className={styles.main_wrapper}>
+          <motion.div
+            variants={pageVariant}
+            initial="initial"
+            animate="final"
+            className={styles.main_wrapper}
+          >
             <div>
               <Link
                 className={`button border_bottom ${styles.back_button}`}
@@ -55,20 +62,11 @@ export default function ProductScreen(props) {
               >
                 Back to Shop
               </Link>
-              <div
-                className={fullscreen ? styles.fullscreen : ''}
-                onClick={() => {
-                  fullscreen ? setFullscreen(false) : setFullscreen(true);
-                }}
-              >
-                <img
-                  className={`${styles.product_image} ${
-                    fullscreen ? styles.image_fullscreen : ''
-                  }`}
-                  src={product && product.image}
-                  alt={product && stripHtml(product.pageName)}
-                />
-              </div>
+              <ProductImage
+                name={product && stripHtml(product.pageName)}
+                imageThumbnail={product && product.image}
+                images={['/images/cubes.jpeg', '/images/gaming_room.jpeg']}
+              ></ProductImage>
             </div>
             <div className={styles.info}>
               <div className="ql-editor">
@@ -128,7 +126,7 @@ export default function ProductScreen(props) {
                 Add to Cart
               </button>
             </div>
-          </div>
+          </motion.div>
         </>
       )}
     </div>
