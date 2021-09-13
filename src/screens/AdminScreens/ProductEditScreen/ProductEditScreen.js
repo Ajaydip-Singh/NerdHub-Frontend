@@ -21,7 +21,7 @@ export default function ProductEditScreen(props) {
 
   const [cardName, setCardName] = useState('');
   const [pageName, setPageName] = useState('');
-  const [image, setImage] = useState('');
+  const [thumbnailImage, setThumbnailImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
@@ -57,7 +57,7 @@ export default function ProductEditScreen(props) {
         _id: productId,
         cardName,
         pageName,
-        image,
+        thumbnailImage,
         brand,
         category,
         description,
@@ -94,7 +94,7 @@ export default function ProductEditScreen(props) {
     } else {
       setCardName(product.cardName);
       setPageName(product.pageName);
-      setImage(product.image);
+      setThumbnailImage(product.thumbnailImage);
       setBrand(product.brand);
       setCategory(product.category);
       setDescription(product.description);
@@ -143,16 +143,16 @@ export default function ProductEditScreen(props) {
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">
-                <h3>Product Image</h3>
+                <h3>Product thumbnailImage</h3>
                 <p>
-                  Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={image}>
-                    {image}
+                  Current thumbnailImage:{' '}
+                  <a target="_blank" rel="noreferrer" href={thumbnailImage}>
+                    {thumbnailImage}
                   </a>
                 </p>
                 <ImageUploader
                   name={'imageUploadSliceA'}
-                  setImage={setImage}
+                  setImage={setThumbnailImage}
                 ></ImageUploader>
               </div>
               <div className="editor_wrapper">

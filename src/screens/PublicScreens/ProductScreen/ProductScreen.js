@@ -70,7 +70,7 @@ export default function ProductScreen(props) {
               </Link>
               <ProductImage
                 name={product && stripHtml(product.pageName)}
-                imageThumbnail={product && product.image}
+                imageThumbnail={product && product.thumbnailImage}
                 images={['/images/cubes.jpeg', '/images/gaming_room.jpeg']}
               ></ProductImage>
             </div>

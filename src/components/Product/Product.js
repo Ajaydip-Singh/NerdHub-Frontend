@@ -24,7 +24,7 @@ export default function Product(props) {
       <Link to={`/shop/products/${product._id}`}>
         <img
           className={styles.medium}
-          src={product.image}
+          src={product.thumbnailImage}
           alt={stripHtml(product.cardName)}
         />
       </Link>
