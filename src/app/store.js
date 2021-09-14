@@ -18,6 +18,7 @@ import aboutPageContentUpdateSlice from '../slices/pageSlices/aboutPageContentSl
 import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
 import imageUploadeSliceCreater from '../slices/uploadSlices/imageUploadSlice';
+import multipleImagesUploadSlice from '../slices/uploadSlices/multipleImageUploadSlice';
 import productsGetSlice from '../slices/productSlices/productsGetSlice';
 import productGetSlice from '../slices/productSlices/productGetSlice';
 import productCreateSlice from '../slices/productSlices/productCreateSlice';
@@ -57,6 +58,7 @@ export const store = configureStore({
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
     imageUploadSliceD: imageUploadeSliceCreater('imageUploadSliceD'),
+    multipleImagesUploadSlice: multipleImagesUploadSlice,
     productsGetSlice: productsGetSlice,
     productGetSlice: productGetSlice,
     productCreateSlice: productCreateSlice,
