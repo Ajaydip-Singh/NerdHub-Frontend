@@ -43,7 +43,8 @@ export default function ProductImage(props) {
             alt="Product"
           />
         </motion.button>
-        {images.length !== 0 &&
+        {images &&
+          images.length !== 0 &&
           images.map((image, index) => (
             <motion.button
               className={styles.image_button}

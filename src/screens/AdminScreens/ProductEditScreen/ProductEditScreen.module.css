@@ -43,3 +43,7 @@
   border: 2px solid #50d450;
   color: #50d450;
 }
+
+.images_list {
+  list-style: disc;
+}

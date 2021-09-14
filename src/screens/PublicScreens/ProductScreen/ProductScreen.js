@@ -71,7 +71,7 @@ export default function ProductScreen(props) {
               <ProductImage
                 name={product && stripHtml(product.pageName)}
                 imageThumbnail={product && product.thumbnailImage}
-                images={['/images/cubes.jpeg', '/images/gaming_room.jpeg']}
+                images={product && product.images}
               ></ProductImage>
             </div>
             <div className={styles.info}>

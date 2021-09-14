@@ -22,6 +22,7 @@ export default function ProductEditScreen(props) {
   const [cardName, setCardName] = useState('');
   const [pageName, setPageName] = useState('');
   const [thumbnailImage, setThumbnailImage] = useState('');
+  const [images, setImages] = useState([]);
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
@@ -58,6 +59,7 @@ export default function ProductEditScreen(props) {
         cardName,
         pageName,
         thumbnailImage,
+        images,
         brand,
         category,
         description,
@@ -95,6 +97,7 @@ export default function ProductEditScreen(props) {
       setCardName(product.cardName);
       setPageName(product.pageName);
       setThumbnailImage(product.thumbnailImage);
+      setImages(product.images);
       setBrand(product.brand);
       setCategory(product.category);
       setDescription(product.description);
@@ -153,6 +156,25 @@ export default function ProductEditScreen(props) {
                 <ImageUploader
                   name={'imageUploadSliceA'}
                   setImage={setThumbnailImage}
+                  multiple={false}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Product Images</h3>
+                <p> Current images:</p>
+                <ul className={styles.images_list}>
+                  {images.map((image) => (
+                    <li>
+                      <a target="_blank" rel="noreferrer" href={image}>
+                        {image}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <ImageUploader
+                  name={'multipleImagesUploadSlice'}
+                  setImage={setImages}
+                  multiple={true}
                 ></ImageUploader>
               </div>
               <div className="editor_wrapper">
