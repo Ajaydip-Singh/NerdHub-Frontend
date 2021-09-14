@@ -53,7 +53,12 @@ export default function ImageUploader(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <input type="file" onChange={uploadHandler} multiple={multiple}></input>
+        <input
+          type="file"
+          onChange={uploadHandler}
+          multiple={multiple}
+          accept="image/png, image/jpeg"
+        ></input>
       )}
     </div>
   );
