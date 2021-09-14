@@ -73,6 +73,12 @@
   width: 100%;
 }
 
+.cart_button:disabled,
+.cart_button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .checkout {
   padding: 0.5rem;
   border: 2px solid #50d450;

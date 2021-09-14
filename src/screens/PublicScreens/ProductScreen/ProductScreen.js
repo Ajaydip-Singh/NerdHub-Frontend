@@ -102,31 +102,36 @@ export default function ProductScreen(props) {
                       {product && product.countInStock > 0 ? (
                         <span className="success">Available</span>
                       ) : (
-                        <span>Not In Stock</span>
+                        <span className="error">Not In Stock</span>
                       )}
                     </td>
                   </tr>
-                  <tr>
-                    <td>Quantity:</td>
-                    <td>
-                      <select
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}
-                      >
-                        {[...Array(product && product.countInStock).keys()].map(
-                          (x) => (
+                  {product && product.countInStock > 0 ? (
+                    <tr>
+                      <td>Quantity:</td>
+                      <td>
+                        <select
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[
+                            ...Array(product && product.countInStock).keys()
+                          ].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
-                          )
-                        )}
-                      </select>
-                    </td>
-                  </tr>
+                          ))}
+                        </select>
+                      </td>
+                    </tr>
+                  ) : (
+                    ''
+                  )}
                 </tbody>
               </table>
               <button
                 onClick={addToCartHandler}
+                disabled={product && product.countInStock === 0}
                 className={`button border_bottom ${styles.cart_button}`}
               >
                 Add to Cart
