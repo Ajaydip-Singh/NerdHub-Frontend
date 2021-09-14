@@ -26,12 +26,18 @@ import productDeleteSlice from '../slices/productSlices/productDeleteSlice';
 import productUpdateSlice from '../slices/productSlices/productUpdateSlice';
 import productsCategoriesGetSlice from '../slices/productSlices/productsCategoriesGetSlice';
 import productsBrandsGetSlice from '../slices/productSlices/productsBrandsGetSlice';
+import cartSlice from '../slices/shopSlices/cartSlice';
 
 export const store = configureStore({
   preloadedState: {
     userAuthentication: {
       user: localStorage.getItem('user')
         ? JSON.parse(localStorage.getItem('user'))
+        : null
+    },
+    cartSlice: {
+      cart: localStorage.getItem('cart')
+        ? JSON.parse(localStorage.getItem('cart'))
         : null
     }
   },
@@ -65,6 +71,7 @@ export const store = configureStore({
     productDeleteSlice: productDeleteSlice,
     productUpdateSlice: productUpdateSlice,
     productsCategoriesGetSlice: productsCategoriesGetSlice,
-    productsBrandsGetSlice: productsBrandsGetSlice
+    productsBrandsGetSlice: productsBrandsGetSlice,
+    cartSlice: cartSlice
   }
 });
