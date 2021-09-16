@@ -17,6 +17,8 @@ import aboutPageContentGetSlice from '../slices/pageSlices/aboutPageContentSlice
 import aboutPageContentUpdateSlice from '../slices/pageSlices/aboutPageContentSlices/aboutPageContentUpdateSlice';
 import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
+import cartPageContentGetSlice from '../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
+import cartPageContentUpdateSlice from '../slices/pageSlices/cartPageContentSlices/cartPageContentUpdateSlice';
 import imageUploadeSliceCreater from '../slices/uploadSlices/imageUploadSlice';
 import multipleImagesUploadSlice from '../slices/uploadSlices/multipleImageUploadSlice';
 import productsGetSlice from '../slices/productSlices/productsGetSlice';
@@ -60,6 +62,8 @@ export const store = configureStore({
     aboutPageContentUpdateSlice: aboutPageContentUpdateSlice,
     contactPageContentGetSlice: contactPageContentGetSlice,
     contactPageContentUpdateSlice: contactPageContentUpdateSlice,
+    cartPageContentGetSlice: cartPageContentGetSlice,
+    cartPageContentUpdateSlice: cartPageContentUpdateSlice,
     imageUploadSliceA: imageUploadeSliceCreater('imageUploadSliceA'),
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
