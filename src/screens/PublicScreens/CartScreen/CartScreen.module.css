@@ -45,10 +45,10 @@
 .info_row {
   display: grid;
   gap: 1rem;
-  border: 2px solid #50d450;
+  border: 2px solid transparent;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 150px minmax(150px, 1fr) 50px 50px 100px;
+  grid-template-columns: 100px minmax(150px, 1fr) 50px 50px 100px;
   padding: 1rem;
   margin: 1rem 0;
 }
@@ -81,14 +81,6 @@
 .name {
   text-decoration: none;
   font-size: 1.2rem;
-  color: #fff;
-  transition: 300ms ease-in-out;
-}
-
-.name:hover,
-.name:focus {
-  text-decoration: none;
-  color: #50d450;
 }
 
 .checkout_button:disabled,
@@ -100,7 +92,7 @@
 .image {
   width: 100px;
   padding: 0.5rem;
-  border: 1px solid #50d450;
+  border: 2px solid transparent;
   height: 100px;
   object-fit: cover;
 }
