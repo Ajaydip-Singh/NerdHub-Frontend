@@ -5,6 +5,7 @@ import { stripHtml } from '../../utils';
 const initialState = {
   status: null,
   cart: [],
+  shippingAddress: null,
   error: null
 };
 
@@ -41,6 +42,19 @@ export const removeFromCart = createAsyncThunk(
 export const cartAddSlice = createSlice({
   name: 'cartSlice',
   initialState,
+  reducers: {
+    saveShippingAddress: {
+      reducer: (state, action) => {
+        state.status = 'idle';
+        state.shippingAddress = action.payload;
+        state.error = null;
+      },
+      prepare: (address) => {
+        localStorage.setItem('shippingAddress', JSON.stringify(address));
+        return { payload: address };
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addToCart.pending, (state) => {
@@ -88,5 +102,7 @@ export const cartAddSlice = createSlice({
       });
   }
 });
+
+export const { saveShippingAddress } = cartAddSlice.actions;
 
 export default cartAddSlice.reducer;
