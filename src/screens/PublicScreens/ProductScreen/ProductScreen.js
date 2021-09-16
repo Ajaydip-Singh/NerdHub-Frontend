@@ -18,20 +18,21 @@ import styles from './ProductScreen.module.css';
 import { pageVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
+import { addToCart } from '../../../slices/shopSlices/cartSlice';
 
 export default function ProductScreen(props) {
   const productId = props.match.params.id;
 
-  const [qty, setQty] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
   const productGetSlice = useSelector((state) => state.productGetSlice);
   const { status, product, error } = productGetSlice;
 
-  const addToCartHandler = () => {
-    props.history.push(`/cart/${productId}?qty=${qty}`);
-  };
-
   const dispatch = useDispatch();
+  const addToCartHandler = () => {
+    // props.history.push(`/cart/${productId}?quantity=${quantity}`);
+    dispatch(addToCart({productId, quantity}));
+  };
 
   useEffect(() => {
     return () => {
@@ -111,8 +112,8 @@ export default function ProductScreen(props) {
                       <td>Quantity:</td>
                       <td>
                         <select
-                          value={qty}
-                          onChange={(e) => setQty(e.target.value)}
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
                         >
                           {[
                             ...Array(product && product.countInStock).keys()
