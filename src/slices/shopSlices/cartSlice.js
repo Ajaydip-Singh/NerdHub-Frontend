@@ -57,7 +57,17 @@ export const cartAddSlice = createSlice({
       })
       .addCase(addToCart.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.cart = [...state.cart, action.payload];
+        const addedProduct = action.payload;
+        const existingProduct = state.cart.find(
+          (product) => product.id === addedProduct.id
+        );
+        if (existingProduct) {
+          state.cart = state.cart.map((product) =>
+            product.id === existingProduct.id ? addedProduct : product
+          );
+        } else {
+          state.cart = [...state.cart, addedProduct];
+        }
         localStorage.setItem('cart', JSON.stringify(state.cart));
         state.error = null;
       })
