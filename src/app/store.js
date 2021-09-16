@@ -38,7 +38,7 @@ export const store = configureStore({
     cartSlice: {
       cart: localStorage.getItem('cart')
         ? JSON.parse(localStorage.getItem('cart'))
-        : null
+        : []
     }
   },
   reducer: {

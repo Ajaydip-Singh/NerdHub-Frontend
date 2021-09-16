@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { stripHtml } from '../../utils';
 
 const initialState = {
   status: null,
@@ -9,18 +10,18 @@ const initialState = {
 
 export const addToCart = createAsyncThunk(
   'cartSlice/addToCart',
-  async (productId, quantity, { rejectWithValue, getState }) => {
+  async ({ productId, quantity }, { rejectWithValue, getState }) => {
     try {
       const { data } = await axios.get(`/api/products/${productId}`);
-      localStorage.setItem('cart', JSON.stringify(getState().cartSlice.cart));
-      return {
-        name: data.name,
-        thumbnailImage: data.thumbnailImage,
-        price: data.price,
-        countInStock: data.countInStock,
+      const product = {
         id: data._id,
-        quantity: quantity
+        name: stripHtml(data.cardName),
+        quantity: quantity,
+        countinstock: data.countinstock,
+        price: data.price,
+        thumbnailImage: data.thumbnailImage
       };
+      return product;
     } catch (err) {
       if (!err.response) {
         throw err;
@@ -56,7 +57,8 @@ export const cartAddSlice = createSlice({
       })
       .addCase(addToCart.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.cart.push(action.payload);
+        state.cart = [...state.cart, action.payload];
+        localStorage.setItem('cart', JSON.stringify(state.cart));
         state.error = null;
       })
       .addCase(removeFromCart.pending, (state) => {
