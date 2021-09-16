@@ -22,6 +22,9 @@ export default function AdminPanelScreen() {
         <Link to="/contact-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Contact Page</div>
         </Link>
+        <Link to="/cart-page-content-admin" className={styles.card_link}>
+          <div className={styles.card}>Cart Page</div>
+        </Link>
         <Link to="/events-admin" className={styles.card_link}>
           <div className={styles.card}>Events</div>
         </Link>

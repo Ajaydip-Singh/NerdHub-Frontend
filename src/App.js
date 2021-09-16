@@ -23,6 +23,7 @@ import ShopScreen from './screens/PublicScreens/ShopScreen/ShopScreen';
 import ProductEditScreen from './screens/AdminScreens/ProductEditScreen/ProductEditScreen';
 import ProductScreen from './screens/PublicScreens/ProductScreen/ProductScreen';
 import CartScreen from './screens/PublicScreens/CartScreen/CartScreen';
+import CartPageScreen from './screens/AdminScreens/CartPageScreen/CartPageScreen';
 
 function App() {
   return (
@@ -78,6 +79,11 @@ function App() {
       <AdminRoute
         path="/contact-page-content-admin"
         component={ContactPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/cart-page-content-admin"
+        component={CartPageScreen}
         exact
       ></AdminRoute>
     </Router>

@@ -122,7 +122,15 @@ export default function Sidebar(props) {
                 to="/contact-page-content-admin"
                 className={addLinkStyling(props.contact_page)}
               >
-                Contact
+                Contact Page
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
+              <Link
+                to="/cart-page-content-admin"
+                className={addLinkStyling(props.cart_page)}
+              >
+                Cart Page
               </Link>
             </li>
           </ul>
