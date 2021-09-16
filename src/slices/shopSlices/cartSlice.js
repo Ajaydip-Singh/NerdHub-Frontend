@@ -33,10 +33,8 @@ export const addToCart = createAsyncThunk(
 
 export const removeFromCart = createAsyncThunk(
   'cartSlice/removeFromCart',
-  async (productId, { getState }) => {
-    const cart = getState().cartSlice.cart.filter((item) => item !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    return cart;
+  async (productId) => {
+    return productId;
   }
 );
 
@@ -83,7 +81,9 @@ export const cartAddSlice = createSlice({
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.cart = action.payload;
+        const productId = action.payload;
+        state.cart = state.cart.filter((product) => product.id !== productId);
+        localStorage.setItem('cart', JSON.stringify(state.cart));
         state.error = null;
       });
   }
