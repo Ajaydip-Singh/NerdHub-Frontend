@@ -17,7 +17,7 @@ export const addToCart = createAsyncThunk(
         id: data._id,
         name: stripHtml(data.cardName),
         quantity: quantity,
-        countinstock: data.countinstock,
+        countInStock: data.countInStock,
         price: data.price,
         thumbnailImage: data.thumbnailImage
       };
