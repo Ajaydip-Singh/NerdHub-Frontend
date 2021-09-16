@@ -12,6 +12,7 @@ import {
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import styles from './CartScreen.module.css';
+import { pageVariant, sectionVariant } from '../../../animate';
 
 export default function CartScreen(props) {
   const cartPageContentGetSlice = useSelector(
@@ -49,16 +50,35 @@ export default function CartScreen(props) {
           </MessageBox>
         </div>
       ) : (
-        <div
+        <motion.div
           style={{
             backgroundImage: `url(${content && content.cartBackgroundImage})`
           }}
+          variants={pageVariant}
+          initial="initial"
+          animate="final"
         >
-          <div className={styles.hero_section}>
-            <div className="ql-editor">
-              {content && parse(content.cartMainHeading)}
-            </div>
-          </div>
+          <motion.div
+            className={styles.hero_section}
+            initial={{ opacity: 0, x: '-100vw' }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2 }}
+            variants={sectionVariant}
+            whileHover="hover"
+          >
+            <motion.div
+              drag
+              dragConstraints={{ top: 10, left: 10, right: 10, bottom: 10 }}
+              dragTransition={{ bounceStiffness: 200, bounceDamping: 10 }}
+              whileHover={{ x: 1.5, scale: 1.2 }}
+              transition={{ yoyo: 5 }}
+              whileDrag={{ scale: 1.2 }}
+            >
+              <div className="ql-editor">
+                {content && parse(content.cartMainHeading)}
+              </div>
+            </motion.div>
+          </motion.div>
           <div className={styles.main_wrapper}>
             {/* <h1>Shopping cart</h1> */}
             {cart.length === 0 ? (
@@ -69,7 +89,9 @@ export default function CartScreen(props) {
               <div className={styles.info}>
                 {cart.map((product) => (
                   <div key={product.id}>
-                    <div
+                    <motion.div
+                      whileHover={{ scale: 1.05, transformOrigin: 0 }}
+                      transition={{ duration: 0.3 }}
                       style={{
                         borderColor: content && content.productCardBorderColor,
                         backgroundColor:
@@ -136,7 +158,7 @@ export default function CartScreen(props) {
                       >
                         Remove
                       </button>
-                    </div>
+                    </motion.div>
                   </div>
                 ))}
               </div>
@@ -165,7 +187,7 @@ export default function CartScreen(props) {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
