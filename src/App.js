@@ -24,6 +24,7 @@ import ProductEditScreen from './screens/AdminScreens/ProductEditScreen/ProductE
 import ProductScreen from './screens/PublicScreens/ProductScreen/ProductScreen';
 import CartScreen from './screens/PublicScreens/CartScreen/CartScreen';
 import CartPageScreen from './screens/AdminScreens/CartPageScreen/CartPageScreen';
+import ShippingScreen from './screens/PublicScreens/ShippingScreen/ShippingScreen';
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
       <Route path="/login" component={LoginScreen} exact></Route>
       <Route path="/register" component={RegisterScreen}></Route>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
+      <PrivateRoute
+        path="/shop/shipping"
+        component={ShippingScreen}
+      ></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
       <AdminRoute
         path="/products-admin"
