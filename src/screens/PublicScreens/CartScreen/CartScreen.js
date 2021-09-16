@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
@@ -13,6 +14,8 @@ import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import styles from './CartScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
+import Footer from '../../../components/Footer/Footer';
+import BottomNav from '../../../components/BottomNav/BottomNav';
 
 export default function CartScreen(props) {
   const cartPageContentGetSlice = useSelector(
@@ -189,6 +192,12 @@ export default function CartScreen(props) {
           </div>
         </motion.div>
       )}
+      <MediaQuery minWidth={800}>
+        <Footer></Footer>
+      </MediaQuery>
+      <MediaQuery maxWidth={800}>
+        <BottomNav></BottomNav>
+      </MediaQuery>
     </div>
   );
 }
