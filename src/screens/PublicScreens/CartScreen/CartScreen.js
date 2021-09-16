@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
-import MessageBox from '../../../components/MessageBox/MessageBox';
 import {
   addToCart,
   removeFromCart
@@ -30,9 +29,9 @@ export default function CartScreen(props) {
       <div className={styles.main_wrapper}>
         {/* <h1>Shopping cart</h1> */}
         {cart.length === 0 ? (
-          <MessageBox>
-            Cart is empty. <Link to="/">Go shopping</Link>
-          </MessageBox>
+          <div className={styles.empty_cart}>
+            Cart is empty. <Link to="/shop">Go shopping</Link>
+          </div>
         ) : (
           <div className={styles.info}>
             {cart.map((product) => (
@@ -78,7 +77,7 @@ export default function CartScreen(props) {
                     className="button border_bottom"
                     onClick={() => removeFromCartHandler(product.id)}
                   >
-                    Delete
+                    Remove
                   </button>
                 </div>
               </div>
