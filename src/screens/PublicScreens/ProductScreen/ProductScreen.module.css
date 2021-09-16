@@ -102,3 +102,30 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.cart_link {
+  text-decoration: none;
+  color: #fff;
+  transition: 300ms ease-in-out;
+}
+
+.cart_link:hover,
+.cart_link:focus {
+  text-decoration: none;
+  color: #000;
+}
+
+.floating_div {
+  margin: 1rem 0;
+  transition: 500ms ease-in-out;
+}
+
+.show_div {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hide_div {
+  opacity: 0;
+  transform: translateX(200);
+}
