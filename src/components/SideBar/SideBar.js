@@ -138,6 +138,11 @@ export default function Sidebar(props) {
                 Comics
               </Link>
             </li>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/shop/cart" className={addLinkStyling(props.cart)}>
+                Cart
+              </Link>
+            </li>
             {user.isAdmin ? (
               <li className={styles.side_bar_list_item}>
                 <Link to="/adminpanel" className={addLinkStyling(props.admin)}>
