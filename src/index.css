@@ -228,31 +228,6 @@ ul {
   margin-left: 1rem;
 }
 
-.image-gallery-slide .image-gallery-image {
-  width: 100%;
-  height: calc(100vh - 240px);
-  object-fit: cover;
-}
-
-.image-gallery-thumbnail:hover,
-.image-gallery-thumbnail.active,
-.image-gallery-thumbnail:focus {
-  border: 4px solid #50d450;
-}
-
-.image-gallery-thumbnails {
-  overflow-x: scroll;
-}
-
-.image-gallery-icon {
-  transition: 500ms ease-in-out;
-}
-
-.image-gallery-icon:hover,
-.image-gallery-icon:focus {
-  color: #50d450;
-}
-
 /* Table */
 .table_wrapper {
   overflow-x: auto;
