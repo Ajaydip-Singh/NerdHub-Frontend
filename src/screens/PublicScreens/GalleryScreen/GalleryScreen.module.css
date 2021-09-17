@@ -1,3 +1,11 @@
+.hero_section {
+  display: grid;
+  place-content: center;
+  height: 30vh;
+  margin-top: 4.375rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
 .main_wrapper {
   background-size: cover;
   object-fit: cover;
@@ -18,36 +26,16 @@
 }
 
 .gallery {
-  position: relative;
-  margin: 0.5rem;
+  padding: 2rem;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.image {
+  object-fit: cover;
   padding: 0.5rem;
-  height: 100%;
-  border: 3px solid #50d450;
-  z-index: 1;
-}
-
-.next_icon,
-.prev_icon {
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 300ms ease-in-out;
-}
-
-.next_icon {
-  right: 20px;
-}
-
-.prev_icon {
-  left: 20px;
-}
-
-.next_icon:hover {
-  transform: translate(3px, -50%);
-}
-
-.prev_icon:hover {
-  transform: translate(-3px, -50%);
 }

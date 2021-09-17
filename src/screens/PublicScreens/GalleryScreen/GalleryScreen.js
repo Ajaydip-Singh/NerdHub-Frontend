@@ -4,142 +4,13 @@ import BottomNav from '../../../components/BottomNav/BottomNav';
 import Footer from '../../../components/Footer/Footer';
 import Header from '../../../components/Header/Header';
 import styles from './GalleryScreen.module.css';
-import ImageGallery from 'react-image-gallery';
-import { pageVariant } from '../../../animate';
+import { pageVariant, sectionVariant } from '../../../animate';
+import { useState } from 'react';
+import ProductImage from '../../../components/ProductImage/ProductImage';
 
 export default function GalleryScreen() {
-  const images = [
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/'
-    },
-    {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/'
-    }
-  ];
-
-  const renderLeftNav = (onClick, disabled) => (
-    <span
-      onClick={onClick}
-      disabled={disabled}
-      aria-hidden="true"
-      className={`carousel-control-prev-icon ${styles.prev_icon}`}
-    />
-  );
-
-  const renderRightNav = (onClick, disabled) => (
-    <span
-      onClick={onClick}
-      disabled={disabled}
-      aria-hidden="true"
-      className={`carousel-control-next-icon ${styles.next_icon}`}
-    />
-  );
+  const [fullscreen, setFullScreen] = useState(false);
+  const [imageList, setImageList] = useState('');
 
   return (
     <div>
@@ -148,21 +19,53 @@ export default function GalleryScreen() {
         <div
           className={styles.main_wrapper}
           style={{
-            // backgroundImage: 'url(/images/destruction_long.jpeg)',
+            backgroundImage: 'url(/images/destruction_long.jpeg)',
             width: '100%'
           }}
         >
+          <motion.section
+            className={styles.hero_section}
+            initial={{ opacity: 0, x: '-100vw' }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2 }}
+            variants={sectionVariant}
+            whileHover="hover"
+          >
+            <motion.div
+              drag
+              dragConstraints={{ top: 10, left: 10, right: 10, bottom: 10 }}
+              dragTransition={{ bounceStiffness: 200, bounceDamping: 10 }}
+              whileHover={{ x: 1.5, scale: 1.2 }}
+              transition={{ yoyo: 5 }}
+              whileDrag={{ scale: 1.2 }}
+            >
+              <h1>Gallery</h1>
+            </motion.div>
+          </motion.section>
           <div className={styles.gallery}>
-            <ImageGallery
-              renderLeftNav={renderLeftNav}
-              renderRightNav={renderRightNav}
-              showFullscreenButton={false}
-              lazyLoad={true}
-              items={images}
-            />
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
+            <ProductImage
+              imageThumbnail={'/images/destruction_long.jpeg'}
+            ></ProductImage>
           </div>
         </div>
-
         <MediaQuery minWidth={800}>
           <Footer></Footer>
         </MediaQuery>
