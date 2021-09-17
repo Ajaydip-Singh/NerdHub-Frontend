@@ -28,40 +28,42 @@ export default function ProductImage(props) {
           alt={name}
         />
       </div>
-      <div className={styles.small_images_container}>
-        <motion.button
-          className={styles.image_button}
-          whileHover={{
-            scale: 1.04,
-            border: '2px solid #50d450'
-          }}
-        >
-          <img
-            onClick={() => setSelectedImage(imageThumbnail)}
-            className={styles.small_image}
-            src={imageThumbnail}
-            alt="Product"
-          />
-        </motion.button>
-        {images &&
-          images.length !== 0 &&
-          images.map((image, index) => (
-            <motion.button
-              className={styles.image_button}
-              whileHover={{
-                scale: 1.04,
-                border: '2px solid #50d450'
-              }}
-            >
-              <img
-                onClick={() => setSelectedImage(images[index])}
-                className={styles.small_image}
-                src={image}
-                alt="Product"
-              />
-            </motion.button>
-          ))}
-      </div>
+      {images && (
+        <div className={styles.small_images_container}>
+          <motion.button
+            className={styles.image_button}
+            whileHover={{
+              scale: 1.04,
+              border: '2px solid #50d450'
+            }}
+          >
+            <img
+              onClick={() => setSelectedImage(imageThumbnail)}
+              className={styles.small_image}
+              src={imageThumbnail}
+              alt="Product"
+            />
+          </motion.button>
+          {images &&
+            images.length !== 0 &&
+            images.map((image, index) => (
+              <motion.button
+                className={styles.image_button}
+                whileHover={{
+                  scale: 1.04,
+                  border: '2px solid #50d450'
+                }}
+              >
+                <img
+                  onClick={() => setSelectedImage(images[index])}
+                  className={styles.small_image}
+                  src={image}
+                  alt="Product"
+                />
+              </motion.button>
+            ))}
+        </div>
+      )}
     </div>
   );
 }
