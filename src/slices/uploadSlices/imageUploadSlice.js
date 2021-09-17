@@ -10,18 +10,22 @@ const initialState = {
 export const uploadImageCreator = (name) => {
   return createAsyncThunk(
     name,
-    async (formData, { rejectWithValue, getState }) => {
+    async ({ formData, tags }, { rejectWithValue, getState }) => {
       const {
         userAuthentication: { user }
       } = getState();
 
       try {
-        const { data } = await Axios.post('/api/upload/image', formData, {
-          headers: {
-            'Content-Type': 'multimedia/form-data',
-            Authorization: `Bearer ${user.token}`
+        const { data } = await Axios.post(
+          `/api/upload/image?${tags.map((tag) => `tags=${tag}`).join('&')}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multimedia/form-data',
+              Authorization: `Bearer ${user.token}`
+            }
           }
-        });
+        );
         return data;
       } catch (err) {
         return rejectWithValue(
