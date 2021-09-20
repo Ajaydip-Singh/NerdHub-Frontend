@@ -11,7 +11,9 @@ export const getGallery = createAsyncThunk(
   'galleryGet/getGallery',
   async ({ tag = '' }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/gallery?tag=${tag}`);
+      const { data } = await axios.get(
+        `/api/gallery${tag ? `?tag=${tag}` : ``}`
+      );
       return data;
     } catch (err) {
       if (!err.response) {
