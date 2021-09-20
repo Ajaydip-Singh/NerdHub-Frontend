@@ -127,6 +127,7 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['video']}
                   name={'imageUploadSliceA'}
                   setImage={setVideoThumbnail}
                 ></ImageUploader>
@@ -144,6 +145,7 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['video']}
                   name={'imageUploadSliceB'}
                   setImage={setVideoBackgroundImage}
                 ></ImageUploader>
@@ -175,6 +177,7 @@ export default function HomePageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['home-page']}
                   name={'imageUploadSliceC'}
                   setImage={setEventBackgroundImage}
                 ></ImageUploader>

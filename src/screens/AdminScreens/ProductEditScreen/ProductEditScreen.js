@@ -154,6 +154,7 @@ export default function ProductEditScreen(props) {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['product']}
                   name={'imageUploadSliceA'}
                   setImage={setThumbnailImage}
                   multiple={false}
@@ -172,6 +173,7 @@ export default function ProductEditScreen(props) {
                   ))}
                 </ul>
                 <ImageUploader
+                  tags={['product']}
                   name={'multipleImagesUploadSlice'}
                   setImage={setImages}
                   multiple={true}

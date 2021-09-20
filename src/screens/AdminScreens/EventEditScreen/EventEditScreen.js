@@ -148,6 +148,7 @@ export default function EventEditScreen(props) {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['event']}
                   name={'imageUploadSliceA'}
                   setImage={setThumbnailImage}
                 ></ImageUploader>

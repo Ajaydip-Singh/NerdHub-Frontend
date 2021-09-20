@@ -119,6 +119,7 @@ export default function ContactPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['contact-page']}
                   name={'imageUploadSliceA'}
                   setImage={setContactHeroBackgroundImage}
                 ></ImageUploader>
@@ -136,6 +137,7 @@ export default function ContactPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['contact-page']}
                   name={'imageUploadSliceB'}
                   setImage={setContactMainBackgroundImage}
                 ></ImageUploader>

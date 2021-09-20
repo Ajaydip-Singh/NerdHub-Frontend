@@ -132,6 +132,7 @@ export default function AboutPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['about-page']}
                   name={'imageUploadSliceA'}
                   setImage={setAboutBackgroundImage}
                 ></ImageUploader>
@@ -153,6 +154,7 @@ export default function AboutPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['video']}
                   name={'imageUploadSliceB'}
                   setImage={setVideoThumbnail}
                 ></ImageUploader>
@@ -196,6 +198,7 @@ export default function AboutPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['about-page']}
                   name={'imageUploadSliceC'}
                   setImage={setSectionOneImage}
                 ></ImageUploader>
@@ -225,6 +228,7 @@ export default function AboutPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['about-page']}
                   name={'imageUploadSliceD'}
                   setImage={setSectionTwoImage}
                 ></ImageUploader>

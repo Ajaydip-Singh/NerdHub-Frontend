@@ -121,6 +121,7 @@ export default function CartPageScreen() {
                   </a>
                 </p>
                 <ImageUploader
+                  tags={['cart-page']}
                   name={'imageUploadSliceA'}
                   setImage={setCartBackgroundImage}
                 ></ImageUploader>
