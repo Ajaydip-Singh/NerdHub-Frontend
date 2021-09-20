@@ -39,7 +39,7 @@ export default function ImageUploader(props) {
     console.log(typeof file);
     if (file && !Array.isArray(file)) {
       setImage(file.image.url);
-    } else if (file && file.length > 1) {
+    } else if (file && Array.isArray(file)) {
       const images = [];
       file.map((image) => images.push(image.url));
       setImage(images);
