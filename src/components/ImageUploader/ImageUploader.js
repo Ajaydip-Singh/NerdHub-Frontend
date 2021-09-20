@@ -35,8 +35,6 @@ export default function ImageUploader(props) {
   };
 
   useEffect(() => {
-    console.log(file);
-    console.log(typeof file);
     if (file && !Array.isArray(file)) {
       setImage(file.image.url);
     } else if (file && Array.isArray(file)) {
