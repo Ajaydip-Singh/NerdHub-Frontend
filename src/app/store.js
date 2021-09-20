@@ -19,8 +19,8 @@ import contactPageContentGetSlice from '../slices/pageSlices/contactPageContentS
 import contactPageContentUpdateSlice from '../slices/pageSlices/contactPageContentSlices/contactPageContentUpdateSlice';
 import cartPageContentGetSlice from '../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
 import cartPageContentUpdateSlice from '../slices/pageSlices/cartPageContentSlices/cartPageContentUpdateSlice';
-import imageUploadeSliceCreater from '../slices/uploadSlices/imageUploadSlice';
-import multipleImagesUploadSlice from '../slices/uploadSlices/multipleImageUploadSlice';
+import imageUploadeSliceCreater from '../slices/assetSlices/imageUploadSlice';
+import multipleImagesUploadSlice from '../slices/assetSlices/multipleImageUploadSlice';
 import imagesGetSlice from '../slices/assetSlices/imagesGetSlice';
 import productsGetSlice from '../slices/productSlices/productsGetSlice';
 import productGetSlice from '../slices/productSlices/productGetSlice';

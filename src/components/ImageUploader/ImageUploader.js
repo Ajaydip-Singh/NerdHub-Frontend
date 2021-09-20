@@ -2,8 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { uploadImageCreator } from '../../slices/uploadSlices/imageUploadSlice';
-import { uploadMultipleImages } from '../../slices/uploadSlices/multipleImageUploadSlice';
+import { uploadImageCreator } from '../../slices/assetSlices/imageUploadSlice';
+import { uploadMultipleImages } from '../../slices/assetSlices/multipleImageUploadSlice';
 import LoadingBox from '../LoadingBox/LoadingBox';
 import MessageBox from '../MessageBox/MessageBox';
 
