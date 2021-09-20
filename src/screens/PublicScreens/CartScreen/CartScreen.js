@@ -171,12 +171,19 @@ export default function CartScreen(props) {
                 <tbody>
                   <tr>
                     <td>Items:</td>
-                    <td>{cart.reduce((a, c) => a + c.quantity, 0)}</td>
+                    <td>
+                      {cart.reduce((a, c) => a + parseFloat(c.quantity), 0)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Subtotal:</td>
                     <td>
-                      KES {cart.reduce((a, c) => a + c.price * c.quantity, 0)}
+                      KES{' '}
+                      {cart.reduce(
+                        (a, c) =>
+                          a + parseFloat(c.price) * parseFloat(c.quantity),
+                        0
+                      )}
                     </td>
                   </tr>
                 </tbody>
