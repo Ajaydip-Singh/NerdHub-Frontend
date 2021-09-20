@@ -9,7 +9,7 @@ const initialState = {
 
 export const uploadMultipleImages = createAsyncThunk(
   'imagesMultipleUpload/uploadMultipleImages',
-  async ({ formData, tags }, { rejectWithValue, getState }) => {
+  async ({ formData, tags, gallery = '' }, { rejectWithValue, getState }) => {
     const {
       userAuthentication: { user }
     } = getState();
@@ -18,7 +18,7 @@ export const uploadMultipleImages = createAsyncThunk(
       const { data } = await Axios.post(
         `/api/upload/image/multiple?${tags
           .map((tag) => `tags=${tag}`)
-          .join('&')}`,
+          .join('&')}${gallery ? `&gallery=true` : ``}`,
         formData,
         {
           headers: {
