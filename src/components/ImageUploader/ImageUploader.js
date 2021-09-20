@@ -8,7 +8,7 @@ import LoadingBox from '../LoadingBox/LoadingBox';
 import MessageBox from '../MessageBox/MessageBox';
 
 export default function ImageUploader(props) {
-  const { name, setImage, multiple, tags } = props;
+  const { name, setImage, multiple, tags, gallery } = props;
 
   const imageUploadSlice = useSelector((state) => state[name]);
   const { status, file, error } = imageUploadSlice;
@@ -24,7 +24,7 @@ export default function ImageUploader(props) {
       for (let file of files) {
         formData.append('images', file);
       }
-      dispatch(uploadMultipleImages({ formData, tags }));
+      dispatch(uploadMultipleImages({ formData, tags, gallery }));
     } else {
       const file = e.target.files[0];
       console.log(file);
