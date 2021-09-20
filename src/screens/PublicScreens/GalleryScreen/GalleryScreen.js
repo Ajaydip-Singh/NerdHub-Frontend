@@ -5,12 +5,33 @@ import Footer from '../../../components/Footer/Footer';
 import Header from '../../../components/Header/Header';
 import styles from './GalleryScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductImage from '../../../components/ProductImage/ProductImage';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { getGallery } from '../../../slices/gallerySlices/galleryGetSlice';
+import { getGalleryTags } from '../../../slices/gallerySlices/galleryTagsGetSlice';
 
 export default function GalleryScreen() {
   const [fullscreen, setFullScreen] = useState(false);
-  const [imageList, setImageList] = useState('');
+  const [tag, setTag] = useState('all');
+
+  const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
+  const { status, gallery, error } = galleryGetSlice;
+
+  const galleryTagsGetSlice = useSelector((state) => state.galleryTagsGetSlice);
+  const { tags } = galleryTagsGetSlice;
+
+  const submitHandler = () => {
+    '';
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGalleryTags({}));
+    dispatch(getGallery({ tag: tag === 'all' ? '' : tag }));
+  }, [dispatch, tag]);
 
   return (
     <div>
@@ -42,28 +63,32 @@ export default function GalleryScreen() {
               <h1>Gallery</h1>
             </motion.div>
           </motion.section>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 1 }}
+            className={styles.filterbox}
+          >
+            <div className={styles.wrapper}>
+              <form className={styles.search} onSubmit={submitHandler}>
+                <div className={styles.filter_button_wrapper}>
+                  <select
+                    className={`${styles.search_button} ${styles.filter_button}`}
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                  >
+                    <option value="all">All Categories</option>
+                    {tags &&
+                      tags.map((tag) => <option value={tag}>{tag}</option>)}
+                  </select>
+                </div>
+              </form>
+            </div>
+          </motion.div>
           <div className={styles.gallery}>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
-            <ProductImage
-              imageThumbnail={'/images/destruction_long.jpeg'}
-            ></ProductImage>
+            {gallery &&
+              gallery.map((image) => (
+                <ProductImage imageThumbnail={image.url}></ProductImage>
+              ))}
           </div>
         </div>
         <MediaQuery minWidth={800}>

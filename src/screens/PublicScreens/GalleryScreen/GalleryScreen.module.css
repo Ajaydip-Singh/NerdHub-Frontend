@@ -39,3 +39,32 @@
   object-fit: cover;
   padding: 0.5rem;
 }
+
+/* FilterBox */
+.filterbox {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  margin: 0 auto;
+  max-width: max-content;
+}
+
+.filter_button_wrapper {
+  margin: 0.5rem 0;
+}
+
+.label {
+  display: inline;
+  font-size: 0.7rem;
+}
+
+.filter_button {
+  font-size: 0.7rem;
+  padding: 0.3rem;
+  outline: none;
+  border: 1px solid #0de80e;
+  background-color: #0de80e;
+}
+
+.filter_button:not(:last-of-type) {
+  margin-right: 0.2rem;
+}
