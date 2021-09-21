@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import Pages from '../../../components/Pages/Pages';
 import {
   createProduct,
   resetCreateProduct
@@ -16,8 +18,10 @@ import { stripHtml } from '../../../utils';
 import styles from './ProductsListScreen.module.css';
 
 export default function ProductsListScreen(props) {
+  const { pageNumber = '1' } = useParams();
+
   const productsGetSlice = useSelector((state) => state.productsGetSlice);
-  const { status, products, error } = productsGetSlice;
+  const { status, products, pages, error } = productsGetSlice;
 
   const productDeleteSlice = useSelector((state) => state.productDeleteSlice);
   const {
@@ -61,8 +65,8 @@ export default function ProductsListScreen(props) {
   }, [dispatch, productCreate]);
 
   useEffect(() => {
-    dispatch(getProducts({}));
-  }, [dispatch, productDelete, productCreate]);
+    dispatch(getProducts({ pageNumber }));
+  }, [dispatch, productDelete, productCreate, pageNumber]);
 
   return (
     <div>
@@ -138,6 +142,11 @@ export default function ProductsListScreen(props) {
           </table>
         )}
       </div>
+      <Pages
+        currentPage={parseInt(pageNumber)}
+        pages={parseInt(pages)}
+        to={'products-admin'}
+      ></Pages>
     </div>
   );
 }
