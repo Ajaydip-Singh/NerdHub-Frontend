@@ -4,6 +4,8 @@ import axios from 'axios';
 const initialState = {
   status: 'idle',
   products: [],
+  pageNumber: '',
+  pages: '',
   error: null
 };
 
@@ -11,6 +13,7 @@ export const getProducts = createAsyncThunk(
   'productsGet/getProducts',
   async (
     {
+      pageNumber = '',
       name = '',
       category = '',
       brand = '',
@@ -23,7 +26,7 @@ export const getProducts = createAsyncThunk(
   ) => {
     try {
       const { data } = await axios.get(
-        `/api/products?name=${name}&category=${category}&brand=${brand}&min=${min}&max=${max}&rating=${rating}&order=${order}`
+        `/api/products?pageNumber=${pageNumber}&name=${name}&category=${category}&brand=${brand}&min=${min}&max=${max}&rating=${rating}&order=${order}`
       );
       return data;
     } catch (err) {
@@ -54,7 +57,9 @@ export const productsGetSlice = createSlice({
       })
       .addCase(getProducts.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.pages = action.payload.pages;
+        state.pageNumber = action.payload.pageNumber;
         state.error = null;
       });
   }
