@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Pages.module.css';
 
-export default function Pages({ currentPage, pages }) {
+export default function Pages({ currentPage, pages, to }) {
   let displayPages = [];
   for (
     let i = currentPage > 1 ? currentPage - 1 : currentPage;
@@ -12,17 +12,21 @@ export default function Pages({ currentPage, pages }) {
     displayPages.push(i);
   }
   return (
-    <div className={styles.pages_container}>
-      {displayPages.map((x) => (
-        <Link
-          className={`button border_bottom ${styles.page_link} ${
-            x === currentPage ? styles.active_page_link : ''
-          }`}
-          to={`/shop/${x}`}
-        >
-          {x}
-        </Link>
-      ))}
+    <div>
+      {pages > 1 && (
+        <div className={styles.pages_container}>
+          {displayPages.map((x) => (
+            <Link
+              className={`button border_bottom ${styles.page_link} ${
+                x === currentPage ? styles.active_page_link : ''
+              }`}
+              to={`/${to}/${x}`}
+            >
+              {x}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
