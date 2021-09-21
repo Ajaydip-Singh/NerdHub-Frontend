@@ -22,7 +22,6 @@ import cartPageContentUpdateSlice from '../slices/pageSlices/cartPageContentSlic
 import imageUploadeSliceCreater from '../slices/assetSlices/imageUploadSlice';
 import multipleImagesUploadSlice from '../slices/assetSlices/multipleImageUploadSlice';
 import galleryGetSlice from '../slices/gallerySlices/galleryGetSlice';
-import imagesGetSlice from '../slices/assetSlices/imagesGetSlice';
 import productsGetSlice from '../slices/productSlices/productsGetSlice';
 import productGetSlice from '../slices/productSlices/productGetSlice';
 import productCreateSlice from '../slices/productSlices/productCreateSlice';
@@ -74,10 +73,9 @@ export const store = configureStore({
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
     imageUploadSliceD: imageUploadeSliceCreater('imageUploadSliceD'),
-    imagesGetSlice: imagesGetSlice,
     multipleImagesUploadSlice: multipleImagesUploadSlice,
     galleryGetSlice: galleryGetSlice,
-    galleyTagsGetSlice: galleryTagsGetSlice,
+    galleryTagsGetSlice: galleryTagsGetSlice,
     productsGetSlice: productsGetSlice,
     productGetSlice: productGetSlice,
     productCreateSlice: productCreateSlice,
