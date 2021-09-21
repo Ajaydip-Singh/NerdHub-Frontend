@@ -11,13 +11,19 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getGallery } from '../../../slices/gallerySlices/galleryGetSlice';
 import { getGalleryTags } from '../../../slices/gallerySlices/galleryTagsGetSlice';
+import { useParams } from 'react-router';
+import Pages from '../../../components/Pages/Pages';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
 
 export default function GalleryScreen() {
+  const { pageNumber = '1' } = useParams();
+
   const [fullscreen, setFullScreen] = useState(false);
   const [tag, setTag] = useState('all');
 
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
-  const { status, gallery, error } = galleryGetSlice;
+  const { status, gallery, pages, error } = galleryGetSlice;
 
   const galleryTagsGetSlice = useSelector((state) => state.galleryTagsGetSlice);
   const { tags } = galleryTagsGetSlice;
@@ -30,8 +36,13 @@ export default function GalleryScreen() {
 
   useEffect(() => {
     dispatch(getGalleryTags({}));
-    dispatch(getGallery({ tag: tag === 'all' ? '' : tag }));
-  }, [dispatch, tag]);
+    dispatch(
+      getGallery({
+        pageNumber,
+        tag: tag === 'all' ? '' : tag
+      })
+    );
+  }, [dispatch, tag, pageNumber]);
 
   return (
     <div>
@@ -84,12 +95,27 @@ export default function GalleryScreen() {
               </form>
             </div>
           </motion.div>
-          <div className={styles.gallery}>
-            {gallery &&
-              gallery.map((image) => (
-                <ProductImage imageThumbnail={image.url}></ProductImage>
-              ))}
+          <div className={styles.gallery_min_height}>
+            {status === 'loading' ? (
+              <LoadingBox></LoadingBox>
+            ) : error ? (
+              <MessageBox variant="danger">{error}</MessageBox>
+            ) : (
+              <motion.div
+                variants={pageVariant}
+                initial="initial"
+                animate="final"
+                className={styles.gallery}
+              >
+                {gallery &&
+                  gallery.map((image) => (
+                    <ProductImage imageThumbnail={image.url}></ProductImage>
+                  ))}
+              </motion.div>
+            )}
           </div>
+
+          <Pages to={'gallery'} currentPage={pageNumber} pages={pages}></Pages>
         </div>
         <MediaQuery minWidth={800}>
           <Footer></Footer>

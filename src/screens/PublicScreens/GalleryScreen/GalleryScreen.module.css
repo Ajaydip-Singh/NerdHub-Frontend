@@ -35,6 +35,10 @@
   gap: 1rem;
 }
 
+.gallery_min_height {
+  min-height: 60vh;
+}
+
 .image {
   object-fit: cover;
   padding: 0.5rem;
