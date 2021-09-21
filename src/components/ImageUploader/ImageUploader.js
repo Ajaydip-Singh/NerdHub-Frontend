@@ -8,7 +8,7 @@ import LoadingBox from '../LoadingBox/LoadingBox';
 import MessageBox from '../MessageBox/MessageBox';
 
 export default function ImageUploader(props) {
-  const { name, setImage, multiple, tags, gallery } = props;
+  const { name, setImage, multiple, tags, gallery, disabled } = props;
 
   const imageUploadSlice = useSelector((state) => state[name]);
   const { status, file, error } = imageUploadSlice;
@@ -55,6 +55,7 @@ export default function ImageUploader(props) {
           type="file"
           onChange={uploadHandler}
           multiple={multiple}
+          disabled={disabled}
           accept="image/png, image/jpeg"
         ></input>
       )}
