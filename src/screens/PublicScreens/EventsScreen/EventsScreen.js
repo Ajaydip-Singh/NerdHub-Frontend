@@ -13,8 +13,12 @@ import { getEventsVenues } from '../../../slices/eventSlices/eventsVenuesGetSlic
 import { motion } from 'framer-motion';
 import styles from './EventsScreen.module.css';
 import { pageVariant } from '../../../animate';
+import { useParams } from 'react-router';
+import Pages from '../../../components/Pages/Pages';
 
 export default function EventsScreen(props) {
+  const { pageNumber = '1' } = useParams();
+
   const [inputEventName, setInputEventName] = useState('');
   const [searchEventName, setSearchEventName] = useState('');
   const [category, setCategory] = useState('all');
@@ -28,7 +32,7 @@ export default function EventsScreen(props) {
     (state) => state.eventsVenuesGetSlice
   );
 
-  const { status, events, error } = eventsGetSlice;
+  const { status, events, pages, error } = eventsGetSlice;
   const { categories } = eventsCategoriesGetSlice;
   const { venues } = eventsVenuesGetSlice;
 
@@ -42,12 +46,13 @@ export default function EventsScreen(props) {
   useEffect(() => {
     dispatch(
       getEvents({
+        pageNumber,
         name: searchEventName,
         category: category === 'all' ? '' : category,
         venue: venue === 'all' ? '' : venue
       })
     );
-  }, [dispatch, category, venue, searchEventName]);
+  }, [dispatch, pageNumber, category, venue, searchEventName]);
 
   useEffect(() => {
     dispatch(getEvents({}));
@@ -58,80 +63,85 @@ export default function EventsScreen(props) {
   return (
     <div className={styles.screen}>
       <Header events></Header>
-      {status === 'loading' ? (
-        <div className="min_page_height">
-          <LoadingBox></LoadingBox>
-        </div>
-      ) : error ? (
-        <div className="min_page_height">
-          <MessageBox variant="danger">
-            Oops. We are temporarily unavailable. Please try again later.
-          </MessageBox>
-        </div>
-      ) : (
-        <>
-          <motion.div
-            variants={pageVariant}
-            initial="initial"
-            animate="final"
-            className={styles.main_wrapper}
-            style={{
-              backgroundImage: 'url(/images/cubes.jpeg)'
-            }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 1 }}
-              className={styles.filterbox}
-            >
-              <div className={styles.wrapper}>
-                <form className={styles.search} onSubmit={submitHandler}>
-                  <div className="row_f">
-                    <input
-                      className={styles.input}
-                      type="text"
-                      name="q"
-                      value={inputEventName}
-                      onChange={(e) => setInputEventName(e.target.value)}
-                      placeholder="Search event by name"
-                      id="q"
-                    />
-                    <button
-                      type="submit"
-                      className={styles.search_button}
-                      onClick={() => setSearchEventName(inputEventName)}
-                    >
-                      <i className="fa fa-search"></i>
-                    </button>
-                  </div>
-                  <div className={styles.filter_button_wrapper}>
-                    <select
-                      className={`${styles.search_button} ${styles.filter_button}`}
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                    >
-                      <option value="all">All Categories</option>
-                      {categories &&
-                        categories.map((category) => (
-                          <option value={category}>{category}</option>
-                        ))}
-                    </select>
-                    <select
-                      className={`${styles.search_button} ${styles.filter_button}`}
-                      value={venue}
-                      onChange={(e) => setVenue(e.target.value)}
-                    >
-                      <option value="all">All Venues</option>
-                      {venues &&
-                        venues.map((venue) => (
-                          <option value={venue}>{venue}</option>
-                        ))}
-                    </select>
-                  </div>
-                </form>
+      <motion.div
+        variants={pageVariant}
+        initial="initial"
+        animate="final"
+        className={styles.main_wrapper}
+        style={{
+          backgroundImage: 'url(/images/cubes.jpeg)'
+        }}
+      >
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 1 }}
+          className={styles.filterbox}
+        >
+          <div className={styles.wrapper}>
+            <form className={styles.search} onSubmit={submitHandler}>
+              <div className="row_f">
+                <input
+                  className={styles.input}
+                  type="text"
+                  name="q"
+                  value={inputEventName}
+                  onChange={(e) => setInputEventName(e.target.value)}
+                  placeholder="Search event by name"
+                  id="q"
+                />
+                <button
+                  type="submit"
+                  className={styles.search_button}
+                  onClick={() => setSearchEventName(inputEventName)}
+                >
+                  <i className="fa fa-search"></i>
+                </button>
               </div>
-            </motion.div>
-            <div className={styles.events_wrapper}>
+              <div className={styles.filter_button_wrapper}>
+                <select
+                  className={`${styles.search_button} ${styles.filter_button}`}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="all">All Categories</option>
+                  {categories &&
+                    categories.map((category) => (
+                      <option value={category}>{category}</option>
+                    ))}
+                </select>
+                <select
+                  className={`${styles.search_button} ${styles.filter_button}`}
+                  value={venue}
+                  onChange={(e) => setVenue(e.target.value)}
+                >
+                  <option value="all">All Venues</option>
+                  {venues &&
+                    venues.map((venue) => (
+                      <option value={venue}>{venue}</option>
+                    ))}
+                </select>
+              </div>
+            </form>
+          </div>
+        </motion.div>
+        {status === 'loading' ? (
+          <div className="min_page_height">
+            <LoadingBox></LoadingBox>
+          </div>
+        ) : error ? (
+          <div className="min_page_height">
+            <MessageBox variant="danger">
+              Oops. We are temporarily unavailable. Please try again later.
+            </MessageBox>
+          </div>
+        ) : (
+          <>
+            <motion.div
+              variants={pageVariant}
+              initial="initial"
+              animate="final"
+              className={styles.events_wrapper}
+            >
               {status === 'loading' ? (
                 <LoadingBox></LoadingBox>
               ) : error ? (
@@ -148,11 +158,15 @@ export default function EventsScreen(props) {
                     )
                 )
               )}
-            </div>
-          </motion.div>
-        </>
-      )}
-
+            </motion.div>
+            <Pages
+              to={'events'}
+              currentPage={parseInt(pageNumber)}
+              pages={parseInt(pages)}
+            ></Pages>
+          </>
+        )}
+      </motion.div>
       <MediaQuery minWidth={800}>
         <Footer></Footer>
       </MediaQuery>
