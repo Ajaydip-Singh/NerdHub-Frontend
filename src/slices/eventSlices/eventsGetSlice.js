@@ -4,18 +4,26 @@ import axios from 'axios';
 const initialState = {
   status: 'idle',
   events: [],
+  pageNumber: 1,
+  pages: 1,
   error: null
 };
 
 export const getEvents = createAsyncThunk(
   'eventsGet/getEvents',
   async (
-    { name = '', category = '', venue = '', isFeaturedEvent = '' },
+    {
+      pageNumber = '',
+      name = '',
+      category = '',
+      venue = '',
+      isFeaturedEvent = ''
+    },
     { rejectWithValue }
   ) => {
     try {
       const { data } = await axios.get(
-        `/api/events?name=${name}&category=${category}&venue=${venue}&isFeaturedEvent=${isFeaturedEvent}`
+        `/api/events?pageNumber=${pageNumber}&name=${name}&category=${category}&venue=${venue}&isFeaturedEvent=${isFeaturedEvent}`
       );
       return data;
     } catch (err) {
@@ -46,7 +54,9 @@ export const eventsGetSlice = createSlice({
       })
       .addCase(getEvents.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.events = action.payload;
+        state.events = action.payload.events;
+        state.pageNumber = action.payload.pageNumber;
+        state.pages = action.payload.pages;
         state.error = null;
       });
   }
