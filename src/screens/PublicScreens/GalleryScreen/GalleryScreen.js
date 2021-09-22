@@ -16,11 +16,10 @@ import Pages from '../../../components/Pages/Pages';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 
-export default function GalleryScreen() {
-  const { pageNumber = '1' } = useParams();
+export default function GalleryScreen(props) {
+  const { pageNumber = '1', tag = 'all' } = useParams();
 
-  const [fullscreen, setFullScreen] = useState(false);
-  const [tag, setTag] = useState('all');
+  // const [fullscreen, setFullScreen] = useState(false);
 
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
   const { status, gallery, pages, error } = galleryGetSlice;
@@ -33,6 +32,19 @@ export default function GalleryScreen() {
   };
 
   const dispatch = useDispatch();
+
+  const getFilterUrl = (filter) => {
+    let filterPageNumber;
+    if (filter.tag && filter.tag !== tag) {
+      filterPageNumber = 1;
+    } else {
+      filterPageNumber = filter.pageNumber || pageNumber;
+    }
+
+    const filterTag = filter.tag || tag;
+
+    return `/gallery/${filterTag}/${filterPageNumber}`;
+  };
 
   useEffect(() => {
     dispatch(getGalleryTags({}));
@@ -85,7 +97,9 @@ export default function GalleryScreen() {
                   <select
                     className={`${styles.search_button} ${styles.filter_button}`}
                     value={tag}
-                    onChange={(e) => setTag(e.target.value)}
+                    onChange={(e) =>
+                      props.history.push(getFilterUrl({ tag: e.target.value }))
+                    }
                   >
                     <option value="all">All Categories</option>
                     {tags &&
@@ -115,7 +129,11 @@ export default function GalleryScreen() {
             )}
           </div>
 
-          <Pages to={'gallery'} currentPage={pageNumber} pages={pages}></Pages>
+          <Pages
+            filterUrl={getFilterUrl}
+            currentPage={pageNumber}
+            pages={pages}
+          ></Pages>
         </div>
         <MediaQuery minWidth={800}>
           <Footer></Footer>
