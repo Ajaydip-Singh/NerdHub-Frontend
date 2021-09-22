@@ -4,15 +4,17 @@ import axios from 'axios';
 const initialState = {
   status: 'idle',
   gallery: [],
+  pageNumber: 1,
+  pages: 1,
   error: null
 };
 
 export const getGallery = createAsyncThunk(
   'galleryGet/getGallery',
-  async ({ tag = '' }, { rejectWithValue }) => {
+  async ({ pageNumber = '', tag = '' }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `/api/gallery${tag ? `?tag=${tag}` : ``}`
+        `/api/gallery?pageNumber=${pageNumber}${tag ? `&tag=${tag}` : ``}`
       );
       return data;
     } catch (err) {
@@ -43,7 +45,9 @@ export const galleryGetSlice = createSlice({
       })
       .addCase(getGallery.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.gallery = action.payload;
+        state.gallery = action.payload.gallery;
+        state.pageNumber = action.payload.pageNumber;
+        state.pages = action.payload.pages;
         state.error = null;
       });
   }
