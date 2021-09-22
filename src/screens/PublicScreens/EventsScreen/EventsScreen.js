@@ -17,12 +17,16 @@ import { useParams } from 'react-router';
 import Pages from '../../../components/Pages/Pages';
 
 export default function EventsScreen(props) {
-  const { pageNumber = '1' } = useParams();
+  const {
+    name = 'all',
+    category = 'all',
+    venue = 'all',
+    pageNumber = '1'
+  } = useParams();
 
-  const [inputEventName, setInputEventName] = useState('');
-  const [searchEventName, setSearchEventName] = useState('');
-  const [category, setCategory] = useState('all');
-  const [venue, setVenue] = useState('all');
+  const [inputEventName, setInputEventName] = useState(
+    name === 'all' ? '' : name
+  );
 
   const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
   const eventsCategoriesGetSlice = useSelector(
@@ -38,27 +42,46 @@ export default function EventsScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setSearchEventName(inputEventName);
+    props.history.push(getFilterUrl({ name: inputEventName }));
+  };
+
+  const getFilterUrl = (filter) => {
+    console.log('input', inputEventName);
+    let filterPageNumber;
+    if (
+      (filter.name && filter.name !== name) ||
+      (filter.category && filter.category !== category) ||
+      (filter.venue && filter.venue !== venue)
+    ) {
+      filterPageNumber = 1;
+    } else {
+      filterPageNumber = filter.pageNumber || pageNumber;
+    }
+
+    const filterName = filter.name
+      ? filter.name
+      : filter.name === ''
+      ? 'all'
+      : name;
+    const filterCategory = filter.category || category;
+    const filterVenue = filter.venue || venue;
+
+    return `/events/${filterName}/${filterCategory}/${filterVenue}/${filterPageNumber}`;
   };
 
   const dispatch = useDispatch();
-
   useEffect(() => {
+    dispatch(getEventsCategories());
+    dispatch(getEventsVenues());
     dispatch(
       getEvents({
         pageNumber,
-        name: searchEventName,
+        name: name === 'all' ? '' : name,
         category: category === 'all' ? '' : category,
         venue: venue === 'all' ? '' : venue
       })
     );
-  }, [dispatch, pageNumber, category, venue, searchEventName]);
-
-  useEffect(() => {
-    dispatch(getEvents({}));
-    dispatch(getEventsCategories());
-    dispatch(getEventsVenues());
-  }, [dispatch]);
+  }, [dispatch, pageNumber, category, venue, name]);
 
   return (
     <div className={styles.screen}>
@@ -92,7 +115,9 @@ export default function EventsScreen(props) {
                 <button
                   type="submit"
                   className={styles.search_button}
-                  onClick={() => setSearchEventName(inputEventName)}
+                  onClick={() =>
+                    props.history.push(getFilterUrl({ name: inputEventName }))
+                  }
                 >
                   <i className="fa fa-search"></i>
                 </button>
@@ -101,7 +126,11 @@ export default function EventsScreen(props) {
                 <select
                   className={`${styles.search_button} ${styles.filter_button}`}
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) =>
+                    props.history.push(
+                      getFilterUrl({ category: e.target.value })
+                    )
+                  }
                 >
                   <option value="all">All Categories</option>
                   {categories &&
@@ -112,7 +141,9 @@ export default function EventsScreen(props) {
                 <select
                   className={`${styles.search_button} ${styles.filter_button}`}
                   value={venue}
-                  onChange={(e) => setVenue(e.target.value)}
+                  onChange={(e) =>
+                    props.history.push(getFilterUrl({ venue: e.target.value }))
+                  }
                 >
                   <option value="all">All Venues</option>
                   {venues &&
@@ -160,7 +191,7 @@ export default function EventsScreen(props) {
               )}
             </motion.div>
             <Pages
-              to={'events'}
+              filterUrl={getFilterUrl}
               currentPage={parseInt(pageNumber)}
               pages={parseInt(pages)}
             ></Pages>
