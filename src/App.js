@@ -91,6 +91,11 @@ function App() {
         component={CartPageScreen}
         exact
       ></AdminRoute>
+      <AdminRoute
+        path="/gallery-page-content-admin"
+        component={GalleryPageScreen}
+        exact
+      ></AdminRoute>
     </Router>
   );
 }
