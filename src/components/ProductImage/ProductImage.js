@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import styles from './ProductImage.module.css';
 
 export default function ProductImage(props) {
-  const { imageThumbnail, images, name } = props;
+  const { imageThumbnail, images, name, borderColor } = props;
 
   const [fullscreen, setFullscreen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(imageThumbnail);
@@ -24,6 +24,11 @@ export default function ProductImage(props) {
           className={`${styles.product_image} ${
             fullscreen ? styles.image_fullscreen : styles.image_normal
           }`}
+          style={{
+            border: borderColor
+              ? `2px solid ${borderColor}`
+              : '2px solid #50d450'
+          }}
           src={selectedImage}
           alt={name}
         />
@@ -34,7 +39,9 @@ export default function ProductImage(props) {
             className={styles.image_button}
             whileHover={{
               scale: 1.04,
-              border: '2px solid #50d450'
+              border: borderColor
+                ? `2px solid ${borderColor}`
+                : `2px solid #50d450`
             }}
           >
             <img

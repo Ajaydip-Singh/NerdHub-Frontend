@@ -1,7 +1,7 @@
 .product_image {
   grid-area: image;
   cursor: pointer;
-  border: 2px solid #50d450;
+  border: 2px solid transparent;
   object-fit: cover;
   object-position: center;
   width: 100%;
