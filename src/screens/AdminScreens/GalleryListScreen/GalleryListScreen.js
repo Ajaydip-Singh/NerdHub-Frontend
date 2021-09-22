@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import Header from '../../../components/Header/Header';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import Pages from '../../../components/Pages/Pages';
 import { getGallery } from '../../../slices/gallerySlices/galleryGetSlice';
 // import {
 // deleteGallery,
@@ -11,11 +13,13 @@ import { getGallery } from '../../../slices/gallerySlices/galleryGetSlice';
 import styles from './GalleryListScreen.module.css';
 
 export default function GalleryListScreen(props) {
+  const { pageNumber = '1' } = useParams();
+
   const [uploadImages, setUploadImages] = useState([]);
   const [tagInput, setTagInput] = useState('');
 
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
-  const { status, gallery, error } = galleryGetSlice;
+  const { status, gallery, pages, error } = galleryGetSlice;
 
   // const galleryImageDeleteSlice = useSelector(
   //   (state) => state.galleryImageDeleteSlice
@@ -45,8 +49,8 @@ export default function GalleryListScreen(props) {
   //   };
   // }, [dispatch, galleryDelete]);
   useEffect(() => {
-    dispatch(getGallery({}));
-  }, [dispatch]);
+    dispatch(getGallery({ pageNumber }));
+  }, [dispatch, pageNumber]);
 
   return (
     <div>
@@ -67,7 +71,7 @@ export default function GalleryListScreen(props) {
             onChange={(e) => setTagInput(e.target.value)}
             className={styles.input}
             type="text"
-            placeholder="Enter tag name to upload images"
+            placeholder="Enter image tag"
           />
           <ImageUploader
             tags={[tagInput]}
@@ -99,7 +103,11 @@ export default function GalleryListScreen(props) {
             <tbody>
               {gallery.map((gallery) => (
                 <tr key={gallery._id}>
-                  <td>{gallery.url}</td>
+                  <td>
+                    <a target="_blank" rel="noreferrer" href={gallery.url}>
+                      Image Link
+                    </a>
+                  </td>
                   <td>{gallery.publicId}</td>
                   <td>{gallery.tags}</td>
                   <td>
@@ -117,6 +125,11 @@ export default function GalleryListScreen(props) {
           </table>
         )}
       </div>
+      <Pages
+        to={'gallery-admin'}
+        currentPage={pageNumber}
+        pages={pages}
+      ></Pages>
     </div>
   );
 }
