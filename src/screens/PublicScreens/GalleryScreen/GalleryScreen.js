@@ -19,7 +19,7 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 export default function GalleryScreen(props) {
   const { pageNumber = '1', tag = 'all' } = useParams();
 
-  // const [fullscreen, setFullScreen] = useState(false);
+  const [fullscreen, setFullScreen] = useState(false);
 
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
   const { status, gallery, pages, error } = galleryGetSlice;
@@ -109,7 +109,7 @@ export default function GalleryScreen(props) {
               </form>
             </div>
           </motion.div>
-          <div className={styles.gallery_min_height}>
+          <div className={styles.gallery_wrapper}>
             {status === 'loading' ? (
               <LoadingBox></LoadingBox>
             ) : error ? (
