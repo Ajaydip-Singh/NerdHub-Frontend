@@ -46,7 +46,6 @@ export default function EventsScreen(props) {
   };
 
   const getFilterUrl = (filter) => {
-    console.log('input', inputEventName);
     let filterPageNumber;
     if (
       (filter.name && filter.name !== name) ||
