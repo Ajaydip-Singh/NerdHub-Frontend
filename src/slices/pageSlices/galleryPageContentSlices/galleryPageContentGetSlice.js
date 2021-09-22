@@ -7,11 +7,11 @@ const initialState = {
   error: null
 };
 
-export const getAboutPageContent = createAsyncThunk(
-  'aboutPageContentGet/getAboutPageContent',
+export const getGalleryPageContent = createAsyncThunk(
+  'galleryPageContentGet/getGalleryPageContent',
   async (options, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/pages/about-page-content`);
+      const { data } = await axios.get(`/api/pages/gallery-page-content`);
       return data;
     } catch (err) {
       if (!err.response) {
@@ -22,11 +22,11 @@ export const getAboutPageContent = createAsyncThunk(
   }
 );
 
-export const aboutPageContentGetSlice = createSlice({
-  name: 'aboutPageContentGet',
+export const galleryPageContentGetSlice = createSlice({
+  name: 'galleryPageContentGet',
   initialState,
   reducers: {
-    resetGetAboutPageContent: (state) => {
+    resetGetGalleryPageContent: (state) => {
       state.status = 'idle';
       state.content = null;
       state.error = null;
@@ -34,19 +34,19 @@ export const aboutPageContentGetSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAboutPageContent.pending, (state) => {
+      .addCase(getGalleryPageContent.pending, (state) => {
         state.status = 'loading';
         state.content = null;
         state.error = null;
       })
-      .addCase(getAboutPageContent.rejected, (state, action) => {
+      .addCase(getGalleryPageContent.rejected, (state, action) => {
         state.status = 'idle';
         state.content = null;
         state.error = action.payload
           ? action.payload
-          : 'Cannot get about page content. Try again later.';
+          : 'Cannot get gallery page content. Try again later.';
       })
-      .addCase(getAboutPageContent.fulfilled, (state, action) => {
+      .addCase(getGalleryPageContent.fulfilled, (state, action) => {
         state.status = 'idle';
         state.content = action.payload;
         state.error = null;
@@ -54,6 +54,7 @@ export const aboutPageContentGetSlice = createSlice({
   }
 });
 
-export const { resetGetAboutPageContent } = aboutPageContentGetSlice.actions;
+export const { resetGetGalleryPageContent } =
+  galleryPageContentGetSlice.actions;
 
-export default aboutPageContentGetSlice.reducer;
+export default galleryPageContentGetSlice.reducer;
