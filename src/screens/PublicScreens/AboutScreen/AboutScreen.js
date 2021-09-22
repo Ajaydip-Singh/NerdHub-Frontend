@@ -71,11 +71,7 @@ export default function AboutScreen() {
               )}
             </motion.div>
           </motion.section>
-          <motion.div
-            variants={sectionVariant}
-            whileHover="hover"
-            transition={{ duration: 1.2 }}
-          >
+          <motion.div transition={{ duration: 1.2 }}>
             <section className={styles.video_section}>
               <div className={styles.video_container}>
                 <motion.div
