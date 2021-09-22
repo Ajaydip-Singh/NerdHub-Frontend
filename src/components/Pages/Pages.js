@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Pages.module.css';
 
-export default function Pages({ currentPage, pages, to }) {
+export default function Pages({ currentPage, pages, to, filterUrl }) {
   let displayPages = [];
   for (
     let i = currentPage > 1 ? currentPage - 1 : currentPage;
@@ -11,6 +11,7 @@ export default function Pages({ currentPage, pages, to }) {
   ) {
     displayPages.push(i);
   }
+
   return (
     <div>
       {pages > 1 && (
@@ -20,7 +21,7 @@ export default function Pages({ currentPage, pages, to }) {
               className={`button border_bottom ${styles.page_link} ${
                 x === currentPage ? styles.active_page_link : ''
               }`}
-              to={`/${to}/${x}`}
+              to={to ? `/${to}/${x}` : filterUrl({ pageNumber: x })}
             >
               {x}
             </Link>
