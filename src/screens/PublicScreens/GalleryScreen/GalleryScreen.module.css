@@ -27,9 +27,6 @@
 
 .gallery {
   padding: 2rem;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
@@ -37,11 +34,6 @@
 
 .gallery_wrapper {
   min-height: 60vh;
-}
-
-.image {
-  object-fit: cover;
-  padding: 0.5rem;
 }
 
 /* FilterBox */
