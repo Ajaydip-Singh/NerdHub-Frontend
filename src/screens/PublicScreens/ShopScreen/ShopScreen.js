@@ -14,12 +14,20 @@ import { pageVariant } from '../../../animate';
 import { motion } from 'framer-motion';
 import { getProductsCategories } from '../../../slices/productSlices/productsCategoriesGetSlice';
 import { getProductsBrands } from '../../../slices/productSlices/productsBrandsGetSlice';
+import { useParams } from 'react-router';
+import Pages from '../../../components/Pages/Pages';
 
-export default function ShopScreen() {
-  const [inputProductName, setInputProductName] = useState('');
-  const [searchProductName, setSearchProductName] = useState('');
-  const [category, setCategory] = useState('all');
-  const [brand, setBrand] = useState('all');
+export default function ShopScreen(props) {
+  const {
+    name = 'all',
+    category = 'all',
+    brand = 'all',
+    pageNumber = '1'
+  } = useParams();
+
+  const [inputProductName, setInputProductName] = useState(
+    name === 'all' ? '' : name
+  );
 
   const productsGetSlice = useSelector((state) => state.productsGetSlice);
   const productsCategoriesGetSlice = useSelector(
@@ -29,32 +37,52 @@ export default function ShopScreen() {
     (state) => state.productsBrandsGetSlice
   );
 
-  const { status, products, error } = productsGetSlice;
+  const { status, products, pages, error } = productsGetSlice;
   const { categories } = productsCategoriesGetSlice;
   const { brands } = productsBrandsGetSlice;
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setSearchProductName(inputProductName);
+    props.history.push(getFilterUrl({ name: inputProductName }));
+  };
+
+  const getFilterUrl = (filter) => {
+    let filterPageNumber;
+    if (
+      (filter.name && filter.name !== name) ||
+      (filter.category && filter.category !== category) ||
+      (filter.brand && filter.brand !== brand)
+    ) {
+      filterPageNumber = 1;
+    } else {
+      filterPageNumber = filter.pageNumber || pageNumber;
+    }
+
+    const filterName = filter.name
+      ? filter.name
+      : filter.name === ''
+      ? 'all'
+      : name;
+    const filterCategory = filter.category || category;
+    const filterBrand = filter.brand || brand;
+
+    return `/shop/${filterName}/${filterCategory}/${filterBrand}/${filterPageNumber}`;
   };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getProductsCategories());
+    dispatch(getProductsBrands());
     dispatch(
       getProducts({
-        name: searchProductName,
+        pageNumber,
+        name: name === 'all' ? '' : name,
         category: category === 'all' ? '' : category,
         brand: brand === 'all' ? '' : brand
       })
     );
-  }, [dispatch, category, brand, searchProductName]);
-
-  useEffect(() => {
-    dispatch(getProducts({}));
-    dispatch(getProductsCategories());
-    dispatch(getProductsBrands());
-  }, [dispatch]);
+  }, [dispatch, category, brand, name, pageNumber]);
 
   return (
     <div className={styles.screen}>
@@ -80,7 +108,9 @@ export default function ShopScreen() {
                 <button
                   type="submit"
                   className={styles.search_button}
-                  onClick={() => setSearchProductName(inputProductName)}
+                  onClick={() =>
+                    props.history.push(getFilterUrl({ name: inputProductName }))
+                  }
                 >
                   <i className="fa fa-search"></i>
                 </button>
@@ -89,7 +119,11 @@ export default function ShopScreen() {
                 <select
                   className={`${styles.search_button} ${styles.filter_button}`}
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) =>
+                    props.history.push(
+                      getFilterUrl({ category: e.target.value })
+                    )
+                  }
                 >
                   <option value="all">All Categories</option>
                   {categories &&
@@ -100,7 +134,9 @@ export default function ShopScreen() {
                 <select
                   className={`${styles.search_button} ${styles.filter_button}`}
                   value={brand}
-                  onChange={(e) => setBrand(e.target.value)}
+                  onChange={(e) =>
+                    props.history.push(getFilterUrl({ brand: e.target.value }))
+                  }
                 >
                   <option value="all">All Brands</option>
                   {brands &&
@@ -130,6 +166,11 @@ export default function ShopScreen() {
             </motion.div>
           )}
         </div>
+        <Pages
+          currentPage={parseInt(pageNumber)}
+          pages={parseInt(pages)}
+          filterUrl={getFilterUrl}
+        ></Pages>
       </div>
 
       <MediaQuery minWidth={800}>
