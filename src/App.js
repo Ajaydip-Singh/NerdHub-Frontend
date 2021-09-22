@@ -25,19 +25,37 @@ import ProductScreen from './screens/PublicScreens/ProductScreen/ProductScreen';
 import CartScreen from './screens/PublicScreens/CartScreen/CartScreen';
 import CartPageScreen from './screens/AdminScreens/CartPageScreen/CartPageScreen';
 import ShippingScreen from './screens/PublicScreens/ShippingScreen/ShippingScreen';
+import OrderScreen from './screens/PublicScreens/OrderScreen/OrderScreen';
+import GalleryListScreen from './screens/AdminScreens/GalleryListScreen/GalleryListScreen';
+import GalleryPageScreen from './screens/AdminScreens/GalleryPageScreen /GalleryPageScreen';
 
 function App() {
   return (
     <Router>
       <Route path="/home" component={HomeScreen}></Route>
-      <Route path="/events" component={EventsScreen}></Route>
-      <Route path="/gallery" component={GalleryScreen}></Route>
+      <Route
+        path="/events/:name/:category/:venue/:pageNumber"
+        exact
+        component={EventsScreen}
+      ></Route>
+      <Route path="/events" exact component={EventsScreen}></Route>
+      <Route
+        path="/gallery/:tag/:pageNumber"
+        component={GalleryScreen}
+        exact
+      ></Route>
+      <Route path="/gallery" component={GalleryScreen} exact></Route>
       <Route path="/about" component={AboutScreen}></Route>
       <Route path="/contact" component={ContactScreen}></Route>
       <Route path="/membership" component={MembershipScreen}></Route>
       <Route path="/shop/products/:id" exact component={ProductScreen}></Route>
       <Route path="/shop/cart" exact component={CartScreen}></Route>
-      <Route path="/shop" component={ShopScreen} exact></Route>
+      <Route
+        path="/shop/:name/:category/:brand/:pageNumber"
+        exact
+        component={ShopScreen}
+      ></Route>
+      <Route path="/shop/" exact component={ShopScreen}></Route>
       <Route
         path="/login/:userId/:confirmationCode"
         component={LoginScreen}
@@ -52,7 +70,22 @@ function App() {
       ></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
       <AdminRoute
+        path="/gallery-admin/:pageNumber"
+        component={GalleryListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/gallery-admin"
+        component={GalleryListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
         path="/products-admin"
+        component={ProductsListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/products-admin/:pageNumber"
         component={ProductsListScreen}
         exact
       ></AdminRoute>
