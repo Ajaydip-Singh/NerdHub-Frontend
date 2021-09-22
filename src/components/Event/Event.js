@@ -7,9 +7,9 @@ import { eventVariant } from '../../animate';
 import { useState } from 'react';
 
 export default function Event(props) {
-  const { event, order, screen } = props;
+  const { event, order, screen, focus } = props;
 
-  const [fullscreen, setFullScreen] = useState(false);
+  const [fullscreen, setFullScreen] = useState(focus ? true : false);
 
   return (
     <>
@@ -82,12 +82,21 @@ export default function Event(props) {
               {parse(event.description)}
             </div>
             {!fullscreen ? (
-              <button
-                onClick={() => screen === 'eventScreen' && setFullScreen(true)}
-                className={styles.event_button}
-              >
-                More Info
-              </button>
+              screen === 'eventScreen' ? (
+                <button
+                  onClick={() => setFullScreen(true)}
+                  className={styles.event_button}
+                >
+                  More Info
+                </button>
+              ) : (
+                <Link
+                  to={`/events/${event._id}`}
+                  className={styles.event_button}
+                >
+                  More Info
+                </Link>
+              )
             ) : (
               <div className="row_f">
                 <button

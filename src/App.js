@@ -33,6 +33,7 @@ function App() {
   return (
     <Router>
       <Route path="/home" component={HomeScreen}></Route>
+      <Route path="/events/:eventId" exact component={EventsScreen}></Route>
       <Route
         path="/events/:name/:category/:venue/:pageNumber"
         exact

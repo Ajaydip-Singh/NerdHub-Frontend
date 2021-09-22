@@ -15,9 +15,14 @@ import styles from './EventsScreen.module.css';
 import { pageVariant } from '../../../animate';
 import { useParams } from 'react-router';
 import Pages from '../../../components/Pages/Pages';
+import {
+  getEvent,
+  resetGetEvent
+} from '../../../slices/eventSlices/eventGetSlice';
 
 export default function EventsScreen(props) {
   const {
+    eventId = '',
     name = 'all',
     category = 'all',
     venue = 'all',
@@ -27,6 +32,9 @@ export default function EventsScreen(props) {
   const [inputEventName, setInputEventName] = useState(
     name === 'all' ? '' : name
   );
+
+  const eventGetSlice = useSelector((state) => state.eventGetSlice);
+  const { event } = eventGetSlice;
 
   const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
   const eventsCategoriesGetSlice = useSelector(
@@ -69,6 +77,20 @@ export default function EventsScreen(props) {
   };
 
   const dispatch = useDispatch();
+
+  // Cleanup event when unmount
+  useEffect(() => {
+    return () => {
+      dispatch(resetGetEvent());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (eventId && !event) {
+      dispatch(getEvent(eventId));
+    }
+  });
+
   useEffect(() => {
     dispatch(getEventsCategories());
     dispatch(getEventsVenues());
@@ -172,6 +194,9 @@ export default function EventsScreen(props) {
               animate="final"
               className={styles.events_wrapper}
             >
+              {eventId && event && (
+                <Event focus screen={'eventScreen'} event={event}></Event>
+              )}
               {status === 'loading' ? (
                 <LoadingBox></LoadingBox>
               ) : error ? (
@@ -179,7 +204,8 @@ export default function EventsScreen(props) {
               ) : (
                 events.map(
                   (event, index) =>
-                    event.isActive && (
+                    event.isActive &&
+                    event._id !== eventId && (
                       <Event
                         screen={'eventScreen'}
                         order={index}
