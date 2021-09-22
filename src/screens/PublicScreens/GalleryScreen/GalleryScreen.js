@@ -5,7 +5,7 @@ import Footer from '../../../components/Footer/Footer';
 import Header from '../../../components/Header/Header';
 import styles from './GalleryScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ProductImage from '../../../components/ProductImage/ProductImage';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -18,8 +18,6 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 
 export default function GalleryScreen(props) {
   const { pageNumber = '1', tag = 'all' } = useParams();
-
-  const [fullscreen, setFullScreen] = useState(false);
 
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
   const { status, gallery, pages, error } = galleryGetSlice;
