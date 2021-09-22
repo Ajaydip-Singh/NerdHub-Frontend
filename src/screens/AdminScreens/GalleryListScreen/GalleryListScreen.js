@@ -7,9 +7,10 @@ import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import Pages from '../../../components/Pages/Pages';
 import { getGallery } from '../../../slices/gallerySlices/galleryGetSlice';
-// import {
-// deleteGallery,
-// } from '../../../slices/gallerySlices/galleryImageDeleteSlice';
+import {
+  deleteGalleryItem,
+  resetDeleteGallery
+} from '../../../slices/gallerySlices/galleryItemDeleteSlice';
 import styles from './GalleryListScreen.module.css';
 
 export default function GalleryListScreen(props) {
@@ -21,36 +22,36 @@ export default function GalleryListScreen(props) {
   const galleryGetSlice = useSelector((state) => state.galleryGetSlice);
   const { status, gallery, pages, error } = galleryGetSlice;
 
-  // const galleryImageDeleteSlice = useSelector(
-  //   (state) => state.galleryImageDeleteSlice
-  // );
-  // const {
-  //   status: statusDelete,
-  //   gallery: galleryDelete,
-  //   error: errorDelete
-  // } = galleryImageDeleteSlice;
+  const galleryItemDeleteSlice = useSelector(
+    (state) => state.galleryItemDeleteSlice
+  );
+  const {
+    status: statusDelete,
+    galleryItem: galleryItemDelete,
+    error: errorDelete
+  } = galleryItemDeleteSlice;
 
-  const createHandler = () => {
-    // dispatch(createGallery({}));
-  };
   const dispatch = useDispatch();
-  const deleteHandler = (gallery) => {
-    if (window.confirm(`Are you sure you want to delete ${gallery.name}`)) {
-      // dispatch(deleteGallery(gallery._id));
+  const deleteHandler = (galleryItem) => {
+    if (
+      window.confirm(`Are you sure you want to delete ${galleryItem.publicId}`)
+    ) {
+      dispatch(deleteGalleryItem(galleryItem.publicId));
     }
   };
 
-  // // Cleanup gallery page on unmount
-  // useEffect(() => {
-  //   return () => {
-  //     if (galleryDelete) {
-  //       dispatch(resetDeleteGallery());
-  //     }
-  //   };
-  // }, [dispatch, galleryDelete]);
+  // Cleanup gallery page on unmount
+  useEffect(() => {
+    return () => {
+      if (galleryItemDelete || errorDelete) {
+        dispatch(resetDeleteGallery());
+      }
+    };
+  }, [dispatch, errorDelete, galleryItemDelete]);
+
   useEffect(() => {
     dispatch(getGallery({ pageNumber }));
-  }, [dispatch, pageNumber]);
+  }, [dispatch, pageNumber, galleryItemDelete]);
 
   return (
     <div>
@@ -59,11 +60,17 @@ export default function GalleryListScreen(props) {
         <h1 className={styles.heading}>Gallery Images List</h1>
       </div>
       <div className="table_wrapper">
-        {/* {statusDelete === 'loading' && <LoadingBox></LoadingBox>}
-        {galleryDelete && (
-          <MessageBox variant="success">Gallery Deleted Succesfully</MessageBox>
+        {statusDelete === 'loading' && (
+          <MessageBox>
+            <LoadingBox></LoadingBox>
+          </MessageBox>
         )}
-        {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>} */}
+        {galleryItemDelete && (
+          <MessageBox variant="success">
+            Gallery Item Deleted Succesfully
+          </MessageBox>
+        )}
+        {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
         <div className={styles.upload_images}>
           <h5>Upload Images</h5>
           <input
@@ -73,6 +80,9 @@ export default function GalleryListScreen(props) {
             type="text"
             placeholder="Enter image tag"
           />
+          {uploadImages.length !== 0 && (
+            <MessageBox variant="success">Images Uploaded</MessageBox>
+          )}
           <ImageUploader
             tags={[tagInput]}
             gallery={true}
@@ -81,9 +91,6 @@ export default function GalleryListScreen(props) {
             multiple={true}
             disabled={tagInput ? false : true}
           ></ImageUploader>
-          {uploadImages.length !== 0 && (
-            <MessageBox variant="success">Images Uploaded</MessageBox>
-          )}
         </div>
 
         {status === 'loading' ? (
@@ -101,20 +108,20 @@ export default function GalleryListScreen(props) {
               </tr>
             </thead>
             <tbody>
-              {gallery.map((gallery) => (
-                <tr key={gallery._id}>
+              {gallery.map((galleryItem) => (
+                <tr key={galleryItem._id}>
                   <td>
-                    <a target="_blank" rel="noreferrer" href={gallery.url}>
+                    <a target="_blank" rel="noreferrer" href={galleryItem.url}>
                       Image Link
                     </a>
                   </td>
-                  <td>{gallery.publicId}</td>
-                  <td>{gallery.tags}</td>
+                  <td>{galleryItem.publicId}</td>
+                  <td>{galleryItem.tags}</td>
                   <td>
                     <button
                       className="small"
                       type="button"
-                      onClick={() => deleteHandler(gallery)}
+                      onClick={() => deleteHandler(galleryItem)}
                     >
                       Delete
                     </button>
@@ -127,8 +134,8 @@ export default function GalleryListScreen(props) {
       </div>
       <Pages
         to={'gallery-admin'}
-        currentPage={pageNumber}
-        pages={pages}
+        currentPage={parseInt(pageNumber)}
+        pages={parseInt(pages)}
       ></Pages>
     </div>
   );
