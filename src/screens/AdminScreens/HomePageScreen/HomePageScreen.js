@@ -17,6 +17,15 @@ import {
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function HomePageScreen() {
+  const [sliderPageOneBackgroundImage, setSliderPageOneBackgroundImage] =
+    useState('');
+  const [sliderPageTwoBackgroundImage, setSliderPageTwoBackgroundImage] =
+    useState('');
+  const [sliderPageThreeBackgroundImage, setSliderPageThreeBackgroundImage] =
+    useState('');
+  const [sliderPageOneContent, setSliderPageOneContent] = useState();
+  const [sliderPageTwoContent, setSliderPageTwoContent] = useState();
+  const [sliderPageThreeContent, setSliderPageThreeContent] = useState();
   const [videoHeading, setVideoHeading] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [videoThumbnail, setVideoThumbnail] = useState('');
@@ -59,6 +68,12 @@ export default function HomePageScreen() {
     e.preventDefault();
     dispatch(
       updateHomePageContent({
+        sliderPageOneBackgroundImage,
+        sliderPageOneContent,
+        sliderPageTwoBackgroundImage,
+        sliderPageTwoContent,
+        sliderPageThreeBackgroundImage,
+        sliderPageThreeContent,
         videoHeading,
         videoUrl,
         videoThumbnail,
@@ -76,6 +91,12 @@ export default function HomePageScreen() {
     if (!content) {
       dispatch(getHomePageContent({}));
     } else {
+      setSliderPageOneBackgroundImage(content.sliderPageOneBackgroundImage);
+      setSliderPageOneContent(content.sliderPageOneContent);
+      setSliderPageTwoBackgroundImage(content.sliderPageTwoBackgroundImage);
+      setSliderPageTwoContent(content.sliderPageTwoContent);
+      setSliderPageThreeBackgroundImage(content.sliderPageThreeBackgroundImage);
+      setSliderPageThreeContent(content.sliderPageThreeContent);
       setVideoHeading(content.videoHeading);
       setVideoUrl(content.videoUrl);
       setVideoThumbnail(content.videoThumbnail);
@@ -103,6 +124,84 @@ export default function HomePageScreen() {
           <form onSubmit={submitHandler}>
             <div className={styles.editor_wrapper}>
               <div className="editor_wrapper">
+                <h3>Slider Page One Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={sliderPageOneBackgroundImage}
+                  >
+                    {sliderPageOneBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  tags={['slider']}
+                  name={'imageUploadSliceA'}
+                  setImage={setSliderPageOneBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Slider Page One Content</h3>
+                <TextEditor
+                  placeholder="Enter slider page one content"
+                  value={sliderPageOneContent}
+                  onChange={setSliderPageOneContent}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Slider Page Two Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={sliderPageTwoBackgroundImage}
+                  >
+                    {sliderPageTwoBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  tags={['slider']}
+                  name={'imageUploadSliceB'}
+                  setImage={setSliderPageTwoBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Slider Page Two Content</h3>
+                <TextEditor
+                  placeholder="Enter slider page two content"
+                  value={sliderPageTwoContent}
+                  onChange={setSliderPageTwoContent}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Slider Page Three Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={sliderPageThreeBackgroundImage}
+                  >
+                    {sliderPageThreeBackgroundImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  tags={['slider']}
+                  name={'imageUploadSliceC'}
+                  setImage={setSliderPageThreeBackgroundImage}
+                ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Slider Page Three Content</h3>
+                <TextEditor
+                  placeholder="Enter slider page three content"
+                  value={sliderPageThreeContent}
+                  onChange={setSliderPageThreeContent}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Video Heading</h3>
                 <TextEditor
                   placeholder="Enter video heading"
@@ -128,7 +227,7 @@ export default function HomePageScreen() {
                 </p>
                 <ImageUploader
                   tags={['video']}
-                  name={'imageUploadSliceA'}
+                  name={'imageUploadSliceD'}
                   setImage={setVideoThumbnail}
                 ></ImageUploader>
               </div>
@@ -146,7 +245,7 @@ export default function HomePageScreen() {
                 </p>
                 <ImageUploader
                   tags={['video']}
-                  name={'imageUploadSliceB'}
+                  name={'imageUploadSliceE'}
                   setImage={setVideoBackgroundImage}
                 ></ImageUploader>
               </div>
@@ -178,7 +277,7 @@ export default function HomePageScreen() {
                 </p>
                 <ImageUploader
                   tags={['home-page']}
-                  name={'imageUploadSliceC'}
+                  name={'imageUploadSliceF'}
                   setImage={setEventBackgroundImage}
                 ></ImageUploader>
               </div>
