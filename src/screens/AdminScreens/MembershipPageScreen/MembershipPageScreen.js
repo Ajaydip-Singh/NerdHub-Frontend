@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import TextEditor from '../../../components/TextEditor/TextEditor';
-import { BlockPicker } from 'react-color';
 import {
   getMembershipPageContent,
   resetGetMembershipPageContent
