@@ -34,6 +34,8 @@ import galleryTagsGetSlice from '../slices/gallerySlices/galleryTagsGetSlice';
 import galleryItemDeleteSlice from '../slices/gallerySlices/galleryItemDeleteSlice';
 import galleryPageContentGetSlice from '../slices/pageSlices/galleryPageContentSlices/galleryPageContentGetSlice';
 import galleryPageContentUpdateSlice from '../slices/pageSlices/galleryPageContentSlices/galleryPageContentUpdateSlice';
+import membershipPageContentGetSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentGetSlice';
+import membershipPageContentUpdateSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -74,6 +76,8 @@ export const store = configureStore({
     cartPageContentUpdateSlice: cartPageContentUpdateSlice,
     galleryPageContentGetSlice: galleryPageContentGetSlice,
     galleryPageContentUpdateSlice: galleryPageContentUpdateSlice,
+    membershipPageContentGetSlice: membershipPageContentGetSlice,
+    membershipPageContentUpdateSlice: membershipPageContentUpdateSlice,
     imageUploadSliceA: imageUploadeSliceCreater('imageUploadSliceA'),
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
