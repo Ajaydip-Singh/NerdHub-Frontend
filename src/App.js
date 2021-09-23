@@ -28,6 +28,7 @@ import ShippingScreen from './screens/PublicScreens/ShippingScreen/ShippingScree
 import OrderScreen from './screens/PublicScreens/OrderScreen/OrderScreen';
 import GalleryListScreen from './screens/AdminScreens/GalleryListScreen/GalleryListScreen';
 import GalleryPageScreen from './screens/AdminScreens/GalleryPageScreen /GalleryPageScreen';
+import MembershipPageScreen from './screens/AdminScreens/MembershipPageScreen/MembershipPageScreen';
 
 function App() {
   return (
@@ -113,6 +114,11 @@ function App() {
       <AdminRoute
         path="/about-page-content-admin"
         component={AboutPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/membership-page-content-admin"
+        component={MembershipPageScreen}
         exact
       ></AdminRoute>
       <AdminRoute

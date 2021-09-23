@@ -10,7 +10,7 @@ export default function AdminPanelScreen() {
         <Link to="/home-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Home Page</div>
         </Link>
-        <Link to="/membership-admin" className={styles.card_link}>
+        <Link to="/membership-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Membership Page</div>
         </Link>
         <Link to="/about-page-content-admin" className={styles.card_link}>
