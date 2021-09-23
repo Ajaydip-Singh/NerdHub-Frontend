@@ -18,6 +18,7 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import CustomCarousel from '../../../components/CustomCarousel/CustomCarousel';
 import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
 import { pageVariant, sectionVariant, videoVariant } from '../../../animate';
+import contactPageContentGetSlice from '../../../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
@@ -90,14 +91,13 @@ export default function HomeScreen() {
                       ? `${styles.image_small_screen}`
                       : `${styles.image_large_screen}`
                   }`}
-                  src="/images/gaming_room.jpeg"
+                  src={content && content.sliderPageOneBackgroundImage}
                   alt="First slide"
                 />
                 <Carousel.Caption className={styles.carousel_caption}>
-                  <h3>First slide label</h3>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
+                  <div className="ql-editor">
+                    {content && parse(content.sliderPageOneContent)}
+                  </div>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item>
@@ -107,15 +107,29 @@ export default function HomeScreen() {
                       ? `${styles.image_small_screen}`
                       : `${styles.image_large_screen}`
                   }`}
-                  src="/images/player_gaming.jpeg"
+                  src={content && content.sliderPageTwoBackgroundImage}
                   alt="Second slide"
                 />
-
                 <Carousel.Caption className={styles.carousel_caption}>
-                  <h3>Second slide label</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                  <div className="ql-editor">
+                    {content && parse(content.sliderPageTwoContent)}
+                  </div>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className={`d-block w-100 ${styles.carousel_image} ${
+                    isSmallerScreen
+                      ? `${styles.image_small_screen}`
+                      : `${styles.image_large_screen}`
+                  }`}
+                  src={content && content.sliderPageThreeBackgroundImage}
+                  alt="Third slide"
+                />
+                <Carousel.Caption className={styles.carousel_caption}>
+                  <div className="ql-editor">
+                    {content && parse(content.sliderPageThreeContent)}
+                  </div>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>

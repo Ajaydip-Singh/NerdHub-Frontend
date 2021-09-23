@@ -11,8 +11,10 @@
 
 .carousel_caption {
   position: absolute;
-  /* bottom: 40vh; */
-  top: 0;
+  max-width: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: max-content;
 }
 
 .image_large_screen {
