@@ -97,6 +97,7 @@ export default function EventsScreen(props) {
     dispatch(
       getEvents({
         pageNumber,
+        isActive: true,
         name: name === 'all' ? '' : name,
         category: category === 'all' ? '' : category,
         venue: venue === 'all' ? '' : venue

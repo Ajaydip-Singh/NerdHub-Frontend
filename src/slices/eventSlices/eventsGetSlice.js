@@ -17,13 +17,14 @@ export const getEvents = createAsyncThunk(
       name = '',
       category = '',
       venue = '',
-      isFeaturedEvent = ''
+      isFeaturedEvent = '',
+      isActive = ''
     },
     { rejectWithValue }
   ) => {
     try {
       const { data } = await axios.get(
-        `/api/events?pageNumber=${pageNumber}&name=${name}&category=${category}&venue=${venue}&isFeaturedEvent=${isFeaturedEvent}`
+        `/api/events?pageNumber=${pageNumber}&name=${name}&category=${category}&venue=${venue}&isFeaturedEvent=${isFeaturedEvent}&isActive=${isActive}`
       );
       return data;
     } catch (err) {
