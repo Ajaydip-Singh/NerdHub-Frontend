@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
+import Pages from '../../../components/Pages/Pages';
 import {
   createEvent,
   resetCreateEvent
@@ -16,8 +18,10 @@ import { formatDate, stripHtml } from '../../../utils';
 import styles from './EventsPageScreen.module.css';
 
 export default function EventsPageScreen(props) {
+  const { pageNumber = '1' } = useParams();
+
   const eventsGetSlice = useSelector((state) => state.eventsGetSlice);
-  const { status, events, error } = eventsGetSlice;
+  const { status, events, pages, error } = eventsGetSlice;
 
   const eventDeleteSlice = useSelector((state) => state.eventDeleteSlice);
   const {
@@ -61,8 +65,8 @@ export default function EventsPageScreen(props) {
   }, [dispatch, eventCreate]);
 
   useEffect(() => {
-    dispatch(getEvents({}));
-  }, [dispatch, eventDelete, eventCreate]);
+    dispatch(getEvents({ pageNumber }));
+  }, [dispatch, eventDelete, eventCreate, pageNumber]);
 
   return (
     <div>
@@ -134,6 +138,11 @@ export default function EventsPageScreen(props) {
           </table>
         )}
       </div>
+      <Pages
+        to={'events-admin'}
+        currentPage={parseInt(pageNumber)}
+        pages={parseInt(pages)}
+      ></Pages>
     </div>
   );
 }

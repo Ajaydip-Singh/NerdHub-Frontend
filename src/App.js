@@ -97,6 +97,11 @@ function App() {
         exact
       ></AdminRoute>
       <AdminRoute
+        path="/events-admin/:pageNumber"
+        component={EventsPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
         path="/events-admin"
         component={EventsPageScreen}
         exact
