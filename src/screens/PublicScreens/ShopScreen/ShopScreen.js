@@ -77,6 +77,7 @@ export default function ShopScreen(props) {
     dispatch(
       getProducts({
         pageNumber,
+        isActive: true,
         name: name === 'all' ? '' : name,
         category: category === 'all' ? '' : category,
         brand: brand === 'all' ? '' : brand
