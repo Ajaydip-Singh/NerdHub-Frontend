@@ -83,7 +83,7 @@ export default function ShippingScreen(props) {
           postalCode
         })
       );
-      props.history.push('/shop/checkout');
+      props.history.push('/shop/order');
     }
   };
 
