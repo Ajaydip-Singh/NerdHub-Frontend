@@ -70,6 +70,7 @@ function App() {
         path="/shop/shipping"
         component={ShippingScreen}
       ></PrivateRoute>
+      <PrivateRoute path="/shop/order" component={OrderScreen}></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
       <AdminRoute
         path="/gallery-admin/:pageNumber"
