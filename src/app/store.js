@@ -37,6 +37,8 @@ import galleryPageContentUpdateSlice from '../slices/pageSlices/galleryPageConte
 import membershipPageContentGetSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentGetSlice';
 import membershipPageContentUpdateSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentUpdateSlice';
 import mpesaPaymentSlice from '../slices/shopSlices/mpesaPaymentSlice';
+import footerContentGetSlice from '../slices/pageSlices/footerContentSlices/footerContentGetSlice';
+import footerContentUpdateSlice from '../slices/pageSlices/footerContentSlices/footerContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -79,6 +81,8 @@ export const store = configureStore({
     galleryPageContentUpdateSlice: galleryPageContentUpdateSlice,
     membershipPageContentGetSlice: membershipPageContentGetSlice,
     membershipPageContentUpdateSlice: membershipPageContentUpdateSlice,
+    footerContentGetSlice: footerContentGetSlice,
+    footerContentUpdateSlice: footerContentUpdateSlice,
     imageUploadSliceA: imageUploadeSliceCreater('imageUploadSliceA'),
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
