@@ -82,6 +82,8 @@ export const store = configureStore({
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
     imageUploadSliceD: imageUploadeSliceCreater('imageUploadSliceD'),
+    imageUploadSliceE: imageUploadeSliceCreater('imageUploadSliceE'),
+    imageUploadSliceF: imageUploadeSliceCreater('imageUploadSliceF'),
     multipleImagesUploadSlice: multipleImagesUploadSlice,
     galleryGetSlice: galleryGetSlice,
     galleryTagsGetSlice: galleryTagsGetSlice,
