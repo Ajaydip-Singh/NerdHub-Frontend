@@ -18,7 +18,6 @@ import MessageBox from '../../../components/MessageBox/MessageBox';
 import CustomCarousel from '../../../components/CustomCarousel/CustomCarousel';
 import { getHomePageContent } from '../../../slices/pageSlices/homePageContentSlices/homePageContentGetSlice';
 import { pageVariant, sectionVariant, videoVariant } from '../../../animate';
-import contactPageContentGetSlice from '../../../slices/pageSlices/contactPageContentSlices/contactPageContentGetSlice';
 
 export default function HomeScreen() {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 800px)' });
