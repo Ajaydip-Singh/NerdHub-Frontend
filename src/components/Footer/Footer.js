@@ -2,86 +2,198 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Socials from '../Socials/Socials';
 import styles from './Footer.module.css';
-import { footerLinkVariant } from '../../animate';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getFooterContent } from '../../slices/pageSlices/footerContentSlices/footerContentGetSlice';
 
 export default function Footer() {
+  const footerContentGetSlice = useSelector(
+    (state) => state.footerContentGetSlice
+  );
+  const { content } = footerContentGetSlice;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFooterContent({}));
+  }, [dispatch]);
+
   return (
-    <div className={styles.footer}>
+    <div
+      style={{ backgroundColor: content && content.backgroundColor }}
+      className={styles.footer}
+    >
       <div className="row_f space-around container">
         <div>
-          <h4 className={styles.footer_heading}>Address</h4>
-          <p>
-            Lorem ipsum dolor sit amet. <br />
-            Lorem, ipsum dolor. <br />
-            Lorem, ipsum dolor.
-          </p>
+          <h4
+            style={{ color: content && content.footerHeaderColor }}
+            className={styles.footer_heading}
+          >
+            Address
+          </h4>
+          <div className="ql-editor">{content && content.address}</div>
         </div>
         <div>
-          <h4 className={styles.footer_heading}>Explore</h4>
+          <h4
+            style={{ color: content && content.footerHeaderColor }}
+            className={styles.footer_heading}
+          >
+            Explore
+          </h4>
           <ul>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/home">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/home"
+              >
                 Home
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/events">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/events"
+              >
                 Events
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/gallery">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/gallery"
+              >
                 Gallery
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/membership">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/membership"
+              >
                 Membership
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/about">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/about"
+              >
                 About
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/contact">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/contact"
+              >
                 Contact
               </Link>
             </motion.li>
-            <motion.li variants={footerLinkVariant} whileHover="hover">
-              <Link className={styles.footer_link} to="/shop">
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
+              <Link
+                color={{ color: content && content.footerLinkColor }}
+                className={styles.footer_link}
+                to="/shop"
+              >
                 Shop
               </Link>
             </motion.li>
           </ul>
         </div>
         <div>
-          <h4 className={styles.footer_heading}>Contact</h4>
+          <h4
+            style={{ color: content && content.footerHeaderColor }}
+            className={styles.footer_heading}
+          >
+            Contact
+          </h4>
           <ul className="column_f">
-            <li className={styles.footer_list_item}>
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+              className={styles.footer_list_item}
+            >
               <a
+                color={{ color: content && content.footerLinkColor }}
                 className={`row_f align-center ${styles.footer_link}`}
-                href="mailto:"
+                href="mailto:nerdhub@gmail.com"
               >
                 <i class="fas fa-envelope fa-2x fa-fw"></i>
                 Email
               </a>
-            </li>
-            <li className={styles.footer_list_item}>
+            </motion.li>
+            <motion.li
+              whileHover={{
+                scale: 1.3,
+                color: content && content.footerLinkHoverColor
+              }}
+            >
               <a
+                color={{ color: content && content.footerLinkColor }}
                 className={`row_f align-center ${styles.footer_link}`}
                 href="tel:"
               >
                 <i class="fas fa-phone-alt fa-2x fa-fw"></i>
                 Phone
               </a>
-            </li>
+            </motion.li>
           </ul>
         </div>
         <div>
-          <h4 className={styles.footer_heading}>Socials</h4>
-          <Socials vertical dark text></Socials>
+          <h4
+            style={{ color: content && content.footerHeaderColor }}
+            className={styles.footer_heading}
+          >
+            Socials
+          </h4>
+          <Socials
+            vertical
+            text
+            color={content && content.footerLinkColor}
+            hoverColor={content && content.footerLinkHoverColor}
+          ></Socials>
         </div>
       </div>
     </div>
