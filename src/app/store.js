@@ -36,6 +36,7 @@ import galleryPageContentGetSlice from '../slices/pageSlices/galleryPageContentS
 import galleryPageContentUpdateSlice from '../slices/pageSlices/galleryPageContentSlices/galleryPageContentUpdateSlice';
 import membershipPageContentGetSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentGetSlice';
 import membershipPageContentUpdateSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentUpdateSlice';
+import mpesaPaymentSlice from '../slices/shopSlices/mpesaPaymentSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -95,6 +96,7 @@ export const store = configureStore({
     productUpdateSlice: productUpdateSlice,
     productsCategoriesGetSlice: productsCategoriesGetSlice,
     productsBrandsGetSlice: productsBrandsGetSlice,
-    cartSlice: cartSlice
+    cartSlice: cartSlice,
+    mpesaPaymentSlice: mpesaPaymentSlice
   }
 });
