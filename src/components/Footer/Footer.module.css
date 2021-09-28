@@ -16,12 +16,4 @@
 
 .footer_link {
   text-decoration: none;
-  color: #000;
-  transition: all 500ms linear, ease 500ms;
-}
-
-.footer_link:hover,
-.footer_link:focus {
-  text-decoration: none;
-  color: #fff;
 }

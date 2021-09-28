@@ -5,6 +5,7 @@ import styles from './Footer.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getFooterContent } from '../../slices/pageSlices/footerContentSlices/footerContentGetSlice';
+import parse from 'html-react-parser';
 
 export default function Footer() {
   const footerContentGetSlice = useSelector(
@@ -30,7 +31,7 @@ export default function Footer() {
           >
             Address
           </h4>
-          <div className="ql-editor">{content && content.address}</div>
+          <div className="ql-editor">{content && parse(content.address)}</div>
         </div>
         <div>
           <h4
@@ -42,12 +43,13 @@ export default function Footer() {
           <ul>
             <motion.li
               whileHover={{
-                scale: 1.3,
-                color: content && content.footerLinkHoverColor
+                scale: 1.3
               }}
             >
               <Link
-                color={{ color: content && content.footerLinkColor }}
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 className={styles.footer_link}
                 to="/home"
               >
@@ -61,6 +63,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/events"
@@ -75,6 +80,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/gallery"
@@ -89,6 +97,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/membership"
@@ -103,6 +114,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/about"
@@ -117,6 +131,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/contact"
@@ -131,6 +148,9 @@ export default function Footer() {
               }}
             >
               <Link
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 color={{ color: content && content.footerLinkColor }}
                 className={styles.footer_link}
                 to="/shop"
@@ -150,13 +170,14 @@ export default function Footer() {
           <ul className="column_f">
             <motion.li
               whileHover={{
-                scale: 1.3,
-                color: content && content.footerLinkHoverColor
+                scale: 1.3
               }}
               className={styles.footer_list_item}
             >
               <a
-                color={{ color: content && content.footerLinkColor }}
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 className={`row_f align-center ${styles.footer_link}`}
                 href="mailto:nerdhub@gmail.com"
               >
@@ -166,12 +187,13 @@ export default function Footer() {
             </motion.li>
             <motion.li
               whileHover={{
-                scale: 1.3,
-                color: content && content.footerLinkHoverColor
+                scale: 1.3
               }}
             >
               <a
-                color={{ color: content && content.footerLinkColor }}
+                style={{
+                  color: content && content.footerLinkColor
+                }}
                 className={`row_f align-center ${styles.footer_link}`}
                 href="tel:"
               >
@@ -192,7 +214,7 @@ export default function Footer() {
             vertical
             text
             color={content && content.footerLinkColor}
-            hoverColor={content && content.footerLinkHoverColor}
+            hoverColor={content && content.footerLinkColor}
           ></Socials>
         </div>
       </div>

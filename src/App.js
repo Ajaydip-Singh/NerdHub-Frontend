@@ -29,6 +29,7 @@ import OrderScreen from './screens/PublicScreens/OrderScreen/OrderScreen';
 import GalleryListScreen from './screens/AdminScreens/GalleryListScreen/GalleryListScreen';
 import GalleryPageScreen from './screens/AdminScreens/GalleryPageScreen /GalleryPageScreen';
 import MembershipPageScreen from './screens/AdminScreens/MembershipPageScreen/MembershipPageScreen';
+import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPageScreen';
 
 function App() {
   return (
@@ -72,6 +73,11 @@ function App() {
       ></PrivateRoute>
       <PrivateRoute path="/shop/order" component={OrderScreen}></PrivateRoute>
       <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
+      <AdminRoute
+        path="/footer-admin"
+        component={FooterPageScreen}
+        exact
+      ></AdminRoute>
       <AdminRoute
         path="/gallery-admin/:pageNumber"
         component={GalleryListScreen}

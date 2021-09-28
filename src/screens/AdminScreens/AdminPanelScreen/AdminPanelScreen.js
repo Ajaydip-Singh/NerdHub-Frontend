@@ -34,6 +34,9 @@ export default function AdminPanelScreen() {
         <Link to="/gallery-admin" className={styles.card_link}>
           <div className={styles.card}>Gallery Items</div>
         </Link>
+        <Link to="/footer-admin" className={styles.card_link}>
+          <div className={styles.card}>Footer</div>
+        </Link>
       </div>
     </div>
   );
