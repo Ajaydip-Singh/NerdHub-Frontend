@@ -10,7 +10,7 @@ import { getContactPageContent } from '../../../slices/pageSlices/contactPageCon
 import styles from './ContactScreen.module.css';
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
-import { pageVariant } from '../../../animate';
+import { pageVariant, sectionVariant } from '../../../animate';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 
@@ -40,7 +40,12 @@ export default function ContactScreen() {
         </div>
       ) : (
         <motion.div variants={pageVariant} initial="initial" animate="final">
-          <section
+          <motion.section
+            initial={{ opacity: 0, x: '-100vw' }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2 }}
+            variants={sectionVariant}
+            whileHover="hover"
             className={styles.hero_section}
             style={{
               backgroundImage: `url(${
@@ -53,7 +58,7 @@ export default function ContactScreen() {
                 {parse(content.contactMainHeading)}
               </div>
             )}
-          </section>
+          </motion.section>
           <div
             className={styles.main_section}
             style={{
@@ -62,10 +67,12 @@ export default function ContactScreen() {
               })`
             }}
           >
-            <div className={`row container ${styles.wrapper}`}>
+            <div className={`row align-center container ${styles.wrapper}`}>
               <div className="col-md">
                 {content && (
-                  <div className="ql-editor">{parse(content.formText)}</div>
+                  <div className="ql-editor">
+                    {parse(content.sectionOneText)}
+                  </div>
                 )}
                 <Link className="link border_bottom" to="/about">
                   Learn more about us
@@ -74,41 +81,32 @@ export default function ContactScreen() {
                   <Socials></Socials>
                 </div>
               </div>
-              <div className="col-md">
-                <form action="" className={styles.form}>
-                  <div>
-                    <textarea
-                      className={styles.textarea}
-                      placeholder="Write Message"
-                      name=""
-                      id=""
-                      rows="5"
-                    ></textarea>
-                  </div>
-                  <div
-                    className={`row_f space-between ${styles.inputs_wrapper}`}
-                  >
-                    <input
-                      className={styles.input}
-                      type="text"
-                      placeholder="Your Name"
-                    />
-                    <input
-                      className={styles.input}
-                      type="text"
-                      placeholder="Your Email"
-                    />
-                  </div>
-                  <div>
-                    <button className={styles.submit_button} type="submit">
-                      Submit message
-                    </button>
-                  </div>
-                </form>
+              <div className="col-md align-center">
+                <div className={styles.image_container}>
+                  <motion.img
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.8 }}
+                    drag
+                    dragConstraints={{
+                      top: 10,
+                      left: 10,
+                      right: 10,
+                      bottom: 10
+                    }}
+                    dragElastic={1}
+                    src={content && content.sectionOneImage}
+                    className={styles.image}
+                    alt="Section One"
+                  />
+                </div>
               </div>
             </div>
             <div className={`row align-center container ${styles.wrapper}`}>
-              <div className="col-md">
+              <motion.div
+                className="col-md"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.7 }}
+              >
                 <iframe
                   title="location"
                   className={styles.map}
@@ -120,7 +118,7 @@ export default function ContactScreen() {
                   allowfullscreen=""
                   loading="lazy"
                 ></iframe>
-              </div>
+              </motion.div>
 
               <div className="col-md">
                 {content && (

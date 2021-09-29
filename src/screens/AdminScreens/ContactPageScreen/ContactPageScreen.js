@@ -22,7 +22,8 @@ export default function ContactPageScreen() {
     useState('');
   const [contactMainBackgroundImage, setContactMainBackgroundImage] =
     useState('');
-  const [formText, setFormText] = useState('');
+  const [sectionOneText, setSectionOneText] = useState('');
+  const [sectionOneImage, setSectionOneImage] = useState('');
   const [locationFrame, setLocationFrame] = useState('');
   const [locationFrameBorderColor, setLocationFrameBorderColor] = useState('');
   const [locationText, setLocationText] = useState('');
@@ -62,7 +63,8 @@ export default function ContactPageScreen() {
         contactMainHeading,
         contactHeroBackgroundImage,
         contactMainBackgroundImage,
-        formText,
+        sectionOneText,
+        sectionOneImage,
         locationFrame,
         locationFrameBorderColor,
         locationText
@@ -77,7 +79,8 @@ export default function ContactPageScreen() {
       setContactMainHeading(content.contactMainHeading);
       setContactHeroBackgroundImage(content.contactHeroBackgroundImage);
       setContactMainBackgroundImage(content.contactMainBackgroundImage);
-      setFormText(content.formText);
+      setSectionOneText(content.sectionOneText);
+      setSectionOneImage(content.sectionOneImage);
       setLocationFrame(content.locationFrame);
       setLocationFrameBorderColor(content.locationFrameBorderColor);
       setLocationText(content.locationText);
@@ -143,12 +146,26 @@ export default function ContactPageScreen() {
                 ></ImageUploader>
               </div>
               <div className="editor_wrapper">
-                <h3>Contact Form Text</h3>
+                <h3>Section One Text</h3>
                 <TextEditor
-                  placeholder="Enter form text"
-                  value={formText}
-                  onChange={setFormText}
+                  placeholder="Enter section one text"
+                  value={sectionOneText}
+                  onChange={setSectionOneText}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Section One Image</h3>
+                <p>
+                  Current Image:{' '}
+                  <a target="_blank" rel="noreferrer" href={sectionOneImage}>
+                    {sectionOneImage}
+                  </a>
+                </p>
+                <ImageUploader
+                  tags={['contact-page']}
+                  name={'imageUploadSliceC'}
+                  setImage={setSectionOneImage}
+                ></ImageUploader>
               </div>
               <div className="editor_wrapper">
                 <h3>Google maps iframe link</h3>
