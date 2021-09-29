@@ -69,7 +69,6 @@ export default function RegisterScreen(props) {
       setPassword(password);
       setConfirmPasswordError('');
     } else {
-      setPassword('');
       setConfirmPasswordError('Passwords must match');
     }
   };
