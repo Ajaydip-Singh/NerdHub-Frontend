@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import validator from 'validator';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import { getCartPageContent } from '../../../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
 import {
@@ -16,8 +17,17 @@ import styles from './OrderScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
+import {
+  paymentMpesa,
+  resetPaymentMpesa
+} from '../../../slices/shopSlices/mpesaPaymentSlice';
 
 export default function OrderScreen(props) {
+  const [visiblePhoneNumber, setVisiblePhoneNumber] = useState(false);
+  const [visibleMpesaPayment, setVisibleMpesaPayment] = useState(true);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+
   const cartPageContentGetSlice = useSelector(
     (state) => state.cartPageContentGetSlice
   );
@@ -25,15 +35,42 @@ export default function OrderScreen(props) {
 
   const cartSlice = useSelector((state) => state.cartSlice);
   const { cart } = cartSlice;
-  const dispatch = useDispatch();
 
+  const mpesaPaymentSlice = useSelector((state) => state.mpesaPaymentSlice);
+  const { status: statusMpesa, mpesa, error: errorMpesa } = mpesaPaymentSlice;
+
+  const dispatch = useDispatch();
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
 
-  const onCheckoutHandler = () => {
-    props.history.push('/shop/shipping');
+  const onMpesaPaymentHandler = () => {
+    setVisiblePhoneNumber(!visiblePhoneNumber);
+    setVisibleMpesaPayment(!visibleMpesaPayment);
   };
+
+  const payWithMpesa = () => {
+    if (validator.isMobilePhone(phoneNumber)) {
+      dispatch(paymentMpesa(phoneNumber));
+    } else {
+      setPhoneError('Enter Valid Phone Number. E.g 254*********');
+    }
+  };
+
+  const onPayPalPaymentHandler = () => {};
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetPaymentMpesa());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (mpesa) {
+      setVisibleMpesaPayment(false);
+      setVisiblePhoneNumber(false);
+    }
+  }, [mpesa]);
 
   useEffect(() => {
     dispatch(getCartPageContent({}));
@@ -142,14 +179,16 @@ export default function OrderScreen(props) {
               </div>
             )}
             <div className={styles.checkout}>
+              {errorMpesa && (
+                <MessageBox variant="danger">{errorMpesa}</MessageBox>
+              )}
+              {mpesa && (
+                <MessageBox variant="success">
+                  {mpesa.CustomerMessage}
+                </MessageBox>
+              )}
               <table className="table">
                 <tbody>
-                  <tr>
-                    <td>Items:</td>
-                    <td>
-                      {cart.reduce((a, c) => a + parseFloat(c.quantity), 0)}
-                    </td>
-                  </tr>
                   <tr>
                     <td>Subtotal:</td>
                     <td>
@@ -178,13 +217,40 @@ export default function OrderScreen(props) {
                   </tr>
                 </tbody>
               </table>
-              <button
-                onClick={onCheckoutHandler}
-                disabled={cart.length === 0}
-                className={`button border_bottom ${styles.checkout_button}`}
-              >
-                Proceed To Checkout
-              </button>
+              {visiblePhoneNumber &&
+                (statusMpesa === 'loading' ? (
+                  <LoadingBox></LoadingBox>
+                ) : (
+                  <>
+                    {phoneError && (
+                      <MessageBox validation>{phoneError}</MessageBox>
+                    )}
+                    <motion.input
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      type="text"
+                      placeholder="Enter phone number"
+                      className={styles.input}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    ></motion.input>
+                    <button
+                      onClick={payWithMpesa}
+                      disabled={cart.length === 0}
+                      className={`button border_bottom mb-3 ${styles.checkout_button}`}
+                    >
+                      Confirm Number
+                    </button>
+                  </>
+                ))}
+              {visibleMpesaPayment && (
+                <button
+                  onClick={() => onMpesaPaymentHandler(phoneNumber)}
+                  disabled={cart.length === 0}
+                  className={`button border_bottom mb-2 ${styles.checkout_button}`}
+                >
+                  Pay With Mpesa
+                </button>
+              )}
             </div>
           </div>
         </motion.div>
