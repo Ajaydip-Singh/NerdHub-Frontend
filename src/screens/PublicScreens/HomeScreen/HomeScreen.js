@@ -226,7 +226,9 @@ export default function HomeScreen() {
               backgroundColor: content ? content.contactBackgroundColor : '#000'
             }}
           >
-            <div className={`row container ${styles.contact_wrapper}`}>
+            <div
+              className={`row align-center container ${styles.contact_wrapper}`}
+            >
               <div className="col-md">
                 <div className="ql-editor">
                   <div>{content && parse(content.contactText)}</div>
@@ -239,38 +241,23 @@ export default function HomeScreen() {
                   <Socials></Socials>
                 </div>
               </div>
-              <div className="col-md">
-                <form action="" className={styles.form}>
-                  <div>
-                    <textarea
-                      className={styles.textarea}
-                      placeholder="Write Message"
-                      name=""
-                      id=""
-                      rows="5"
-                    ></textarea>
-                  </div>
-                  <div
-                    className={`row_f space-between ${styles.inputs_wrapper}`}
-                  >
-                    <input
-                      className={styles.input}
-                      type="text"
-                      placeholder="Your Name"
-                    />
-                    <input
-                      className={styles.input}
-                      type="text"
-                      placeholder="Your Email"
-                    />
-                  </div>
-                  <div>
-                    <button className={styles.submit_button} type="submit">
-                      Submit message
-                    </button>
-                  </div>
-                </form>
-              </div>
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.7 }}
+                className="col-md"
+              >
+                <iframe
+                  title="location"
+                  className={styles.map}
+                  style={{
+                    border:
+                      content && `2px solid ${content.locationFrameBorderColor}`
+                  }}
+                  src={content && content.locationFrame}
+                  allowfullscreen=""
+                  loading="lazy"
+                ></iframe>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

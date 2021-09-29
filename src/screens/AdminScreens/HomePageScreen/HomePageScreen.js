@@ -35,6 +35,8 @@ export default function HomePageScreen() {
   const [eventBackgroundImage, setEventBackgroundImage] = useState('');
   const [contactBackgroundColor, setContactBackgroundColor] = useState('');
   const [contactText, setContactText] = useState('');
+  const [locationFrameBorderColor, setLocationFrameBorderColor] = useState('');
+  const [locationFrame, setLocationFrame] = useState('');
 
   const homePageContentGetSlice = useSelector(
     (state) => state.homePageContentGetSlice
@@ -82,7 +84,9 @@ export default function HomePageScreen() {
         videoBoxShadowColor,
         eventBackgroundImage,
         contactBackgroundColor,
-        contactText
+        contactText,
+        locationFrameBorderColor,
+        locationFrame
       })
     );
   };
@@ -106,6 +110,8 @@ export default function HomePageScreen() {
       setEventBackgroundImage(content.eventBackgroundImage);
       setContactBackgroundColor(content.contactBackgroundColor);
       setContactText(content.contactText);
+      setLocationFrameBorderColor(content.locationFrameBorderColor);
+      setLocationFrame(content.locationFrame);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -295,6 +301,20 @@ export default function HomePageScreen() {
                   value={contactText}
                   onChange={setContactText}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Location Frame Border Color</h3>
+                <BlockPicker
+                  color={locationFrameBorderColor}
+                  onChangeComplete={(e) => setLocationFrameBorderColor(e.hex)}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Location Frame </h3>
+                <input
+                  value={locationFrame}
+                  onChange={(e) => setLocationFrame(e.target.value)}
+                />
               </div>
 
               <div className="editor_wrapper">
