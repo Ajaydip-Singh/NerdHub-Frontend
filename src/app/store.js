@@ -36,7 +36,6 @@ import galleryPageContentGetSlice from '../slices/pageSlices/galleryPageContentS
 import galleryPageContentUpdateSlice from '../slices/pageSlices/galleryPageContentSlices/galleryPageContentUpdateSlice';
 import membershipPageContentGetSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentGetSlice';
 import membershipPageContentUpdateSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentUpdateSlice';
-import mpesaPaymentSlice from '../slices/shopSlices/mpesaPaymentSlice';
 import footerContentGetSlice from '../slices/pageSlices/footerContentSlices/footerContentGetSlice';
 import footerContentUpdateSlice from '../slices/pageSlices/footerContentSlices/footerContentUpdateSlice';
 
@@ -100,7 +99,6 @@ export const store = configureStore({
     productUpdateSlice: productUpdateSlice,
     productsCategoriesGetSlice: productsCategoriesGetSlice,
     productsBrandsGetSlice: productsBrandsGetSlice,
-    cartSlice: cartSlice,
-    mpesaPaymentSlice: mpesaPaymentSlice
+    cartSlice: cartSlice
   }
 });
