@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../node_modules/video-react/dist/video-react.css'; // import css
 
 import PrivateRoute from './components/PrivateRoute';
+import MemberRoute from './components/MemberRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminPanelScreen from './screens/AdminScreens/AdminPanelScreen/AdminPanelScreen';
 import EventEditScreen from './screens/AdminScreens/EventEditScreen/EventEditScreen';
@@ -32,6 +33,7 @@ import MembershipPageScreen from './screens/AdminScreens/MembershipPageScreen/Me
 import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPageScreen';
 import ComicsListScreen from './screens/AdminScreens/ComicsListScreen/ComicsListScreen';
 import ComicEditScreen from './screens/AdminScreens/ComicEditScreen/ComicEditScreen';
+import ComicsScreen from './screens/PublicScreens/ComicsScreen/ComicsScreen';
 
 function App() {
   return (
@@ -68,6 +70,7 @@ function App() {
       ></Route>
       <Route path="/login" component={LoginScreen} exact></Route>
       <Route path="/register" component={RegisterScreen}></Route>
+      <MemberRoute path="/comics" component={ComicsScreen}></MemberRoute>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
       <PrivateRoute
         path="/shop/shipping"

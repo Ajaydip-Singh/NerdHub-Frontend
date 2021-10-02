@@ -141,25 +141,26 @@ export default function Sidebar(props) {
                 Profile
               </Link>
             </li>
-            <li className={styles.nav_list_item}>
-              <Link className={addLinkStyling(props.comics)} to="/comics">
-                Comics
-              </Link>
-            </li>
+            {user.isMember && (
+              <li className={styles.nav_list_item}>
+                <Link className={addLinkStyling(props.comics)} to="/comics">
+                  Comics
+                </Link>
+              </li>
+            )}
             <li className={styles.side_bar_list_item}>
               <Link to="/shop/cart" className={addLinkStyling(props.cart)}>
                 Cart
               </Link>
             </li>
-            {user.isAdmin ? (
+            {user.isAdmin && (
               <li className={styles.side_bar_list_item}>
                 <Link to="/adminpanel" className={addLinkStyling(props.admin)}>
                   Admin Panel
                 </Link>
               </li>
-            ) : (
-              ''
             )}
+
             <li className={styles.side_bar_list_item}>
               <Button
                 to="/logout"
