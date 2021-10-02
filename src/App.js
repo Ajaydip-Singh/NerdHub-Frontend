@@ -30,6 +30,7 @@ import GalleryListScreen from './screens/AdminScreens/GalleryListScreen/GalleryL
 import GalleryPageScreen from './screens/AdminScreens/GalleryPageScreen /GalleryPageScreen';
 import MembershipPageScreen from './screens/AdminScreens/MembershipPageScreen/MembershipPageScreen';
 import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPageScreen';
+import ComicsListScreen from './screens/AdminScreens/ComicsListScreen/ComicsListScreen';
 
 function App() {
   return (
@@ -116,6 +117,16 @@ function App() {
       <AdminRoute
         path="/events-admin/:id/edit"
         component={EventEditScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/comics-admin"
+        component={ComicsListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/comics-admin/:pageNumber"
+        component={ComicsListScreen}
         exact
       ></AdminRoute>
       <AdminRoute
