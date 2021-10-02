@@ -38,6 +38,12 @@ import membershipPageContentGetSlice from '../slices/pageSlices/membershipPageCo
 import membershipPageContentUpdateSlice from '../slices/pageSlices/membershipPageContentSlices/membershipPageContentUpdateSlice';
 import footerContentGetSlice from '../slices/pageSlices/footerContentSlices/footerContentGetSlice';
 import footerContentUpdateSlice from '../slices/pageSlices/footerContentSlices/footerContentUpdateSlice';
+import comicsGetSlice from '../slices/comicSlices/comicsGetSlice';
+import comicsCategoriesGetSlice from '../slices/comicSlices/comicsCategoriesGetSlice';
+import comicDeleteSlice from '../slices/comicSlices/comicDeleteSlice';
+import comicGetSlice from '../slices/comicSlices/comicGetSlice';
+import comicUpdateSlice from '../slices/comicSlices/comicUpdateSlice';
+import comicCreateSlice from '../slices/comicSlices/comicCreateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -68,6 +74,12 @@ export const store = configureStore({
     eventGetSlice: eventGetSlice,
     eventUpdateSlice: eventUpdateSlice,
     eventCreateSlice: eventCreateSlice,
+    comicsGetSlice: comicsGetSlice,
+    comicsCategoriesGetSlice: comicsCategoriesGetSlice,
+    comicDeleteSlice: comicDeleteSlice,
+    comicGetSlice: comicGetSlice,
+    comicUpdateSlice: comicUpdateSlice,
+    comicCreateSlice: comicCreateSlice,
     homePageContentGetSlice: homePageContentGetSlice,
     homePageContentUpdateSlice: homePageContentUpdateSlice,
     aboutPageContentGetSlice: aboutPageContentGetSlice,
