@@ -70,7 +70,12 @@ function App() {
       ></Route>
       <Route path="/login" component={LoginScreen} exact></Route>
       <Route path="/register" component={RegisterScreen}></Route>
-      <MemberRoute path="/comics" component={ComicsScreen}></MemberRoute>
+      <MemberRoute
+        exact
+        path="/comics/:name/:category/:pageNumber"
+        component={ComicsScreen}
+      ></MemberRoute>
+      <MemberRoute path="/comics" exact component={ComicsScreen}></MemberRoute>
       <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
       <PrivateRoute
         path="/shop/shipping"
