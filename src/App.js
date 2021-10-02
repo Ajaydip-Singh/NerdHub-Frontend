@@ -31,6 +31,7 @@ import GalleryPageScreen from './screens/AdminScreens/GalleryPageScreen /Gallery
 import MembershipPageScreen from './screens/AdminScreens/MembershipPageScreen/MembershipPageScreen';
 import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPageScreen';
 import ComicsListScreen from './screens/AdminScreens/ComicsListScreen/ComicsListScreen';
+import ComicEditScreen from './screens/AdminScreens/ComicEditScreen/ComicEditScreen';
 
 function App() {
   return (
@@ -127,6 +128,11 @@ function App() {
       <AdminRoute
         path="/comics-admin/:pageNumber"
         component={ComicsListScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/comics-admin/:id/edit"
+        component={ComicEditScreen}
         exact
       ></AdminRoute>
       <AdminRoute
