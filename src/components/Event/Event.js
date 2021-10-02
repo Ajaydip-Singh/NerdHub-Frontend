@@ -2,14 +2,35 @@ import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
-import { formatDate } from '../../utils';
+import { formatDate, stripHtml } from '../../utils';
 import { eventVariant } from '../../animate';
 import { useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function Event(props) {
   const { event, order, screen, focus } = props;
 
+  const userAuthentication = useSelector((state) => state.userAuthentication);
+  const { user } = userAuthentication;
+
   const [fullscreen, setFullScreen] = useState(focus ? true : false);
+
+  const registerHandler = (price) => {
+    const onPesaPalPaymentHandler = async () => {
+      const { data } = await axios.post('/api/pesapal/order/post', {
+        Amount: event.price,
+        Type: 'MERCHANT',
+        Description: `Nerdhub Event Registration: ${stripHtml(event.name)}`,
+        Reference: '1234',
+        Email: user.email,
+        FirstName: user.firstName,
+        LastName: user.lastName
+      });
+      window.location.href = data;
+    };
+    onPesaPalPaymentHandler();
+  };
 
   return (
     <>
@@ -107,10 +128,14 @@ export default function Event(props) {
                 >
                   Show Less
                 </button>
-                <Link href="#" className={styles.event_button}>
+                <button
+                  href="#"
+                  className={styles.event_button}
+                  onClick={registerHandler}
+                >
                   Register for{' '}
                   {event.price !== 0 ? `KSh ${event.price}` : 'Free'}
-                </Link>
+                </button>
               </div>
             )}
           </div>
