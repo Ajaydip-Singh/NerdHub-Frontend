@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
-import validator from 'validator';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import { getCartPageContent } from '../../../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
-import { removeFromCart } from '../../../slices/shopSlices/cartSlice';
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import styles from './OrderScreen.module.css';
@@ -17,7 +15,6 @@ import BottomNav from '../../../components/BottomNav/BottomNav';
 import axios from 'axios';
 
 export default function OrderScreen(props) {
-  const [pesaPalLoading, setPesaPalLoading] = useState(false);
   const [total, setTotal] = useState(0);
 
   const userAuthentication = useSelector((state) => state.userAuthentication);
@@ -35,7 +32,7 @@ export default function OrderScreen(props) {
 
   const onPesaPalPaymentHandler = async () => {
     const { data } = await axios.post('/api/pesapal/order/post', {
-      Amount: '10',
+      Amount: '5',
       Type: 'MERCHANT',
       Description: 'sample',
       Reference: '1234',
