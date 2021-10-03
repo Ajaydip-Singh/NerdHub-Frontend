@@ -34,6 +34,7 @@ import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPage
 import ComicsListScreen from './screens/AdminScreens/ComicsListScreen/ComicsListScreen';
 import ComicEditScreen from './screens/AdminScreens/ComicEditScreen/ComicEditScreen';
 import ComicsScreen from './screens/PublicScreens/ComicsScreen/ComicsScreen';
+import ProductPageScreen from './screens/AdminScreens/ProductPageScreen/ProductPageScreen';
 
 function App() {
   return (
@@ -161,6 +162,11 @@ function App() {
       <AdminRoute
         path="/contact-page-content-admin"
         component={ContactPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/product-page-content-admin"
+        component={ProductPageScreen}
         exact
       ></AdminRoute>
       <AdminRoute
