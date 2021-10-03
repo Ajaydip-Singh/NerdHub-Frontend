@@ -19,6 +19,7 @@ import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 export default function CartPageScreen() {
   const [cartMainHeading, setCartMainHeading] = useState('');
   const [cartBackgroundImage, setCartBackgroundImage] = useState('');
+  const [shippingInfoColor, setShippingInfoColor] = useState('');
   const [productCardBorderColor, setProductCardBorderColor] = useState('');
   const [productCardBackgroundColor, setProductCardBackgroundColor] =
     useState('');
@@ -61,6 +62,7 @@ export default function CartPageScreen() {
       updateCartPageContent({
         cartMainHeading,
         cartBackgroundImage,
+        shippingInfoColor,
         productCardBorderColor,
         productCardBackgroundColor,
         productImageBorderColor,
@@ -77,6 +79,7 @@ export default function CartPageScreen() {
     } else {
       setCartMainHeading(content.cartMainHeading);
       setCartBackgroundImage(content.cartBackgroundImage);
+      setShippingInfoColor(content.shippingInfoColor);
       setProductCardBorderColor(content.productCardBorderColor);
       setProductCardBackgroundColor(content.productCardBackgroundColor);
       setProductImageBorderColor(content.productImageBorderColor);
@@ -125,6 +128,13 @@ export default function CartPageScreen() {
                   name={'imageUploadSliceA'}
                   setImage={setCartBackgroundImage}
                 ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Shipping Info Color</h3>
+                <BlockPicker
+                  color={shippingInfoColor}
+                  onChangeComplete={(e) => setShippingInfoColor(e.hex)}
+                />
               </div>
               <div className="editor_wrapper">
                 <h3>Product Card Border Color</h3>

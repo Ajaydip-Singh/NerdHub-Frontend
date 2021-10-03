@@ -132,8 +132,15 @@ export default function CartScreen(props) {
                             </motion.div>
                           </Link>
                         </div>
-                        {product.shippingInfo &&
-                          stripHtml(product.shippingInfo)}
+                        {product.shippingInfo && (
+                          <div
+                            style={{
+                              color: content && content.shippingInfoColor
+                            }}
+                          >
+                            {stripHtml(product.shippingInfo)}
+                          </div>
+                        )}
                       </div>
                       <div>
                         <select
