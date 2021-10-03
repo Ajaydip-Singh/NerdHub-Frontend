@@ -16,6 +16,7 @@ import styles from './CartScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
+import { stripHtml } from '../../../utils';
 
 export default function CartScreen(props) {
   const cartPageContentGetSlice = useSelector(
@@ -114,21 +115,25 @@ export default function CartScreen(props) {
                         />
                       </div>
                       <div>
-                        <Link
-                          className={styles.name}
-                          to={`/shop/products/${product.id}`}
-                        >
-                          <motion.div
-                            whileHover={{
-                              color: content && content.productNameActiveColor
-                            }}
-                            style={{
-                              color: content && content.productNameColor
-                            }}
+                        <div>
+                          <Link
+                            className={styles.name}
+                            to={`/shop/products/${product.id}`}
                           >
-                            {product.name}
-                          </motion.div>
-                        </Link>
+                            <motion.div
+                              whileHover={{
+                                color: content && content.productNameActiveColor
+                              }}
+                              style={{
+                                color: content && content.productNameColor
+                              }}
+                            >
+                              {product.name}
+                            </motion.div>
+                          </Link>
+                        </div>
+                        {product.shippingInfo &&
+                          stripHtml(product.shippingInfo)}
                       </div>
                       <div>
                         <select
@@ -152,7 +157,7 @@ export default function CartScreen(props) {
                       <div
                         style={{ color: content && content.productPriceColor }}
                       >
-                        ${product.price}
+                        KES {product.price}
                       </div>
                       <button
                         type="button"

@@ -28,6 +28,7 @@ export default function ProductEditScreen(props) {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [taxPrice, setTaxPrice] = useState('');
+  const [shippingInfo, setShippingInfo] = useState('');
   const [cardDisplayPrice, setCardDisplayPrice] = useState('');
   const [pageDisplayPrice, setPageDisplayPrice] = useState('');
   const [countInStock, setCountInStock] = useState('');
@@ -66,6 +67,7 @@ export default function ProductEditScreen(props) {
         description,
         price,
         taxPrice,
+        shippingInfo,
         cardDisplayPrice,
         pageDisplayPrice,
         countInStock,
@@ -105,6 +107,7 @@ export default function ProductEditScreen(props) {
       setDescription(product.description);
       setPrice(product.price);
       setTaxPrice(product.taxPrice);
+      setShippingInfo(product.shippingInfo);
       setCardDisplayPrice(product.cardDisplayPrice);
       setPageDisplayPrice(product.pageDisplayPrice);
       setCountInStock(product.countInStock);
@@ -236,6 +239,14 @@ export default function ProductEditScreen(props) {
                   placeholder="Enter product page display price"
                   value={pageDisplayPrice}
                   onChange={setPageDisplayPrice}
+                ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Shipping Info</h3>
+                <TextEditor
+                  placeholder="Enter product shipping info"
+                  value={shippingInfo}
+                  onChange={setShippingInfo}
                 ></TextEditor>
               </div>
               <div className="editor_wrapper">

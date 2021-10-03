@@ -13,6 +13,7 @@ import { pageVariant, sectionVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import axios from 'axios';
+import { stripHtml } from '../../../utils';
 
 export default function OrderScreen(props) {
   const [total, setTotal] = useState(0);
@@ -31,14 +32,25 @@ export default function OrderScreen(props) {
   const dispatch = useDispatch();
 
   const onPesaPalPaymentHandler = async () => {
+    const cartItems = cart.map((item) => {
+      return {
+        UniqueId: item.id,
+        Particulars: stripHtml(item.name),
+        Quantity: item.quantity,
+        Unitcost: item.price,
+        Subtotal: parseFloat(item.quantity) * parseFloat(item.price)
+      };
+    });
+
     const { data } = await axios.post('/api/pesapal/order/post', {
-      Amount: '5',
+      Amount: total,
       Type: 'MERCHANT',
-      Description: 'sample',
+      Description: 'Online Shopping at Nerdhub',
       Reference: '1234',
       Email: user.email,
       FirstName: user.firstName,
-      LastName: user.lastName
+      LastName: user.lastName,
+      LineItems: cartItems
     });
     window.location.href = data;
   };
@@ -47,7 +59,10 @@ export default function OrderScreen(props) {
     if (cart) {
       setTotal(
         cart.reduce(
-          (a, c) => a + parseFloat(c.price) * parseFloat(c.quantity),
+          (a, c) =>
+            a +
+            (parseFloat(c.price) + parseFloat(c.taxPrice)) *
+              parseFloat(c.quantity),
           0
         )
       );
@@ -151,7 +166,7 @@ export default function OrderScreen(props) {
                       <div
                         style={{ color: content && content.productPriceColor }}
                       >
-                        $
+                        KES{' '}
                         {parseFloat(product.price) *
                           parseFloat(product.quantity)}
                       </div>
@@ -164,12 +179,23 @@ export default function OrderScreen(props) {
               <table className="table">
                 <tbody>
                   <tr>
-                    <td>Subtotal:</td>
+                    <td>Subtotal</td>
                     <td>
                       KES{' '}
                       {cart.reduce(
                         (a, c) =>
                           a + parseFloat(c.price) * parseFloat(c.quantity),
+                        0
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tax</td>
+                    <td>
+                      KES{' '}
+                      {cart.reduce(
+                        (a, c) =>
+                          a + parseFloat(c.taxPrice) * parseFloat(c.quantity),
                         0
                       )}
                     </td>
@@ -180,14 +206,7 @@ export default function OrderScreen(props) {
                   </tr>
                   <tr>
                     <td>Order Total</td>
-                    <td>
-                      KES{' '}
-                      {cart.reduce(
-                        (a, c) =>
-                          a + parseFloat(c.price) * parseFloat(c.quantity),
-                        0
-                      )}
-                    </td>
+                    <td>KES {total}</td>
                   </tr>
                 </tbody>
               </table>

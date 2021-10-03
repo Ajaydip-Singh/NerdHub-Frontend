@@ -37,7 +37,6 @@ export default function ProductScreen(props) {
 
   const dispatch = useDispatch();
   const addToCartHandler = () => {
-    // props.history.push(`/cart/${productId}?quantity=${quantity}`);
     dispatch(addToCart({ productId, quantity }));
     setShowDiv(true);
     setTimeout(() => {
@@ -97,6 +96,9 @@ export default function ProductScreen(props) {
               ></Rating>
               <div className="ql-editor">
                 {product && parse(product.pageDisplayPrice)}
+              </div>
+              <div className="ql-editor">
+                {product && parse(product.shippingInfo)}
               </div>
               <div className="ql-editor">
                 {product && parse(product.description)}
