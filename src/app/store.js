@@ -44,6 +44,8 @@ import comicDeleteSlice from '../slices/comicSlices/comicDeleteSlice';
 import comicGetSlice from '../slices/comicSlices/comicGetSlice';
 import comicUpdateSlice from '../slices/comicSlices/comicUpdateSlice';
 import comicCreateSlice from '../slices/comicSlices/comicCreateSlice';
+import shopPageContentGetSlice from '../slices/pageSlices/shopPageContentSlices/shopPageContentGetSlice';
+import shopPageContentUpdateSlice from '../slices/pageSlices/shopPageContentSlices/shopPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -84,6 +86,10 @@ export const store = configureStore({
     homePageContentUpdateSlice: homePageContentUpdateSlice,
     aboutPageContentGetSlice: aboutPageContentGetSlice,
     aboutPageContentUpdateSlice: aboutPageContentUpdateSlice,
+
+    shopPageContentGetSlice: shopPageContentGetSlice,
+    shopPageContentUpdateSlice: shopPageContentUpdateSlice,
+
     contactPageContentGetSlice: contactPageContentGetSlice,
     contactPageContentUpdateSlice: contactPageContentUpdateSlice,
     cartPageContentGetSlice: cartPageContentGetSlice,
