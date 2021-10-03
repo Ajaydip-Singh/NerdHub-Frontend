@@ -5,7 +5,6 @@ import MediaQuery from 'react-responsive';
 import Header from '../../../components/Header/Header';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import MessageBox from '../../../components/MessageBox/MessageBox';
-import { getCartPageContent } from '../../../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import styles from './OrderScreen.module.css';
@@ -14,6 +13,7 @@ import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import axios from 'axios';
 import { stripHtml } from '../../../utils';
+import { getOrderPageContent } from '../../../slices/pageSlices/orderPageContentSlices/orderPageContentGetSlice';
 
 export default function OrderScreen(props) {
   const [total, setTotal] = useState(0);
@@ -21,10 +21,10 @@ export default function OrderScreen(props) {
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user } = userAuthentication;
 
-  const cartPageContentGetSlice = useSelector(
-    (state) => state.cartPageContentGetSlice
+  const orderPageContentGetSlice = useSelector(
+    (state) => state.orderPageContentGetSlice
   );
-  const { status, content, error } = cartPageContentGetSlice;
+  const { status, content, error } = orderPageContentGetSlice;
 
   const cartSlice = useSelector((state) => state.cartSlice);
   const { cart } = cartSlice;
@@ -70,7 +70,7 @@ export default function OrderScreen(props) {
   }, [cart]);
 
   useEffect(() => {
-    dispatch(getCartPageContent({}));
+    dispatch(getOrderPageContent({}));
   }, [dispatch]);
 
   return (
@@ -89,7 +89,7 @@ export default function OrderScreen(props) {
       ) : (
         <motion.div
           style={{
-            backgroundImage: `url(${content && content.cartBackgroundImage})`
+            backgroundImage: `url(${content && content.orderBackgroundImage})`
           }}
           variants={pageVariant}
           initial="initial"
@@ -112,7 +112,7 @@ export default function OrderScreen(props) {
               whileDrag={{ scale: 1.2 }}
             >
               <div className="ql-editor">
-                {content && parse(content.cartMainHeading)}
+                {content && parse(content.orderMainHeading)}
               </div>
             </motion.div>
           </motion.div>
@@ -146,21 +146,32 @@ export default function OrderScreen(props) {
                         />
                       </div>
                       <div>
-                        <Link
-                          className={styles.name}
-                          to={`/shop/products/${product.id}`}
-                        >
-                          <motion.div
-                            whileHover={{
-                              color: content && content.productNameActiveColor
-                            }}
-                            style={{
-                              color: content && content.productNameColor
-                            }}
+                        <div>
+                          <Link
+                            className={styles.name}
+                            to={`/shop/products/${product.id}`}
                           >
-                            {product.name}
-                          </motion.div>
-                        </Link>
+                            <motion.div
+                              whileHover={{
+                                color: content && content.productNameActiveColor
+                              }}
+                              style={{
+                                color: content && content.productNameColor
+                              }}
+                            >
+                              {product.name}
+                            </motion.div>
+                          </Link>
+                          {product.shippingInfo && (
+                            <div
+                              style={{
+                                color: content && content.shippingInfoColor
+                              }}
+                            >
+                              {stripHtml(product.shippingInfo)}
+                            </div>
+                          )}
+                        </div>
                       </div>
                       <div>Qty: {product.quantity}</div>
                       <div
