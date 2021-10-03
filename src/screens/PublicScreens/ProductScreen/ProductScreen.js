@@ -19,12 +19,18 @@ import { pageVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import { addToCart } from '../../../slices/shopSlices/cartSlice';
+import { getProductPageContent } from '../../../slices/pageSlices/productPageContentSlices/productPageContentGetSlice';
 
 export default function ProductScreen(props) {
   const productId = props.match.params.id;
 
   const [quantity, setQuantity] = useState(1);
   const [showDiv, setShowDiv] = useState(false);
+
+  const productPageContentGetSlice = useSelector(
+    (state) => state.productPageContentGetSlice
+  );
+  const { content } = productPageContentGetSlice;
 
   const productGetSlice = useSelector((state) => state.productGetSlice);
   const { status, product, error } = productGetSlice;
@@ -46,6 +52,7 @@ export default function ProductScreen(props) {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch(getProductPageContent({}));
     dispatch(getProduct(productId));
   }, [dispatch, productId]);
 
@@ -64,7 +71,7 @@ export default function ProductScreen(props) {
             animate="final"
             className={styles.main_wrapper}
             style={{
-              backgroundImage: 'url(/images/cubes.jpeg)'
+              backgroundImage: `url(${content && content.backgroundImage})`
             }}
           >
             <div>
