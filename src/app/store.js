@@ -48,6 +48,8 @@ import shopPageContentGetSlice from '../slices/pageSlices/shopPageContentSlices/
 import shopPageContentUpdateSlice from '../slices/pageSlices/shopPageContentSlices/shopPageContentUpdateSlice';
 import productPageContentGetSlice from '../slices/pageSlices/productPageContentSlices/productPageContentGetSlice';
 import productPageContentUpdateSlice from '../slices/pageSlices/productPageContentSlices/productPageContentUpdateSlice';
+import orderPageContentGetSlice from '../slices/pageSlices/orderPageContentSlices/orderPageContentGetSlice';
+import orderPageContentUpdateSlice from '../slices/pageSlices/orderPageContentSlices/orderPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -96,6 +98,8 @@ export const store = configureStore({
     contactPageContentUpdateSlice: contactPageContentUpdateSlice,
     cartPageContentGetSlice: cartPageContentGetSlice,
     cartPageContentUpdateSlice: cartPageContentUpdateSlice,
+    orderPageContentGetSlice: orderPageContentGetSlice,
+    orderPageContentUpdateSlice: orderPageContentUpdateSlice,
     galleryPageContentGetSlice: galleryPageContentGetSlice,
     galleryPageContentUpdateSlice: galleryPageContentUpdateSlice,
     membershipPageContentGetSlice: membershipPageContentGetSlice,
