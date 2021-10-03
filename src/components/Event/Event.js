@@ -16,20 +16,17 @@ export default function Event(props) {
 
   const [fullscreen, setFullScreen] = useState(focus ? true : false);
 
-  const registerHandler = (price) => {
-    const onPesaPalPaymentHandler = async () => {
-      const { data } = await axios.post('/api/pesapal/order/post', {
-        Amount: event.price,
-        Type: 'MERCHANT',
-        Description: `Nerdhub Event Registration: ${stripHtml(event.name)}`,
-        Reference: '1234',
-        Email: user.email,
-        FirstName: user.firstName,
-        LastName: user.lastName
-      });
-      window.location.href = data;
-    };
-    onPesaPalPaymentHandler();
+  const registerHandler = async () => {
+    const { data } = await axios.post('/api/pesapal/order/post', {
+      Amount: event.price,
+      Type: 'MERCHANT',
+      Description: `Nerdhub Event Registration: ${stripHtml(event.name)}`,
+      Reference: '1234',
+      Email: user.email,
+      FirstName: user.firstName,
+      LastName: user.lastName
+    });
+    window.location.href = data;
   };
 
   return (
@@ -128,14 +125,26 @@ export default function Event(props) {
                 >
                   Show Less
                 </button>
-                <button
-                  href="#"
-                  className={styles.event_button}
-                  onClick={registerHandler}
-                >
-                  Register for{' '}
-                  {event.price !== 0 ? `KSh ${event.price}` : 'Free'}
-                </button>
+
+                {user ? (
+                  <button
+                    href="#"
+                    className={styles.event_button}
+                    onClick={registerHandler}
+                  >
+                    Register for{' '}
+                    {event.price !== 0 ? `KSh ${event.price}` : 'Free'}
+                  </button>
+                ) : (
+                  <Link
+                    href="#"
+                    className={styles.event_button}
+                    to={`/login?redirect=events/${event._id}`}
+                  >
+                    Register for{' '}
+                    {event.price !== 0 ? `KSh ${event.price}` : 'Free'}
+                  </Link>
+                )}
               </div>
             )}
           </div>

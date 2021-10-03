@@ -21,7 +21,9 @@ import { confirmUser } from '../../../slices/userSlices/userConfirmationSlice';
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const redirect = '/home';
+  const redirect = props.location.search
+    ? props.location.search.split('=')[1]
+    : '/';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -79,36 +81,38 @@ export default function LoginScreen(props) {
   ]);
 
   useEffect(() => {
-    const handleGoogleCredentialResponse = (response) => {
-      dispatch(googleLoginUser(response));
-    };
-
-    const setupGoogleOneTapSignIn = async () => {
-      const { data } = await axios.get('/api/config/google');
-
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-
-      script.onload = () => {
-        google.accounts.id.initialize({
-          client_id: data,
-          callback: handleGoogleCredentialResponse
-        });
-        google.accounts.id.prompt();
+    if (!user) {
+      const handleGoogleCredentialResponse = (response) => {
+        dispatch(googleLoginUser(response));
       };
 
-      document.body.appendChild(script);
-    };
+      const setupGoogleOneTapSignIn = async () => {
+        const { data } = await axios.get('/api/config/google');
 
-    setupGoogleOneTapSignIn();
-  }, [dispatch]);
+        const script = document.createElement('script');
+        script.src = 'https://accounts.google.com/gsi/client';
+        script.async = true;
+
+        script.onload = () => {
+          google.accounts.id.initialize({
+            client_id: data,
+            callback: handleGoogleCredentialResponse
+          });
+          google.accounts.id.prompt();
+        };
+
+        document.body.appendChild(script);
+      };
+
+      setupGoogleOneTapSignIn();
+    }
+  }, [user, dispatch]);
 
   useEffect(() => {
     if (user) {
       props.history.push(redirect);
     }
-  }, [user, props]);
+  }, [user, redirect, props]);
 
   return (
     <div>

@@ -32,7 +32,7 @@ export default function CartScreen(props) {
   };
 
   const onCheckoutHandler = () => {
-    props.history.push('/shop/shipping');
+    props.history.push('/login?redirect=shop/shipping');
   };
 
   useEffect(() => {

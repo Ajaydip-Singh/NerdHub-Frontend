@@ -174,6 +174,11 @@ export default function Sidebar(props) {
         ) : (
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
+              <Link to="/shop/cart" className={addLinkStyling(props.cart)}>
+                Cart
+              </Link>
+            </li>
+            <li className={styles.side_bar_list_item}>
               <Link to="/login" className={styles.side_bar_link}>
                 Login
               </Link>
