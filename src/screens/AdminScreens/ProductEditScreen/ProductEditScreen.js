@@ -35,6 +35,10 @@ export default function ProductEditScreen(props) {
   const [rating, setRating] = useState('');
   const [numReviews, setNumReviews] = useState('');
   const [isActive, setIsActive] = useState('');
+
+  const [isCardActiveReviews, setIsCardActiveReviews] = useState('');
+  const [isPageActiveReviews, setIsPageActiveReviews] = useState('');
+
   const [isFeaturedProduct, setIsFeaturedProduct] = useState('');
   const [borderColor, setBorderColor] = useState('');
   const [borderHoverColor, setBorderHoverColor] = useState('');

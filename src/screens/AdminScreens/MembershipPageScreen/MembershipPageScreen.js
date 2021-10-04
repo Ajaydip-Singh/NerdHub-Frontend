@@ -20,6 +20,7 @@ export default function MembershipPageScreen() {
   const [membershipBackgroundImage, setMembershipBackgroundImage] =
     useState('');
   const [membershipMainContent, setMembershipMainContent] = useState('');
+  const [membershipFee, setMembershipFee] = useState('');
 
   const membershipPageContentGetSlice = useSelector(
     (state) => state.membershipPageContentGetSlice
@@ -55,7 +56,8 @@ export default function MembershipPageScreen() {
       updateMembershipPageContent({
         membershipMainHeading,
         membershipBackgroundImage,
-        membershipMainContent
+        membershipMainContent,
+        membershipFee
       })
     );
   };
@@ -67,6 +69,7 @@ export default function MembershipPageScreen() {
       setMembershipMainHeading(content.membershipMainHeading);
       setMembershipBackgroundImage(content.membershipBackgroundImage);
       setMembershipMainContent(content.membershipMainContent);
+      setMembershipFee(content.membershipFee);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -117,6 +120,14 @@ export default function MembershipPageScreen() {
                   value={membershipMainContent}
                   onChange={setMembershipMainContent}
                 ></TextEditor>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Membership Fee</h3>
+                <input
+                  placeholder="Enter membership free amount"
+                  value={membershipFee}
+                  onChange={(e) => setMembershipFee(e.target.value)}
+                ></input>
               </div>
 
               <div className="editor_wrapper">
