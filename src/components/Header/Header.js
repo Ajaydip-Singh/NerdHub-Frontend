@@ -32,14 +32,21 @@ export default function Header(props) {
           {!isSmallerScreen && (
             <ul className={`row_f align-center ${styles.nav_list}`}>
               {props.admin && (
-                <li className={styles.nav_list_item}>
-                  <Link
-                    className={addLinkStyling(props.admin)}
-                    to="/adminpanel"
-                  >
-                    Admin Panel
-                  </Link>
-                </li>
+                <>
+                  <li className={styles.nav_list_item}>
+                    <Link
+                      className={addLinkStyling(props.admin)}
+                      to="/adminpanel"
+                    >
+                      Admin Panel
+                    </Link>
+                  </li>
+                  <li className={styles.nav_list_item}>
+                    <Link className={addLinkStyling(props.home)} to="/home">
+                      home
+                    </Link>
+                  </li>
+                </>
               )}
               {!props.admin && (
                 <>
