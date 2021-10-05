@@ -34,158 +34,212 @@ import FooterPageScreen from './screens/AdminScreens/FooterPageScreen/FooterPage
 import ComicsListScreen from './screens/AdminScreens/ComicsListScreen/ComicsListScreen';
 import ComicEditScreen from './screens/AdminScreens/ComicEditScreen/ComicEditScreen';
 import ComicsScreen from './screens/PublicScreens/ComicsScreen/ComicsScreen';
+import PostPaymentScreen from './screens/PublicScreens/PostPaymentScreen/PostPaymentScreen';
 import ShopPageScreen from './screens/AdminScreens/ShopPageScreen/ShopPageScreen';
 import ProductPageScreen from './screens/AdminScreens/ProductPageScreen/ProductPageScreen';
+import OrderPageScreen from './screens/AdminScreens/OrderPageScreen/OrderPageScreen';
+import LandingScreen from './screens/PublicScreens/LandingScreen/LandingScreen';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useEffect } from 'react';
 
 function App() {
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 60, stiffness: 1000 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  useEffect(() => {
+    const moveCursor = (e) => {
+      cursorX.set(e.clientX - 16);
+      cursorY.set(e.clientY - 16);
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+    };
+  }, [cursorX, cursorY]);
   return (
-    <Router>
-      <Route path="/home" component={HomeScreen}></Route>
-      <Route path="/events/:eventId" exact component={EventsScreen}></Route>
-      <Route
-        path="/events/:name/:category/:venue/:pageNumber"
-        exact
-        component={EventsScreen}
-      ></Route>
-      <Route path="/events" exact component={EventsScreen}></Route>
-      <Route
-        path="/gallery/:tag/:pageNumber"
-        component={GalleryScreen}
-        exact
-      ></Route>
-      <Route path="/gallery" component={GalleryScreen} exact></Route>
-      <Route path="/about" component={AboutScreen}></Route>
-      <Route path="/contact" component={ContactScreen}></Route>
-      <Route path="/membership" component={MembershipScreen}></Route>
-      <Route path="/shop/products/:id" exact component={ProductScreen}></Route>
-      <Route path="/shop/cart" exact component={CartScreen}></Route>
-      <Route
-        path="/shop/:name/:category/:brand/:pageNumber"
-        exact
-        component={ShopScreen}
-      ></Route>
-      <Route path="/shop/" exact component={ShopScreen}></Route>
-      <Route
-        path="/login/:userId/:confirmationCode"
-        component={LoginScreen}
-        exact
-      ></Route>
-      <Route path="/login" component={LoginScreen} exact></Route>
-      <Route path="/register" component={RegisterScreen}></Route>
-      <MemberRoute
-        exact
-        path="/comics/:name/:category/:pageNumber"
-        component={ComicsScreen}
-      ></MemberRoute>
-      <MemberRoute path="/comics" exact component={ComicsScreen}></MemberRoute>
-      <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
-      <PrivateRoute
-        path="/shop/shipping"
-        component={ShippingScreen}
-      ></PrivateRoute>
-      <PrivateRoute path="/shop/order" component={OrderScreen}></PrivateRoute>
-      <AdminRoute path="/adminpanel" component={AdminPanelScreen}></AdminRoute>
-      <AdminRoute
-        path="/footer-admin"
-        component={FooterPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/gallery-admin/:pageNumber"
-        component={GalleryListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/gallery-admin"
-        component={GalleryListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/products-admin"
-        component={ProductsListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/products-admin/:pageNumber"
-        component={ProductsListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/products-admin/:id/edit"
-        component={ProductEditScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/events-admin/:pageNumber"
-        component={EventsPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/events-admin"
-        component={EventsPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/events-admin/:id/edit"
-        component={EventEditScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/comics-admin"
-        component={ComicsListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/comics-admin/:pageNumber"
-        component={ComicsListScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/comics-admin/:id/edit"
-        component={ComicEditScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/home-page-content-admin"
-        component={HomePageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/about-page-content-admin"
-        component={AboutPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/membership-page-content-admin"
-        component={MembershipPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/contact-page-content-admin"
-        component={ContactPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/shop-page-content-admin"
-        component={ShopPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/product-page-content-admin"
-        component={ProductPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/cart-page-content-admin"
-        component={CartPageScreen}
-        exact
-      ></AdminRoute>
-      <AdminRoute
-        path="/gallery-page-content-admin"
-        component={GalleryPageScreen}
-        exact
-      ></AdminRoute>
-    </Router>
+    <>
+      <motion.div
+        className="cursor"
+        style={{
+          translateX: cursorXSpring,
+          translateY: cursorYSpring
+        }}
+      />
+      <Router>
+        <Route path="/" exact component={LandingScreen}></Route>
+        <Route path="/home" component={HomeScreen}></Route>
+        <Route path="/events/:eventId" exact component={EventsScreen}></Route>
+        <Route
+          path="/events/:name/:category/:venue/:pageNumber"
+          exact
+          component={EventsScreen}
+        ></Route>
+        <Route path="/events" exact component={EventsScreen}></Route>
+        <Route
+          path="/gallery/:tag/:pageNumber"
+          component={GalleryScreen}
+          exact
+        ></Route>
+        <Route path="/gallery" component={GalleryScreen} exact></Route>
+        <Route path="/about" component={AboutScreen}></Route>
+        <Route path="/contact" component={ContactScreen}></Route>
+        <Route path="/membership" component={MembershipScreen}></Route>
+        <Route
+          path="/shop/products/:id"
+          exact
+          component={ProductScreen}
+        ></Route>
+        <Route path="/shop/cart" exact component={CartScreen}></Route>
+        <Route
+          path="/shop/:name/:category/:brand/:pageNumber"
+          exact
+          component={ShopScreen}
+        ></Route>
+        <Route path="/shop/" exact component={ShopScreen}></Route>
+        <Route
+          path="/login/:userId/:confirmationCode"
+          component={LoginScreen}
+          exact
+        ></Route>
+        <Route path="/login" component={LoginScreen} exact></Route>
+        <Route path="/register" component={RegisterScreen}></Route>
+        <MemberRoute
+          exact
+          path="/comics/:name/:category/:pageNumber"
+          component={ComicsScreen}
+        ></MemberRoute>
+        <MemberRoute
+          path="/comics"
+          exact
+          component={ComicsScreen}
+        ></MemberRoute>
+        <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
+        <PrivateRoute
+          path="/shop/postpayment"
+          component={PostPaymentScreen}
+        ></PrivateRoute>
+        <PrivateRoute
+          path="/shop/shipping"
+          component={ShippingScreen}
+        ></PrivateRoute>
+        <PrivateRoute path="/shop/order" component={OrderScreen}></PrivateRoute>
+        <AdminRoute
+          path="/adminpanel"
+          component={AdminPanelScreen}
+        ></AdminRoute>
+        <AdminRoute
+          path="/footer-admin"
+          component={FooterPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/gallery-admin/:pageNumber"
+          component={GalleryListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/gallery-admin"
+          component={GalleryListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/products-admin"
+          component={ProductsListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/products-admin/:pageNumber"
+          component={ProductsListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/products-admin/:id/edit"
+          component={ProductEditScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/events-admin/:pageNumber"
+          component={EventsPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/events-admin"
+          component={EventsPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/events-admin/:id/edit"
+          component={EventEditScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/comics-admin"
+          component={ComicsListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/comics-admin/:pageNumber"
+          component={ComicsListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/comics-admin/:id/edit"
+          component={ComicEditScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/home-page-content-admin"
+          component={HomePageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/about-page-content-admin"
+          component={AboutPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/membership-page-content-admin"
+          component={MembershipPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/contact-page-content-admin"
+          component={ContactPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/shop-page-content-admin"
+          component={ShopPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/product-page-content-admin"
+          component={ProductPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/cart-page-content-admin"
+          component={CartPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/order-page-content-admin"
+          component={OrderPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/gallery-page-content-admin"
+          component={GalleryPageScreen}
+          exact
+        ></AdminRoute>
+      </Router>
+    </>
   );
 }
 
