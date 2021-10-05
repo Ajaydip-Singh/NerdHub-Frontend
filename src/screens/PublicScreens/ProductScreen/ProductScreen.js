@@ -94,6 +94,8 @@ export default function ProductScreen(props) {
                 <Rating
                   rating={product && product.rating}
                   numReviews={product && product.numReviews}
+                  ratingColor={product && product.ratingColor}
+                  numReviewsColor={product && product.numReviewsColor}
                 ></Rating>
               )}
               <div className="ql-editor">

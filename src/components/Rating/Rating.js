@@ -1,11 +1,12 @@
 import styles from './Rating.module.css';
 
 export default function Rating(props) {
-  const { rating, numReviews, caption } = props;
+  const { rating, numReviews, caption, ratingColor, numReviewsColor } = props;
   return (
     <div className={styles.rating}>
       <span>
         <i
+          style={{ color: ratingColor }}
           className={
             rating >= 1
               ? 'fa fa-star'
@@ -17,6 +18,7 @@ export default function Rating(props) {
       </span>
       <span>
         <i
+          style={{ color: ratingColor }}
           className={
             rating >= 2
               ? 'fa fa-star'
@@ -28,6 +30,7 @@ export default function Rating(props) {
       </span>
       <span>
         <i
+          style={{ color: ratingColor }}
           className={
             rating >= 3
               ? 'fa fa-star'
@@ -39,6 +42,7 @@ export default function Rating(props) {
       </span>
       <span>
         <i
+          style={{ color: ratingColor }}
           className={
             rating >= 4
               ? 'fa fa-star'
@@ -50,6 +54,7 @@ export default function Rating(props) {
       </span>
       <span>
         <i
+          style={{ color: ratingColor }}
           className={
             rating >= 5
               ? 'fa fa-star'
@@ -62,7 +67,9 @@ export default function Rating(props) {
       {caption ? (
         <span>{caption}</span>
       ) : (
-        <span>{`${numReviews} reviews`}</span>
+        <span
+          style={{ color: numReviewsColor }}
+        >{`${numReviews} reviews`}</span>
       )}
     </div>
   );

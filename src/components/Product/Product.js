@@ -33,7 +33,12 @@ export default function Product(props) {
           <p className={styles.product_name}>{parse(product.cardName)}</p>
         </div>
         {product.isCardActiveReviews && (
-          <Rating rating={product.rating} numReviews={product.numReviews} />
+          <Rating
+            ratingColor={product && product.ratingColor}
+            numReviewsColor={product && product.numReviewsColor}
+            rating={product.rating}
+            numReviews={product.numReviews}
+          />
         )}
         <div className="ql-editor">{parse(product.cardDisplayPrice)}</div>
       </div>

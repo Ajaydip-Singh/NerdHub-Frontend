@@ -33,7 +33,9 @@ export default function ProductEditScreen(props) {
   const [pageDisplayPrice, setPageDisplayPrice] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [rating, setRating] = useState('');
+  const [ratingColor, setRatingColor] = useState('');
   const [numReviews, setNumReviews] = useState('');
+  const [numReviewsColor, setNumReviewsColor] = useState('');
   const [isActive, setIsActive] = useState('');
   const [isCardActiveReviews, setIsCardActiveReviews] = useState('');
   const [isPageActiveReviews, setIsPageActiveReviews] = useState('');
@@ -74,7 +76,9 @@ export default function ProductEditScreen(props) {
         pageDisplayPrice,
         countInStock,
         rating,
+        ratingColor: ratingColor.hex,
         numReviews,
+        numReviewsColor: numReviewsColor.hex,
         isCardActiveReviews,
         isPageActiveReviews,
         isActive,
@@ -116,7 +120,9 @@ export default function ProductEditScreen(props) {
       setPageDisplayPrice(product.pageDisplayPrice);
       setCountInStock(product.countInStock);
       setRating(product.rating);
+      setRatingColor(product.ratingColor);
       setNumReviews(product.numReviews);
+      setNumReviewsColor(product.numReviewsColor);
       setIsCardActiveReviews(product.isCardActiveReviews);
       setIsPageActiveReviews(product.isPageActiveReviews);
       setIsActive(product.isActive);
@@ -265,6 +271,7 @@ export default function ProductEditScreen(props) {
               </div>
               <div className="editor_wrapper">
                 <h3>Rating</h3>
+                <p>Between 1 - 5</p>
                 <input
                   value={rating}
                   onChange={(e) => setRating(e.target.value)}
@@ -327,6 +334,20 @@ export default function ProductEditScreen(props) {
                 />
               </div>
               <h1>Product Card Styles</h1>
+              <div className="editor_wrapper">
+                <h3>Rating Color</h3>
+                <BlockPicker
+                  color={ratingColor}
+                  onChangeComplete={setRatingColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Reviews Color</h3>
+                <BlockPicker
+                  color={numReviewsColor}
+                  onChangeComplete={setNumReviewsColor}
+                />
+              </div>
               <div className="editor_wrapper">
                 <h3>Border Hover Color</h3>
                 <BlockPicker
