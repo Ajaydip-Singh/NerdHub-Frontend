@@ -68,7 +68,7 @@ export default function HomeScreen() {
         </div>
       ) : (
         <motion.div variants={pageVariant} initial="initial" animate="final">
-          <motion.div
+          <div
             className={styles.hero_section}
             variants={sectionVariant}
             whileHover="hover"
@@ -132,7 +132,7 @@ export default function HomeScreen() {
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>
-          </motion.div>
+          </div>
           <MediaQuery minWidth={800}>
             <div className={styles.social_icons}>
               <Socials vertical />
