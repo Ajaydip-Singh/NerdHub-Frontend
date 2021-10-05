@@ -186,8 +186,26 @@ export default function OrderScreen(props) {
                 ))}
               </div>
             )}
-            <div className={styles.checkout}>
-              <table className="table">
+            <div
+              style={{
+                border: `2px solid ${content && content.tableBorderColor}`
+              }}
+              className={styles.checkout}
+            >
+              <table
+                style={{
+                  '--table-color-border': content && content.tableBorderColor,
+                  '--table-color-even':
+                    content && content.tableEvenRowBackgroundColor,
+                  '--table-text-color-even':
+                    content && content.tableEvenRowTextColor,
+                  '--table-color-odd':
+                    content && content.tableOddRowBackgroundColor,
+                  '--table-text-color-odd':
+                    content && content.tableOddRowTextColor
+                }}
+                className={styles.table}
+              >
                 <tbody>
                   <tr>
                     <td>Subtotal</td>
@@ -224,7 +242,15 @@ export default function OrderScreen(props) {
               <button
                 onClick={() => onPesaPalPaymentHandler()}
                 disabled={cart.length === 0}
-                className={`button border_bottom mb-2 ${styles.checkout_button}`}
+                style={{
+                  '--checkout-button-text-color':
+                    content && content.checkoutButtonTextColor,
+                  '--checkout-button-background-color':
+                    content && content.checkoutButtonBackgroundColor,
+                  '--checkout-button-border-color':
+                    content && content.checkoutButtonBorderColor
+                }}
+                className={`mb-2 ${styles.checkout_button}`}
               >
                 Pay With PesaPal
               </button>
