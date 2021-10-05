@@ -20,7 +20,7 @@ export default function Header(props) {
           isSmallerScreen ? `space-between` : ``
         }`}
       >
-        <Link to="/home">
+        <Link to="/">
           <img src="/logo192.png" alt="Nerdhub Logo" className={styles.logo} />
         </Link>
 
