@@ -16,6 +16,7 @@ import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 
 export default function ShopPageScreen() {
   const [backgroundImage, setBackgroundImage] = useState('');
+  const [comingSoon, setComingSoon] = useState('');
 
   const shopPageContentGetSlice = useSelector(
     (state) => state.shopPageContentGetSlice
@@ -49,7 +50,8 @@ export default function ShopPageScreen() {
     e.preventDefault();
     dispatch(
       updateShopPageContent({
-        backgroundImage
+        backgroundImage,
+        comingSoon
       })
     );
   };
@@ -59,6 +61,7 @@ export default function ShopPageScreen() {
       dispatch(getShopPageContent({}));
     } else {
       setBackgroundImage(content.backgroundImage);
+      setComingSoon(content.comingSoon);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -89,6 +92,16 @@ export default function ShopPageScreen() {
                   name={'imageUploadSliceA'}
                   setImage={setBackgroundImage}
                 ></ImageUploader>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Coming Soon</h3>
+                <select
+                  value={comingSoon}
+                  onChange={(e) => setComingSoon(e.target.value)}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
               </div>
               <div className="editor_wrapper">
                 {errorUpdate && (
