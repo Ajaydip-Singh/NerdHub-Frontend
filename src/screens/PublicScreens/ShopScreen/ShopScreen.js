@@ -17,6 +17,7 @@ import { getProductsBrands } from '../../../slices/productSlices/productsBrandsG
 import { useParams } from 'react-router';
 import Pages from '../../../components/Pages/Pages';
 import { getShopPageContent } from '../../../slices/pageSlices/shopPageContentSlices/shopPageContentGetSlice';
+import parse from 'html-react-parser';
 
 export default function ShopScreen(props) {
   const {
@@ -104,89 +105,103 @@ export default function ShopScreen(props) {
           backgroundImage: `url(${content && content.backgroundImage})`
         }}
       >
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 1 }}
-          className={styles.filterbox}
-        >
-          <div className={styles.wrapper}>
-            <form className={styles.search} onSubmit={submitHandler}>
-              <div className="row_f">
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="q"
-                  value={inputProductName}
-                  onChange={(e) => setInputProductName(e.target.value)}
-                  placeholder="Search product by name"
-                  id="q"
-                />
-                <button
-                  type="submit"
-                  className={styles.search_button}
-                  onClick={() =>
-                    props.history.push(getFilterUrl({ name: inputProductName }))
-                  }
-                >
-                  <i className="fa fa-search"></i>
-                </button>
-              </div>
-              <div className={styles.filter_button_wrapper}>
-                <select
-                  className={`${styles.search_button} ${styles.filter_button}`}
-                  value={category}
-                  onChange={(e) =>
-                    props.history.push(
-                      getFilterUrl({ category: e.target.value })
-                    )
-                  }
-                >
-                  <option value="all">All Categories</option>
-                  {categories &&
-                    categories.map((category) => (
-                      <option value={category}>{category}</option>
-                    ))}
-                </select>
-                <select
-                  className={`${styles.search_button} ${styles.filter_button}`}
-                  value={brand}
-                  onChange={(e) =>
-                    props.history.push(getFilterUrl({ brand: e.target.value }))
-                  }
-                >
-                  <option value="all">All Brands</option>
-                  {brands &&
-                    brands.map((brand) => (
-                      <option value={brand}>{brand}</option>
-                    ))}
-                </select>
-              </div>
-            </form>
+        {content && content.comingSoon ? (
+          <div className={styles.comingSoon_wrapper}>
+            <div className="ql-editor">
+              {parse(content && content.comingSoonText)}
+            </div>
           </div>
-        </motion.div>
-        <div className="min_page_height search_box">
-          {status === 'loading' ? (
-            <LoadingBox></LoadingBox>
-          ) : error ? (
-            <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
+        ) : (
+          <>
             <motion.div
-              variants={pageVariant}
-              initial="initial"
-              animate="final"
-              className={styles.products_wrapper}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 1 }}
+              className={styles.filterbox}
             >
-              {products.map((product) => (
-                <Product key={product._id} product={product} />
-              ))}
+              <div className={styles.wrapper}>
+                <form className={styles.search} onSubmit={submitHandler}>
+                  <div className="row_f">
+                    <input
+                      className={styles.input}
+                      type="text"
+                      name="q"
+                      value={inputProductName}
+                      onChange={(e) => setInputProductName(e.target.value)}
+                      placeholder="Search product by name"
+                      id="q"
+                    />
+                    <button
+                      type="submit"
+                      className={styles.search_button}
+                      onClick={() =>
+                        props.history.push(
+                          getFilterUrl({ name: inputProductName })
+                        )
+                      }
+                    >
+                      <i className="fa fa-search"></i>
+                    </button>
+                  </div>
+                  <div className={styles.filter_button_wrapper}>
+                    <select
+                      className={`${styles.search_button} ${styles.filter_button}`}
+                      value={category}
+                      onChange={(e) =>
+                        props.history.push(
+                          getFilterUrl({ category: e.target.value })
+                        )
+                      }
+                    >
+                      <option value="all">All Categories</option>
+                      {categories &&
+                        categories.map((category) => (
+                          <option value={category}>{category}</option>
+                        ))}
+                    </select>
+                    <select
+                      className={`${styles.search_button} ${styles.filter_button}`}
+                      value={brand}
+                      onChange={(e) =>
+                        props.history.push(
+                          getFilterUrl({ brand: e.target.value })
+                        )
+                      }
+                    >
+                      <option value="all">All Brands</option>
+                      {brands &&
+                        brands.map((brand) => (
+                          <option value={brand}>{brand}</option>
+                        ))}
+                    </select>
+                  </div>
+                </form>
+              </div>
             </motion.div>
-          )}
-        </div>
-        <Pages
-          currentPage={parseInt(pageNumber)}
-          pages={parseInt(pages)}
-          filterUrl={getFilterUrl}
-        ></Pages>
+            <div className="min_page_height search_box">
+              {status === 'loading' ? (
+                <LoadingBox></LoadingBox>
+              ) : error ? (
+                <MessageBox variant="danger">{error}</MessageBox>
+              ) : (
+                <motion.div
+                  variants={pageVariant}
+                  initial="initial"
+                  animate="final"
+                  className={styles.products_wrapper}
+                >
+                  {products.map((product) => (
+                    <Product key={product._id} product={product} />
+                  ))}
+                </motion.div>
+              )}
+            </div>
+            <Pages
+              currentPage={parseInt(pageNumber)}
+              pages={parseInt(pages)}
+              filterUrl={getFilterUrl}
+            ></Pages>
+          </>
+        )}
       </div>
       <MediaQuery minWidth={800}>
         <Footer></Footer>

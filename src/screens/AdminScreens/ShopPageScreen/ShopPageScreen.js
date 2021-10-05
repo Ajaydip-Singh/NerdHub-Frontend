@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import TextEditor from '../../../components/TextEditor/TextEditor';
 import {
   getShopPageContent,
   resetGetShopPageContent
@@ -17,6 +18,7 @@ import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 export default function ShopPageScreen() {
   const [backgroundImage, setBackgroundImage] = useState('');
   const [comingSoon, setComingSoon] = useState('');
+  const [comingSoonText, setComingSoonText] = useState('');
 
   const shopPageContentGetSlice = useSelector(
     (state) => state.shopPageContentGetSlice
@@ -51,7 +53,8 @@ export default function ShopPageScreen() {
     dispatch(
       updateShopPageContent({
         backgroundImage,
-        comingSoon
+        comingSoon,
+        comingSoonText
       })
     );
   };
@@ -62,6 +65,7 @@ export default function ShopPageScreen() {
     } else {
       setBackgroundImage(content.backgroundImage);
       setComingSoon(content.comingSoon);
+      setComingSoonText(content.comingSoonText);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -102,6 +106,14 @@ export default function ShopPageScreen() {
                   <option value="true">True</option>
                   <option value="false">False</option>
                 </select>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Coming Soon Text</h3>
+                <TextEditor
+                  value={comingSoonText}
+                  onChange={setComingSoonText}
+                  placeholder="Enter coming soon text"
+                ></TextEditor>
               </div>
               <div className="editor_wrapper">
                 {errorUpdate && (
