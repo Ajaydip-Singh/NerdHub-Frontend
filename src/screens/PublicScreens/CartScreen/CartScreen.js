@@ -178,8 +178,26 @@ export default function CartScreen(props) {
                 ))}
               </div>
             )}
-            <div className={styles.checkout}>
-              <table className="table">
+            <div
+              style={{
+                border: `2px solid ${content && content.tableBorderColor}`
+              }}
+              className={styles.checkout}
+            >
+              <table
+                style={{
+                  '--table-color-border': content && content.tableBorderColor,
+                  '--table-color-even':
+                    content && content.tableEvenRowBackgroundColor,
+                  '--table-text-color-even':
+                    content && content.tableEvenRowTextColor,
+                  '--table-color-odd':
+                    content && content.tableOddRowBackgroundColor,
+                  '--table-text-color-odd':
+                    content && content.tableOddRowTextColor
+                }}
+                className={styles.table}
+              >
                 <tbody>
                   <tr>
                     <td>Items:</td>
@@ -203,7 +221,15 @@ export default function CartScreen(props) {
               <button
                 onClick={onCheckoutHandler}
                 disabled={cart.length === 0}
-                className={`button border_bottom ${styles.checkout_button}`}
+                className={styles.checkout_button}
+                style={{
+                  '--checkout-button-text-color':
+                    content && content.checkoutButtonTextColor,
+                  '--checkout-button-background-color':
+                    content && content.checkoutButtonBackgroundColor,
+                  '--checkout-button-border-color':
+                    content && content.checkoutButtonBorderColor
+                }}
               >
                 Proceed To Checkout
               </button>

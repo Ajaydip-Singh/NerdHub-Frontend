@@ -27,6 +27,18 @@ export default function CartPageScreen() {
   const [productNameColor, setProductNameColor] = useState('');
   const [productNameActiveColor, setProductNameActiveColor] = useState('');
   const [productPriceColor, setProductPriceColor] = useState('');
+  const [tableBorderColor, setTableBorderColor] = useState('');
+  const [tableEvenRowBackgroundColor, setTableEvenRowBackgroundColor] =
+    useState('');
+  const [tableEvenRowTextColor, setTableEvenRowTextColor] = useState('');
+  const [tableOddRowBackgroundColor, setTableOddRowBackgroundColor] =
+    useState('');
+  const [tableOddRowTextColor, setTableOddRowTextColor] = useState('');
+  const [checkoutButtonTextColor, setCheckoutButtonTextColor] = useState('');
+  const [checkoutButtonBackgroundColor, setCheckoutButtonBackgroundColor] =
+    useState('');
+  const [checkoutButtonBorderColor, setCheckoutButtonBorderColor] =
+    useState('');
 
   const cartPageContentGetSlice = useSelector(
     (state) => state.cartPageContentGetSlice
@@ -68,7 +80,15 @@ export default function CartPageScreen() {
         productImageBorderColor,
         productNameColor,
         productNameActiveColor,
-        productPriceColor
+        productPriceColor,
+        tableBorderColor: tableBorderColor.hex,
+        tableEvenRowBackgroundColor: tableEvenRowBackgroundColor.hex,
+        tableEvenRowTextColor: tableEvenRowTextColor.hex,
+        tableOddRowBackgroundColor: tableOddRowBackgroundColor.hex,
+        tableOddRowTextColor: tableOddRowTextColor.hex,
+        checkoutButtonTextColor: checkoutButtonTextColor.hex,
+        checkoutButtonBackgroundColor: checkoutButtonBackgroundColor.hex,
+        checkoutButtonBorderColor: checkoutButtonBorderColor.hex
       })
     );
   };
@@ -86,6 +106,14 @@ export default function CartPageScreen() {
       setProductNameColor(content.productNameColor);
       setProductNameActiveColor(content.productNameActiveColor);
       setProductPriceColor(content.productPriceColor);
+      setTableBorderColor(content.tableBorderColor);
+      setTableEvenRowBackgroundColor(content.tableEvenRowBackgroundColor);
+      setTableEvenRowTextColor(content.tableEvenRowTextColor);
+      setTableOddRowBackgroundColor(content.tableOddRowBackgroundColor);
+      setTableOddRowTextColor(content.tableOddRowTextColor);
+      setCheckoutButtonTextColor(content.checkoutButtonTextColor);
+      setCheckoutButtonBackgroundColor(content.checkoutButtonBackgroundColor);
+      setCheckoutButtonBorderColor(content.checkoutButtonBorderColor);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -176,6 +204,63 @@ export default function CartPageScreen() {
                 <BlockPicker
                   color={productPriceColor}
                   onChangeComplete={(e) => setProductPriceColor(e.hex)}
+                />
+              </div>
+              <h1>Table Styles</h1>
+              <div className="editor_wrapper">
+                <h3>Table Border Color</h3>
+                <BlockPicker
+                  color={tableBorderColor}
+                  onChangeComplete={setTableBorderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Even Row Background Color</h3>
+                <BlockPicker
+                  color={tableEvenRowBackgroundColor}
+                  onChangeComplete={setTableEvenRowBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Even Row Text Color</h3>
+                <BlockPicker
+                  color={tableEvenRowTextColor}
+                  onChangeComplete={setTableEvenRowTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Odd Row Background Color</h3>
+                <BlockPicker
+                  color={tableOddRowBackgroundColor}
+                  onChangeComplete={setTableOddRowBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Odd Row Text Color</h3>
+                <BlockPicker
+                  color={tableOddRowTextColor}
+                  onChangeComplete={setTableOddRowTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Text Color</h3>
+                <BlockPicker
+                  color={checkoutButtonTextColor}
+                  onChangeComplete={setCheckoutButtonTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Background Color</h3>
+                <BlockPicker
+                  color={checkoutButtonBackgroundColor}
+                  onChangeComplete={setCheckoutButtonBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Border Color</h3>
+                <BlockPicker
+                  color={checkoutButtonBorderColor}
+                  onChangeComplete={setCheckoutButtonBorderColor}
                 />
               </div>
 
