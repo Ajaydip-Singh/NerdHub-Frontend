@@ -13,6 +13,7 @@
 }
 
 .main_wrapper {
+  position: relative;
   background-size: cover;
   object-fit: cover;
   background-position: center;
@@ -24,6 +25,19 @@
   min-height: calc(100vh - 70px);
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .main_wrapper {
+    min-height: calc(100vh - 135px);
+  }
+}
+
+.comingSoon_wrapper {
+  position: absolute;
+  top: calc(50% - 70px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .comics_wrapper {
@@ -65,13 +79,7 @@
   padding: 0.5rem;
   width: 300px;
   margin: 0 auto;
-  background-color: #000;
   box-shadow: none;
-  color: #fff;
-  outline: 1px solid #0de80e;
-  border: 2px solid #000;
-  box-shadow: 0 14px 28px rgba(10, 78, 25, 0.25),
-    0 10px 10px rgba(7, 63, 22, 0.22);
   transition: border 500ms linear, ease 500ms;
 }
 
@@ -79,11 +87,6 @@
   .input {
     width: 200px;
   }
-}
-
-.input:hover,
-.input:focus {
-  border: 2px solid #0de80e;
 }
 
 .search_button {

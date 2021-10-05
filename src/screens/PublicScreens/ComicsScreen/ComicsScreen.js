@@ -18,6 +18,8 @@ import {
   getComic,
   resetGetComic
 } from '../../../slices/comicSlices/comicGetSlice';
+import { getComicPageContent } from '../../../slices/pageSlices/comicPageContentSlices/comicPageContentGetSlice';
+import parse from 'html-react-parser';
 
 export default function ComicsScreen(props) {
   const {
@@ -30,6 +32,15 @@ export default function ComicsScreen(props) {
   const [inputComicName, setInputComicName] = useState(
     name === 'all' ? '' : name
   );
+
+  const comicPageContentGetSlice = useSelector(
+    (state) => state.comicPageContentGetSlice
+  );
+  const {
+    status: statusContent,
+    content,
+    error: errorContent
+  } = comicPageContentGetSlice;
 
   const comicGetSlice = useSelector((state) => state.comicGetSlice);
   const { comic } = comicGetSlice;
@@ -84,6 +95,12 @@ export default function ComicsScreen(props) {
   });
 
   useEffect(() => {
+    if (!content) {
+      dispatch(getComicPageContent({}));
+    }
+  }, [dispatch, content]);
+
+  useEffect(() => {
     dispatch(getComicsCategories());
     dispatch(
       getComics({
@@ -98,103 +115,146 @@ export default function ComicsScreen(props) {
   return (
     <div className={styles.screen}>
       <Header comics></Header>
-      <motion.div
-        variants={pageVariant}
-        initial="initial"
-        animate="final"
-        className={styles.main_wrapper}
-        style={{
-          backgroundImage: 'url(/images/cubes.jpeg)'
-        }}
-      >
+      {statusContent === 'loading' ? (
+        <div className="min_page_height">
+          <LoadingBox></LoadingBox>
+        </div>
+      ) : errorContent ? (
+        <div className="min_page_height">
+          <MessageBox variant="danger">
+            Oops. We are temporarily unavailable. Please try again later.
+          </MessageBox>
+        </div>
+      ) : (
         <motion.div
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 1 }}
-          className={styles.filterbox}
+          variants={pageVariant}
+          initial="initial"
+          animate="final"
+          className={styles.main_wrapper}
+          style={{
+            backgroundImage: `url(${content && content.backgroundImage})`
+          }}
         >
-          <div className={styles.wrapper}>
-            <form className={styles.search} onSubmit={submitHandler}>
-              <div className="row_f">
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="q"
-                  value={inputComicName}
-                  onChange={(e) => setInputComicName(e.target.value)}
-                  placeholder="Search comic by name"
-                  id="q"
-                />
-                <button
-                  type="submit"
-                  className={styles.search_button}
-                  onClick={() =>
-                    props.history.push(getFilterUrl({ name: inputComicName }))
-                  }
-                >
-                  <i className="fa fa-search"></i>
-                </button>
+          {content && content.comingSoon ? (
+            <div className={styles.comingSoon_wrapper}>
+              <div className="ql-editor">
+                {parse(content && content.comingSoonText)}
               </div>
-              <div className={styles.filter_button_wrapper}>
-                <select
-                  className={`${styles.search_button} ${styles.filter_button}`}
-                  value={category}
-                  onChange={(e) =>
-                    props.history.push(
-                      getFilterUrl({ category: e.target.value })
-                    )
-                  }
-                >
-                  <option value="all">All Categories</option>
-                  {categories &&
-                    categories.map((category) => (
-                      <option value={category}>{category}</option>
-                    ))}
-                </select>
-              </div>
-            </form>
-          </div>
+            </div>
+          ) : (
+            <>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 1 }}
+                className={styles.filterbox}
+              >
+                <div className={styles.wrapper}>
+                  <form className={styles.search} onSubmit={submitHandler}>
+                    <div className="row_f">
+                      <input
+                        style={{
+                          border: `2px solid ${
+                            content && content.searchBarBorderColor
+                          }`,
+                          outline: `1px solid ${
+                            content && content.searchBarBorderColor
+                          }`,
+                          backgroundColor:
+                            content && content.searchBarInputBackgroundColor,
+                          color: content && content.searchBarInputTextColor,
+                          '--placeholder-color':
+                            content && content.searchBarInputPlaceholderColor
+                        }}
+                        className={styles.input}
+                        type="text"
+                        name="q"
+                        value={inputComicName}
+                        onChange={(e) => setInputComicName(e.target.value)}
+                        placeholder="Search comic by name"
+                        id="q"
+                      />
+                      <button
+                        type="submit"
+                        style={{
+                          backgroundColor:
+                            content && content.searchBarIconBackgroundColor,
+                          color: content && content.searchBarIconColor,
+                          border: `2px solid ${
+                            content && content.searchBarIconBorderColor
+                          }`,
+                          outline: `1px solid ${
+                            content && content.searchBarBorderColor
+                          }`
+                        }}
+                        className={styles.search_button}
+                        onClick={() =>
+                          props.history.push(
+                            getFilterUrl({ name: inputComicName })
+                          )
+                        }
+                      >
+                        <i className="fa fa-search"></i>
+                      </button>
+                    </div>
+                    <div className={styles.filter_button_wrapper}>
+                      <select
+                        style={{
+                          backgroundColor:
+                            content && content.searchBarButtonBackgroundColor,
+                          border: `2px solid ${
+                            content && content.searchBarButtonBorderColor
+                          }`,
+                          color: content && content.searchBarButtonColor
+                        }}
+                        className={`${styles.search_button} ${styles.filter_button}`}
+                        value={category}
+                        onChange={(e) =>
+                          props.history.push(
+                            getFilterUrl({ category: e.target.value })
+                          )
+                        }
+                      >
+                        <option value="all">All Categories</option>
+                        {categories &&
+                          categories.map((category) => (
+                            <option value={category}>{category}</option>
+                          ))}
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </motion.div>
+              <motion.div
+                variants={pageVariant}
+                initial="initial"
+                animate="final"
+                className={styles.comics_wrapper}
+              >
+                {comicId && comic && (
+                  <Comic focus screen={'comicScreen'} comic={comic}></Comic>
+                )}
+                {status === 'loading' ? (
+                  <LoadingBox></LoadingBox>
+                ) : error ? (
+                  <MessageBox variant="danger">{error}</MessageBox>
+                ) : (
+                  comics.map(
+                    (comic, index) =>
+                      comic.isActive &&
+                      comic._id !== comicId && <Comic comic={comic}></Comic>
+                  )
+                )}
+              </motion.div>
+              <Pages
+                filterUrl={getFilterUrl}
+                currentPage={parseInt(pageNumber)}
+                pages={parseInt(pages)}
+              ></Pages>
+            </>
+          )}
         </motion.div>
-        {status === 'loading' ? (
-          <div className="min_page_height">
-            <LoadingBox></LoadingBox>
-          </div>
-        ) : error ? (
-          <div className="min_page_height">
-            <MessageBox variant="danger">
-              Oops. We are temporarily unavailable. Please try again later.
-            </MessageBox>
-          </div>
-        ) : (
-          <>
-            <motion.div
-              variants={pageVariant}
-              initial="initial"
-              animate="final"
-              className={styles.comics_wrapper}
-            >
-              {comicId && comic && (
-                <Comic focus screen={'comicScreen'} comic={comic}></Comic>
-              )}
-              {status === 'loading' ? (
-                <LoadingBox></LoadingBox>
-              ) : error ? (
-                <MessageBox variant="danger">{error}</MessageBox>
-              ) : (
-                comics.map(
-                  (comic, index) =>
-                    comic.isActive &&
-                    comic._id !== comicId && <Comic comic={comic}></Comic>
-                )
-              )}
-            </motion.div>
-            <Pages
-              filterUrl={getFilterUrl}
-              currentPage={parseInt(pageNumber)}
-              pages={parseInt(pages)}
-            ></Pages>
-          </>
-        )}
-      </motion.div>
+      )}
+
       <MediaQuery minWidth={800}>
         <Footer></Footer>
       </MediaQuery>
