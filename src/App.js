@@ -41,6 +41,8 @@ import OrderPageScreen from './screens/AdminScreens/OrderPageScreen/OrderPageScr
 import LandingScreen from './screens/PublicScreens/LandingScreen/LandingScreen';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect } from 'react';
+import ComicPageScreen from './screens/AdminScreens/ComicPageScreen/ComicPageScreen';
+import EventPageScreen from './screens/AdminScreens/EventPageScreen/EventPageScreen';
 
 function App() {
   const cursorX = useMotionValue(-100);
@@ -216,6 +218,16 @@ function App() {
         <AdminRoute
           path="/shop-page-content-admin"
           component={ShopPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/comic-page-content-admin"
+          component={ComicPageScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/event-page-content-admin"
+          component={EventPageScreen}
           exact
         ></AdminRoute>
         <AdminRoute
