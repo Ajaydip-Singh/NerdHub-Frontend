@@ -75,66 +75,7 @@ export default function Sidebar(props) {
             </MediaQuery>
           )}
         </ul>
-        {props.admin ? (
-          <ul className={`column_f align-center ${styles.side_bar_list}`}>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/home-page-content-admin"
-                className={addLinkStyling(props.home_page)}
-              >
-                Home Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/events-admin"
-                className={addLinkStyling(props.events_page)}
-              >
-                Events Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/gallery-admin"
-                className={addLinkStyling(props.gallery_page)}
-              >
-                Gallery Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/membership-admin"
-                className={addLinkStyling(props.membership_page)}
-              >
-                Membership Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/about-page-content-admin"
-                className={addLinkStyling(props.about_page)}
-              >
-                About Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/contact-page-content-admin"
-                className={addLinkStyling(props.contact_page)}
-              >
-                Contact Page
-              </Link>
-            </li>
-            <li className={styles.side_bar_list_item}>
-              <Link
-                to="/cart-page-content-admin"
-                className={addLinkStyling(props.cart_page)}
-              >
-                Cart Page
-              </Link>
-            </li>
-          </ul>
-        ) : user ? (
+        {user ? (
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
             <li className={styles.side_bar_list_item}>
               <Link to="/profile" className={addLinkStyling(props.profile)}>
