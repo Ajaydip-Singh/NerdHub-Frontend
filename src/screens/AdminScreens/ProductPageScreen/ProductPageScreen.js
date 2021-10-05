@@ -131,7 +131,7 @@ export default function ProductPageScreen() {
                   onChangeComplete={setProductImageBorderColor}
                 />
               </div>
-              <h1>Checkout Table Styles</h1>
+              <h1>Table Styles</h1>
               <div className="editor_wrapper">
                 <h3>Table Border Color</h3>
                 <BlockPicker
@@ -168,21 +168,21 @@ export default function ProductPageScreen() {
                 />
               </div>
               <div className="editor_wrapper">
-                <h3>Checkout Button Text Color</h3>
+                <h3>Button Text Color</h3>
                 <BlockPicker
                   color={checkoutButtonTextColor}
                   onChangeComplete={setCheckoutButtonTextColor}
                 />
               </div>
               <div className="editor_wrapper">
-                <h3>Checkout Button Background Color</h3>
+                <h3>Button Background Color</h3>
                 <BlockPicker
                   color={checkoutButtonBackgroundColor}
                   onChangeComplete={setCheckoutButtonBackgroundColor}
                 />
               </div>
               <div className="editor_wrapper">
-                <h3>Checkout Button Border Color</h3>
+                <h3>Button Border Color</h3>
                 <BlockPicker
                   color={checkoutButtonBorderColor}
                   onChangeComplete={setCheckoutButtonBorderColor}
