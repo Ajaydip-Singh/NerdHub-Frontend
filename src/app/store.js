@@ -52,6 +52,8 @@ import orderPageContentGetSlice from '../slices/pageSlices/orderPageContentSlice
 import orderPageContentUpdateSlice from '../slices/pageSlices/orderPageContentSlices/orderPageContentUpdateSlice';
 import comicPageContentGetSlice from '../slices/pageSlices/comicPageContentSlices/comicPageContentGetSlice';
 import comicPageContentUpdateSlice from '../slices/pageSlices/comicPageContentSlices/comicPageContentUpdateSlice';
+import eventPageContentGetSlice from '../slices/pageSlices/eventPageContentSlices/eventPageContentGetSlice';
+import eventPageContentUpdateSlice from '../slices/pageSlices/eventPageContentSlices/eventPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -96,6 +98,8 @@ export const store = configureStore({
     shopPageContentUpdateSlice: shopPageContentUpdateSlice,
     comicPageContentGetSlice: comicPageContentGetSlice,
     comicPageContentUpdateSlice: comicPageContentUpdateSlice,
+    eventPageContentGetSlice: eventPageContentGetSlice,
+    eventPageContentUpdateSlice: eventPageContentUpdateSlice,
     productPageContentGetSlice: productPageContentGetSlice,
     productPageContentUpdateSlice: productPageContentUpdateSlice,
     contactPageContentGetSlice: contactPageContentGetSlice,
