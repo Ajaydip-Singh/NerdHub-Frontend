@@ -74,12 +74,6 @@ export default function ProductScreen(props) {
             }}
           >
             <div>
-              <Link
-                className={`button border_bottom ${styles.back_button}`}
-                to="/shop"
-              >
-                Back to Shop
-              </Link>
               <ProductImage
                 borderColor={content && content.productImageBorderColor}
                 name={product && stripHtml(product.pageName)}
