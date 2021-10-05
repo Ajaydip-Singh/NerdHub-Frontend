@@ -32,7 +32,9 @@ export default function Product(props) {
         <div className="ql-editor">
           <p className={styles.product_name}>{parse(product.cardName)}</p>
         </div>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
+        {product.isCardActiveReviews && (
+          <Rating rating={product.rating} numReviews={product.numReviews} />
+        )}
         <div className="ql-editor">{parse(product.cardDisplayPrice)}</div>
       </div>
     </motion.div>

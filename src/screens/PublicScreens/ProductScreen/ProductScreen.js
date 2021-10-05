@@ -90,10 +90,12 @@ export default function ProductScreen(props) {
               <div className="ql-editor">
                 {product && parse(product.pageName)}
               </div>
-              <Rating
-                rating={product && product.rating}
-                numReviews={product && product.numReviews}
-              ></Rating>
+              {product && product.isPageActiveReviews && (
+                <Rating
+                  rating={product && product.rating}
+                  numReviews={product && product.numReviews}
+                ></Rating>
+              )}
               <div className="ql-editor">
                 {product && parse(product.pageDisplayPrice)}
               </div>

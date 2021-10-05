@@ -35,10 +35,8 @@ export default function ProductEditScreen(props) {
   const [rating, setRating] = useState('');
   const [numReviews, setNumReviews] = useState('');
   const [isActive, setIsActive] = useState('');
-
   const [isCardActiveReviews, setIsCardActiveReviews] = useState('');
   const [isPageActiveReviews, setIsPageActiveReviews] = useState('');
-
   const [isFeaturedProduct, setIsFeaturedProduct] = useState('');
   const [borderColor, setBorderColor] = useState('');
   const [borderHoverColor, setBorderHoverColor] = useState('');
@@ -77,6 +75,8 @@ export default function ProductEditScreen(props) {
         countInStock,
         rating,
         numReviews,
+        isCardActiveReviews,
+        isPageActiveReviews,
         isActive,
         isFeaturedProduct,
         borderColor: borderColor.hex,
@@ -117,6 +117,8 @@ export default function ProductEditScreen(props) {
       setCountInStock(product.countInStock);
       setRating(product.rating);
       setNumReviews(product.numReviews);
+      setIsCardActiveReviews(product.isCardActiveReviews);
+      setIsPageActiveReviews(product.isPageActiveReviews);
       setIsActive(product.isActive);
       setIsFeaturedProduct(product.isFeaturedProduct);
       setBorderColor(product.borderColor);
@@ -278,6 +280,26 @@ export default function ProductEditScreen(props) {
                 ></input>
               </div>
               <div className="editor_wrapper">
+                <h3>Show Reviews on Product Card</h3>
+                <select
+                  value={isCardActiveReviews}
+                  onChange={(e) => setIsCardActiveReviews(e.target.value)}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+              <div className="editor_wrapper">
+                <h3>Show Reviews on Product Page</h3>
+                <select
+                  value={isPageActiveReviews}
+                  onChange={(e) => setIsPageActiveReviews(e.target.value)}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+              <div className="editor_wrapper">
                 <h3>Is Active</h3>
                 <select
                   value={isActive}
@@ -304,6 +326,7 @@ export default function ProductEditScreen(props) {
                   onChangeComplete={setBorderColor}
                 />
               </div>
+              <h1>Product Card Styles</h1>
               <div className="editor_wrapper">
                 <h3>Border Hover Color</h3>
                 <BlockPicker
