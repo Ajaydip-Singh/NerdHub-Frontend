@@ -72,7 +72,7 @@ export default function GalleryListScreen(props) {
         )}
         {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
         <div className={styles.upload_images}>
-          <h5>Upload Images</h5>
+          <h5>Upload Images (Max 5 images at once)</h5>
           <input
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
