@@ -81,6 +81,7 @@ export default function ProductScreen(props) {
                 Back to Shop
               </Link>
               <ProductImage
+                borderColor={content && content.productImageBorderColor}
                 name={product && stripHtml(product.pageName)}
                 imageThumbnail={product && product.thumbnailImage}
                 images={product && product.images}
@@ -109,8 +110,26 @@ export default function ProductScreen(props) {
               </div>
             </div>
             <div>
-              <div className={styles.checkout}>
-                <table className="table">
+              <div
+                style={{
+                  border: `2px solid ${content && content.tableBorderColor}`
+                }}
+                className={styles.checkout}
+              >
+                <table
+                  style={{
+                    '--table-color-border': content && content.tableBorderColor,
+                    '--table-color-even':
+                      content && content.tableEvenRowBackgroundColor,
+                    '--table-text-color-even':
+                      content && content.tableEvenRowTextColor,
+                    '--table-color-odd':
+                      content && content.tableOddRowBackgroundColor,
+                    '--table-text-color-odd':
+                      content && content.tableOddRowTextColor
+                  }}
+                  className={styles.table}
+                >
                   <tbody>
                     <tr>
                       <td>Price:</td>
@@ -152,7 +171,15 @@ export default function ProductScreen(props) {
                 <button
                   onClick={addToCartHandler}
                   disabled={product && product.countInStock === 0}
-                  className={`button border_bottom ${styles.cart_button}`}
+                  style={{
+                    '--checkout-button-text-color':
+                      content && content.checkoutButtonTextColor,
+                    '--checkout-button-background-color':
+                      content && content.checkoutButtonBackgroundColor,
+                    '--checkout-button-border-color':
+                      content && content.checkoutButtonBorderColor
+                  }}
+                  className={styles.cart_button}
                 >
                   Add to Cart
                 </button>
@@ -162,7 +189,6 @@ export default function ProductScreen(props) {
                   showDiv ? styles.show_div : styles.hide_div
                 }`}
               >
-                {/* Product Added to Cart */}
                 <MessageBox variant="success">
                   Product Added to{' '}
                   <Link className={styles.cart_link} to="/shop/cart">

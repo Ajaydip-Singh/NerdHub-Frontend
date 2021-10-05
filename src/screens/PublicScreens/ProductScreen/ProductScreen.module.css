@@ -70,6 +70,35 @@
 }
 
 .cart_button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  margin: 0.5rem 0;
+  color: var(--checkout-button-text-color);
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-color: var(--checkout-button-border-color);
+  transition: all 500ms linear, ease 500ms;
+}
+
+.cart_button::after {
+  content: '';
+  background: var(--checkout-button-border-color);
+  position: absolute;
+  width: 0;
+  z-index: 1;
+  height: 3px;
+  left: 0;
+  bottom: 0;
+  transition: width 1s linear, ease 1s;
+}
+
+.cart_button:hover::after,
+.cart_button:focus::after,
+.cart_button:active::after {
   width: 100%;
 }
 
@@ -81,7 +110,6 @@
 
 .checkout {
   padding: 0.5rem;
-  border: 2px solid #50d450;
   height: max-content;
 }
 
@@ -128,4 +156,33 @@
 .hide_div {
   opacity: 0;
   transform: translateX(200);
+}
+
+/* Table styles */
+.table_wrapper {
+  overflow-x: auto;
+  margin: 0 0.5rem;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid transparent;
+  border-color: var(--table-color-border);
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: var(--table-color-odd);
+  color: var(--table-text-color-odd);
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: var(--table-color-even);
+  color: var(--table-text-color-even);
+}
+
+.table td {
+  text-align: left;
+  border: 0.1rem solid transparent;
+  border-color: var(--table-color-border);
+  padding: 0.5rem;
 }

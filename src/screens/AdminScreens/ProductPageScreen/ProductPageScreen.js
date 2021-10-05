@@ -13,9 +13,24 @@ import {
   updateProductPageContent
 } from '../../../slices/pageSlices/productPageContentSlices/productPageContentUpdateSlice';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
+import { BlockPicker } from 'react-color';
 
 export default function ProductPageScreen() {
   const [backgroundImage, setBackgroundImage] = useState('');
+
+  const [productImageBorderColor, setProductImageBorderColor] = useState('');
+  const [tableBorderColor, setTableBorderColor] = useState('');
+  const [tableEvenRowBackgroundColor, setTableEvenRowBackgroundColor] =
+    useState('');
+  const [tableEvenRowTextColor, setTableEvenRowTextColor] = useState('');
+  const [tableOddRowBackgroundColor, setTableOddRowBackgroundColor] =
+    useState('');
+  const [tableOddRowTextColor, setTableOddRowTextColor] = useState('');
+  const [checkoutButtonTextColor, setCheckoutButtonTextColor] = useState('');
+  const [checkoutButtonBackgroundColor, setCheckoutButtonBackgroundColor] =
+    useState('');
+  const [checkoutButtonBorderColor, setCheckoutButtonBorderColor] =
+    useState('');
 
   const productPageContentGetSlice = useSelector(
     (state) => state.productPageContentGetSlice
@@ -49,7 +64,16 @@ export default function ProductPageScreen() {
     e.preventDefault();
     dispatch(
       updateProductPageContent({
-        backgroundImage
+        backgroundImage,
+        productImageBorderColor: productImageBorderColor.hex,
+        tableBorderColor: tableBorderColor.hex,
+        tableEvenRowBackgroundColor: tableEvenRowBackgroundColor.hex,
+        tableEvenRowTextColor: tableEvenRowTextColor.hex,
+        tableOddRowBackgroundColor: tableOddRowBackgroundColor.hex,
+        tableOddRowTextColor: tableOddRowTextColor.hex,
+        checkoutButtonTextColor: checkoutButtonTextColor.hex,
+        checkoutButtonBackgroundColor: checkoutButtonBackgroundColor.hex,
+        checkoutButtonBorderColor: checkoutButtonBorderColor.hex
       })
     );
   };
@@ -59,6 +83,15 @@ export default function ProductPageScreen() {
       dispatch(getProductPageContent({}));
     } else {
       setBackgroundImage(content.backgroundImage);
+      setProductImageBorderColor(content.productImageBorderColor);
+      setTableBorderColor(content.tableBorderColor);
+      setTableEvenRowBackgroundColor(content.tableEvenRowBackgroundColor);
+      setTableEvenRowTextColor(content.tableEvenRowTextColor);
+      setTableOddRowBackgroundColor(content.tableOddRowBackgroundColor);
+      setTableOddRowTextColor(content.tableOddRowTextColor);
+      setCheckoutButtonTextColor(content.checkoutButtonTextColor);
+      setCheckoutButtonBackgroundColor(content.checkoutButtonBackgroundColor);
+      setCheckoutButtonBorderColor(content.checkoutButtonBorderColor);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -90,6 +123,72 @@ export default function ProductPageScreen() {
                   setImage={setBackgroundImage}
                 ></ImageUploader>
               </div>
+
+              <div className="editor_wrapper">
+                <h3>Product Images Border Color</h3>
+                <BlockPicker
+                  color={productImageBorderColor}
+                  onChangeComplete={setProductImageBorderColor}
+                />
+              </div>
+              <h1>Checkout Table Styles</h1>
+              <div className="editor_wrapper">
+                <h3>Table Border Color</h3>
+                <BlockPicker
+                  color={tableBorderColor}
+                  onChangeComplete={setTableBorderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Even Row Background Color</h3>
+                <BlockPicker
+                  color={tableEvenRowBackgroundColor}
+                  onChangeComplete={setTableEvenRowBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Even Row Text Color</h3>
+                <BlockPicker
+                  color={tableEvenRowTextColor}
+                  onChangeComplete={setTableEvenRowTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Odd Row Background Color</h3>
+                <BlockPicker
+                  color={tableOddRowBackgroundColor}
+                  onChangeComplete={setTableOddRowBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Odd Row Text Color</h3>
+                <BlockPicker
+                  color={tableOddRowTextColor}
+                  onChangeComplete={setTableOddRowTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Checkout Button Text Color</h3>
+                <BlockPicker
+                  color={checkoutButtonTextColor}
+                  onChangeComplete={setCheckoutButtonTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Checkout Button Background Color</h3>
+                <BlockPicker
+                  color={checkoutButtonBackgroundColor}
+                  onChangeComplete={setCheckoutButtonBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Checkout Button Border Color</h3>
+                <BlockPicker
+                  color={checkoutButtonBorderColor}
+                  onChangeComplete={setCheckoutButtonBorderColor}
+                />
+              </div>
+
               <div className="editor_wrapper">
                 {errorUpdate && (
                   <MessageBox variant="danger">

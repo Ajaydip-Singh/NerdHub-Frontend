@@ -37,6 +37,11 @@ export default function ProductImage(props) {
         <div className={styles.small_images_container}>
           <motion.button
             className={styles.image_button}
+            style={{
+              border: borderColor
+                ? `2px solid ${borderColor}`
+                : '2px solid #50d450'
+            }}
             whileHover={{
               scale: 1.04,
               border: borderColor
@@ -56,9 +61,16 @@ export default function ProductImage(props) {
             images.map((image, index) => (
               <motion.button
                 className={styles.image_button}
+                style={{
+                  border: borderColor
+                    ? `2px solid ${borderColor}`
+                    : '2px solid #50d450'
+                }}
                 whileHover={{
                   scale: 1.04,
-                  border: '2px solid #50d450'
+                  border: borderColor
+                    ? `2px solid ${borderColor}`
+                    : '2px solid #50d450'
                 }}
               >
                 <img
