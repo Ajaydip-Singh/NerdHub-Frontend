@@ -14,11 +14,27 @@ import {
   updateShopPageContent
 } from '../../../slices/pageSlices/shopPageContentSlices/shopPageContentUpdateSlice';
 import ImageUploader from '../../../components/ImageUploader/ImageUploader';
+import { BlockPicker } from 'react-color';
 
 export default function ShopPageScreen() {
   const [backgroundImage, setBackgroundImage] = useState('');
   const [comingSoon, setComingSoon] = useState('');
   const [comingSoonText, setComingSoonText] = useState('');
+  const [searchBarBorderColor, setSearchBarBorderColor] = useState('');
+  const [searchBarInputBackgroundColor, setSearchBarInputBackgroundColor] =
+    useState('');
+  const [searchBarInputPlaceholderColor, setSearchBarInputPlaceholderColor] =
+    useState('');
+  const [searchBarInputTextColor, setSearchBarInputTextColor] = useState('');
+  const [searchBarIconColor, setSearchBarIconColor] = useState('');
+  const [searchBarIconBackgroundColor, setSearchBarIconBackgroundColor] =
+    useState('');
+  const [searchBarIconBorderColor, setSearchBarIconBorderColor] = useState('');
+  const [searchBarButtonColor, setSearchBarButtonColor] = useState('');
+  const [searchBarButtonBorderColor, setSearchBarButtonBorderColor] =
+    useState('');
+  const [searchBarButtonBackgroundColor, setSearchBarButtonBackgroundColor] =
+    useState('');
 
   const shopPageContentGetSlice = useSelector(
     (state) => state.shopPageContentGetSlice
@@ -54,7 +70,17 @@ export default function ShopPageScreen() {
       updateShopPageContent({
         backgroundImage,
         comingSoon,
-        comingSoonText
+        comingSoonText,
+        searchBarBorderColor: searchBarBorderColor.hex,
+        searchBarInputBackgroundColor: searchBarInputBackgroundColor.hex,
+        searchBarInputPlaceholderColor: searchBarInputPlaceholderColor.hex,
+        searchBarInputTextColor: searchBarInputTextColor.hex,
+        searchBarIconColor: searchBarIconColor.hex,
+        searchBarIconBackgroundColor: searchBarIconBackgroundColor.hex,
+        searchBarIconBorderColor: searchBarIconBorderColor.hex,
+        searchBarButtonColor: searchBarButtonColor.hex,
+        searchBarButtonBorderColor: searchBarButtonBorderColor.hex,
+        searchBarButtonBackgroundColor: searchBarButtonBackgroundColor.hex
       })
     );
   };
@@ -66,6 +92,16 @@ export default function ShopPageScreen() {
       setBackgroundImage(content.backgroundImage);
       setComingSoon(content.comingSoon);
       setComingSoonText(content.comingSoonText);
+      setSearchBarBorderColor(content.searchBarBorderColor);
+      setSearchBarInputBackgroundColor(content.searchBarInputBackgroundColor);
+      setSearchBarInputPlaceholderColor(content.searchBarInputPlaceholderColor);
+      setSearchBarInputTextColor(content.searchBarInputTextColor);
+      setSearchBarIconColor(content.searchBarIconColor);
+      setSearchBarIconBackgroundColor(content.searchBarIconBackgroundColor);
+      setSearchBarIconBorderColor(content.searchBarIconBorderColor);
+      setSearchBarButtonColor(content.searchBarButtonColor);
+      setSearchBarButtonBorderColor(content.searchBarButtonBorderColor);
+      setSearchBarButtonBackgroundColor(content.searchBarButtonBackgroundColor);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -114,6 +150,77 @@ export default function ShopPageScreen() {
                   onChange={setComingSoonText}
                   placeholder="Enter coming soon text"
                 ></TextEditor>
+              </div>
+              <h1>Search Bar Styles</h1>
+              <div className="editor_wrapper">
+                <h3>Border Color</h3>
+                <BlockPicker
+                  color={searchBarBorderColor}
+                  onChangeComplete={setSearchBarBorderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Input Background Color</h3>
+                <BlockPicker
+                  color={searchBarInputBackgroundColor}
+                  onChangeComplete={setSearchBarInputBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Input Placeholder Color</h3>
+                <BlockPicker
+                  color={searchBarInputPlaceholderColor}
+                  onChangeComplete={setSearchBarInputPlaceholderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Input Text Color</h3>
+                <BlockPicker
+                  color={searchBarInputTextColor}
+                  onChangeComplete={setSearchBarInputTextColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Search Icon Color</h3>
+                <BlockPicker
+                  color={searchBarIconColor}
+                  onChangeComplete={setSearchBarIconColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Search Icon Background Color</h3>
+                <BlockPicker
+                  color={searchBarIconBackgroundColor}
+                  onChangeComplete={setSearchBarIconBackgroundColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Search Icon Border Color</h3>
+                <BlockPicker
+                  color={searchBarIconBorderColor}
+                  onChangeComplete={setSearchBarIconBorderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Color</h3>
+                <BlockPicker
+                  color={searchBarButtonColor}
+                  onChangeComplete={setSearchBarButtonColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Border Color</h3>
+                <BlockPicker
+                  color={searchBarButtonBorderColor}
+                  onChangeComplete={setSearchBarButtonBorderColor}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Background Color</h3>
+                <BlockPicker
+                  color={searchBarButtonBackgroundColor}
+                  onChangeComplete={setSearchBarButtonBackgroundColor}
+                />
               </div>
               <div className="editor_wrapper">
                 {errorUpdate && (
