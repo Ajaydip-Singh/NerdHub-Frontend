@@ -11,7 +11,9 @@ import {
   deleteGalleryItem,
   resetDeleteGallery
 } from '../../../slices/gallerySlices/galleryItemDeleteSlice';
+import parse from 'html-react-parser';
 import styles from './GalleryListScreen.module.css';
+import { stripHtml } from '../../../utils';
 
 export default function GalleryListScreen(props) {
   const { pageNumber = '1' } = useParams();
@@ -102,7 +104,8 @@ export default function GalleryListScreen(props) {
             <thead>
               <tr>
                 <th>Url</th>
-                <th>PublicId</th>
+                <th>Name</th>
+                <th>Description</th>
                 <th>Tags</th>
                 <th>Actions</th>
               </tr>
@@ -115,9 +118,21 @@ export default function GalleryListScreen(props) {
                       Image Link
                     </a>
                   </td>
-                  <td>{galleryItem.publicId}</td>
+                  <td>{galleryItem.name}</td>
+                  <td>{stripHtml(galleryItem.description)}</td>
                   <td>{galleryItem.tags}</td>
                   <td>
+                    <button
+                      className="small"
+                      type="button"
+                      onClick={() =>
+                        props.history.push(
+                          `/gallery-admin/${galleryItem._id}/edit`
+                        )
+                      }
+                    >
+                      Edit
+                    </button>
                     <button
                       className="small"
                       type="button"
