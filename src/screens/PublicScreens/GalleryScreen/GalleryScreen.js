@@ -120,6 +120,14 @@ export default function GalleryScreen(props) {
                 <form className={styles.search} onSubmit={submitHandler}>
                   <div className={styles.filter_button_wrapper}>
                     <select
+                      style={{
+                        border: `1px solid ${
+                          content && content.buttonBorderColor
+                        }`,
+                        color: content && content.buttonColor,
+                        backgroundColor:
+                          content && content.buttonBackgroundColor
+                      }}
                       className={`${styles.search_button} ${styles.filter_button}`}
                       value={tag}
                       onChange={(e) =>
@@ -150,15 +158,20 @@ export default function GalleryScreen(props) {
                 >
                   {gallery &&
                     gallery.map((image) => (
-                      <ProductImage
-                        borderColor={content && content.itemBorderColor}
-                        imageThumbnail={image.url}
-                      ></ProductImage>
+                      <div>
+                        <ProductImage
+                          borderColor={image.imageBorderColor}
+                          imageThumbnail={image.url}
+                          imageDescription={parse(image.description)}
+                          imageDescriptionBackgroundColor={
+                            image.descriptionBackgroundColor
+                          }
+                        ></ProductImage>
+                      </div>
                     ))}
                 </motion.div>
               )}
             </div>
-
             <Pages
               filterUrl={getFilterUrl}
               currentPage={pageNumber}
