@@ -49,7 +49,14 @@ export default function Sidebar(props) {
             </Link>
           </li>
           {props.admin ? (
-            <h2>Admin</h2>
+            <>
+              <h2>Admin</h2>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/home" className={addLinkStyling(props.home)}>
+                  Home
+                </Link>
+              </li>
+            </>
           ) : (
             <MediaQuery maxWidth="800px">
               <li className={styles.side_bar_list_item}>
