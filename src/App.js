@@ -44,6 +44,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect } from 'react';
 import ComicPageScreen from './screens/AdminScreens/ComicPageScreen/ComicPageScreen';
 import EventPageScreen from './screens/AdminScreens/EventPageScreen/EventPageScreen';
+import GalleryEditScreen from './screens/AdminScreens/GalleryEditScreen/GalleryEditScreen';
 
 function App() {
   const cursorX = useMotionValue(-100);
@@ -151,6 +152,11 @@ function App() {
         <AdminRoute
           path="/gallery-admin"
           component={GalleryListScreen}
+          exact
+        ></AdminRoute>
+        <AdminRoute
+          path="/gallery-admin/:id/edit"
+          component={GalleryEditScreen}
           exact
         ></AdminRoute>
         <AdminRoute
