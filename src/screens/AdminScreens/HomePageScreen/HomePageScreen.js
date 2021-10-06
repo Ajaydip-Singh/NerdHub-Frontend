@@ -23,9 +23,9 @@ export default function HomePageScreen() {
     useState('');
   const [sliderPageThreeBackgroundImage, setSliderPageThreeBackgroundImage] =
     useState('');
-  const [sliderPageOneContent, setSliderPageOneContent] = useState();
-  const [sliderPageTwoContent, setSliderPageTwoContent] = useState();
-  const [sliderPageThreeContent, setSliderPageThreeContent] = useState();
+  const [sliderPageOneContent, setSliderPageOneContent] = useState('');
+  const [sliderPageTwoContent, setSliderPageTwoContent] = useState('');
+  const [sliderPageThreeContent, setSliderPageThreeContent] = useState('');
   const [videoHeading, setVideoHeading] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [videoThumbnail, setVideoThumbnail] = useState('');
