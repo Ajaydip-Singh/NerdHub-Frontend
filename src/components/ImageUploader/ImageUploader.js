@@ -46,19 +46,15 @@ export default function ImageUploader(props) {
 
   return (
     <div>
-      {status === 'loading' ? (
-        <LoadingBox></LoadingBox>
-      ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
-        <input
-          type="file"
-          onChange={uploadHandler}
-          multiple={multiple}
-          disabled={disabled}
-          accept="image/png, image/jpeg"
-        ></input>
-      )}
+      {status === 'loading' && <LoadingBox></LoadingBox>}
+      {error && <MessageBox variant="danger">{error}</MessageBox>}
+      <input
+        type="file"
+        onChange={uploadHandler}
+        multiple={multiple}
+        disabled={disabled}
+        accept="image/png, image/jpeg"
+      ></input>
     </div>
   );
 }
