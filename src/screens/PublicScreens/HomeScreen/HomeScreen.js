@@ -205,14 +205,18 @@ export default function HomeScreen() {
                     Events
                   </Link>
                 </h2>
-                <CustomCarousel
-                  disableButtons={events && events.length < 2}
-                  disableDots={events && events.length < 2}
-                  infinite={events && events.length > 1}
-                  items={events.map((event, index) => (
-                    <Event order={index} event={event}></Event>
-                  ))}
-                ></CustomCarousel>
+                {events && events.length === 1 ? (
+                  <Event order={0} event={events[0]}></Event>
+                ) : (
+                  <CustomCarousel
+                    disableButtons={events && events.length < 2}
+                    disableDots={events && events.length < 2}
+                    infinite={false}
+                    items={events.map((event, index) => (
+                      <Event order={index} event={event}></Event>
+                    ))}
+                  ></CustomCarousel>
+                )}
               </div>
             </motion.section>
           )}
