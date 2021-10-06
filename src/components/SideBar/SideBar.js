@@ -40,7 +40,7 @@ export default function Sidebar(props) {
       <div className={`column_f space-between ${styles.side_bar_content}`}>
         <ul className={`column_f align-center ${styles.side_bar_list}`}>
           <li>
-            <Link to="/home">
+            <Link to="/">
               <img
                 src="/logo192.png"
                 alt="Nerdhub Logo"
@@ -53,6 +53,29 @@ export default function Sidebar(props) {
           ) : (
             <MediaQuery maxWidth="800px">
               <li className={styles.side_bar_list_item}>
+                <Link to="/home" className={addLinkStyling(props.home)}>
+                  Home
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/events" className={addLinkStyling(props.events)}>
+                  Events
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
+                <Link to="/gallery" className={addLinkStyling(props.gallery)}>
+                  Gallery
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
+                <Link
+                  to="/membership"
+                  className={addLinkStyling(props.membership)}
+                >
+                  Membership
+                </Link>
+              </li>
+              <li className={styles.side_bar_list_item}>
                 <Link to="/about" className={addLinkStyling(props.about)}>
                   About
                 </Link>
@@ -62,11 +85,7 @@ export default function Sidebar(props) {
                   Contact
                 </Link>
               </li>
-              <li className={styles.side_bar_list_item}>
-                <Link to="/events" className={addLinkStyling(props.events)}>
-                  My Events
-                </Link>
-              </li>
+
               <li className={styles.side_bar_list_item}>
                 <Link to="/shop" className={addLinkStyling(props.shop)}>
                   Shop
@@ -77,6 +96,11 @@ export default function Sidebar(props) {
         </ul>
         {user ? (
           <ul className={`column_f align-center ${styles.side_bar_list}`}>
+            <li className={styles.side_bar_list_item}>
+              <Link to="/my-events" className={addLinkStyling(props.my_events)}>
+                My Events
+              </Link>
+            </li>
             <li className={styles.side_bar_list_item}>
               <Link to="/profile" className={addLinkStyling(props.profile)}>
                 Profile
