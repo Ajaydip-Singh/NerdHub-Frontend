@@ -124,6 +124,7 @@ export default function AboutPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={aboutBackgroundImage}
@@ -149,7 +150,12 @@ export default function AboutPageScreen() {
                 <h3>Video Thumbnail</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={videoThumbnail}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={videoThumbnail}
+                  >
                     {videoThumbnail}
                   </a>
                 </p>
@@ -193,7 +199,12 @@ export default function AboutPageScreen() {
                 <h3>Section One Image</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={sectionOneImage}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={sectionOneImage}
+                  >
                     {sectionOneImage}
                   </a>
                 </p>

@@ -144,6 +144,7 @@ export default function CartPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={cartBackgroundImage}

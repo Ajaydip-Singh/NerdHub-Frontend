@@ -134,6 +134,7 @@ export default function HomePageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={sliderPageOneBackgroundImage}
@@ -160,6 +161,7 @@ export default function HomePageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={sliderPageTwoBackgroundImage}
@@ -186,6 +188,7 @@ export default function HomePageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={sliderPageThreeBackgroundImage}
@@ -227,7 +230,12 @@ export default function HomePageScreen() {
                 <h3>Video Thumbnail Image</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={videoThumbnail}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={videoThumbnail}
+                  >
                     {videoThumbnail}
                   </a>
                 </p>
@@ -242,6 +250,7 @@ export default function HomePageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={videoBackgroundImage}
@@ -274,6 +283,7 @@ export default function HomePageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={eventBackgroundImage}

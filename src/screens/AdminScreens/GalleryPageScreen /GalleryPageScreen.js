@@ -97,6 +97,7 @@ export default function GalleryPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={galleryBackgroundImage}

@@ -100,6 +100,7 @@ export default function MembershipPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={membershipBackgroundImage}

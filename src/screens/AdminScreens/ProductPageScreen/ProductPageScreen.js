@@ -113,7 +113,12 @@ export default function ProductPageScreen() {
                 <h3>Page Background Image</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={backgroundImage}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={backgroundImage}
+                  >
                     {backgroundImage}
                   </a>
                 </p>

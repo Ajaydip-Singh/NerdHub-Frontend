@@ -167,7 +167,12 @@ export default function ProductEditScreen(props) {
                 <h3>Product thumbnailImage</h3>
                 <p>
                   Current thumbnailImage:{' '}
-                  <a target="_blank" rel="noreferrer" href={thumbnailImage}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={thumbnailImage}
+                  >
                     {thumbnailImage}
                   </a>
                 </p>
@@ -184,7 +189,12 @@ export default function ProductEditScreen(props) {
                 <ul className={styles.images_list}>
                   {images.map((image) => (
                     <li>
-                      <a target="_blank" rel="noreferrer" href={image}>
+                      <a
+                        className="break-all"
+                        target="_blank"
+                        rel="noreferrer"
+                        href={image}
+                      >
                         {image}
                       </a>
                     </li>

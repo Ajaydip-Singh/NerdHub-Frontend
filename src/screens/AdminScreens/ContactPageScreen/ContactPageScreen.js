@@ -114,6 +114,7 @@ export default function ContactPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={contactHeroBackgroundImage}
@@ -132,6 +133,7 @@ export default function ContactPageScreen() {
                 <p>
                   Current Image:{' '}
                   <a
+                    className="break-all"
                     target="_blank"
                     rel="noreferrer"
                     href={contactMainBackgroundImage}
@@ -157,7 +159,12 @@ export default function ContactPageScreen() {
                 <h3>Section One Image</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={sectionOneImage}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={sectionOneImage}
+                  >
                     {sectionOneImage}
                   </a>
                 </p>

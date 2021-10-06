@@ -143,7 +143,12 @@ export default function EventEditScreen(props) {
                 <h3>Thumbnail Image</h3>
                 <p>
                   Current Image:{' '}
-                  <a target="_blank" rel="noreferrer" href={thumbnailImage}>
+                  <a
+                    className="break-all"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={thumbnailImage}
+                  >
                     {thumbnailImage}
                   </a>
                 </p>
