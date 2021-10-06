@@ -178,7 +178,7 @@ export default function MembershipScreen(props) {
         <Footer></Footer>
       </MediaQuery>
       <MediaQuery maxWidth={800}>
-        <BottomNav></BottomNav>
+        <BottomNav membership></BottomNav>
       </MediaQuery>
     </div>
   );
