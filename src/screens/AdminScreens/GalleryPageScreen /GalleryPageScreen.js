@@ -19,7 +19,9 @@ import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 export default function GalleryPageScreen() {
   const [galleryMainHeading, setGalleryMainHeading] = useState('');
   const [galleryBackgroundImage, setGalleryBackgroundImage] = useState('');
-  const [itemBorderColor, setItemBorderColor] = useState('');
+  const [buttonColor, setButtonColor] = useState('');
+  const [buttonBorderColor, setButtonBorderColor] = useState('');
+  const [buttonBackgroundColor, setButtonBackgroundColor] = useState('');
 
   const galleryPageContentGetSlice = useSelector(
     (state) => state.galleryPageContentGetSlice
@@ -55,7 +57,9 @@ export default function GalleryPageScreen() {
       updateGalleryPageContent({
         galleryMainHeading,
         galleryBackgroundImage,
-        itemBorderColor
+        buttonColor,
+        buttonBorderColor,
+        buttonBackgroundColor
       })
     );
   };
@@ -66,7 +70,9 @@ export default function GalleryPageScreen() {
     } else {
       setGalleryMainHeading(content.galleryMainHeading);
       setGalleryBackgroundImage(content.galleryBackgroundImage);
-      setItemBorderColor(content.itemBorderColor);
+      setButtonColor(content.buttonColor);
+      setButtonBorderColor(content.buttonBorderColor);
+      setButtonBackgroundColor(content.buttonBackgroundColor);
     }
   }, [dispatch, content, contentUpdate]);
 
@@ -112,10 +118,24 @@ export default function GalleryPageScreen() {
                 ></ImageUploader>
               </div>
               <div className="editor_wrapper">
-                <h3>Gallery Item Border Color</h3>
+                <h3>Button Color</h3>
                 <BlockPicker
-                  color={itemBorderColor}
-                  onChangeComplete={(e) => setItemBorderColor(e.hex)}
+                  color={buttonColor}
+                  onChangeComplete={(e) => setButtonColor(e.hex)}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Border Color</h3>
+                <BlockPicker
+                  color={buttonBorderColor}
+                  onChangeComplete={(e) => setButtonBorderColor(e.hex)}
+                />
+              </div>
+              <div className="editor_wrapper">
+                <h3>Button Background Color</h3>
+                <BlockPicker
+                  color={buttonBackgroundColor}
+                  onChangeComplete={(e) => setButtonBackgroundColor(e.hex)}
                 />
               </div>
 
