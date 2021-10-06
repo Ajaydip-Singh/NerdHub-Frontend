@@ -52,7 +52,7 @@ export default function Header(props) {
                 <>
                   <li className={styles.nav_list_item}>
                     <Link className={addLinkStyling(props.home)} to="/home">
-                      home
+                      Home
                     </Link>
                   </li>
                   <li className={styles.nav_list_item}>
@@ -78,7 +78,7 @@ export default function Header(props) {
                   </li>
                   <li className={styles.nav_list_item}>
                     <Link className={addLinkStyling(props.about)} to="/about">
-                      about
+                      About
                     </Link>
                   </li>
                   <li className={styles.nav_list_item}>
@@ -86,10 +86,9 @@ export default function Header(props) {
                       className={addLinkStyling(props.contact)}
                       to="/contact"
                     >
-                      contact
+                      Contact
                     </Link>
                   </li>
-
                   <li className={styles.nav_list_item}>
                     <Link className={addLinkStyling(props.shop)} to="/shop">
                       Shop
