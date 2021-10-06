@@ -3,7 +3,14 @@ import { motion } from 'framer-motion';
 import styles from './ProductImage.module.css';
 
 export default function ProductImage(props) {
-  const { imageThumbnail, images, name, borderColor } = props;
+  const {
+    imageThumbnail,
+    images,
+    name,
+    borderColor,
+    imageDescription,
+    imageDescriptionBackgroundColor
+  } = props;
 
   const [fullscreen, setFullscreen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(imageThumbnail);
@@ -16,22 +23,38 @@ export default function ProductImage(props) {
           fullscreen ? setFullscreen(false) : setFullscreen(true);
         }}
       >
-        <motion.img
+        <motion.div
           transition={{ duration: 0.5 }}
           whileHover={{
             scale: 1.01
           }}
-          className={`${styles.product_image} ${
-            fullscreen ? styles.image_fullscreen : styles.image_normal
-          }`}
-          style={{
-            border: borderColor
-              ? `2px solid ${borderColor}`
-              : '2px solid #50d450'
-          }}
-          src={selectedImage}
-          alt={name}
-        />
+        >
+          <img
+            className={`${styles.product_image} ${
+              fullscreen ? styles.image_fullscreen : styles.image_normal
+            }`}
+            style={{
+              border: borderColor
+                ? `2px solid ${borderColor}`
+                : '2px solid #50d450'
+            }}
+            src={selectedImage}
+            alt={name}
+          />
+          {imageDescription && (
+            <div
+              style={{
+                border: borderColor
+                  ? `2px solid ${borderColor}`
+                  : '2px solid #50d450',
+                backgroundColor: imageDescriptionBackgroundColor
+              }}
+              className={styles.description_background}
+            >
+              <div className="ql-editor">{imageDescription}</div>
+            </div>
+          )}
+        </motion.div>
       </div>
       {images && (
         <div className={styles.small_images_container}>

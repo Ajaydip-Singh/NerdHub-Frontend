@@ -63,3 +63,9 @@
   cursor: pointer;
   object-fit: cover;
 }
+
+.description_background {
+  padding: 0.5rem 1rem;
+  max-width: max-content;
+  margin: 0 auto;
+}
