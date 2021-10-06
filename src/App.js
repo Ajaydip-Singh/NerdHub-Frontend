@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../node_modules/video-react/dist/video-react.css'; // import css
 
+import MediaQuery from 'react-responsive';
 import PrivateRoute from './components/PrivateRoute';
 import MemberRoute from './components/MemberRoute';
 import AdminRoute from './components/AdminRoute';
@@ -66,13 +67,15 @@ function App() {
   }, [cursorX, cursorY]);
   return (
     <>
-      <motion.div
-        className="cursor"
-        style={{
-          translateX: cursorXSpring,
-          translateY: cursorYSpring
-        }}
-      />
+      <MediaQuery minWidth={800}>
+        <motion.div
+          className="cursor"
+          style={{
+            translateX: cursorXSpring,
+            translateY: cursorYSpring
+          }}
+        />
+      </MediaQuery>
       <Router>
         <Route path="/" exact component={LandingScreen}></Route>
         <Route path="/home" component={HomeScreen}></Route>
