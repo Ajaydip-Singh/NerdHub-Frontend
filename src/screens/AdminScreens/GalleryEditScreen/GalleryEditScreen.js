@@ -45,7 +45,7 @@ export default function GalleryEditScreen(props) {
       updateGalleryItem({
         _id: galleryId,
         name,
-        imageBorderColor,
+        imageBorderColor: imageBorderColor.hex,
         description,
         descriptionBackgroundColor: descriptionBackgroundColor.hex
       })

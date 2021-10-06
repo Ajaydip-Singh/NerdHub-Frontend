@@ -57,9 +57,9 @@ export default function GalleryPageScreen() {
       updateGalleryPageContent({
         galleryMainHeading,
         galleryBackgroundImage,
-        buttonColor,
-        buttonBorderColor,
-        buttonBackgroundColor
+        buttonColor: buttonColor.hex,
+        buttonBorderColor: buttonBorderColor.hex,
+        buttonBackgroundColor: buttonBackgroundColor.hex
       })
     );
   };
@@ -121,21 +121,21 @@ export default function GalleryPageScreen() {
                 <h3>Button Color</h3>
                 <BlockPicker
                   color={buttonColor}
-                  onChangeComplete={(e) => setButtonColor(e.hex)}
+                  onChangeComplete={setButtonColor}
                 />
               </div>
               <div className="editor_wrapper">
                 <h3>Button Border Color</h3>
                 <BlockPicker
                   color={buttonBorderColor}
-                  onChangeComplete={(e) => setButtonBorderColor(e.hex)}
+                  onChangeComplete={setButtonBorderColor}
                 />
               </div>
               <div className="editor_wrapper">
                 <h3>Button Background Color</h3>
                 <BlockPicker
                   color={buttonBackgroundColor}
-                  onChangeComplete={(e) => setButtonBackgroundColor(e.hex)}
+                  onChangeComplete={setButtonBackgroundColor}
                 />
               </div>
 
