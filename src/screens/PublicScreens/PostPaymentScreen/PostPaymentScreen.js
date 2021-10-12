@@ -3,29 +3,66 @@ import { useDispatch, useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import Header from '../../../components/Header/Header';
 import { getCartPageContent } from '../../../slices/pageSlices/cartPageContentSlices/cartPageContentGetSlice';
-import {} from '../../../slices/shopSlices/cartSlice';
+import { emptyCart } from '../../../slices/shopSlices/cartSlice';
 import { motion } from 'framer-motion';
 import styles from './PostPaymentScreen.module.css';
 import { pageVariant, sectionVariant } from '../../../animate';
 import Footer from '../../../components/Footer/Footer';
 import BottomNav from '../../../components/BottomNav/BottomNav';
 import { Link } from 'react-router-dom';
-import qs from 'qs';
+import { createOrder } from '../../../slices/shopSlices/orderCreateSlice';
 
 export default function PostPaymentScreen(props) {
-  const params = qs.parse(props.location.search, {
-    ignoreQueryPrefix: true
-  }).__firebase_request_key;
-  console.log(params);
+  const pesapal_transaction_tracking_id = props.location.search
+    ? props.location.search.split('=')[1].split('&')[0]
+    : '';
+
+  const pesapal_merchant_reference = props.location.search
+    ? props.location.search.split('=')[2]
+    : '';
+
+  const userAuthentication = useSelector((state) => state.userAuthentication);
+  const { user } = userAuthentication;
 
   const cartSlice = useSelector((state) => state.cartSlice);
-  const { cart } = cartSlice;
+  const { cart, shippingAddress } = cartSlice;
 
   const dispatch = useDispatch();
+  // dispatch(emptyCart());
 
   useEffect(() => {
     dispatch(getCartPageContent({}));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      createOrder({
+        _id: pesapal_merchant_reference,
+        orderItems: cart,
+        shippingAddress: shippingAddress,
+        paymentResult: {
+          reference: pesapal_merchant_reference,
+          transaction_id: pesapal_transaction_tracking_id,
+          status: 'Pending'
+        },
+        totalPrice: cart.reduce(
+          (a, c) =>
+            a +
+            (parseFloat(c.price) + parseFloat(c.taxPrice)) *
+              parseFloat(c.quantity),
+          0
+        ),
+        user: user._id
+      })
+    );
+  }, [
+    dispatch,
+    cart,
+    user,
+    shippingAddress,
+    pesapal_transaction_tracking_id,
+    pesapal_merchant_reference
+  ]);
 
   return (
     <div className={styles.screen}>
@@ -57,7 +94,7 @@ export default function PostPaymentScreen(props) {
             <h1>Thank you for your purchase</h1>
           </motion.div>
         </motion.div>
-        <div>
+        <div className={styles.main_body}>
           <p
             style={{
               margin: '0 auto',

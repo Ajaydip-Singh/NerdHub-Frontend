@@ -28,6 +28,10 @@
   font-size: 2rem;
 }
 
+.main_body {
+  min-height: 60vh;
+}
+
 /* @media (max-width: 1200px) {
   .main_wrapper {
     grid-template-columns: 500px 1fr;
