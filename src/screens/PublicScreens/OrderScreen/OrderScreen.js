@@ -42,12 +42,11 @@ export default function OrderScreen(props) {
       };
     });
 
-    const date = new Date();
     const { data } = await axios.post('/api/pesapal/order/post', {
       Amount: total,
       Type: 'MERCHANT',
       Description: 'Online Shopping at Nerdhub',
-      Reference: `${user._id}_${date.toString()}`,
+      Reference: `${user._id}${Date.now()}`,
       Email: user.email,
       FirstName: user.firstName,
       LastName: user.lastName,
