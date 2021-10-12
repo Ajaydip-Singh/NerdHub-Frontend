@@ -41,10 +41,15 @@ export const removeFromCart = createAsyncThunk(
   }
 );
 
-export const cartAddSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cartSlice',
   initialState,
   reducers: {
+    emptyCart: (state) => {
+      state.status = 'idle';
+      state.cart = [];
+      state.error = null;
+    },
     saveShippingAddress: {
       reducer: (state, action) => {
         state.status = 'idle';
@@ -105,6 +110,6 @@ export const cartAddSlice = createSlice({
   }
 });
 
-export const { saveShippingAddress } = cartAddSlice.actions;
+export const { saveShippingAddress, emptyCart } = cartSlice.actions;
 
-export default cartAddSlice.reducer;
+export default cartSlice.reducer;

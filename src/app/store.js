@@ -56,6 +56,7 @@ import eventPageContentGetSlice from '../slices/pageSlices/eventPageContentSlice
 import eventPageContentUpdateSlice from '../slices/pageSlices/eventPageContentSlices/eventPageContentUpdateSlice';
 import galleryItemUpdateSlice from '../slices/gallerySlices/galleryItemUpdateSlice';
 import galleryItemGetSlice from '../slices/gallerySlices/galleryItemGetSlice';
+import orderCreateSlice from '../slices/shopSlices/orderCreateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -135,6 +136,7 @@ export const store = configureStore({
     productUpdateSlice: productUpdateSlice,
     productsCategoriesGetSlice: productsCategoriesGetSlice,
     productsBrandsGetSlice: productsBrandsGetSlice,
-    cartSlice: cartSlice
+    cartSlice: cartSlice,
+    orderCreateSlice: orderCreateSlice
   }
 });
