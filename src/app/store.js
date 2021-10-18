@@ -61,6 +61,8 @@ import loginPageContentGetSlice from '../slices/pageSlices/loginPageContentSlice
 import loginPageContentUpdateSlice from '../slices/pageSlices/loginPageContentSlices/loginPageContentUpdateSlice';
 import registerPageContentGetSlice from '../slices/pageSlices/registerPageContentSlices/registerPageContentGetSlice';
 import registerPageContentUpdateSlice from '../slices/pageSlices/registerPageContentSlices/registerPageContentUpdateSlice';
+import landingPageContentGetSlice from '../slices/pageSlices/landingPageContentSlices/landingPageContentGetSlice';
+import landingPageContentUpdateSlice from '../slices/pageSlices/landingPageContentSlices/landingPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -101,6 +103,8 @@ export const store = configureStore({
     homePageContentUpdateSlice: homePageContentUpdateSlice,
     loginPageContentGetSlice: loginPageContentGetSlice,
     loginPageContentUpdateSlice: loginPageContentUpdateSlice,
+    landingPageContentGetSlice: landingPageContentGetSlice,
+    landingPageContentUpdateSlice: landingPageContentUpdateSlice,
     registerPageContentGetSlice: registerPageContentGetSlice,
     registerPageContentUpdateSlice: registerPageContentUpdateSlice,
     aboutPageContentGetSlice: aboutPageContentGetSlice,
