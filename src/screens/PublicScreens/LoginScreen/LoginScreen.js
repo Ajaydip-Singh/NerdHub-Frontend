@@ -242,7 +242,7 @@ export default function LoginScreen(props) {
                 </button>
               </div>
               <p className="mt-1">
-                <div className="ql-editor">
+                <div className="ql-editor mb-2">
                   {content && parse(content.newAccountText)}
                 </div>
                 <Link
