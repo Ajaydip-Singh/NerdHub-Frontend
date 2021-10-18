@@ -59,6 +59,8 @@ import galleryItemGetSlice from '../slices/gallerySlices/galleryItemGetSlice';
 import orderCreateSlice from '../slices/shopSlices/orderCreateSlice';
 import loginPageContentGetSlice from '../slices/pageSlices/loginPageContentSlices/loginPageContentGetSlice';
 import loginPageContentUpdateSlice from '../slices/pageSlices/loginPageContentSlices/loginPageContentUpdateSlice';
+import registerPageContentGetSlice from '../slices/pageSlices/registerPageContentSlices/registerPageContentGetSlice';
+import registerPageContentUpdateSlice from '../slices/pageSlices/registerPageContentSlices/registerPageContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -99,6 +101,8 @@ export const store = configureStore({
     homePageContentUpdateSlice: homePageContentUpdateSlice,
     loginPageContentGetSlice: loginPageContentGetSlice,
     loginPageContentUpdateSlice: loginPageContentUpdateSlice,
+    registerPageContentGetSlice: registerPageContentGetSlice,
+    registerPageContentUpdateSlice: registerPageContentUpdateSlice,
     aboutPageContentGetSlice: aboutPageContentGetSlice,
     aboutPageContentUpdateSlice: aboutPageContentUpdateSlice,
     shopPageContentGetSlice: shopPageContentGetSlice,
