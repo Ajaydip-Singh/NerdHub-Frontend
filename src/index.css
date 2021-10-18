@@ -7,7 +7,6 @@ p {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* cursor: none; */
 }
 
 body {
@@ -304,20 +303,6 @@ ul {
   .min_page_height {
     min-height: calc(100vh - 135px);
   }
-}
-
-/* Cursor */
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-  background-color: white;
-  mix-blend-mode: difference;
-  z-index: 999;
-  pointer-events: none;
 }
 
 /* Word break */
