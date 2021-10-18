@@ -329,12 +329,10 @@ export default function HomePageScreen() {
 
               <div className="editor_wrapper">
                 {errorUpdate && (
-                  <MessageBox variant="danger">
-                    Failed. Event not updated.
-                  </MessageBox>
+                  <MessageBox variant="danger">Failed. Not updated.</MessageBox>
                 )}
                 {contentUpdate && (
-                  <MessageBox variant="success">Event Updated</MessageBox>
+                  <MessageBox variant="success">Updated</MessageBox>
                 )}
                 <button className={styles.button} type="submit">
                   {statusUpdate === 'loading' ? (
