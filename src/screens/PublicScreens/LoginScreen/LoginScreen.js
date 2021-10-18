@@ -17,6 +17,8 @@ import {
 import MessageBox from '../../../components/MessageBox/MessageBox';
 import LoadingBox from '../../../components/LoadingBox/LoadingBox';
 import { confirmUser } from '../../../slices/userSlices/userConfirmationSlice';
+import { getLoginPageContent } from '../../../slices/pageSlices/loginPageContentSlices/loginPageContentGetSlice';
+import parse from 'html-react-parser';
 
 export default function LoginScreen(props) {
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 767px)' });
@@ -51,6 +53,15 @@ export default function LoginScreen(props) {
     }
   };
 
+  const loginPageContentGetSlice = useSelector(
+    (state) => state.loginPageContentGetSlice
+  );
+  const {
+    status: statusContent,
+    content,
+    error: errorContent
+  } = loginPageContentGetSlice;
+
   const userAuthentication = useSelector((state) => state.userAuthentication);
   const { user, status, error } = userAuthentication;
 
@@ -66,6 +77,10 @@ export default function LoginScreen(props) {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
+
+  useEffect(() => {
+    dispatch(getLoginPageContent({}));
+  }, [dispatch]);
 
   useEffect(() => {
     const userId = props.match.params.userId;
@@ -117,84 +132,137 @@ export default function LoginScreen(props) {
   return (
     <div>
       <Header login></Header>
-      <motion.section
-        className={`row ${styles.main_wrapper}`}
-        variants={pageVariant}
-        initial="initial"
-        animate="final"
-      >
-        <div
-          className={`col-md-6 ${styles.info_box}`}
-          style={{
-            backgroundImage: 'url(/images/destruction_long.jpeg)'
-          }}
-        ></div>
-        <motion.div
-          variants={sectionVariant}
-          whileHover="hover"
-          transition="transition"
-          className={`col-md-6 ${styles.login_box}`}
-          style={
-            isSmallerScreen
-              ? {
-                  backgroundImage: 'url(/images/destruction_long.jpeg)'
-                }
-              : {}
-          }
+      {statusContent === 'loading' ? (
+        <div className="min_page_height">
+          <LoadingBox></LoadingBox>
+        </div>
+      ) : errorContent ? (
+        <div className="min_page_height">
+          <MessageBox variant="danger">
+            Oops. We are temporarily unavailable. Please try again later.
+          </MessageBox>
+        </div>
+      ) : (
+        <motion.section
+          className={`row ${styles.main_wrapper}`}
+          variants={pageVariant}
+          initial="initial"
+          animate="final"
         >
-          <h1 className={styles.title}>Login</h1>
-          {error && <MessageBox variant="danger">{error}</MessageBox>}
-          {successConfirmation && (
-            <MessageBox variant="success">
-              {successConfirmation.message}
-            </MessageBox>
-          )}
-          {statusConfirmation === 'loading' && <LoadingBox></LoadingBox>}
-          {errorConfirmation && (
-            <MessageBox variant="danger">{errorConfirmation}</MessageBox>
-          )}
+          <div
+            className={`col-md-6 ${styles.info_box}`}
+            style={{
+              backgroundImage: `url(${content && content.mainBackgroundImage})`
+            }}
+          ></div>
+          <motion.div
+            variants={sectionVariant}
+            whileHover="hover"
+            transition="transition"
+            className={`col-md-6 ${styles.login_box}`}
+            style={
+              isSmallerScreen
+                ? {
+                    backgroundImage: `url(${
+                      content && content.mainBackgroundImage
+                    })`
+                  }
+                : { backgroundColor: content && content.mainBackgroundColor }
+            }
+          >
+            <div className="ql-editor">
+              <div className={styles.title}>
+                {content && parse(content.mainHeading)}
+              </div>
+            </div>
+            {error && <MessageBox variant="danger">{error}</MessageBox>}
+            {successConfirmation && (
+              <MessageBox variant="success">
+                {successConfirmation.message}
+              </MessageBox>
+            )}
+            {statusConfirmation === 'loading' && <LoadingBox></LoadingBox>}
+            {errorConfirmation && (
+              <MessageBox variant="danger">{errorConfirmation}</MessageBox>
+            )}
 
-          <form onSubmit={onSubmitHandler} className={styles.form}>
-            <div>
-              {emailError && <MessageBox validation>{emailError}</MessageBox>}
-              <input
-                className={`${styles.input} ${
-                  emailError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter email"
-                type="text"
-                name="email"
-                onChange={(e) => validateEmail(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              {passwordError && (
-                <MessageBox validation>{passwordError}</MessageBox>
-              )}
-              <input
-                className={`${styles.input} ${
-                  passwordError ? `${styles.val_danger}` : ``
-                }`}
-                placeholder="Enter password"
-                type="password"
-                name="password"
-                onChange={(e) => validatePassword(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <button className={styles.submit_button} type="submit">
-                {status === 'loading' ? <LoadingBox></LoadingBox> : `Login`}
-              </button>
-            </div>
-            <p className="mt-1">
-              Don't have an account?{' '}
-              <Link className={`border_bottom ${styles.link}`} to="/register">
-                Create one
-              </Link>
-            </p>
-          </form>
-        </motion.div>
-      </motion.section>
+            <form onSubmit={onSubmitHandler} className={styles.form}>
+              <div>
+                {emailError && <MessageBox validation>{emailError}</MessageBox>}
+                <input
+                  style={{
+                    backgroundColor: content && content.inputBackgroundColor,
+                    color: content && content.inputTextColor,
+                    outline: `1px solid ${content && content.inputBorderColor}`,
+                    border: `2px solid ${content && content.inputBorderColor}`
+                  }}
+                  className={`${styles.input} ${
+                    emailError ? `${styles.val_danger}` : ``
+                  }`}
+                  placeholder="Enter email"
+                  type="text"
+                  name="email"
+                  onChange={(e) => validateEmail(e.target.value)}
+                ></input>
+              </div>
+              <div>
+                {passwordError && (
+                  <MessageBox validation>{passwordError}</MessageBox>
+                )}
+                <motion.input
+                  style={{
+                    backgroundColor: content && content.inputBackgroundColor,
+                    color: content && content.inputTextColor,
+                    outline: `1px solid ${content && content.inputBorderColor}`,
+                    border: `2px solid ${content && content.inputBorderColor}`
+                  }}
+                  className={`${styles.input} ${
+                    passwordError ? `${styles.val_danger}` : ``
+                  }`}
+                  placeholder="Enter password"
+                  type="password"
+                  name="password"
+                  onChange={(e) => validatePassword(e.target.value)}
+                ></motion.input>
+              </div>
+              <div>
+                <button
+                  style={{
+                    '--button-text-color':
+                      content && content.loginButtonTextColor,
+                    '--button-background-color':
+                      content && content.loginButtonBackgroundColor,
+                    '--button-border-color':
+                      content && content.loginButtonTextColor
+                  }}
+                  className={styles.submit_button}
+                  type="submit"
+                >
+                  {status === 'loading' ? <LoadingBox></LoadingBox> : `Login`}
+                </button>
+              </div>
+              <p className="mt-1">
+                <div className="ql-editor">
+                  {content && parse(content.newAccountText)}
+                </div>
+                <Link
+                  style={{
+                    '--link-text-color': content && content.signUpLinkTextColor,
+                    '--link-background-color':
+                      content && content.signUpLinkBackgroundColor,
+                    '--link-border-color':
+                      content && content.signUpLinkBorderColor
+                  }}
+                  className={`border_bottom ${styles.link}`}
+                  to="/register"
+                >
+                  Create one
+                </Link>
+              </p>
+            </form>
+          </motion.div>
+        </motion.section>
+      )}
       <MediaQuery maxWidth={800}>
         <BottomNav></BottomNav>
       </MediaQuery>
