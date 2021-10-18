@@ -45,6 +45,7 @@ import GalleryEditScreen from './screens/AdminScreens/GalleryEditScreen/GalleryE
 import LoginPageScreen from './screens/AdminScreens/LoginPageScreen/LoginPageScreen';
 import RegisterPageScreen from './screens/AdminScreens/RegisterPageScreen/RegisterPageScreen';
 import LandingPageScreen from './screens/AdminScreens/LandingPageScreen/LandingPageScreen';
+import SocialMediaPageScreen from './screens/AdminScreens/SocialMediaPageScreen/SocialMediaPageScreen';
 
 function App() {
   return (
@@ -102,6 +103,11 @@ function App() {
       <AdminRoute
         path="/footer-admin"
         component={FooterPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/socialMedia-admin"
+        component={SocialMediaPageScreen}
         exact
       ></AdminRoute>
       <AdminRoute

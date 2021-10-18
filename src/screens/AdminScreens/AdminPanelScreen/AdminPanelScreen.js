@@ -64,6 +64,9 @@ export default function AdminPanelScreen() {
         <Link to="/footer-admin" className={styles.card_link}>
           <div className={styles.card}>Footer</div>
         </Link>
+        <Link to="/socialMedia-admin" className={styles.card_link}>
+          <div className={styles.card}>Social Media</div>
+        </Link>
       </div>
     </div>
   );
