@@ -43,6 +43,7 @@ import ComicPageScreen from './screens/AdminScreens/ComicPageScreen/ComicPageScr
 import EventPageScreen from './screens/AdminScreens/EventPageScreen/EventPageScreen';
 import GalleryEditScreen from './screens/AdminScreens/GalleryEditScreen/GalleryEditScreen';
 import LoginPageScreen from './screens/AdminScreens/LoginPageScreen/LoginPageScreen';
+import RegisterPageScreen from './screens/AdminScreens/RegisterPageScreen/RegisterPageScreen';
 
 function App() {
   return (
@@ -220,6 +221,11 @@ function App() {
       <AdminRoute
         path="/login-page-content-admin"
         component={LoginPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/register-page-content-admin"
+        component={RegisterPageScreen}
         exact
       ></AdminRoute>
     </Router>
