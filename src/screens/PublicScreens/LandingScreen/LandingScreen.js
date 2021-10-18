@@ -1,48 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './LandingScreen.module.css';
 import ReactPlayer from 'react-player';
-import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
+import Header from '../../../components/Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLandingPageContent } from '../../../slices/pageSlices/landingPageContentSlices/landingPageContentGetSlice';
+import LoadingBox from '../../../components/LoadingBox/LoadingBox';
+import MessageBox from '../../../components/MessageBox/MessageBox';
 
 export default function LandingScreen(props) {
-  const [playing, setPlaying] = useState(false);
+  const landingPageContentGetSlice = useSelector(
+    (state) => state.landingPageContentGetSlice
+  );
+  const { status, content, error } = landingPageContentGetSlice;
 
   const isSmallerScreen = useMediaQuery({ query: '(max-width: 474px)' });
   const onEnded = () => {
     props.history.push('/home');
   };
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLandingPageContent({}));
+  }, [dispatch]);
+
   return (
     <div className={styles.wrapper}>
-      {!playing ? (
-        <motion.img
-          whileHover={{ scale: 1.2 }}
-          onClick={() => setPlaying(true)}
-          drag
-          dragElastic={2}
-          dragConstraints={{
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0
-          }}
-          className={styles.logo}
-          src="/logo512.png"
-          alt="Nerdhub Logo"
-        />
+      <Header home></Header>
+      {status === 'loading' ? (
+        <div className="min_page_height">
+          <LoadingBox></LoadingBox>
+        </div>
+      ) : error ? (
+        <div className="min_page_height">
+          <MessageBox variant="danger">
+            Oops. We are temporarily unavailable. Please try again later.
+          </MessageBox>
+        </div>
       ) : (
         <div className={styles.video}>
-          <ReactPlayer
-            url={
-              !isSmallerScreen
-                ? 'https://res.cloudinary.com/nerdhub-house-kenya/video/upload/v1633356272/NH1_oz4v8m.mp4'
-                : 'https://res.cloudinary.com/nerdhub-house-kenya/video/upload/v1633360658/NH1_oz4v8m-c_fill_h_900_w_475_zxmy3e.mp4'
-            }
-            height="100vh"
-            width="100vw"
-            playing={playing}
-            onEnded={onEnded}
-          />
+          {content && content.showVideo ? (
+            <ReactPlayer
+              url={
+                !isSmallerScreen
+                  ? content && content.videoUrl
+                  : content && content.mobileVideoUrl
+              }
+              height="100vh"
+              width="100vw"
+              playing={true}
+              onEnded={onEnded}
+            />
+          ) : (
+            props.history.push('/home')
+          )}
         </div>
       )}
     </div>
