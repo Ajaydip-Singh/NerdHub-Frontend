@@ -44,6 +44,7 @@ import EventPageScreen from './screens/AdminScreens/EventPageScreen/EventPageScr
 import GalleryEditScreen from './screens/AdminScreens/GalleryEditScreen/GalleryEditScreen';
 import LoginPageScreen from './screens/AdminScreens/LoginPageScreen/LoginPageScreen';
 import RegisterPageScreen from './screens/AdminScreens/RegisterPageScreen/RegisterPageScreen';
+import LandingPageScreen from './screens/AdminScreens/LandingPageScreen/LandingPageScreen';
 
 function App() {
   return (
@@ -226,6 +227,11 @@ function App() {
       <AdminRoute
         path="/register-page-content-admin"
         component={RegisterPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/landing-page-content-admin"
+        component={LandingPageScreen}
         exact
       ></AdminRoute>
     </Router>

@@ -46,6 +46,9 @@ export default function AdminPanelScreen() {
         <Link to="/register-page-content-admin" className={styles.card_link}>
           <div className={styles.card}>Register Page</div>
         </Link>
+        <Link to="/landing-page-content-admin" className={styles.card_link}>
+          <div className={styles.card}>Landing Page</div>
+        </Link>
         <Link to="/events-admin" className={styles.card_link}>
           <div className={styles.card}>Events</div>
         </Link>
