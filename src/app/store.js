@@ -63,6 +63,8 @@ import registerPageContentGetSlice from '../slices/pageSlices/registerPageConten
 import registerPageContentUpdateSlice from '../slices/pageSlices/registerPageContentSlices/registerPageContentUpdateSlice';
 import landingPageContentGetSlice from '../slices/pageSlices/landingPageContentSlices/landingPageContentGetSlice';
 import landingPageContentUpdateSlice from '../slices/pageSlices/landingPageContentSlices/landingPageContentUpdateSlice';
+import socialMediaContentGetSlice from '../slices/pageSlices/socialMediaContentSlices/socialMediaContentGetSlice';
+import socialMediaContentUpdateSlice from '../slices/pageSlices/socialMediaContentSlices/socialMediaContentUpdateSlice';
 
 export const store = configureStore({
   preloadedState: {
@@ -129,6 +131,8 @@ export const store = configureStore({
     membershipPageContentUpdateSlice: membershipPageContentUpdateSlice,
     footerContentGetSlice: footerContentGetSlice,
     footerContentUpdateSlice: footerContentUpdateSlice,
+    socialMediaContentGetSlice: socialMediaContentGetSlice,
+    socialMediaContentUpdateSlice: socialMediaContentUpdateSlice,
     imageUploadSliceA: imageUploadeSliceCreater('imageUploadSliceA'),
     imageUploadSliceB: imageUploadeSliceCreater('imageUploadSliceB'),
     imageUploadSliceC: imageUploadeSliceCreater('imageUploadSliceC'),
