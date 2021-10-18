@@ -42,6 +42,7 @@ import LandingScreen from './screens/PublicScreens/LandingScreen/LandingScreen';
 import ComicPageScreen from './screens/AdminScreens/ComicPageScreen/ComicPageScreen';
 import EventPageScreen from './screens/AdminScreens/EventPageScreen/EventPageScreen';
 import GalleryEditScreen from './screens/AdminScreens/GalleryEditScreen/GalleryEditScreen';
+import LoginPageScreen from './screens/AdminScreens/LoginPageScreen/LoginPageScreen';
 
 function App() {
   return (
@@ -214,6 +215,11 @@ function App() {
       <AdminRoute
         path="/gallery-page-content-admin"
         component={GalleryPageScreen}
+        exact
+      ></AdminRoute>
+      <AdminRoute
+        path="/login-page-content-admin"
+        component={LoginPageScreen}
         exact
       ></AdminRoute>
     </Router>
